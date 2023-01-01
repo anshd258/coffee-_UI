@@ -1,0 +1,134 @@
+import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/widgets/glassContainer.dart';
+
+class page_2 extends StatefulWidget {
+  const page_2({super.key});
+
+  @override
+  State<page_2> createState() => _page_2State();
+}
+
+class _page_2State extends State<page_2> {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Container(
+        height: size.height,
+        width: size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("assets/1.png"),
+          ),
+        ),
+        child: GlassContainer.clearGlass(
+          height: size.height,
+          width: size.width,
+          blur: 7,
+          borderColor: Colors.transparent,
+          child: Column(
+            children: [
+              SizedBox(
+                height: size.height - 700,
+              ),
+              Container(
+                width: size.width - 30,
+                height: size.height - 730,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.access_alarm,
+                        color: Color.fromARGB(255, 182, 182, 182)),
+                    SizedBox(
+                      width: size.width - 340,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "02/01/2023",
+                          style: GoogleFonts.inter(
+                              color: Color.fromARGB(255, 182, 182, 182),
+                              fontSize: 10),
+                        ),
+                        Text(
+                          "Joshua Scanlan",
+                          style: GoogleFonts.inter(
+                              color: Color.fromARGB(255, 182, 182, 182),
+                              fontSize: 15),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: size.width - 300,
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        height: size.height - 750,
+                        width: size.width - 327,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: const Color.fromARGB(255, 182, 182, 182)),
+                        child: Icon(
+                          Icons.delete_outline,
+                        )),
+                    SizedBox(
+                      width: size.width - 340,
+                    ),
+                    Container(
+                      height: size.height - 750,
+                      width: size.width - 327,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(60),
+                          image: DecorationImage(
+                              image: AssetImage(
+                            "assets/logo.png",
+                          ))),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height - 760,
+              ),
+              TextField(
+                cursorColor: Color.fromARGB(255, 182, 182, 182),
+                decoration: InputDecoration(
+                    hintText: "Search favorite Beverages",
+                    hintStyle: GoogleFonts.inter(
+                      color: Color.fromARGB(100, 182, 182, 182),
+                      fontSize: 12,
+                    ),
+                    suffixIcon: Icon(
+                      Icons.tune_rounded,
+                      color: Color.fromARGB(255, 182, 182, 182),
+                    ),
+                    prefixIcon: Icon(Icons.search,
+                        color: Color.fromARGB(255, 182, 182, 182)),
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(3),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                        )),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(3),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                        )),
+                    fillColor: Colors.white,
+                    constraints: BoxConstraints(
+                      maxWidth: size.width - 30,
+                      maxHeight: size.height - 730,
+                    )),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
