@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/widgets/glassContainer.dart';
+import '../widgets/namebar2.dart';
 
 class page_2 extends StatefulWidget {
   const page_2({super.key});
@@ -34,63 +35,7 @@ class _page_2State extends State<page_2> {
               SizedBox(
                 height: size.height - 700,
               ),
-              Container(
-                width: size.width - 30,
-                height: size.height - 730,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(Icons.access_alarm,
-                        color: Color.fromARGB(255, 182, 182, 182)),
-                    SizedBox(
-                      width: size.width - 340,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "02/01/2023",
-                          style: GoogleFonts.inter(
-                              color: Color.fromARGB(255, 182, 182, 182),
-                              fontSize: 10),
-                        ),
-                        Text(
-                          "Joshua Scanlan",
-                          style: GoogleFonts.inter(
-                              color: Color.fromARGB(255, 182, 182, 182),
-                              fontSize: 15),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: size.width - 300,
-                    ),
-                    Container(
-                        alignment: Alignment.center,
-                        height: size.height - 750,
-                        width: size.width - 327,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color.fromARGB(255, 182, 182, 182)),
-                        child: Icon(
-                          Icons.delete_outline,
-                        )),
-                    SizedBox(
-                      width: size.width - 340,
-                    ),
-                    Container(
-                      height: size.height - 750,
-                      width: size.width - 327,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(60),
-                          image: DecorationImage(
-                              image: AssetImage(
-                            "assets/logo.png",
-                          ))),
-                    )
-                  ],
-                ),
-              ),
+              name_bar2(size: size),
               SizedBox(
                 height: size.height - 760,
               ),
