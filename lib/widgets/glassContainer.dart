@@ -115,7 +115,7 @@ class glass_container extends StatelessWidget {
           //signup button
           OutlinedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/page_2");
+              Navigator.pushNamed(context, "/page2");
             },
             style: OutlinedButton.styleFrom(
               side: const BorderSide(
@@ -137,7 +137,7 @@ class glass_container extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/page_2");
+                Navigator.pushNamed(context, "/page2");
               },
               child: Text(
                 "Privacy Policy",
