@@ -15,6 +15,7 @@ class _page_2State extends State<page_2> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         height: size.height,

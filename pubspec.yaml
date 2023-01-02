@@ -40,6 +40,9 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_glow: ^0.2.0
   nice_buttons: ^0.0.2
+  sizer: ^2.0.15
+  flutter_advanced_switch: ^3.0.1
+
 
 dev_dependencies:
   flutter_test:
