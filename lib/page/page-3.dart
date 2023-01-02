@@ -38,6 +38,8 @@ class _Page3State extends State<Page3> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    print(args);
     switch (v) {
       case 1:
         {
@@ -83,403 +85,420 @@ class _Page3State extends State<Page3> {
               image: AssetImage("assets/1.png"),
               fit: BoxFit.fill,
             )),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image(image: AssetImage("assets/logo.png")),
-                  GlassContainer.clearGlass(
-                    height: 100.h,
-                    width: 100.w,
-                    blur: 8,
-                    borderColor: Colors.transparent,
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(30), bottom: Radius.zero),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "Latte",
-                              style: GoogleFonts.inter(
-                                fontSize: 20,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 205, 205, 205),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 60.w,
-                            ),
-                            DropdownButton<String>(
-                              value: dropdownvalue.toString(),
-                              style: GoogleFonts.inter(fontSize: 12),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              iconEnabledColor:
-                                  const Color.fromARGB(255, 217, 217, 217),
-                              focusColor: Colors.white30,
-                              dropdownColor: Colors.white30,
-                              items: [
-                                const DropdownMenuItem(
-                                  value: '1',
-                                  child: Text('1'),
-                                ),
-                                const DropdownMenuItem(
-                                  value: '2',
-                                  child: Text('2'),
-                                ),
-                                const DropdownMenuItem(
-                                  value: '3',
-                                  child: Text('3'),
-                                ),
-                              ],
-                              onChanged: (String? value) {
-                                setState(() {
-                                  dropdownvalue = int.parse(value!);
-                                });
-                              },
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "4.9",
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 197, 197, 197),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color: Colors.amber.shade300,
-                              size: 18,
-                            ),
-                            SizedBox(
-                              width: 1.w,
-                            ),
-                            Text(
-                              "(458)",
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: const Color.fromARGB(255, 197, 197, 197),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Image(image: AssetImage("assets/6.png"))
-                          ],
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        SizedBox(
-                          width: 85.w,
-                          child: Text(
-                            "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top.",
-                            style: GoogleFonts.inter(
-                                color: const Color.fromARGB(255, 197, 197, 197),
-                                fontSize: 9,
-                                textStyle: TextStyle(
-                                  wordSpacing: 1,
-                                )),
+          ),
+          Positioned(child: Image(image: AssetImage('assets/7.jpg'))),
+          Positioned(
+            top: 40.h,
+            child: Container(
+              height: 100.h,
+              width: 100.w,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(30)),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GlassContainer.clearGlass(
+                      height: 140.h,
+                      width: 100.w,
+                      blur: 10,
+                      borderColor: Colors.transparent,
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(30), bottom: Radius.zero),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 3.h,
                           ),
-                        ),
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "Choice of Cup Filling",
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text(
+                                "Latte",
+                                style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 205, 205, 205),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 60.w,
+                              ),
+                              DropdownButton<String>(
+                                value: dropdownvalue.toString(),
+                                style: GoogleFonts.inter(fontSize: 12),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                iconEnabledColor:
+                                    const Color.fromARGB(255, 217, 217, 217),
+                                focusColor: Colors.white30,
+                                dropdownColor: Colors.white30,
+                                items: [
+                                  const DropdownMenuItem(
+                                    value: '1',
+                                    child: Text('1'),
+                                  ),
+                                  const DropdownMenuItem(
+                                    value: '2',
+                                    child: Text('2'),
+                                  ),
+                                  const DropdownMenuItem(
+                                    value: '3',
+                                    child: Text('3'),
+                                  ),
+                                ],
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    dropdownvalue = int.parse(value!);
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text(
+                                "4.9",
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 197, 197, 197),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.amber.shade300,
+                                size: 18,
+                              ),
+                              SizedBox(
+                                width: 1.w,
+                              ),
+                              Text(
+                                "(458)",
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color:
+                                      const Color.fromARGB(255, 197, 197, 197),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Image(image: AssetImage("assets/6.png"))
+                            ],
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          SizedBox(
+                            width: 85.w,
+                            child: Text(
+                              "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top.",
                               style: GoogleFonts.inter(
-                                fontSize: 16,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                                  color:
+                                      const Color.fromARGB(255, 197, 197, 197),
+                                  fontSize: 9,
+                                  textStyle: TextStyle(
+                                    wordSpacing: 1,
+                                  )),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3.h,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                              width: 15.w,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    v = 1;
-                                  });
-                                },
-                                child: Text(
-                                  "FULL",
-                                  style: GoogleFonts.inter(
-                                      color:
-                                          first ? Colors.white : Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                              Text(
+                                "Choice of Cup Filling",
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 205, 205, 205),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(7)),
-                                    backgroundColor: first
-                                        ? Colors.greenAccent.shade700
-                                        : Colors.white),
                               ),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                              width: 17.w,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    v = 2;
-                                  });
-                                },
-                                child: Text(
-                                  "1/2 FULL",
-                                  style: GoogleFonts.inter(
-                                      color: two ? Colors.white : Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 3.h,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                                width: 15.w,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      v = 1;
+                                    });
+                                  },
+                                  child: Text(
+                                    "FULL",
+                                    style: GoogleFonts.inter(
+                                        color:
+                                            first ? Colors.white : Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      backgroundColor: first
+                                          ? Colors.greenAccent.shade700
+                                          : Colors.white),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(7)),
-                                    backgroundColor: two
-                                        ? Colors.greenAccent.shade700
-                                        : Colors.white),
                               ),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                              width: 17.w,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    v = 3;
-                                  });
-                                },
-                                child: Text(
-                                  "3/4 FULL",
-                                  style: GoogleFonts.inter(
-                                      color:
-                                          three ? Colors.white : Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                                width: 17.w,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      v = 2;
+                                    });
+                                  },
+                                  child: Text(
+                                    "1/2 FULL",
+                                    style: GoogleFonts.inter(
+                                        color:
+                                            two ? Colors.white : Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      backgroundColor: two
+                                          ? Colors.greenAccent.shade700
+                                          : Colors.white),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(7)),
-                                    backgroundColor: three
-                                        ? Colors.greenAccent.shade700
-                                        : Colors.white),
                               ),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                              width: 17.w,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    v = 4;
-                                  });
-                                },
-                                child: Text(
-                                  "1/4 FULL",
-                                  style: GoogleFonts.inter(
-                                      color: four ? Colors.white : Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                                width: 17.w,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      v = 3;
+                                    });
+                                  },
+                                  child: Text(
+                                    "3/4 FULL",
+                                    style: GoogleFonts.inter(
+                                        color:
+                                            three ? Colors.white : Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      backgroundColor: three
+                                          ? Colors.greenAccent.shade700
+                                          : Colors.white),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(7)),
-                                    backgroundColor: four
-                                        ? Colors.greenAccent.shade700
-                                        : Colors.white),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 7.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              " Choice of Milk",
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                              SizedBox(
+                                width: 3.w,
                               ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 18.h,
-                          width: 90.w,
-                          alignment: Alignment.centerLeft,
-                          child: GridView.count(
-                              crossAxisCount: 2,
-                              childAspectRatio: 3.5 / 1,
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.symmetric(vertical: 2.h),
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0,
-                              children: values.map((e) {
-                                final _ctr = ValueNotifier<bool>(false);
-                                @override
-                                void initState() {
-                                  super.initState();
-                                  _ctr.addListener(() {
-                                    setState(() {});
-                                  });
-                                }
+                              SizedBox(
+                                height: 4.h,
+                                width: 17.w,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      v = 4;
+                                    });
+                                  },
+                                  child: Text(
+                                    "1/4 FULL",
+                                    style: GoogleFonts.inter(
+                                        color:
+                                            four ? Colors.white : Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      backgroundColor: four
+                                          ? Colors.greenAccent.shade700
+                                          : Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text(
+                                " Choice of Milk",
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 205, 205, 205),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 18.h,
+                            width: 90.w,
+                            alignment: Alignment.centerLeft,
+                            child: GridView.count(
+                                crossAxisCount: 2,
+                                childAspectRatio: 3.5 / 1,
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.symmetric(vertical: 2.h),
+                                crossAxisSpacing: 0,
+                                mainAxisSpacing: 0,
+                                children: values.map((e) {
+                                  final _ctr = ValueNotifier<bool>(false);
+                                  @override
+                                  void initState() {
+                                    super.initState();
+                                    _ctr.addListener(() {
+                                      setState(() {});
+                                    });
+                                  }
 
-                                return Container(
-                                    height: 3.h,
-                                    width: 30.w,
-                                    child: Row(
-                                      children: [
-                                        AdvancedSwitch(
-                                          width: 6.w,
-                                          height: 2.h,
-                                          controller: _ctr,
-                                          enabled: true,
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          e,
-                                          style: GoogleFonts.inter(
-                                              color: const Color.fromARGB(
-                                                  255, 197, 197, 197),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ],
-                                    ));
-                              }).toList()),
-                        ),
-                        SizedBox(
-                          height: 7.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              " Choice of Suger",
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                                  return Container(
+                                      height: 3.h,
+                                      width: 30.w,
+                                      child: Row(
+                                        children: [
+                                          AdvancedSwitch(
+                                            width: 6.w,
+                                            height: 2.h,
+                                            controller: _ctr,
+                                            enabled: true,
+                                          ),
+                                          SizedBox(
+                                            width: 2.w,
+                                          ),
+                                          Text(
+                                            e,
+                                            style: GoogleFonts.inter(
+                                                color: const Color.fromARGB(
+                                                    255, 197, 197, 197),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ],
+                                      ));
+                                }).toList()),
+                          ),
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5.w,
                               ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 18.h,
-                          width: 90.w,
-                          alignment: Alignment.centerLeft,
-                          child: GridView.count(
-                              crossAxisCount: 2,
-                              childAspectRatio: 3.5 / 1,
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.symmetric(vertical: 2.h),
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0,
-                              children: suger.map((e) {
-                                final _ctr = ValueNotifier<bool>(false);
-                                @override
-                                void initState() {
-                                  super.initState();
-                                  _ctr.addListener(() {
-                                    setState(() {});
-                                  });
-                                }
+                              Text(
+                                " Choice of Suger",
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 205, 205, 205),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 18.h,
+                            width: 90.w,
+                            alignment: Alignment.centerLeft,
+                            child: GridView.count(
+                                crossAxisCount: 2,
+                                childAspectRatio: 3.5 / 1,
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.symmetric(vertical: 2.h),
+                                crossAxisSpacing: 0,
+                                mainAxisSpacing: 0,
+                                children: suger.map((e) {
+                                  final _ctr = ValueNotifier<bool>(false);
+                                  @override
+                                  void initState() {
+                                    super.initState();
+                                    _ctr.addListener(() {
+                                      setState(() {});
+                                    });
+                                  }
 
-                                return Container(
-                                    height: 3.h,
-                                    width: 30.w,
-                                    child: Row(
-                                      children: [
-                                        AdvancedSwitch(
-                                          width: 6.w,
-                                          height: 2.h,
-                                          controller: _ctr,
-                                          enabled: true,
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          e,
-                                          style: GoogleFonts.inter(
-                                              color: const Color.fromARGB(
-                                                  255, 197, 197, 197),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ],
-                                    ));
-                              }).toList()),
-                        )
-                      ],
+                                  return Container(
+                                      height: 3.h,
+                                      width: 30.w,
+                                      child: Row(
+                                        children: [
+                                          AdvancedSwitch(
+                                            width: 6.w,
+                                            height: 2.h,
+                                            controller: _ctr,
+                                            enabled: true,
+                                          ),
+                                          SizedBox(
+                                            width: 2.w,
+                                          ),
+                                          Text(
+                                            e,
+                                            style: GoogleFonts.inter(
+                                                color: const Color.fromARGB(
+                                                    255, 197, 197, 197),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ],
+                                      ));
+                                }).toList()),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

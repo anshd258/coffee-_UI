@@ -121,7 +121,8 @@ class _page_2State extends State<page_2> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed("/page3");
+                                Navigator.of(context)
+                                    .pushNamed("/page3", arguments: e["image"]);
                               },
                               child: GlassContainer.clearGlass(
                                 height: 25.h,
