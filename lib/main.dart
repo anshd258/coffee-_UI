@@ -21,7 +21,7 @@ class _main_appState extends State<main_app> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          initialRoute: "/page3",
+          initialRoute: "/page2",
           routes: {
             "/": (context) => const page_1(),
             "/page2": (context) => const page_2(),

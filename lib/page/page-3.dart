@@ -13,6 +13,7 @@ class Page3 extends StatefulWidget {
 }
 
 class _Page3State extends State<Page3> {
+  ValueNotifier<double> size = ValueNotifier<double>(0.00);
   var dropdownvalue = 1;
   bool first = false;
   bool two = false;
@@ -34,6 +35,7 @@ class _Page3State extends State<Page3> {
     "½ Sugar",
     "No Sugar",
   ];
+
   @override
   Widget build(BuildContext context) {
     switch (v) {
@@ -182,11 +184,7 @@ class _Page3State extends State<Page3> {
                             SizedBox(
                               width: 5.w,
                             ),
-                            Icon(
-                              Icons.circle_rounded,
-                              color: Colors.greenAccent.shade700,
-                              size: 15,
-                            ),
+                            Image(image: AssetImage("assets/6.png"))
                           ],
                         ),
                         SizedBox(

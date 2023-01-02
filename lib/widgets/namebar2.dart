@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class name_bar2 extends StatelessWidget {
   const name_bar2({
@@ -17,7 +18,7 @@ class name_bar2 extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.access_alarm, color: Color.fromARGB(255, 182, 182, 182)),
+          Text("👋", style: TextStyle(fontSize: 19)),
           SizedBox(
             width: size.width - 340,
           ),
@@ -39,27 +40,30 @@ class name_bar2 extends StatelessWidget {
           SizedBox(
             width: size.width - 300,
           ),
-          Container(
-              alignment: Alignment.center,
-              height: size.height - 750,
-              width: size.width - 327,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: const Color.fromARGB(255, 182, 182, 182)),
-              child: Icon(
-                Icons.delete_outline,
-              )),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+                alignment: Alignment.center,
+                height: 3.5.h,
+                width: 7.w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color.fromARGB(255, 182, 182, 182)),
+                child: Icon(
+                  Icons.delete_outline,
+                )),
+          ),
           SizedBox(
-            width: size.width - 340,
+            width: 3.w,
           ),
           Container(
-            height: size.height - 750,
-            width: size.width - 327,
+            height: 10.h,
+            width: 10.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(60),
                 image: DecorationImage(
                     image: AssetImage(
-                  "assets/logo.png",
+                  "assets/5.png",
                 ))),
           )
         ],
