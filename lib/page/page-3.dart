@@ -86,7 +86,25 @@ class _Page3State extends State<Page3> {
               fit: BoxFit.fill,
             )),
           ),
-          Positioned(child: Image(image: AssetImage('assets/7.jpg'))),
+          Container(
+            height: 100.h,
+            width: 100.w,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          Positioned(
+              child: Container(
+                  height: 50.h,
+                  width: 100.w,
+                  child: Image(
+                    image: AssetImage('assets/7.jpg'),
+                    fit: BoxFit.fill,
+                  ))),
           Positioned(
             top: 40.h,
             child: Container(
@@ -380,12 +398,12 @@ class _Page3State extends State<Page3> {
                             ],
                           ),
                           Container(
-                            height: 18.h,
+                            height: 20.h,
                             width: 90.w,
                             alignment: Alignment.centerLeft,
                             child: GridView.count(
                                 crossAxisCount: 2,
-                                childAspectRatio: 3.5 / 1,
+                                childAspectRatio: 4.w / 0.6.h,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 padding: EdgeInsets.symmetric(vertical: 2.h),
@@ -512,6 +530,8 @@ class _Page3State extends State<Page3> {
                       width: 0.5, color: Color.fromARGB(70, 14, 14, 14)),
                   color: const Color.fromRGBO(51, 51, 51, 0.90)),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Checkbox(
                       checkColor: Colors.white,
@@ -533,12 +553,9 @@ class _Page3State extends State<Page3> {
                     ),
                   ),
                   SizedBox(
-                    width: 3.w,
+                    width: 2.w,
                   ),
-                  Icon(
-                    Icons.crisis_alert,
-                    color: Color.fromARGB(255, 255, 55, 55),
-                  ),
+                  Image.asset("assets/8.png"),
                   SizedBox(
                     width: 8.w,
                   ),

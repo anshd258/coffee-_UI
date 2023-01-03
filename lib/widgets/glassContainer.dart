@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/page/page-2.dart';
 import 'package:nice_buttons/nice_buttons.dart';
 import './swiftcafetext.dart';
+import 'package:sizer/sizer.dart';
 
 class glass_container extends StatelessWidget {
   const glass_container({
@@ -17,16 +18,16 @@ class glass_container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassContainer.clearGlass(
-      height: size.height - 100,
-      width: size.width - 50,
+      height: 88.h,
+      width: 90.w,
       blur: 9,
       borderRadius: BorderRadius.circular(25),
       borderColor: Colors.white38,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
-            height: 57,
+          SizedBox(
+            height: 7.h,
           ),
           Image.asset("assets/logo.png"),
           //swift cafe begin
@@ -46,8 +47,8 @@ class glass_container extends StatelessWidget {
             ),
           ),
           //latte but never late end here
-          const SizedBox(height: 20),
-          const TextField(
+          SizedBox(height: 2.h),
+          TextField(
             style: TextStyle(color: Colors.white),
             cursorColor: Colors.white,
             decoration: InputDecoration(
@@ -63,12 +64,12 @@ class glass_container extends StatelessWidget {
               hintStyle: TextStyle(color: Colors.white, fontSize: 13),
               fillColor: Colors.transparent,
               filled: true,
-              constraints: BoxConstraints(maxHeight: 70, maxWidth: 265),
+              constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
             ),
           ),
           //user name fiel
-          SizedBox(height: 20),
-          const TextField(
+          SizedBox(height: 3.h),
+          TextField(
             obscureText: true,
             obscuringCharacter: "*",
             style: TextStyle(color: Colors.white),
@@ -86,12 +87,12 @@ class glass_container extends StatelessWidget {
               hintStyle: TextStyle(color: Colors.white, fontSize: 13),
               fillColor: Colors.transparent,
               filled: true,
-              constraints: BoxConstraints(maxHeight: 70, maxWidth: 265),
+              constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
             ),
           ),
           //password input field
-          const SizedBox(
-            height: 50,
+          SizedBox(
+            height: 6.h,
           ),
           // login button
           NiceButtons(
@@ -99,18 +100,18 @@ class glass_container extends StatelessWidget {
             borderRadius: 30,
             stretch: false,
             borderColor: Colors.transparent,
-            width: 200,
+            width: 55.w,
             gradientOrientation: GradientOrientation.Horizontal,
             startColor: Color.fromARGB(255, 77, 43, 26),
             endColor: Color.fromARGB(255, 167, 116, 90),
-            height: 49,
+            height: 6.5.h,
             child: Text(
               "Login",
               style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 16,
+          SizedBox(
+            height: 2.h,
           ),
           //signup button
           OutlinedButton(
@@ -121,7 +122,7 @@ class glass_container extends StatelessWidget {
               side: const BorderSide(
                 color: Colors.white,
               ),
-              fixedSize: const Size(200, 49),
+              fixedSize: Size(55.w, 6.5.h),
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
@@ -132,8 +133,8 @@ class glass_container extends StatelessWidget {
               style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 2.h,
           ),
           TextButton(
               onPressed: () {
@@ -142,7 +143,7 @@ class glass_container extends StatelessWidget {
               child: Text(
                 "Privacy Policy",
                 style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
-              ))
+              )),
         ],
       ),
     );

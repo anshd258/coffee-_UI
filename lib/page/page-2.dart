@@ -48,28 +48,42 @@ class _page_2State extends State<page_2> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        height: size.height,
-        width: size.width,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage("assets/1.png"),
+      resizeToAvoidBottomInset: false,
+      body: Stack(children: [
+        Container(
+          height: 100.h,
+          width: 100.w,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage("assets/1.png"),
+            ),
           ),
         ),
-        child: GlassContainer.clearGlass(
-          height: size.height,
-          width: size.width,
+        Container(
+          height: 100.h,
+          width: 100.w,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
+        GlassContainer.clearGlass(
+          height: 100.h,
+          width: 100.w,
           blur: 7,
           borderColor: Colors.transparent,
           child: Column(
             children: [
               SizedBox(
-                height: size.height - 700,
+                height: 8.h,
               ),
               name_bar2(size: size),
               SizedBox(
-                height: size.height - 760,
+                height: 1.h,
               ),
               TextField(
                 cursorColor: Color.fromARGB(255, 182, 182, 182),
@@ -98,147 +112,332 @@ class _page_2State extends State<page_2> {
                         )),
                     fillColor: Colors.white,
                     constraints: BoxConstraints(
-                      maxWidth: size.width - 30,
-                      maxHeight: size.height - 730,
+                      maxWidth: 90.w,
+                      maxHeight: 5.h,
                     )),
               ),
               SizedBox(
-                height: 4.5.h,
+                height: 3.h,
               ),
               Container(
                   width: 100.w,
-                  height: 32.h,
+                  height: 35.h,
                   color: Colors.black26,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: productsInfo.map((e) {
-                        print(e["image"]);
-                        return Row(
-                          children: [
-                            SizedBox(
-                              width: 3.w,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 7.w,
+                          ),
+                          Text(
+                            "Most Popular Beverages",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w300,
+                              color: Color.fromARGB(255, 205, 205, 205),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed("/page3", arguments: e["image"]);
-                              },
-                              child: GlassContainer.clearGlass(
-                                height: 25.h,
-                                width: 45.w,
-                                borderRadius: BorderRadius.circular(8),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 2.h,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                        child: Image(
-                                          image:
-                                              AssetImage(e["image"].toString()),
-                                        ),
-                                        height: 13.h,
-                                        width: 40.w,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        "  " + e["name"],
-                                        style: GoogleFonts.inter(
-                                          fontSize: 13,
-                                          letterSpacing: 1,
-                                          fontWeight: FontWeight.w700,
-                                          color: Color.fromARGB(
-                                              255, 205, 205, 205),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 0.6.h,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "      " + e["type"],
-                                        style: GoogleFonts.inter(
-                                            color: const Color.fromARGB(
-                                                255, 197, 197, 197),
-                                            fontSize: 7,
-                                            textStyle: TextStyle(
-                                              wordSpacing: 1,
-                                            )),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 0.7.h,
-                                    ),
-                                    Row(
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: productsInfo.map((e) {
+                            print(e["image"]);
+                            return Row(
+                              children: [
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .pushNamed("/page3", arguments: e);
+                                  },
+                                  child: GlassContainer.clearGlass(
+                                    height: 25.h,
+                                    width: 45.w,
+                                    borderColor: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Column(
                                       children: [
                                         SizedBox(
-                                          width: 5.w,
+                                          height: 2.h,
                                         ),
-                                        Text(
-                                          e["rating"],
-                                          style: GoogleFonts.inter(
-                                            fontSize: 9,
-                                            color: Color.fromARGB(
-                                                255, 197, 197, 197),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Container(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  e["image"].toString()),
+                                            ),
+                                            height: 13.h,
+                                            width: 40.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                            "  " + e["name"],
+                                            style: GoogleFonts.inter(
+                                              fontSize: 13,
+                                              letterSpacing: 1,
+                                              fontWeight: FontWeight.w700,
+                                              color: Color.fromARGB(
+                                                  255, 205, 205, 205),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 1.5.w,
+                                          height: 0.6.h,
                                         ),
-                                        Icon(
-                                          Icons.star,
-                                          color: Colors.amber.shade300,
-                                          size: 16,
-                                        ),
-                                        SizedBox(
-                                          width: 1.w,
-                                        ),
-                                        Text(
-                                          e["noreviews"],
-                                          style: GoogleFonts.inter(
-                                            fontSize: 12,
-                                            color: const Color.fromARGB(
-                                                255, 197, 197, 197),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "      " + e["type"],
+                                            style: GoogleFonts.inter(
+                                                color: const Color.fromARGB(
+                                                    255, 197, 197, 197),
+                                                fontSize: 8,
+                                                textStyle: TextStyle(
+                                                  wordSpacing: 1,
+                                                )),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 8.w,
+                                          height: 0.7.h,
                                         ),
-                                        Icon(
-                                          Icons.add_circle_rounded,
-                                          color:
-                                              Color.fromRGBO(102, 163, 92, 1),
-                                          size: 28,
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 5.w,
+                                            ),
+                                            Text(
+                                              e["rating"],
+                                              style: GoogleFonts.inter(
+                                                fontSize: 9,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.5.w,
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.amber.shade300,
+                                              size: 16,
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Text(
+                                              e["noreviews"],
+                                              style: GoogleFonts.inter(
+                                                fontSize: 9,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                            Icon(
+                                              Icons.add_box_rounded,
+                                              color: const Color.fromARGB(
+                                                  255, 102, 163, 92),
+                                              size: 4.h,
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                              ],
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  )),
+              SizedBox(height: 2.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "   Get it instantly",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w300,
+                    color: Color.fromARGB(255, 205, 205, 205),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 0.5.h,
+              ),
+              SizedBox(
+                height: 35.5.h,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: productsInfo.map((e) {
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed('/page3', arguments: e),
+                            child: GlassContainer.clearGlass(
+                              height: 15.h,
+                              width: 90.w,
+                              blur: 15,
+                              borderColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(17),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 12.h,
+                                    width: 55.w,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            e["name"],
+                                            style: GoogleFonts.inter(
+                                              fontSize: 16,
+                                              letterSpacing: 1,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color.fromARGB(
+                                                  255, 205, 205, 205),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              e["rating"],
+                                              style: GoogleFonts.inter(
+                                                fontSize: 8,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.5.w,
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.amber.shade300,
+                                              size: 15,
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Text(
+                                              e["noreviews"],
+                                              style: GoogleFonts.inter(
+                                                fontSize: 10,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5.w,
+                                            ),
+                                            Image(
+                                                image:
+                                                    AssetImage("assets/6.png"))
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        Text(
+                                          e["discription"],
+                                          style: GoogleFonts.inter(
+                                              color: const Color.fromARGB(
+                                                  255, 197, 197, 197),
+                                              fontSize: 8,
+                                              textStyle: TextStyle(
+                                                wordSpacing: 1,
+                                              )),
                                         ),
                                       ],
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.w,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 0.5.h,
+                                      ),
+                                      Container(
+                                        height: 11.h,
+                                        width: 24.w,
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                            image: AssetImage(e["image"])),
+                                      ),
+                                      SizedBox(
+                                        height: 2.5.h,
+                                        width: 15.w,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                elevation: 3,
+                                                backgroundColor: Color.fromARGB(
+                                                    255, 102, 163, 92)),
+                                            onPressed: () {},
+                                            child: Text(
+                                              "ADD",
+                                              style: GoogleFonts.inter(
+                                                  fontSize: 9),
+                                            )),
+                                      )
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                          ],
-                        );
-                      }).toList(),
-                    ),
-                  )),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                ),
+              )
             ],
           ),
         ),
-      ),
+      ]),
     );
   }
 }

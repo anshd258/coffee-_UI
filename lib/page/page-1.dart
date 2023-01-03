@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import '../widgets/glassContainer.dart';
+import 'package:sizer/sizer.dart';
 
 class page_1 extends StatefulWidget {
   const page_1({super.key});
@@ -16,8 +17,8 @@ class _page_1State extends State<page_1> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        height: size.height,
-        width: size.width,
+        height: 100.h,
+        width: 100.w,
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
@@ -25,11 +26,11 @@ class _page_1State extends State<page_1> {
           ),
         ),
         child: Container(
-          height: size.height,
-          width: size.width,
+          height: 100.h,
+          width: 100.w,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.transparent, Color.fromARGB(100, 207, 123, 75)],
+              colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
