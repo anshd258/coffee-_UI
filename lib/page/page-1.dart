@@ -17,6 +17,7 @@ class _page_1State extends State<page_1> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
+        //base image of the page
         height: 100.h,
         width: 100.w,
         decoration: const BoxDecoration(
@@ -26,6 +27,7 @@ class _page_1State extends State<page_1> {
           ),
         ),
         child: Container(
+          //brown gradient over the base image
           height: 100.h,
           width: 100.w,
           decoration: const BoxDecoration(
@@ -36,7 +38,8 @@ class _page_1State extends State<page_1> {
             ),
           ),
           child: Center(
-            child: glass_container(size: size),
+            child: glass_container(
+                size: size), //center glass container with inner widgets
           ),
         ),
       ),

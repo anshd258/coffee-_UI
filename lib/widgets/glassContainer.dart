@@ -18,20 +18,24 @@ class glass_container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassContainer.clearGlass(
+      //inner glass container
       height: 88.h,
       width: 90.w,
       blur: 9,
       borderRadius: BorderRadius.circular(25),
       borderColor: Colors.white38,
       child: Column(
+        //column in which inner childrens is placed
         mainAxisSize: MainAxisSize.min,
         children: [
+          //for gapping
           SizedBox(
             height: 7.h,
           ),
+          //logo of  the cafe
           Image.asset("assets/logo.png"),
           //swift cafe begin
-          swift_cafe_text(),
+          const swift_cafe_text(), //swift cafe TEXT
           //swift cafe end
           GlowText(
             '"Latte but never late"',
@@ -47,7 +51,7 @@ class glass_container extends StatelessWidget {
             ),
           ),
           //latte but never late end here
-          SizedBox(height: 2.h),
+          SizedBox(height: 2.h), //for gapping
           TextField(
             style: TextStyle(color: Colors.white),
             cursorColor: Colors.white,
@@ -67,7 +71,7 @@ class glass_container extends StatelessWidget {
               constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
             ),
           ),
-          //user name fiel
+          //user name field
           SizedBox(height: 3.h),
           TextField(
             obscureText: true,
@@ -110,13 +114,15 @@ class glass_container extends StatelessWidget {
               style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
             ),
           ),
+          //gapping
           SizedBox(
             height: 2.h,
           ),
           //signup button
           OutlinedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/page2");
+              Navigator.pushNamed(context,
+                  "/page2"); //navigating to 2nd page when the button is clicked
             },
             style: OutlinedButton.styleFrom(
               side: const BorderSide(
@@ -133,12 +139,15 @@ class glass_container extends StatelessWidget {
               style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
             ),
           ),
+          //gapping
           SizedBox(
             height: 2.h,
           ),
+          //privacy policy textbutton
           TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/page2");
+                Navigator.pushNamed(context,
+                    "/page2"); //navigating to 2nd page when the button is clicked
               },
               child: Text(
                 "Privacy Policy",

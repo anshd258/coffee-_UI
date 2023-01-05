@@ -3,12 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class name_bar2 extends StatelessWidget {
-  const name_bar2({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
-
-  final Size size;
+  const name_bar2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -13,6 +13,7 @@ class swift_cafe_text extends StatelessWidget {
       height: 19.h,
       width: 50.w,
       child: Column(
+        //swift cafe Text with Styling
         children: [
           Text(
             "Swift",
