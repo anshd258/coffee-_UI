@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
 import 'package:inter_coffee/widgets/pg3sheet.dart';
-import 'package:sizer/sizer.dart';
-import 'package:glass_kit/glass_kit.dart';
-
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Page3 extends StatefulWidget {
   const Page3({super.key});
@@ -34,7 +31,7 @@ class _Page3State extends State<Page3> {
             width: 100.w,
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage("assets/1.png"),
+              image: AssetImage("assets/bg1.jpg"),
               fit: BoxFit.fill,
             )),
           ),
@@ -94,7 +91,16 @@ class _Page3State extends State<Page3> {
                         width: 0.5, color: Color.fromARGB(70, 14, 14, 14)),
                     color: const Color.fromRGBO(51, 51, 51, 0.90)),
                 child: const Pg3highPrioButton()),
-          )
+          ),
+          // back button
+          Positioned(
+            top: 5.h,
+            left: 5.w,
+            child: GestureDetector(
+              onTap: (() => Navigator.pop(context)),
+              child: Image.asset("assets/ICONS/arrow1.png"),
+            ),
+          ),
         ],
       ),
     );

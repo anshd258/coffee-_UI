@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
 import '../widgets/PG2bottomnavbar.dart';
 
@@ -27,7 +27,7 @@ class _page_2State extends State<page_2> {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage("assets/1.png"),
+              image: AssetImage("assets/bg1.jpg"),
             ),
           ),
         ),

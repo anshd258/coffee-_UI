@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg2BottonavBar extends StatefulWidget {
   const Pg2BottonavBar({super.key});
@@ -81,6 +81,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
       blur: 15,
       alignment: Alignment.center,
       color: Colors.black54,
+      borderColor: Colors.transparent,
       borderRadius: const BorderRadius.all(
         Radius.circular(9),
       ),

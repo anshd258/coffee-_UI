@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class name_bar2 extends StatelessWidget {
   const name_bar2({Key? key}) : super(key: key);
@@ -37,20 +37,6 @@ class name_bar2 extends StatelessWidget {
           ),
           SizedBox(
             width: 19.w,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-                alignment: Alignment.center,
-                height: 3.5.h,
-                width: 7.w,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromARGB(255, 182, 182, 182)),
-                child: Icon(
-                  Icons.delete_outline,
-                  size: 3.h,
-                )),
           ),
           SizedBox(
             width: 3.w,
