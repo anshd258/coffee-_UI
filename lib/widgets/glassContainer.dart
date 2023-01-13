@@ -152,7 +152,7 @@ class glass_container extends StatelessWidget {
           TextButton(
               onPressed: () {
                 Navigator.pushNamed(context,
-                    "/page2"); //navigating to 2nd page when the button is clicked
+                    "/otpinput"); //navigating to 2nd page when the button is clicked
               },
               child: Text(
                 "Privacy Policy",

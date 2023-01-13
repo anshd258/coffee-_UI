@@ -45,6 +45,7 @@ dependencies:
   responsive_sizer: ^3.1.1
   cart_stepper: ^4.0.0
   flutter_screenutil: ^5.6.0
+  pinput: ^2.2.21
 
 
 dev_dependencies:
@@ -85,6 +86,9 @@ flutter:
     - assets/ICONS/arrow2.png    
     - assets/ICONS/arrow3.png   
     - assets/cp1.png 
+    - assets/otp1.png 
+    - assets/loginbutton.png 
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

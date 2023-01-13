@@ -7,6 +7,7 @@ import './page/orderspg.dart';
 import './page/page-3.dart';
 import './page/order-confirmation-pg.dart';
 import './page/order_details_pg.dart';
+import './page/otpinput.dart';
 
 void main() {
   runApp(const main_app());
@@ -33,6 +34,7 @@ class _main_appState extends State<main_app> {
             "/orderconfirmPg": (context) => const Orderconfirmationpg(),
             "/orderdetailsPg": (context) => const OrderDetailspg(),
             "/orderspg": (context) => const OrderPg(),
+            "/otpinput": (context) => const Otpscreen()
           },
         );
       },
