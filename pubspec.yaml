@@ -88,7 +88,11 @@ flutter:
     - assets/cp1.png 
     - assets/otp1.png 
     - assets/loginbutton.png 
-
+    - assets/user.jpeg 
+    - assets/about2.png 
+    - assets/feedb2.png 
+    - assets/test2.png     
+    - assets/logout2.png   
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

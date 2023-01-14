@@ -104,7 +104,8 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             androidSmsAutofillMethod:
                 AndroidSmsAutofillMethod.smsUserConsentApi,
             onSubmitted: ((value) {
-              Navigator.pushNamed(context, "/page2");
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/page2", (route) => false);
             }),
             pinAnimationType: PinAnimationType.fade,
             animationDuration: Duration(milliseconds: 15),
@@ -151,24 +152,30 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           SizedBox(
             height: 5.h,
           ),
-          Container(
-            height: 7.7.h,
-            width: 55.w,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                image: DecorationImage(
-                    alignment: Alignment.center,
-                    image: AssetImage("assets/loginbutton.png"),
-                    fit: BoxFit.fill)),
-            child: Center(
-              child: Text(
-                "Submit",
-                style: GoogleFonts.inter(
-                    color: Colors.white70,
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    letterSpacing: 1),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/page2", (route) => false);
+            },
+            child: Container(
+              height: 7.7.h,
+              width: 55.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                      alignment: Alignment.center,
+                      image: AssetImage("assets/loginbutton.png"),
+                      fit: BoxFit.fill)),
+              child: Center(
+                child: Text(
+                  "Submit",
+                  style: GoogleFonts.inter(
+                      color: Colors.white70,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      letterSpacing: 1),
+                ),
               ),
             ),
           ),

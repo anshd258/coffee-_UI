@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './page/page-2.dart';
 import './page/page-1.dart';
@@ -8,6 +7,7 @@ import './page/page-3.dart';
 import './page/order-confirmation-pg.dart';
 import './page/order_details_pg.dart';
 import './page/otpinput.dart';
+import './page/profilepg.dart';
 
 void main() {
   runApp(const main_app());
@@ -34,7 +34,8 @@ class _main_appState extends State<main_app> {
             "/orderconfirmPg": (context) => const Orderconfirmationpg(),
             "/orderdetailsPg": (context) => const OrderDetailspg(),
             "/orderspg": (context) => const OrderPg(),
-            "/otpinput": (context) => const Otpscreen()
+            "/otpinput": (context) => const Otpscreen(),
+            "/profile": (context) => const Profilepg()
           },
         );
       },

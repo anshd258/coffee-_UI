@@ -12,7 +12,7 @@ class OrderPg extends StatefulWidget {
 }
 
 class _OrderPgState extends State<OrderPg> {
-  List test = [1, 2, 3, 4, 5, 6, 7, 8];
+  List test = [1, 2, 3];
   @override
   Widget build(BuildContext context) {
     return Container(
