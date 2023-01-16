@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3MilkSwitch extends StatefulWidget {
   const Pg3MilkSwitch({super.key});
@@ -23,10 +23,10 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
   Widget build(BuildContext context) {
     return GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 4.w / 0.6.h,
+        childAspectRatio: 5.w / 0.6.h,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: 2.h),
+        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 0),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: values.map((e) {
@@ -40,25 +40,33 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
           }
 
           return Container(
-              height: 3.h,
+              height: 5.h,
               width: 30.w,
+              alignment: Alignment.center,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AdvancedSwitch(
-                    width: 6.w,
+                    width: 8.w,
                     height: 2.h,
                     controller: _ctr,
                     enabled: true,
                   ),
                   SizedBox(
-                    width: 2.w,
+                    width: 4.w,
                   ),
-                  Text(
-                    e,
-                    style: GoogleFonts.inter(
-                        color: const Color.fromARGB(255, 197, 197, 197),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w300),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    height: 5.h,
+                    width: 30.w,
+                    child: Text(
+                      e,
+                      maxLines: 2,
+                      style: GoogleFonts.inter(
+                          color: const Color.fromARGB(255, 197, 197, 197),
+                          fontSize: 14.5.sp,
+                          fontWeight: FontWeight.w300),
+                    ),
                   ),
                 ],
               ));

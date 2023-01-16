@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/page/page-2.dart';
+
 import 'package:nice_buttons/nice_buttons.dart';
 import './swiftcafetext.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class glass_container extends StatelessWidget {
-  const glass_container({
+  TextEditingController ctr = TextEditingController();
+  glass_container({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +32,9 @@ class glass_container extends StatelessWidget {
           ),
           //logo of  the cafe
           Image.asset("assets/logo.png"),
+          SizedBox(
+            height: 2.h,
+          ),
           //swift cafe begin
           const swift_cafe_text(), //swift cafe TEXT
           //swift cafe end
@@ -44,38 +45,42 @@ class glass_container extends StatelessWidget {
             glowColor: const Color.fromRGBO(171, 171, 171, 1),
             style: GoogleFonts.poppins(
               color: const Color.fromRGBO(171, 171, 171, 1),
-              fontSize: 14,
+              fontSize: 15.sp,
               letterSpacing: 0,
               fontWeight: FontWeight.normal,
               height: 1,
             ),
           ),
-          //latte but never late end here
-          SizedBox(height: 2.h), //for gapping
-          TextField(
-            style: TextStyle(color: Colors.white),
-            cursorColor: Colors.white,
-            decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                color: Colors.white,
-              )),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                color: Colors.white,
-              )),
-              hintText: "User Name",
-              hintStyle: TextStyle(color: Colors.white, fontSize: 13),
-              fillColor: Colors.transparent,
-              filled: true,
-              constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
-            ),
+          SizedBox(
+            height: 3.h,
           ),
-          //user name field
-          SizedBox(height: 3.h),
+          //latte but never late end here
+          //for gapping
+          // TextField(
+          //   style: TextStyle(color: Colors.white),
+          //   cursorColor: Colors.white,
+          //   decoration: InputDecoration(
+          //     enabledBorder: UnderlineInputBorder(
+          //         borderSide: BorderSide(
+          //       color: Colors.white,
+          //     )),
+          //     focusedBorder: UnderlineInputBorder(
+          //         borderSide: BorderSide(
+          //       color: Colors.white,
+          //     )),
+          //     hintText: "User Name",
+          //     hintStyle: TextStyle(color: Colors.white, fontSize: 13),
+          //     fillColor: Colors.transparent,
+          //     filled: true,
+          //     constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
+          //   ),
+          // ),
+          // //user name field
+
           TextField(
-            obscureText: true,
-            obscuringCharacter: "*",
+            // obscureText: true,
+            // obscuringCharacter: "*",
+            controller: ctr,
             style: TextStyle(color: Colors.white),
             cursorColor: Colors.white,
             decoration: InputDecoration(
@@ -87,7 +92,7 @@ class glass_container extends StatelessWidget {
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
-              hintText: "Password",
+              hintText: "Phone Number",
               hintStyle: TextStyle(color: Colors.white, fontSize: 13),
               fillColor: Colors.transparent,
               filled: true,
@@ -96,7 +101,7 @@ class glass_container extends StatelessWidget {
           ),
           //password input field
           SizedBox(
-            height: 6.h,
+            height: 10.h,
           ),
           // login button
           NiceButtons(
@@ -119,26 +124,26 @@ class glass_container extends StatelessWidget {
             height: 2.h,
           ),
           //signup button
-          OutlinedButton(
-            onPressed: () {
-              Navigator.pushNamed(context,
-                  "/page2"); //navigating to 2nd page when the button is clicked
-            },
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(
-                color: Colors.white,
-              ),
-              fixedSize: Size(55.w, 6.5.h),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-            child: Text(
-              "Signup",
-              style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
-            ),
-          ),
+          // OutlinedButton(
+          //   onPressed: () {
+          //     Navigator.pushNamed(context,
+          //         "/page2"); //navigating to 2nd page when the button is clicked
+          //   },
+          //   style: OutlinedButton.styleFrom(
+          //     side: const BorderSide(
+          //       color: Colors.white,
+          //     ),
+          //     fixedSize: Size(55.w, 6.5.h),
+          //     foregroundColor: Colors.white,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(30),
+          //     ),
+          //   ),
+          //   child: Text(
+          //     "Signup",
+          //     style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
+          //   ),
+          // ),
           //gapping
           SizedBox(
             height: 2.h,
@@ -147,7 +152,7 @@ class glass_container extends StatelessWidget {
           TextButton(
               onPressed: () {
                 Navigator.pushNamed(context,
-                    "/page2"); //navigating to 2nd page when the button is clicked
+                    "/otpinput"); //navigating to 2nd page when the button is clicked
               },
               child: Text(
                 "Privacy Policy",

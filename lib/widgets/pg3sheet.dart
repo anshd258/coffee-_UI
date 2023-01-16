@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/widgets/pg3togglebutton.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import './pg3milkswitchgride.dart';
 import './pg3sugergirde.dart';
 
@@ -28,7 +28,8 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
         GlassContainer.clearGlass(
           height: 140.h,
           width: 100.w,
-          blur: 10,
+          blur: 8,
+          color: Colors.white30,
           borderColor: Colors.transparent,
           borderRadius: BorderRadius.vertical(
               top: Radius.circular(30), bottom: Radius.zero),
@@ -62,32 +63,42 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                     width: 60.w,
                   ),
                   //dropdown button
-                  DropdownButton<String>(
-                    value: dropdownvalue.toString(),
-                    style: GoogleFonts.inter(fontSize: 12),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    iconEnabledColor: const Color.fromARGB(255, 217, 217, 217),
-                    focusColor: Colors.white30,
-                    dropdownColor: Colors.white30,
-                    items: [
-                      const DropdownMenuItem(
-                        value: '1',
-                        child: Text('1'),
-                      ),
-                      const DropdownMenuItem(
-                        value: '2',
-                        child: Text('2'),
-                      ),
-                      const DropdownMenuItem(
-                        value: '3',
-                        child: Text('3'),
-                      ),
-                    ],
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownvalue = int.parse(value!);
-                      });
-                    },
+                  Container(
+                    height: 3.h,
+                    width: 12.w,
+                    alignment: Alignment.centerRight,
+                    decoration: BoxDecoration(
+                        color: Colors.white30,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: DropdownButton<String>(
+                      value: dropdownvalue.toString(),
+                      style: GoogleFonts.inter(fontSize: 14.sp),
+                      alignment: Alignment.center,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      iconEnabledColor:
+                          const Color.fromARGB(255, 217, 217, 217),
+                      focusColor: Colors.white30,
+                      dropdownColor: Colors.black,
+                      items: [
+                        const DropdownMenuItem(
+                          value: '1',
+                          child: Text('1'),
+                        ),
+                        const DropdownMenuItem(
+                          value: '2',
+                          child: Text('2'),
+                        ),
+                        const DropdownMenuItem(
+                          value: '3',
+                          child: Text('3'),
+                        ),
+                      ],
+                      onChanged: (String? value) {
+                        setState(() {
+                          dropdownvalue = int.parse(value!);
+                        });
+                      },
+                    ),
                   )
                 ],
               ),
@@ -99,7 +110,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   Text(
                     "4.9",
                     style: GoogleFonts.inter(
-                      fontSize: 12,
+                      fontSize: 14.sp,
                       color: Color.fromARGB(255, 197, 197, 197),
                     ),
                   ),
@@ -109,7 +120,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   Icon(
                     Icons.star,
                     color: Colors.amber.shade300,
-                    size: 18,
+                    size: 14.sp,
                   ),
                   SizedBox(
                     width: 1.w,
@@ -117,7 +128,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   Text(
                     "(458)",
                     style: GoogleFonts.inter(
-                      fontSize: 12,
+                      fontSize: 14.sp,
                       color: const Color.fromARGB(255, 197, 197, 197),
                     ),
                   ),
@@ -136,7 +147,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top.",
                   style: GoogleFonts.inter(
                       color: const Color.fromARGB(255, 197, 197, 197),
-                      fontSize: 9,
+                      fontSize: 13.sp,
                       textStyle: TextStyle(
                         wordSpacing: 1,
                       )),
@@ -153,7 +164,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   Text(
                     "Choice of Cup Filling",
                     style: GoogleFonts.inter(
-                      fontSize: 16,
+                      fontSize: 17.sp,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 205, 205, 205),
@@ -168,8 +179,12 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               // toggle button widget
               Pg3togglebutton(),
               //for padding
-              SizedBox(
-                height: 7.h,
+
+              Divider(
+                color: Colors.white70,
+                endIndent: 5.w,
+                indent: 5.w,
+                height: 4.h,
               ),
               // choice of milk text
               Row(
@@ -180,7 +195,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   Text(
                     " Choice of Milk",
                     style: GoogleFonts.inter(
-                      fontSize: 16,
+                      fontSize: 17.sp,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 205, 205, 205),
@@ -195,10 +210,13 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   alignment: Alignment.centerLeft,
                   child: const Pg3MilkSwitch()),
               //for padding
-              SizedBox(
-                height: 7.h,
-              ),
 
+              Divider(
+                color: Colors.white70,
+                endIndent: 5.w,
+                indent: 5.w,
+                height: 4.h,
+              ),
               Row(
                 children: [
                   //for padding

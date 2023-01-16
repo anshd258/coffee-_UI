@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class swift_cafe_text extends StatelessWidget {
   const swift_cafe_text({
@@ -19,7 +19,7 @@ class swift_cafe_text extends StatelessWidget {
             "Swift",
             style: GoogleFonts.raleway(
               color: Colors.white,
-              fontSize: 55,
+              fontSize: 26.sp,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
             ),
@@ -28,7 +28,7 @@ class swift_cafe_text extends StatelessWidget {
             "Cafe",
             style: GoogleFonts.raleway(
               color: Colors.white,
-              fontSize: 30,
+              fontSize: 21.sp,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
             ),

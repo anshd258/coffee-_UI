@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3highPrioButton extends StatefulWidget {
   const Pg3highPrioButton({super.key});
@@ -50,7 +50,9 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
         ),
         //submit elevated button
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: Text(
             "Submit",
             style: GoogleFonts.inter(color: Colors.white),

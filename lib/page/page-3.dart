@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
 import 'package:inter_coffee/widgets/pg3sheet.dart';
-import 'package:sizer/sizer.dart';
-import 'package:glass_kit/glass_kit.dart';
-
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Page3 extends StatefulWidget {
   const Page3({super.key});
@@ -16,6 +13,22 @@ class Page3 extends StatefulWidget {
 
 class _Page3State extends State<Page3> {
   ValueNotifier<double> size = ValueNotifier<double>(0.00);
+  ScrollController ctr = ScrollController();
+  double offset = 40;
+  @override
+  void initState() {
+    ctr.addListener(() {
+      setState(() {
+        print(ctr.offset);
+        if (ctr.offset == 0) {
+          offset = 40;
+        } else {
+          offset = 20;
+        }
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,7 @@ class _Page3State extends State<Page3> {
             width: 100.w,
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage("assets/1.png"),
+              image: AssetImage("assets/bg1.jpg"),
               fit: BoxFit.fill,
             )),
           ),
@@ -62,14 +75,17 @@ class _Page3State extends State<Page3> {
             ),
           ),
           //main content of tthe page
-          Positioned(
-            top: 40.h,
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 200),
+            top: offset.h,
             child: Container(
               height: 100.h,
               width: 100.w,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30)),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.black38),
               child: SingleChildScrollView(
+                controller: ctr,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -94,7 +110,16 @@ class _Page3State extends State<Page3> {
                         width: 0.5, color: Color.fromARGB(70, 14, 14, 14)),
                     color: const Color.fromRGBO(51, 51, 51, 0.90)),
                 child: const Pg3highPrioButton()),
-          )
+          ),
+          // back button
+          Positioned(
+            top: 5.h,
+            left: 5.w,
+            child: GestureDetector(
+              onTap: (() => Navigator.pop(context)),
+              child: Image.asset("assets/ICONS/arrow1.png"),
+            ),
+          ),
         ],
       ),
     );
