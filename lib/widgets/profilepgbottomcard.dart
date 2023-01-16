@@ -18,6 +18,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
     return GlassContainer.frostedGlass(
       height: 30.h,
       width: 90.w,
+      borderWidth: 0.5,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
       margin: EdgeInsets.only(top: 1.h),
@@ -72,7 +73,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
-                      child: Image.asset("assets//ICONS/about2.png",
+                      child: Image.asset("assets/ICONS/about2.png",
                           color: Colors.white, scale: 0.22.h),
                     ),
                     SizedBox(
@@ -121,7 +122,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
-                      child: Image.asset("assets//ICONS/feedb2.png",
+                      child: Image.asset("assets/ICONS/feedb2.png",
                           color: Colors.white, scale: 0.25.h),
                     ),
                     SizedBox(
@@ -170,7 +171,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
-                      child: Image.asset("assets//ICONS/test2.png",
+                      child: Image.asset("assets/ICONS/test2.png",
                           color: Colors.white, scale: 0.22.h),
                     ),
                     SizedBox(
@@ -220,7 +221,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       elevation: 3,
                       shadowColor: Colors.white70,
                       padding: EdgeInsets.all(1.w),
-                      child: Image.asset("assets//ICONS/logout2.png",
+                      child: Image.asset("assets/ICONS/logout2.png",
                           color: Colors.white,
                           scale: 0.23.h,
                           alignment: Alignment.centerRight),

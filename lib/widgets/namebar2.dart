@@ -8,48 +8,45 @@ class name_bar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100.w,
+      width: 90.w,
       height: 7.h,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 03.w,
-          ),
-          Text("👋", style: TextStyle(fontSize: 6.w)),
-          SizedBox(
-            width: 3.w,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "02/01/2023",
-                style: GoogleFonts.inter(
-                    color: Color.fromARGB(255, 182, 182, 182), fontSize: 3.w),
-              ),
-              Text(
-                "Joshua Scanlan",
-                style: GoogleFonts.inter(
-                    color: Color.fromARGB(255, 182, 182, 182), fontSize: 5.w),
-              )
-            ],
-          ),
-          SizedBox(
-            width: 19.w,
-          ),
-          SizedBox(
-            width: 3.w,
-          ),
+          Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Text("👋", style: TextStyle(fontSize: 18.sp)),
+            SizedBox(
+              width: 3.w,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "02/01/2023",
+                  style: GoogleFonts.inter(
+                      color: Color.fromARGB(255, 182, 182, 182),
+                      fontSize: 14.sp),
+                ),
+                Text(
+                  "Joshua Scanlan",
+                  style: GoogleFonts.inter(
+                      color: Color.fromARGB(255, 182, 182, 182),
+                      fontSize: 17.sp),
+                )
+              ],
+            ),
+          ]),
           Container(
-            height: 7.h,
+            height: 6.h,
             width: 12.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(60),
+                border: Border.all(width: 0.5, color: Colors.green.shade400),
                 image: DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage(
-                      "assets/5.png",
+                      "assets/user.jpeg",
                     ))),
           )
         ],

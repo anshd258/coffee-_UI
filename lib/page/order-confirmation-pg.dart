@@ -62,14 +62,11 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
           backgroundColor: Colors.black45,
           appBar: AppBar(
             titleSpacing: 0,
-            leadingWidth: 14.w,
+            leadingWidth: 6.w,
+            leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(color: Colors.white, fontSize: 1.7.h)),
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
-            ),
             backgroundColor: Colors.white24,
           ),
           body: Center(
@@ -89,21 +86,24 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                 Positioned(
                   left: 5.w,
                   right: 5.w,
-                  bottom: 3.h,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/orderdetailsPg");
-                    },
-                    child: Text(
-                      "Confirm and Place Order",
-                      style: GoogleFonts.inter(color: Colors.white),
+                  bottom: 10.h,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/orderdetailsPg");
+                      },
+                      child: Text(
+                        "Confirm and Place Order",
+                        style: GoogleFonts.inter(
+                            color: Colors.white, fontSize: 16.sp),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 5,
+                          backgroundColor: Colors.greenAccent.shade700,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7))),
                     ),
-                    style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                        fixedSize: Size(68.w, 4.h),
-                        backgroundColor: Colors.greenAccent.shade700,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7))),
                   ),
                 ),
                 SizedBox(

@@ -25,20 +25,20 @@ class _OcpageListState extends State<OcpageList> {
         ),
         // for detecting clicks and directing them to next page-3
         GestureDetector(
-          onTap: () =>
-              Navigator.of(context).pushNamed('/page3', arguments: widget.e),
+          // onTap: () =>
+          //     Navigator.of(context).pushNamed('/page3', arguments: widget.e),
           child: GlassContainer.clearGlass(
-            height: 15.h,
+            height: 14.h,
             width: 90.w,
             blur: 15,
-            borderColor: Colors.transparent,
+            color: Colors.white30,
+            borderColor: Colors.white24,
             borderRadius: BorderRadius.circular(5),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //for padding
-                SizedBox(
-                  width: 5.w,
-                ),
+
                 Center(
                   child: GlassContainer.frostedGlass(
                     height: 11.h,
@@ -56,86 +56,32 @@ class _OcpageListState extends State<OcpageList> {
                     ),
                   ),
                 ),
-                SizedBox(width: 3.w),
+                SizedBox(width: 5.w),
 
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
-                  height: 12.h,
-                  width: 52.w,
+                  height: 11.h,
+                  width: 54.w,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       //name of the product
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          widget.e["name"],
-                          style: GoogleFonts.inter(
-                            fontSize: 1.8.h,
-                            letterSpacing: 1,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 205, 205, 205),
-                          ),
-                        ),
-                      ),
-                      //pading
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      //inner row
-                      Row(
-                        children: [
-                          //for showing ratings
-                          Text(
-                            "FULL",
-                            style: GoogleFonts.inter(
-                              fontSize: 0.8.h,
-                              color: Color.fromARGB(255, 205, 205, 205),
-                            ),
-                          ),
-                          //for padding
-                          SizedBox(
-                            width: 1.5.w,
-                          ),
-                          //start icon with yellow color
-
-                          //more padding
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          //no of reviews text
-                          Text(
-                            "FULL CREAM MILK",
-                            style: GoogleFonts.inter(
-                              fontSize: 0.8.h,
-                              color: Color.fromARGB(255, 205, 205, 205),
-                            ),
-                          ),
-                          //for padding
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          // veg symbol
-                        ],
-                      ),
-                      //padding between inner row and discription
-                      SizedBox(
-                        height: 0.5.h,
-                      ),
-                      //discription text
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "SUGER X 2",
-                            style: GoogleFonts.inter(
-                                color: const Color.fromARGB(255, 197, 197, 197),
-                                fontSize: 8,
-                                textStyle: TextStyle(
-                                  wordSpacing: 1,
-                                )),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              widget.e["name"],
+                              style: GoogleFonts.inter(
+                                fontSize: 15.sp,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 205, 205, 205),
+                              ),
+                            ),
                           ),
                           CartStepperInt(
                             value: counter,
@@ -154,22 +100,93 @@ class _OcpageListState extends State<OcpageList> {
                         ],
                       ),
 
-                      Divider(
+                      //pading
+                      SizedBox(
+                        height: 0.8.h,
+                      ),
+                      //inner row
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          //for showing ratings
+                          Row(
+                            children: [
+                              Text(
+                                "FULL",
+                                style: GoogleFonts.inter(
+                                    fontSize: 11.8.sp,
+                                    color: Color.fromARGB(255, 205, 205, 205),
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              //for padding
+                              SizedBox(
+                                width: 1.w,
+                              ),
+                              //start icon with yellow color
+
+                              //more padding
+                              SizedBox(
+                                width: 1.w,
+                              ),
+                              //no of reviews text
+                              Text(
+                                "FULL CREAM MILK",
+                                style: GoogleFonts.inter(
+                                  fontSize: 11.8.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromARGB(255, 205, 205, 205),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          //for padding
+
+                          // veg symbol
+                        ],
+                      ),
+                      //padding between inner row and discription
+                      SizedBox(
+                        height: 0.5.h,
+                      ),
+                      //discription text
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "SUGER X 2",
+                            style: GoogleFonts.inter(
+                                color: const Color.fromARGB(255, 197, 197, 197),
+                                fontSize: 11.8.sp,
+                                fontWeight: FontWeight.w600,
+                                textStyle: TextStyle(
+                                  wordSpacing: 1,
+                                )),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
                         height: 1.h,
+                      ),
+
+                      Divider(
+                        height: .5.h,
                         thickness: 1,
                         color: Colors.black45,
                       ),
                       SizedBox(
                         height: 3.h,
+                        width: 52.w,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextButton(
                               onPressed: () {},
                               child: Text(
                                 "Instructions for Cafe",
                                 style: GoogleFonts.inter(
-                                    fontSize: 0.9.h,
+                                    fontSize: 11.5.sp,
+                                    fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
@@ -182,12 +199,13 @@ class _OcpageListState extends State<OcpageList> {
                               child: Text(
                                 "Add More Items",
                                 style: GoogleFonts.inter(
-                                    fontSize: 0.9.h,
+                                    fontSize: 11.5.sp,
+                                    fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
                               style: TextButton.styleFrom(
-                                fixedSize: Size(24.w, 2.h),
+                                fixedSize: Size(23.w, 2.h),
                               ),
                             )
                           ],
@@ -197,9 +215,7 @@ class _OcpageListState extends State<OcpageList> {
                   ),
                 ),
                 //for padding
-                SizedBox(
-                  width: 3.w,
-                ),
+
                 //column in the main row with image and the add button
                 // Column(
                 //   mainAxisAlignment: MainAxisAlignment.start,

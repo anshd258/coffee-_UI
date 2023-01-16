@@ -139,7 +139,7 @@ class OrderPgTiles extends StatelessWidget {
                   width: 18.w,
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/profile");
+                      // Navigator.pushNamed(context, "/profile");
                     },
                     child: Text(
                       "Order Again",

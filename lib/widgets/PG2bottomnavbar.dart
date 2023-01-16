@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:provider/provider.dart';
+import '../provider/router.dart';
 
 class Pg2BottonavBar extends StatefulWidget {
   const Pg2BottonavBar({super.key});
@@ -89,151 +91,130 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 4.5.h,
-            width: 10.w,
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-                color: page1 ? Colors.black38 : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 0.4,
-                  color: page1 ? Colors.white : Colors.transparent,
-                )),
-            child: IconButton(
-                constraints: BoxConstraints(
-                    maxHeight: 4.h,
-                    maxWidth: 9.w,
-                    minHeight: 4.h,
-                    minWidth: 9.w),
-                alignment: Alignment.center,
-                onPressed: () {
-                  setState(() {
-                    val = 1;
-                  });
-                },
-                icon: Icon(
-                  Icons.home_outlined,
-                  color: Colors.white,
-                  size: 6.w,
-                )),
+          GestureDetector(
+            onTap: () {
+              val = 1;
+              context.read<routing>().settingroute = val;
+              setState(() {});
+            },
+            child: Container(
+              height: 4.5.h,
+              width: 10.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: page1 ? Colors.black38 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 0.4,
+                    color: page1 ? Colors.white : Colors.transparent,
+                  )),
+              child: Image.asset(
+                "assets/home.png",
+                fit: BoxFit.scaleDown,
+                scale: 2.5,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Container(
-            height: 4.5.h,
-            width: 10.w,
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-                color: page2 ? Colors.black38 : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 0.4,
-                  color: page2 ? Colors.white : Colors.transparent,
-                )),
-            child: IconButton(
-                constraints: BoxConstraints(
-                    maxHeight: 4.h,
-                    maxWidth: 9.w,
-                    minHeight: 4.h,
-                    minWidth: 9.w),
-                alignment: Alignment.center,
-                onPressed: () {
-                  setState(() {
-                    val = 2;
-                  });
-                },
-                icon: Icon(
-                  Icons.person_outline_outlined,
-                  color: Colors.white,
-                  size: 6.w,
-                )),
+          GestureDetector(
+            onTap: () {
+              val = 2;
+              context.read<routing>().settingroute = val;
+              setState(() {});
+            },
+            child: Container(
+              height: 4.5.h,
+              width: 10.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: page2 ? Colors.black38 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 0.4,
+                    color: page2 ? Colors.white : Colors.transparent,
+                  )),
+              child: Image.asset(
+                "assets/user.png",
+                fit: BoxFit.scaleDown,
+                scale: 2,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Container(
-            height: 4.5.h,
-            width: 10.w,
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-                color: page3 ? Colors.black38 : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 0.4,
-                  color: page3 ? Colors.white : Colors.transparent,
-                )),
-            child: IconButton(
-                constraints: BoxConstraints(
-                    maxHeight: 4.h,
-                    maxWidth: 9.w,
-                    minHeight: 4.h,
-                    minWidth: 9.w),
-                alignment: Alignment.center,
-                onPressed: () {
-                  setState(() {
-                    val = 3;
-                  });
-                },
-                icon: Icon(
-                  Icons.wallet_outlined,
-                  color: Colors.white,
-                  size: 6.w,
-                )),
+          GestureDetector(
+            onTap: () {
+              val = 3;
+              context.read<routing>().settingroute = val;
+              setState(() {});
+            },
+            child: Container(
+              height: 4.5.h,
+              width: 10.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: page3 ? Colors.black38 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 0.4,
+                    color: page3 ? Colors.white : Colors.transparent,
+                  )),
+              child: Image.asset(
+                "assets/notification.png",
+                fit: BoxFit.scaleDown,
+                scale: 2.3,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Container(
-            height: 4.5.h,
-            width: 10.w,
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-                color: page4 ? Colors.black38 : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 0.4,
-                  color: page4 ? Colors.white : Colors.transparent,
-                )),
-            child: IconButton(
-                constraints: BoxConstraints(
-                    maxHeight: 4.h,
-                    maxWidth: 9.w,
-                    minHeight: 4.h,
-                    minWidth: 9.w),
-                alignment: Alignment.center,
-                onPressed: () {
-                  setState(() {
-                    val = 4;
-                  });
-                },
-                icon: Icon(
-                  Icons.delete_outline_rounded,
-                  color: Colors.white,
-                  size: 6.w,
-                )),
+          GestureDetector(
+            onTap: () {
+              val = 4;
+              context.read<routing>().settingroute = 4;
+              setState(() {});
+            },
+            child: Container(
+              height: 4.5.h,
+              width: 10.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: page4 ? Colors.black38 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 0.4,
+                    color: page4 ? Colors.white : Colors.transparent,
+                  )),
+              child: Image.asset(
+                "assets/cart.png",
+                fit: BoxFit.scaleDown,
+                scale: 2.7,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Container(
-            height: 4.5.h,
-            width: 10.w,
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-                color: page5 ? Colors.black38 : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 0.4,
-                  color: page5 ? Colors.white : Colors.transparent,
-                )),
-            child: IconButton(
-                constraints: BoxConstraints(
-                    maxHeight: 4.h,
-                    maxWidth: 9.w,
-                    minHeight: 4.h,
-                    minWidth: 9.w),
-                alignment: Alignment.center,
-                onPressed: () {
-                  val = 5;
+          GestureDetector(
+            onTap: () {
+              val = 5;
 
-                  print("object");
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.message_outlined,
-                  color: Colors.white,
-                  size: 6.w,
-                )),
+              setState(() {});
+            },
+            child: Container(
+              height: 4.5.h,
+              width: 10.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: page5 ? Colors.black38 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 0.4,
+                    color: page5 ? Colors.white : Colors.transparent,
+                  )),
+              child: Image.asset(
+                "assets/new.png",
+                fit: BoxFit.scaleDown,
+                scale: 2,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),

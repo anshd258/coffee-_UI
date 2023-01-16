@@ -13,6 +13,22 @@ class Page3 extends StatefulWidget {
 
 class _Page3State extends State<Page3> {
   ValueNotifier<double> size = ValueNotifier<double>(0.00);
+  ScrollController ctr = ScrollController();
+  double offset = 40;
+  @override
+  void initState() {
+    ctr.addListener(() {
+      setState(() {
+        print(ctr.offset);
+        if (ctr.offset == 0) {
+          offset = 40;
+        } else {
+          offset = 20;
+        }
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +75,17 @@ class _Page3State extends State<Page3> {
             ),
           ),
           //main content of tthe page
-          Positioned(
-            top: 40.h,
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 200),
+            top: offset.h,
             child: Container(
               height: 100.h,
               width: 100.w,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30)),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.black38),
               child: SingleChildScrollView(
+                controller: ctr,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,

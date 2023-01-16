@@ -38,25 +38,33 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
           }
 
           return Container(
-              height: 3.h,
+              height: 5.h,
               width: 30.w,
+              alignment: Alignment.center,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AdvancedSwitch(
-                    width: 6.w,
+                    width: 8.w,
                     height: 2.h,
                     controller: _ctr,
                     enabled: true,
                   ),
                   SizedBox(
-                    width: 2.w,
+                    width: 4.w,
                   ),
-                  Text(
-                    e,
-                    style: GoogleFonts.inter(
-                        color: const Color.fromARGB(255, 197, 197, 197),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w300),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    height: 5.h,
+                    width: 30.w,
+                    child: Text(
+                      e,
+                      maxLines: 2,
+                      style: GoogleFonts.inter(
+                          color: const Color.fromARGB(255, 197, 197, 197),
+                          fontSize: 14.5.sp,
+                          fontWeight: FontWeight.w300),
+                    ),
                   ),
                 ],
               ));

@@ -33,15 +33,14 @@ class _ProfilepgState extends State<Profilepg> {
         child: Scaffold(
           backgroundColor: Colors.black45,
           appBar: AppBar(
+            leading: SizedBox(
+              width: 1.w,
+            ),
             titleSpacing: 0,
-            leadingWidth: 14.w,
+            leadingWidth: 6.w,
             title: Text("My Account ",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp)),
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
-            ),
             backgroundColor: Colors.white24,
           ),
           body: Center(

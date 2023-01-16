@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
-import '../widgets/PG2bottomnavbar.dart';
 
 class page_2 extends StatefulWidget {
   const page_2({super.key});
@@ -19,21 +18,21 @@ class _page_2State extends State<page_2> {
       resizeToAvoidBottomInset: false,
       body:
           //stack for bottom nav bar  base image gradeint
-          Stack(children: [
-        //base image of the page
-        Container(
-          height: 100.h,
-          width: 100.w,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage("assets/bg1.jpg"),
-            ),
+
+          //base image of the page
+          Container(
+        height: 100.h,
+        width: 100.w,
+        padding: EdgeInsets.all(0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("assets/bg1.jpg"),
           ),
         ),
-        // BROWN gradient over the image
-        Container(
+        child: Container(
           height: 100.h,
+          padding: EdgeInsets.all(0),
           width: 100.w,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -42,23 +41,21 @@ class _page_2State extends State<page_2> {
               end: Alignment.bottomCenter,
             ),
           ),
+          child: GlassContainer.clearGlass(
+              height: 100.h,
+              width: 100.w,
+              blur: 7,
+              padding: EdgeInsets.all(0),
+              color: Colors.white30,
+              borderColor: Colors.transparent,
+              child: const PG2maincont()),
         ),
-        //main glass container aith all the content
-        GlassContainer.clearGlass(
-            height: 100.h,
-            width: 100.w,
-            blur: 7,
-            borderColor: Colors.transparent,
-            child: const PG2maincont()),
+      ),
+      // BROWN gradient over the image
 
-        //bottom nav bar with functionality
-        Positioned(
-          bottom: -0.5.h,
-          left: 1.w,
-          right: 1.w,
-          child: const Pg2BottonavBar(),
-        )
-      ]),
+      //main glass container aith all the content
+
+      //bottom nav bar with functionality
     );
   }
 }

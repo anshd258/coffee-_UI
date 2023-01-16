@@ -61,7 +61,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           width: 5.w,
         ),
         SizedBox(
-          height: 4.h,
+          height: 3.h,
           width: 15.w,
           child: ElevatedButton(
             onPressed: () {
@@ -73,13 +73,13 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
               "FULL",
               style: GoogleFonts.inter(
                   color: first ? Colors.white : Colors.black,
-                  fontSize: 10,
+                  fontSize: 12.5.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7)),
+                    borderRadius: BorderRadius.circular(5)),
                 backgroundColor:
                     first ? Colors.greenAccent.shade700 : Colors.white),
           ),
@@ -88,7 +88,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           width: 3.w,
         ),
         SizedBox(
-          height: 4.h,
+          height: 3.h,
           width: 17.w,
           child: ElevatedButton(
             onPressed: () {
@@ -100,13 +100,13 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
               "1/2 FULL",
               style: GoogleFonts.inter(
                   color: two ? Colors.white : Colors.black,
-                  fontSize: 10,
+                  fontSize: 12.5.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7)),
+                    borderRadius: BorderRadius.circular(5)),
                 backgroundColor:
                     two ? Colors.greenAccent.shade700 : Colors.white),
           ),
@@ -115,7 +115,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           width: 3.w,
         ),
         SizedBox(
-          height: 4.h,
+          height: 3.h,
           width: 17.w,
           child: ElevatedButton(
             onPressed: () {
@@ -127,13 +127,13 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
               "3/4 FULL",
               style: GoogleFonts.inter(
                   color: three ? Colors.white : Colors.black,
-                  fontSize: 10,
+                  fontSize: 12.5.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7)),
+                    borderRadius: BorderRadius.circular(5)),
                 backgroundColor:
                     three ? Colors.greenAccent.shade700 : Colors.white),
           ),
@@ -142,7 +142,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           width: 3.w,
         ),
         SizedBox(
-          height: 4.h,
+          height: 3.h,
           width: 17.w,
           child: ElevatedButton(
             onPressed: () {
@@ -154,13 +154,13 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
               "1/4 FULL",
               style: GoogleFonts.inter(
                   color: four ? Colors.white : Colors.black,
-                  fontSize: 10,
+                  fontSize: 12.5.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7)),
+                    borderRadius: BorderRadius.circular(5)),
                 backgroundColor:
                     four ? Colors.greenAccent.shade700 : Colors.white),
           ),

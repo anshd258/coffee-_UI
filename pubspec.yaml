@@ -46,6 +46,7 @@ dependencies:
   cart_stepper: ^4.0.0
   flutter_screenutil: ^5.6.0
   pinput: ^2.2.21
+  provider: ^6.0.5
 
 
 dev_dependencies:
@@ -89,10 +90,18 @@ flutter:
     - assets/otp1.png 
     - assets/loginbutton.png 
     - assets/user.jpeg 
-    - assets/about2.png 
-    - assets/feedb2.png 
-    - assets/test2.png     
-    - assets/logout2.png   
+    - assets/ICONS/about2.png 
+    - assets/ICONS/feedb2.png 
+    - assets/ICONS/test2.png     
+    - assets/ICONS/logout2.png   
+    - assets/cart.png 
+    - assets/cup1.png 
+    - assets/cup2.png 
+    - assets/milk1.png 
+    - assets/home.png
+    - assets/notification.png 
+    - assets/user.png 
+    - assets/new.png 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -45,7 +45,7 @@ class glass_container extends StatelessWidget {
             glowColor: const Color.fromRGBO(171, 171, 171, 1),
             style: GoogleFonts.poppins(
               color: const Color.fromRGBO(171, 171, 171, 1),
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               letterSpacing: 0,
               fontWeight: FontWeight.normal,
               height: 1,

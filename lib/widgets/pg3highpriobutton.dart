@@ -51,7 +51,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
         //submit elevated button
         ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, "/orderconfirmPg");
+            Navigator.pop(context);
           },
           child: Text(
             "Submit",

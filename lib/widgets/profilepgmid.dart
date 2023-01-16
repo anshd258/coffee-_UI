@@ -16,6 +16,7 @@ class ProfilepgMid extends StatelessWidget {
       height: 24.h,
       width: 90.w,
       borderRadius: BorderRadius.circular(10),
+      borderWidth: 0.5,
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -68,6 +69,12 @@ class ProfilepgMid extends StatelessWidget {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
+                      child: Image.asset(
+                        "assets/milk1.png",
+                        fit: BoxFit.scaleDown,
+                        scale: 1.8,
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(
                       width: 3.w,
@@ -85,7 +92,7 @@ class ProfilepgMid extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () => Navigator.pushNamed(context, "/orderspg"),
                   child: Transform.rotate(
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
@@ -115,6 +122,12 @@ class ProfilepgMid extends StatelessWidget {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
+                      child: Image.asset(
+                        "assets/cup2.png",
+                        fit: BoxFit.scaleDown,
+                        scale: 1.8,
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(
                       width: 3.w,
@@ -162,6 +175,12 @@ class ProfilepgMid extends StatelessWidget {
                       shape: BoxShape.circle,
                       elevation: 3,
                       shadowColor: Colors.white70,
+                      child: Image.asset(
+                        "assets/cup1.png",
+                        fit: BoxFit.scaleDown,
+                        scale: 1.8,
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(
                       width: 3.w,
