@@ -38,9 +38,16 @@ class _page_1State extends State<page_1> {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Center(
-            child:
-                glass_container(), //center glass container with inner widgets
+          child: Container(
+            height: 100.h,
+            width: 100.w,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(60, 31, 40, 50),
+            ),
+            child: Center(
+              child:
+                  glass_container(), //center glass container with inner widgets
+            ),
           ),
         ),
       ),

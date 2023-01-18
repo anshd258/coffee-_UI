@@ -52,22 +52,24 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                 "assets/bg1.jpg",
               ),
               fit: BoxFit.fill)),
-      child: GlassContainer.clearGlass(
-        blur: 10,
+      child: GlassContainer.frostedGlass(
         height: 100.h,
         width: 100.w,
         borderWidth: 0,
+        blur: 17,
+        frostedOpacity: 0.04,
+        color: Color.fromARGB(15, 255, 255, 255),
         borderColor: Colors.transparent,
         child: Scaffold(
-          backgroundColor: Colors.black45,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             titleSpacing: 0,
             leadingWidth: 6.w,
             leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 1.7.h)),
-            backgroundColor: Colors.white24,
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 18.sp)),
+            backgroundColor: Colors.white12,
           ),
           body: Center(
             child: Stack(
@@ -100,6 +102,7 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 5,
+                          fixedSize: Size(50.w, 4.5.h),
                           backgroundColor: Colors.greenAccent.shade700,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),

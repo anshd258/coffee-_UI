@@ -23,14 +23,16 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                 "assets/bg1.jpg",
               ),
               fit: BoxFit.fill)),
-      child: GlassContainer.clearGlass(
-        blur: 10,
+      child: GlassContainer.frostedGlass(
         height: 100.h,
         width: 100.w,
         borderWidth: 0,
+        blur: 17,
+        frostedOpacity: 0.03,
+        color: Color.fromARGB(15, 255, 255, 255),
         borderColor: Colors.transparent,
         child: Scaffold(
-          backgroundColor: Colors.black45,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             titleSpacing: 0,
             leadingWidth: 14.w,
@@ -38,13 +40,13 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 15.5.sp,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
               child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
             ),
-            backgroundColor: Colors.white24,
+            backgroundColor: Colors.white12,
           ),
           body: Center(
             child: Stack(
@@ -57,34 +59,47 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     child: GlassContainer.frostedGlass(
                       borderRadius: BorderRadius.circular(10),
                       borderWidth: 0.5,
-                      color: Colors.white30,
+                      color: Color.fromARGB(40, 255, 255, 255),
                       borderColor: Colors.white38,
+                      frostedOpacity: 0.04,
                       margin: EdgeInsets.only(top: 2.8.h),
                       height: 55.h,
                       width: 85.w,
-                      child: Stack(
-                        alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.asset("assets/cp1.png", scale: 0.13.w),
-                              Text(
-                                "Order Completed Successfully !",
-                                style: GoogleFonts.inter(
-                                    fontSize: 16.sp,
-                                    color: const Color.fromARGB(
-                                        255, 197, 197, 197)),
-                              ),
-                              Text(
-                                "Thank You",
-                                style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15.sp,
-                                    color: const Color.fromARGB(
-                                        255, 197, 197, 197)),
-                              ),
-                            ],
+                          Container(
+                            height: 54.h,
+                            width: 84.w,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Image.asset("assets/cp1.png", scale: 1),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Order Completed Successfully !",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 17.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Text(
+                                      "Thank You",
+                                      style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 17.sp,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           // AnimatedOpacity(
                           //     opacity: visible ? 1.0 : 0.0, duration: Duration(seconds: 3), child: Image.asset(name),) //TODO animation green tick mark
@@ -108,12 +123,12 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                         style: GoogleFonts.inter(
                             color: Colors.white,
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             letterSpacing: 1),
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 5,
-                          fixedSize: Size(68.w, 4.h),
+                          fixedSize: Size(50.w, 4.5.h),
                           backgroundColor: Colors.greenAccent.shade700,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),

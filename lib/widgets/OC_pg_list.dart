@@ -27,11 +27,13 @@ class _OcpageListState extends State<OcpageList> {
         GestureDetector(
           // onTap: () =>
           //     Navigator.of(context).pushNamed('/page3', arguments: widget.e),
-          child: GlassContainer.clearGlass(
-            height: 14.h,
-            width: 90.w,
-            blur: 15,
-            color: Colors.white30,
+          child: GlassContainer.frostedGlass(
+            height: 15.h,
+            width: 93.w,
+            borderWidth: 0,
+            blur: 17,
+            frostedOpacity: 0.04,
+            color: Color.fromARGB(40, 255, 255, 255),
             borderColor: Colors.white24,
             borderRadius: BorderRadius.circular(5),
             child: Row(
@@ -41,12 +43,12 @@ class _OcpageListState extends State<OcpageList> {
 
                 Center(
                   child: GlassContainer.frostedGlass(
-                    height: 11.h,
-                    width: 24.w,
+                    height: 12.h,
+                    width: 25.w,
                     borderColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     padding: EdgeInsets.only(top: 1.h, left: 1.h),
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.center,
                     child: Image(
                       image: AssetImage(
                         widget.e["image"],
@@ -56,13 +58,13 @@ class _OcpageListState extends State<OcpageList> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5.w),
+                SizedBox(width: 4.w),
 
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
-                  height: 11.h,
-                  width: 54.w,
+                  height: 13.h,
+                  width: 57.w,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +78,7 @@ class _OcpageListState extends State<OcpageList> {
                             child: Text(
                               widget.e["name"],
                               style: GoogleFonts.inter(
-                                fontSize: 15.sp,
+                                fontSize: 16.sp,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 205, 205, 205),
@@ -85,7 +87,7 @@ class _OcpageListState extends State<OcpageList> {
                           ),
                           CartStepperInt(
                             value: counter,
-                            size: 2.h,
+                            size: 2.3.h,
                             numberSize: 0.8.w,
                             elevation: 0,
                             style: CartStepperStyle(
@@ -114,7 +116,7 @@ class _OcpageListState extends State<OcpageList> {
                               Text(
                                 "FULL",
                                 style: GoogleFonts.inter(
-                                    fontSize: 11.8.sp,
+                                    fontSize: 12.5.sp,
                                     color: Color.fromARGB(255, 205, 205, 205),
                                     fontWeight: FontWeight.w600),
                               ),
@@ -132,7 +134,7 @@ class _OcpageListState extends State<OcpageList> {
                               Text(
                                 "FULL CREAM MILK",
                                 style: GoogleFonts.inter(
-                                  fontSize: 11.8.sp,
+                                  fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
                                   color: Color.fromARGB(255, 205, 205, 205),
                                 ),
@@ -157,7 +159,7 @@ class _OcpageListState extends State<OcpageList> {
                             "SUGER X 2",
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
-                                fontSize: 11.8.sp,
+                                fontSize: 12.5.sp,
                                 fontWeight: FontWeight.w600,
                                 textStyle: TextStyle(
                                   wordSpacing: 1,
@@ -185,7 +187,7 @@ class _OcpageListState extends State<OcpageList> {
                               child: Text(
                                 "Instructions for Cafe",
                                 style: GoogleFonts.inter(
-                                    fontSize: 11.5.sp,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
@@ -199,7 +201,7 @@ class _OcpageListState extends State<OcpageList> {
                               child: Text(
                                 "Add More Items",
                                 style: GoogleFonts.inter(
-                                    fontSize: 11.5.sp,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),

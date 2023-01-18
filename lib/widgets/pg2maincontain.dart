@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import '../provider/productsprovider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2-mid-row-cont.dart';
@@ -15,93 +16,20 @@ class PG2maincont extends StatefulWidget {
 
 class _PG2maincontState extends State<PG2maincont> {
   //data of the products offerd
-  List productsInfo = [
-    {
-      "name": "Hot Cappuccino",
-      "rating": "4.9",
-      "noreviews": "(456)",
-      "image": "assets/3.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Lattè",
-      "rating": "4.5",
-      "noreviews": "(896)",
-      "image": "assets/2.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-    {
-      "name": "Flate White",
-      "rating": "4.9",
-      "noreviews": "(626)",
-      "image": "assets/4.png",
-      "type": "Espresso, Steamed Milk",
-      "discription":
-          "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
-    },
-  ];
+
   @override
   Widget build(BuildContext context) {
+    final data = context.watch<ProductsProvider>().products;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //for gapping
-        SizedBox(
-          height: 8.h,
-        ),
+
         //namebar with name date delete icon and profie image
         name_bar2(),
         //for padding
         SizedBox(
-          height: 1.h,
+          height: 2.h,
         ),
         //textfield for searcching
         TextField(
@@ -132,12 +60,12 @@ class _PG2maincontState extends State<PG2maincont> {
               fillColor: Colors.white,
               constraints: BoxConstraints(
                 maxWidth: 90.w,
-                maxHeight: 5.h,
+                maxHeight: 5.5.h,
               )),
         ),
         //for gapping
         SizedBox(
-          height: 3.h,
+          height: 1.3.h,
         ),
         // mid container fir the horizontal list of products
         // Container(
@@ -203,21 +131,23 @@ class _PG2maincontState extends State<PG2maincont> {
         ),
         //for padding
         SizedBox(
-          height: 0.5.h,
+          height: 1.8.h,
         ),
         //lower sized box for the  verticallist of products
         Container(
           decoration: BoxDecoration(
-              color: Colors.black38,
+              color: Color.fromARGB(60, 0, 0, 0),
               borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
           margin: EdgeInsets.all(0),
           width: 100.w,
-          height: 72.43.h,
+          height: 79.h,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: productsInfo.map((e) {
-                return PgLowerListCont(e: e);
+              children: data!.map((e) {
+                return PgLowerListCont(
+                  e: e,
+                );
               }).toList(),
             ),
           ),

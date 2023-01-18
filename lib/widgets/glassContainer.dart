@@ -15,12 +15,16 @@ class glass_container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassContainer.clearGlass(
+    return GlassContainer.frostedGlass(
       //inner glass container
       height: 88.h,
       width: 90.w,
-      blur: 9,
+      blur: 17,
+      frostedOpacity: 0.04,
+
       borderRadius: BorderRadius.circular(25),
+      color: Color.fromARGB(36, 255, 255, 255),
+
       borderColor: Colors.white38,
       child: Column(
         //column in which inner childrens is placed
@@ -31,13 +35,16 @@ class glass_container extends StatelessWidget {
             height: 7.h,
           ),
           //logo of  the cafe
-          Image.asset("assets/logo.png"),
+          Image.asset("assets/logo.png", scale: 0.75),
           SizedBox(
-            height: 2.h,
+            height: 0.5.h,
           ),
           //swift cafe begin
           const swift_cafe_text(), //swift cafe TEXT
           //swift cafe end
+          SizedBox(
+            height: 1.h,
+          ),
           GlowText(
             '"Latte but never late"',
             textAlign: TextAlign.center,
@@ -45,7 +52,7 @@ class glass_container extends StatelessWidget {
             glowColor: const Color.fromRGBO(171, 171, 171, 1),
             style: GoogleFonts.poppins(
               color: const Color.fromRGBO(171, 171, 171, 1),
-              fontSize: 15.sp,
+              fontSize: 16.sp,
               letterSpacing: 0,
               fontWeight: FontWeight.normal,
               height: 1,
@@ -93,7 +100,7 @@ class glass_container extends StatelessWidget {
                 color: Colors.white,
               )),
               hintText: "Phone Number",
-              hintStyle: TextStyle(color: Colors.white, fontSize: 13),
+              hintStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
               fillColor: Colors.transparent,
               filled: true,
               constraints: BoxConstraints(maxHeight: 9.h, maxWidth: 75.w),
@@ -104,19 +111,31 @@ class glass_container extends StatelessWidget {
             height: 10.h,
           ),
           // login button
-          NiceButtons(
-            onTap: () {},
-            borderRadius: 30,
-            stretch: false,
-            borderColor: Colors.transparent,
-            width: 55.w,
-            gradientOrientation: GradientOrientation.Horizontal,
-            startColor: Color.fromARGB(255, 77, 43, 26),
-            endColor: Color.fromARGB(255, 167, 116, 90),
-            height: 6.5.h,
-            child: Text(
-              "Login",
-              style: GoogleFonts.inter(fontSize: 16, color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/otpinput", (route) => false);
+            },
+            child: Container(
+              height: 7.7.h,
+              width: 55.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                      alignment: Alignment.center,
+                      image: AssetImage("assets/loginbutton.png"),
+                      fit: BoxFit.fill)),
+              child: Center(
+                child: Text(
+                  "Submit",
+                  style: GoogleFonts.inter(
+                      color: Colors.white70,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.normal,
+                      letterSpacing: 1),
+                ),
+              ),
             ),
           ),
           //gapping
@@ -156,7 +175,7 @@ class glass_container extends StatelessWidget {
               },
               child: Text(
                 "Privacy Policy",
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp),
               )),
         ],
       ),

@@ -82,7 +82,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
       width: 90.w,
       blur: 15,
       alignment: Alignment.center,
-      color: Colors.black54,
+      color: Colors.black38,
       borderColor: Colors.transparent,
       borderRadius: const BorderRadius.all(
         Radius.circular(9),

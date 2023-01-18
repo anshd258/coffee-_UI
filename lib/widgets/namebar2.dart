@@ -8,8 +8,7 @@ class name_bar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90.w,
-      height: 7.h,
+      width: 95.w,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,6 +26,9 @@ class name_bar2 extends StatelessWidget {
                   style: GoogleFonts.inter(
                       color: Color.fromARGB(255, 182, 182, 182),
                       fontSize: 14.sp),
+                ),
+                SizedBox(
+                  height: 0.3.h,
                 ),
                 Text(
                   "Joshua Scanlan",
@@ -48,7 +50,7 @@ class name_bar2 extends StatelessWidget {
                     image: AssetImage(
                       "assets/user.jpeg",
                     ))),
-          )
+          ),
         ],
       ),
     );

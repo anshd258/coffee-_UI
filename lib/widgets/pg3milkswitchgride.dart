@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:provider/provider.dart';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3MilkSwitch extends StatefulWidget {
-  const Pg3MilkSwitch({super.key});
+  Pg3MilkSwitch({
+    super.key,
+  });
 
   @override
   State<Pg3MilkSwitch> createState() => _Pg3MilkSwitchState();
@@ -21,6 +26,7 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
   ];
   @override
   Widget build(BuildContext context) {
+    print("working");
     return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 5.w / 0.6.h,
@@ -30,12 +36,19 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: values.map((e) {
+          print(e.toString());
           final _ctr = ValueNotifier<bool>(false);
           @override
           void initState() {
             super.initState();
             _ctr.addListener(() {
-              setState(() {});
+              setState(() {
+                print(e);
+                context
+                    .read<CartProductsProvider>()
+                    .currentproduct
+                    .choiceOfMilk = _ctr.value?e.toString():"";
+              });
             });
           }
 
@@ -64,7 +77,7 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
                       maxLines: 2,
                       style: GoogleFonts.inter(
                           color: const Color.fromARGB(255, 197, 197, 197),
-                          fontSize: 14.5.sp,
+                          fontSize: 16.5.sp,
                           fontWeight: FontWeight.w300),
                     ),
                   ),

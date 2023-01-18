@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+
 class Pg3togglebutton extends StatefulWidget {
-  const Pg3togglebutton({super.key});
+  Pg3togglebutton({super.key});
 
   @override
   State<Pg3togglebutton> createState() => _Pg3togglebuttonState();
@@ -66,14 +69,15 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           child: ElevatedButton(
             onPressed: () {
               setState(() {
+                context.read<CartProductsProvider>().currentproduct.choiceOfCupFilling = "FULL";
                 v = 1;
               });
             },
             child: Text(
               "FULL",
               style: GoogleFonts.inter(
-                  color: first ? Colors.white : Colors.black,
-                  fontSize: 12.5.sp,
+                  color: first ? Colors.white : Colors.black87,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
@@ -93,14 +97,15 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           child: ElevatedButton(
             onPressed: () {
               setState(() {
+                context.read<CartProductsProvider>().currentproduct.choiceOfCupFilling  = "1/2FULL";
                 v = 2;
               });
             },
             child: Text(
               "1/2 FULL",
               style: GoogleFonts.inter(
-                  color: two ? Colors.white : Colors.black,
-                  fontSize: 12.5.sp,
+                  color: two ? Colors.white : Colors.black87,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
@@ -120,14 +125,15 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           child: ElevatedButton(
             onPressed: () {
               setState(() {
+               context.read<CartProductsProvider>().currentproduct.choiceOfCupFilling  = "3/4FULL";
                 v = 3;
               });
             },
             child: Text(
               "3/4 FULL",
               style: GoogleFonts.inter(
-                  color: three ? Colors.white : Colors.black,
-                  fontSize: 12.5.sp,
+                  color: three ? Colors.white : Colors.black87,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(
@@ -147,14 +153,15 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           child: ElevatedButton(
             onPressed: () {
               setState(() {
+               context.read<CartProductsProvider>().currentproduct.choiceOfCupFilling  = "1/4 FULL";
                 v = 4;
               });
             },
             child: Text(
               "1/4 FULL",
               style: GoogleFonts.inter(
-                  color: four ? Colors.white : Colors.black,
-                  fontSize: 12.5.sp,
+                  color: four ? Colors.white : Colors.black87,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600),
             ),
             style: ElevatedButton.styleFrom(

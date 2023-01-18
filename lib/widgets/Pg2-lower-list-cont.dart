@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../models/productmodal.dart';
 
 class PgLowerListCont extends StatefulWidget {
-  final e;
+  final Products e;
   const PgLowerListCont({super.key, required this.e});
 
   @override
@@ -24,15 +25,17 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         GestureDetector(
           onTap: () =>
               Navigator.of(context).pushNamed('/page3', arguments: widget.e),
-          child: GlassContainer.clearGlass(
-            height: 15.h,
+          child: GlassContainer.frostedGlass(
+            height: 17.h,
             width: 90.w,
-            blur: 15,
+            blur: 17,
+            frostedOpacity: 0.04,
+            color: Color.fromARGB(70, 255, 255, 255),
             elevation: 10,
-            color: Colors.white38,
-            borderColor: Colors.transparent,
+            borderColor: Colors.white10,
             borderRadius: BorderRadius.circular(8),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 //for padding
                 SizedBox(
@@ -41,18 +44,18 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
-                  height: 12.h,
-                  width: 55.w,
+                  height: 15.h,
+                  width: 53.w,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //name of the product
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          widget.e["name"],
+                          widget.e.name!,
                           style: GoogleFonts.inter(
-                            fontSize: 16.sp,
+                            fontSize: 17.5.sp,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 205, 205, 205),
@@ -68,9 +71,9 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                         children: [
                           //for showing ratings
                           Text(
-                            widget.e["rating"],
+                            widget.e.ratings!,
                             style: GoogleFonts.inter(
-                              fontSize: 13.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
                             ),
                           ),
@@ -82,7 +85,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                           Icon(
                             Icons.star,
                             color: Colors.amber.shade300,
-                            size: 13.sp,
+                            size: 14.sp,
                           ),
                           //more padding
                           SizedBox(
@@ -90,9 +93,9 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                           ),
                           //no of reviews text
                           Text(
-                            widget.e["noreviews"],
+                            widget.e.numberOfReviews!,
                             style: GoogleFonts.inter(
-                              fontSize: 13.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
                             ),
                           ),
@@ -110,10 +113,10 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       ),
                       //discription text
                       Text(
-                        widget.e["discription"],
+                        widget.e.discription!,
                         style: GoogleFonts.inter(
-                            color: Color.fromARGB(205, 255, 255, 255),
-                            fontSize: 12.5.sp,
+                            color: Color.fromARGB(160, 255, 255, 255),
+                            fontSize: 13.sp,
                             textStyle: TextStyle(
                               wordSpacing: 1,
                             )),
@@ -126,38 +129,46 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   width: 3.w,
                 ),
                 //column in the main row with image and the add button
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    //padding
-                    SizedBox(
-                      height: 0.5.h,
-                    ),
+                Container(
+                  height: 15.h,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      //padding
 
-                    //container with image
-                    Container(
-                      height: 11.h,
-                      width: 24.w,
-                      alignment: Alignment.center,
-                      child: Image(
-                          image: AssetImage(widget.e["image"]),
-                          fit: BoxFit.cover),
-                    ),
-                    //sized box for elevated button
-                    Container(
-                        height: 2.5.h,
-                        width: 15.w,
+                      //container with image
+                      Container(
+                        height: 12.h,
+                        width: 26.w,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 102, 163, 92),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Text(
-                          "ADD",
-                          style: GoogleFonts.inter(
-                              fontSize: 13.sp, color: Colors.white),
-                        )),
-                  ],
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                widget.e.imageUrl!,
+                              ),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+
+                      //sized box for elevated button
+                      Positioned(
+                        bottom: 4,
+                        child: Container(
+                            height: 2.5.h,
+                            width: 15.w,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 102, 163, 92),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              "ADD",
+                              style: GoogleFonts.inter(
+                                  fontSize: 14.sp, color: Colors.white),
+                            )),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

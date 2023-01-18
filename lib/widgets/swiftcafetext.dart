@@ -10,8 +10,6 @@ class swift_cafe_text extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 19.h,
-      width: 50.w,
       child: Column(
         //swift cafe Text with Styling
         children: [
@@ -19,7 +17,7 @@ class swift_cafe_text extends StatelessWidget {
             "Swift",
             style: GoogleFonts.raleway(
               color: Colors.white,
-              fontSize: 26.sp,
+              fontSize: 30.sp,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
             ),
@@ -28,7 +26,7 @@ class swift_cafe_text extends StatelessWidget {
             "Cafe",
             style: GoogleFonts.raleway(
               color: Colors.white,
-              fontSize: 21.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
             ),
