@@ -34,8 +34,8 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
     const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
     final defaultPinTheme = PinTheme(
-      height: 5.5.h,
-      width: 5.5.h,
+      height: 5.h,
+      width: 5.h,
       textStyle: GoogleFonts.inter(
           color: Colors.white,
           fontSize: 15.sp,
@@ -45,7 +45,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 130, 130, 130),
         border: Border.all(color: Colors.white24),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(7),
       ),
     );
 
@@ -53,10 +53,12 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
       //inner glass container
       height: 88.h,
       width: 90.w,
-      blur: 11,
+      blur: 16,
+      frostedOpacity: 0.04,
       borderRadius: BorderRadius.circular(25),
+      color: Color.fromARGB(38, 255, 255, 255),
+
       borderColor: Colors.white38,
-      color: Colors.white24,
       child: Column(
         //column in which inner childrens is placed
         mainAxisSize: MainAxisSize.min,
@@ -75,11 +77,11 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           Text(
             "Verification Code",
             style: GoogleFonts.inter(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.normal,
-                letterSpacing: 1),
+              color: Colors.white,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+            ),
           ),
           SizedBox(
             height: 1.h,
@@ -87,17 +89,17 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           Text(
             "Enter Your OTP",
             style: GoogleFonts.inter(
-                color: Colors.white,
-                fontSize: 17.sp,
-                fontWeight: FontWeight.w300,
-                fontStyle: FontStyle.normal,
-                letterSpacing: 1),
+              color: Colors.white,
+              fontSize: 18.5.sp,
+              fontWeight: FontWeight.w300,
+              fontStyle: FontStyle.normal,
+            ),
           ),
           SizedBox(
             height: 3.h,
           ),
           Pinput(
-            length: 6,
+            length: 5,
             controller: otpcontroller,
             focusNode: focusNode,
             defaultPinTheme: defaultPinTheme,
@@ -127,11 +129,11 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               Text(
                 "Didn’t receive the OTP?",
                 style: GoogleFonts.inter(
-                    color: Colors.white54,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w300,
-                    fontStyle: FontStyle.normal,
-                    letterSpacing: 1),
+                  color: Colors.white54,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w300,
+                  fontStyle: FontStyle.normal,
+                ),
               ),
               TextButton(
                 onPressed: () {},
@@ -140,7 +142,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                   style: GoogleFonts.inter(
                       color: Colors.white70,
                       decoration: TextDecoration.underline,
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1),
@@ -160,6 +162,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             child: Container(
               height: 7.7.h,
               width: 55.w,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
@@ -170,11 +173,11 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                 child: Text(
                   "Submit",
                   style: GoogleFonts.inter(
-                      color: Colors.white70,
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      letterSpacing: 1),
+                    color: Colors.white70,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
               ),
             ),

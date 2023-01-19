@@ -24,14 +24,16 @@ class _ProfilepgState extends State<Profilepg> {
                 "assets/bg1.jpg",
               ),
               fit: BoxFit.fill)),
-      child: GlassContainer.clearGlass(
-        blur: 10,
+      child: GlassContainer.frostedGlass(
         height: 100.h,
         width: 100.w,
         borderWidth: 0,
+        blur: 17,
+        frostedOpacity: 0,
+        color: Color.fromARGB(15, 255, 255, 255),
         borderColor: Colors.transparent,
         child: Scaffold(
-          backgroundColor: Colors.black45,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: SizedBox(
               width: 1.w,
@@ -41,17 +43,21 @@ class _ProfilepgState extends State<Profilepg> {
             title: Text("My Account ",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp)),
-            backgroundColor: Colors.white24,
+            backgroundColor: Colors.white12,
           ),
           body: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              GlassContainer.clearGlass(
+              GlassContainer.frostedGlass(
                 height: 15.h,
                 width: 90.w,
+                borderWidth: 1,
+                blur: 17,
+                frostedOpacity: 0.04,
+                color: Color.fromARGB(60, 255, 255, 255),
+                borderColor: Colors.white24,
                 borderRadius: BorderRadius.circular(10),
-                borderWidth: 0.5,
                 margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
                 padding: EdgeInsets.only(left: 5.w, right: 5.w),
                 child: Row(

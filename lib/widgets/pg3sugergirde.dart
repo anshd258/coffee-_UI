@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
+
 
 class Pg3SugerGride extends StatefulWidget {
-  const Pg3SugerGride({super.key});
+  Pg3SugerGride({super.key});
 
   @override
   State<Pg3SugerGride> createState() => _Pg3SugerGrideState();
@@ -33,7 +36,12 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
           void initState() {
             super.initState();
             _ctr.addListener(() {
-              setState(() {});
+              setState(() {
+                context
+                    .read<CartProductsProvider>()
+                    .currentproduct
+                    .choiceOfSuger =  _ctr.value?e.toString():"";
+              });
             });
           }
 
@@ -62,7 +70,7 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
                       maxLines: 2,
                       style: GoogleFonts.inter(
                           color: const Color.fromARGB(255, 197, 197, 197),
-                          fontSize: 14.5.sp,
+                          fontSize: 16.5.sp,
                           fontWeight: FontWeight.w300),
                     ),
                   ),

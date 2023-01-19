@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/models/cartProductModal.dart';
 
+import 'package:inter_coffee/models/productmodal.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
 import 'package:inter_coffee/widgets/pg3sheet.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -15,6 +19,7 @@ class _Page3State extends State<Page3> {
   ValueNotifier<double> size = ValueNotifier<double>(0.00);
   ScrollController ctr = ScrollController();
   double offset = 40;
+
   @override
   void initState() {
     ctr.addListener(() {
@@ -32,8 +37,10 @@ class _Page3State extends State<Page3> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments;
-    print(args);
+    final Products args =
+        ModalRoute.of(context)?.settings.arguments as Products;
+
+    print(args.name);
 
     //page 3 scaffold
     return Scaffold(
@@ -52,24 +59,14 @@ class _Page3State extends State<Page3> {
             )),
           ),
           //BROWN gradient above the image
-          Container(
-            height: 100.h,
-            width: 100.w,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-          ),
+
           //product image in stack
           Positioned(
             child: SizedBox(
               height: 50.h,
               width: 100.w,
-              child: const Image(
-                image: AssetImage('assets/7.jpg'),
+              child: Image(
+                image: AssetImage(args.imageUrl!),
                 fit: BoxFit.fill,
               ),
             ),
@@ -82,16 +79,16 @@ class _Page3State extends State<Page3> {
               height: 100.h,
               width: 100.w,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.black38),
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: SingleChildScrollView(
                 controller: ctr,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Pg3BottomSheet(),
+                  children: [
+                    Pg3BottomSheet(data: args),
                   ],
                 ),
               ),
@@ -104,12 +101,15 @@ class _Page3State extends State<Page3> {
             child: Container(
                 height: 8.h,
                 width: 90.w,
+                padding: EdgeInsets.symmetric(horizontal: 3.w),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                         width: 0.5, color: Color.fromARGB(70, 14, 14, 14)),
                     color: const Color.fromRGBO(51, 51, 51, 0.90)),
-                child: const Pg3highPrioButton()),
+                child: Pg3highPrioButton(
+                  selectedproduct: args,
+                )),
           ),
           // back button
           Positioned(

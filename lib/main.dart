@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import './provider/router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -10,6 +11,9 @@ import './page/order-confirmation-pg.dart';
 import './page/order_details_pg.dart';
 import './page/otpinput.dart';
 import './page/profilepg.dart';
+import './provider/productsprovider.dart';
+import './provider/cartProductProvider.dart';
+
 
 void main() {
   runApp(const main_app());
@@ -25,26 +29,34 @@ class main_app extends StatefulWidget {
 class _main_appState extends State<main_app> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => routing(),
-        builder: (context, snapshot) {
-          return ResponsiveSizer(
-            builder: (p0, p1, p2) {
-              return MaterialApp(
-                initialRoute: "/",
-                routes: {
-                  "/": (context) => const page_1(),
-                  "/page2": (context) => const Toggle(),
-                  "/page3": (context) => const Page3(),
-                  "/orderconfirmPg": (context) => const Orderconfirmationpg(),
-                  "/orderdetailsPg": (context) => const OrderDetailspg(),
-                  "/orderspg": (context) => const OrderPg(),
-                  "/otpinput": (context) => const Otpscreen(),
-                  "/profile": (context) => const Profilepg()
-                },
-              );
-            },
-          );
-        });
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<routing>(
+            create: (context) => routing(),
+          ),
+          ChangeNotifierProvider<ProductsProvider>(
+            create: (context) => ProductsProvider(),
+          ),
+          ChangeNotifierProvider<CartProductsProvider>(
+            create: (context) => CartProductsProvider(),
+          ),
+        ],
+        child: ResponsiveSizer(
+          builder: (p0, p1, p2) {
+            return MaterialApp(
+              initialRoute: "/",
+              routes: {
+                "/": (context) => const page_1(),
+                "/page2": (context) => const Toggle(),
+                "/page3": (context) => const Page3(),
+                "/orderconfirmPg": (context) => const Orderconfirmationpg(),
+                "/orderdetailsPg": (context) => const OrderDetailspg(),
+                "/orderspg": (context) => const OrderPg(),
+                "/otpinput": (context) => const Otpscreen(),
+                "/profile": (context) => const Profilepg()
+              },
+            );
+          },
+        ));
   }
 }

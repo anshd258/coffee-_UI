@@ -15,8 +15,12 @@ class ProfilepgMid extends StatelessWidget {
     return GlassContainer.frostedGlass(
       height: 24.h,
       width: 90.w,
+      borderWidth: 1,
+      blur: 17,
+      frostedOpacity: 0.04,
+      color: Color.fromARGB(60, 255, 255, 255),
+      borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
-      borderWidth: 0.5,
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -68,6 +72,7 @@ class ProfilepgMid extends StatelessWidget {
                       width: 4.h,
                       shape: BoxShape.circle,
                       elevation: 3,
+                      borderColor: Colors.white12,
                       shadowColor: Colors.white70,
                       child: Image.asset(
                         "assets/milk1.png",
@@ -121,6 +126,7 @@ class ProfilepgMid extends StatelessWidget {
                       width: 4.h,
                       shape: BoxShape.circle,
                       elevation: 3,
+                      borderColor: Colors.white12,
                       shadowColor: Colors.white70,
                       child: Image.asset(
                         "assets/cup2.png",
@@ -174,6 +180,7 @@ class ProfilepgMid extends StatelessWidget {
                       width: 4.h,
                       shape: BoxShape.circle,
                       elevation: 3,
+                      borderColor: Colors.white12,
                       shadowColor: Colors.white70,
                       child: Image.asset(
                         "assets/cup1.png",

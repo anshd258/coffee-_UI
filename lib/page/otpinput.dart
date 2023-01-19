@@ -39,9 +39,16 @@ class _OtpscreenState extends State<Otpscreen> {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: const Center(
-            child:
-                OtpGlassContain(), //center glass container with inner widgets
+          child: Container(
+            height: 100.h,
+            width: 100.w,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(60, 31, 40, 50),
+            ),
+            child: const Center(
+              child:
+                  OtpGlassContain(), //center glass container with inner widgets
+            ),
           ),
         ),
       ),

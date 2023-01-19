@@ -24,25 +24,27 @@ class _OrderPgState extends State<OrderPg> {
                 "assets/bg1.jpg",
               ),
               fit: BoxFit.fill)),
-      child: GlassContainer.clearGlass(
-        blur: 10,
+      child: GlassContainer.frostedGlass(
         height: 100.h,
         width: 100.w,
         borderWidth: 0,
-        borderColor: Colors.black54,
+        blur: 17,
+        frostedOpacity: 0,
+        color: Color.fromARGB(15, 255, 255, 255),
+        borderColor: Colors.transparent,
         child: Scaffold(
-          backgroundColor: Colors.black54,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             titleSpacing: 0,
             leadingWidth: 14.w,
             title: Text("Order List",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 16.sp)),
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp)),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
               child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
             ),
-            backgroundColor: Colors.white24,
+            backgroundColor: Colors.white12,
           ),
           body: SizedBox(
             child: Center(
