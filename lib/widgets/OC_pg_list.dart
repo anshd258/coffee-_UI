@@ -58,13 +58,13 @@ class _OcpageListState extends State<OcpageList> {
                     ),
                   ),
                 ),
-                SizedBox(width: 4.w),
 
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
                   height: 13.h,
-                  width: 57.w,
+                  width: 60.w,
+                  margin: EdgeInsets.only(left: 3.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ class _OcpageListState extends State<OcpageList> {
                             child: Text(
                               widget.e["name"],
                               style: GoogleFonts.inter(
-                                fontSize: 16.sp,
+                                fontSize: 15.sp,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 205, 205, 205),
@@ -87,7 +87,7 @@ class _OcpageListState extends State<OcpageList> {
                           ),
                           CartStepperInt(
                             value: counter,
-                            size: 2.3.h,
+                            size: 3.h,
                             numberSize: 0.8.w,
                             elevation: 0,
                             style: CartStepperStyle(
@@ -178,7 +178,7 @@ class _OcpageListState extends State<OcpageList> {
                       ),
                       SizedBox(
                         height: 3.h,
-                        width: 52.w,
+                        width: 58.w,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -187,13 +187,13 @@ class _OcpageListState extends State<OcpageList> {
                               child: Text(
                                 "Instructions for Cafe",
                                 style: GoogleFonts.inter(
-                                    fontSize: 12.sp,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
                               style: TextButton.styleFrom(
-                                fixedSize: Size(28.w, 2.h),
+                                fixedSize: Size(28.w, 3.h),
                               ),
                             ),
                             TextButton(
@@ -201,13 +201,13 @@ class _OcpageListState extends State<OcpageList> {
                               child: Text(
                                 "Add More Items",
                                 style: GoogleFonts.inter(
-                                    fontSize: 12.sp,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
                               style: TextButton.styleFrom(
-                                fixedSize: Size(23.w, 2.h),
+                                fixedSize: Size(23.w, 3.h),
                               ),
                             )
                           ],

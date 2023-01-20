@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -13,7 +13,7 @@ import './page/otpinput.dart';
 import './page/profilepg.dart';
 import './provider/productsprovider.dart';
 import './provider/cartProductProvider.dart';
-
+import './page/notificationpg.dart';
 
 void main() {
   runApp(const main_app());
@@ -40,6 +40,9 @@ class _main_appState extends State<main_app> {
           ChangeNotifierProvider<CartProductsProvider>(
             create: (context) => CartProductsProvider(),
           ),
+          ChangeNotifierProvider<NotificationProvider>(
+            create: (context) => NotificationProvider(),
+          )
         ],
         child: ResponsiveSizer(
           builder: (p0, p1, p2) {
@@ -53,7 +56,8 @@ class _main_appState extends State<main_app> {
                 "/orderdetailsPg": (context) => const OrderDetailspg(),
                 "/orderspg": (context) => const OrderPg(),
                 "/otpinput": (context) => const Otpscreen(),
-                "/profile": (context) => const Profilepg()
+                "/profile": (context) => const Profilepg(),
+                "/notifications": (context) => const NotificationPg()
               },
             );
           },

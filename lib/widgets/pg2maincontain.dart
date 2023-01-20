@@ -134,21 +134,27 @@ class _PG2maincontState extends State<PG2maincont> {
           height: 1.8.h,
         ),
         //lower sized box for the  verticallist of products
-        Container(
-          decoration: BoxDecoration(
-              color: Color.fromARGB(60, 0, 0, 0),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
-          margin: EdgeInsets.all(0),
-          width: 100.w,
-          height: 79.h,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: data!.map((e) {
-                return PgLowerListCont(
-                  e: e,
-                );
-              }).toList(),
+        Expanded(
+          // decoration: BoxDecoration(
+          //     color: Color.fromARGB(60, 0, 0, 0),
+          //     borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+          // margin: EdgeInsets.all(0),
+          // width: 100.w,
+          // height: 79.h,
+          child: Container(
+            width: 100.w,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(60, 0, 0, 0),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: data!.map((e) {
+                  return PgLowerListCont(
+                    e: e,
+                  );
+                }).toList(),
+              ),
             ),
           ),
         )

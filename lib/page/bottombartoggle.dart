@@ -6,7 +6,8 @@ import './order-confirmation-pg.dart';
 import '../widgets/PG2bottomnavbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
-import './orderspg.dart';
+
+import './notificationpg.dart';
 
 class Toggle extends StatefulWidget {
   const Toggle({super.key});
@@ -28,7 +29,7 @@ class _ToggleState extends State<Toggle> {
         ] else if (id == 2) ...[
           Profilepg()
         ] else if (id == 3) ...[
-          OrderPg()
+          NotificationPg()
         ] else if (id == 4) ...[
           Orderconfirmationpg()
         ],

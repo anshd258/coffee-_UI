@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:inter_coffee/widgets/pg3togglebutton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './pg3milkswitchgride.dart';
@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import './pg3sugergirde.dart';
 import '../models/productmodal.dart';
+import './pg3ETAgrid.dart';
 
 class Pg3BottomSheet extends StatefulWidget {
   final Products data;
@@ -22,6 +23,9 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   //dropdown meenue state
   var dropdownvalue = 1;
 
+  final items = ["SUGER X1", "SUGER X2", "1/2 SUGER", "NO SUGER"];
+  String selecteditem = "SUGER X1";
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +35,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
       children: [
         //main glasscontainer
         GlassContainer.frostedGlass(
-          height: 140.h,
+          height: 155.h,
           width: 100.w,
           blur: 20,
           frostedOpacity: 0.04,
@@ -58,13 +62,24 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      widget.data.name!,
-                      style: GoogleFonts.inter(
-                        fontSize: 22.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 205, 205, 205),
+                    Container(
+                      width: 55.w,
+                      alignment: Alignment.center,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.data.name!,
+                            style: GoogleFonts.inter(
+                              fontSize: 22.sp,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromARGB(255, 205, 205, 205),
+                            ),
+                          ),
+                          Image(image: AssetImage("assets/6.png"))
+                        ],
                       ),
                     ),
                     Container(
@@ -83,6 +98,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         iconEnabledColor:
                             const Color.fromARGB(255, 217, 217, 217),
                         focusColor: Colors.white30,
+                        underline: Text(""),
                         dropdownColor: Colors.black,
                         items: [
                           const DropdownMenuItem(
@@ -116,42 +132,42 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   ],
                 ),
               ),
-              Container(
-                width: 90.w,
-                child: Row(
-                  children: [
-                    Text(
-                      widget.data.ratings!,
-                      style: GoogleFonts.inter(
-                        fontSize: 16.sp,
-                        color: Color.fromARGB(255, 197, 197, 197),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber.shade300,
-                      size: 16.sp,
-                    ),
-                    SizedBox(
-                      width: 1.w,
-                    ),
-                    Text(
-                      widget.data.numberOfReviews!,
-                      style: GoogleFonts.inter(
-                        fontSize: 16.sp,
-                        color: const Color.fromARGB(255, 197, 197, 197),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Image(image: AssetImage("assets/6.png"))
-                  ],
-                ),
-              ),
+              // Container(
+              //   width: 90.w,
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         widget.data.ratings!,
+              //         style: GoogleFonts.inter(
+              //           fontSize: 16.sp,
+              //           color: Color.fromARGB(255, 197, 197, 197),
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 3.w,
+              //       ),
+              //       Icon(
+              //         Icons.star,
+              //         color: Colors.amber.shade300,
+              //         size: 16.sp,
+              //       ),
+              //       SizedBox(
+              //         width: 1.w,
+              //       ),
+              //       Text(
+              //         widget.data.numberOfReviews!,
+              //         style: GoogleFonts.inter(
+              //           fontSize: 16.sp,
+              //           color: const Color.fromARGB(255, 197, 197, 197),
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 5.w,
+              //       ),
+              //       Image(image: AssetImage("assets/6.png"))
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 2.h,
               ),
@@ -237,7 +253,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   ),
                   //choice of sugeer text
                   Text(
-                    " Choice of Suger",
+                    " Choice of Syrup",
                     style: GoogleFonts.inter(
                       fontSize: 19.sp,
                       letterSpacing: 1,
@@ -253,7 +269,150 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                 width: 90.w,
                 alignment: Alignment.centerLeft,
                 child: Pg3SugerGride(),
-              )
+              ),
+              Divider(
+                color: Colors.white70,
+                endIndent: 5.w,
+                indent: 5.w,
+              ),
+              Row(
+                children: [
+                  //for padding
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  //choice of sugeer text
+                  Container(
+                    margin: EdgeInsets.only(top: 1.h),
+                    child: Text(
+                      " Choice of Suger",
+                      style: GoogleFonts.inter(
+                        fontSize: 19.sp,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 205, 205, 205),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment(-0.6, 0),
+                child: Container(
+                  padding: EdgeInsets.only(top: 2.5.h),
+                  width: 60.w,
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      items: items
+                          .map((e) => DropdownMenuItem<String>(
+                                alignment: Alignment.centerLeft,
+                                value: e.toString(),
+                                child: Text(
+                                  e,
+                                  maxLines: 2,
+                                  style: GoogleFonts.inter(
+                                      color: const Color.fromARGB(
+                                          255, 197, 197, 197),
+                                      fontSize: 16.5.sp,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ))
+                          .toList(),
+                      value: selecteditem,
+                      icon: Container(
+                        height: 5.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(0),
+                                bottomLeft: Radius.circular(0),
+                                bottomRight: Radius.circular(4),
+                                topRight: Radius.circular(4))),
+                        child: const Icon(
+                          Icons.arrow_drop_down,
+                        ),
+                      ),
+                      iconSize: 25.sp,
+                      iconOnClick: Container(
+                        height: 5.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(0),
+                                bottomLeft: Radius.circular(0),
+                                bottomRight: Radius.circular(4),
+                                topRight: Radius.circular(4))),
+                        child: const Icon(Icons.arrow_drop_up),
+                      ),
+                      iconEnabledColor: Colors.white,
+                      iconDisabledColor: Colors.grey,
+                      buttonHeight: 5.5.h,
+                      buttonWidth: 50.w,
+                      buttonPadding: EdgeInsets.only(left: 5.w, right: 0.3.w),
+                      buttonDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                          color: Colors.grey.shade700,
+                        ),
+                        color: Colors.grey.shade700,
+                      ),
+                      buttonElevation: 2,
+                      itemHeight: 5.h,
+                      itemPadding: EdgeInsets.only(left: 4.w, right: 4.w),
+                      dropdownMaxHeight: 50.w,
+                      dropdownWidth: 50.w,
+                      dropdownPadding: null,
+                      dropdownDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.black54,
+                      ),
+                      dropdownElevation: 8,
+                      scrollbarRadius: const Radius.circular(40),
+                      scrollbarThickness: 6,
+                      scrollbarAlwaysShow: true,
+                      offset: const Offset(0, 0),
+                      onChanged: (value) {
+                        setState(() {
+                          selecteditem = value as String;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Divider(
+                color: Colors.white70,
+                endIndent: 5.w,
+                indent: 5.w,
+                height: 4.h,
+              ),
+              Row(
+                children: [
+                  //for padding
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  //choice of sugeer text
+                  Text(
+                    " ETA",
+                    style: GoogleFonts.inter(
+                      fontSize: 19.sp,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 205, 205, 205),
+                    ),
+                  ),
+                ],
+              ),
+              //main type of suger selection switch
+              Container(
+                height: 18.h,
+                width: 90.w,
+                alignment: Alignment.centerLeft,
+                child: ETAgridpg3(),
+              ),
             ],
           ),
         ),
