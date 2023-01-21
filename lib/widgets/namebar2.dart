@@ -8,37 +8,43 @@ class name_bar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 95.w,
+      width: 90.w,
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      alignment: Alignment.center,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Text("👋", style: TextStyle(fontSize: 18.sp)),
-            SizedBox(
-              width: 3.w,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "02/01/2023",
-                  style: GoogleFonts.inter(
-                      color: Color.fromARGB(255, 182, 182, 182),
-                      fontSize: 14.sp),
-                ),
+                Text("👋", style: TextStyle(fontSize: 18.sp)),
                 SizedBox(
-                  height: 0.3.h,
+                  width: 3.w,
                 ),
-                Text(
-                  "Joshua Scanlan",
-                  style: GoogleFonts.inter(
-                      color: Color.fromARGB(255, 182, 182, 182),
-                      fontSize: 17.sp),
-                )
-              ],
-            ),
-          ]),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "02/01/2023",
+                      style: GoogleFonts.inter(
+                          color: Color.fromARGB(255, 182, 182, 182),
+                          fontSize: 14.sp),
+                    ),
+                    SizedBox(
+                      height: 0.3.h,
+                    ),
+                    Text(
+                      "Joshua Scanlan",
+                      style: GoogleFonts.inter(
+                          color: Color.fromARGB(255, 182, 182, 182),
+                          fontSize: 17.sp),
+                    )
+                  ],
+                ),
+              ]),
           Container(
             height: 6.h,
             width: 12.w,

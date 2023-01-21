@@ -1,0 +1,91 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+class AdminHomeRowContainer extends StatelessWidget {
+  const AdminHomeRowContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassContainer.frostedGlass(
+      margin: EdgeInsets.all(3.w),
+      height: 25.h,
+      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
+      width: 43.w,
+      borderRadius: BorderRadius.circular(6),
+      frostedOpacity: 0.05,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: Text(
+              "15 Mins",
+              style: GoogleFonts.inter(
+                  color: Colors.white70,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w400),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 23.w,
+              width: 23.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                      image: AssetImage("assets/3.png"), fit: BoxFit.fill)),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Cappucino",
+              style: GoogleFonts.inter(
+                  color: Colors.white70,
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "½ Full  Vanilla Syrup",
+              style: GoogleFonts.inter(
+                  color: Colors.white70,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w400),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Sugar X1",
+              style: GoogleFonts.inter(
+                  color: Colors.white70,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w400),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GestureDetector(
+              onTap: () {},
+              child: Text(
+                "Confirm Order",
+                style: GoogleFonts.inter(
+                    color: Colors.green.shade400,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

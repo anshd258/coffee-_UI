@@ -14,6 +14,7 @@ import './page/profilepg.dart';
 import './provider/productsprovider.dart';
 import './provider/cartProductProvider.dart';
 import './page/notificationpg.dart';
+import './page/Admin/homepage.dart';
 
 void main() {
   runApp(const main_app());
@@ -48,7 +49,7 @@ class _main_appState extends State<main_app> {
           builder: (p0, p1, p2) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: "/",
+              initialRoute: "/AdminHome",
               routes: {
                 "/": (context) => const page_1(),
                 "/page2": (context) => const Toggle(),
@@ -58,7 +59,8 @@ class _main_appState extends State<main_app> {
                 "/orderspg": (context) => const OrderPg(),
                 "/otpinput": (context) => const Otpscreen(),
                 "/profile": (context) => const Profilepg(),
-                "/notifications": (context) => const NotificationPg()
+                "/notifications": (context) => const NotificationPg(),
+                "/AdminHome": (context) => const AdminHome()
               },
             );
           },

@@ -105,6 +105,7 @@ flutter:
     - assets/new.png 
     - assets/coffee1.png 
     - assets/coffee2.png 
+    - assets/AdminBG.jpg 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
