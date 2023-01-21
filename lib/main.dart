@@ -47,6 +47,7 @@ class _main_appState extends State<main_app> {
         child: ResponsiveSizer(
           builder: (p0, p1, p2) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               initialRoute: "/",
               routes: {
                 "/": (context) => const page_1(),
