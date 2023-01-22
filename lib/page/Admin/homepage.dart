@@ -40,24 +40,36 @@ class _AdminHomeState extends State<AdminHome> {
           frostedOpacity: 0.05,
           color: const Color.fromRGBO(0, 0, 0, 0.36),
           borderColor: Colors.transparent,
-          padding: EdgeInsets.only(top: 1.h),
           child: SafeArea(
             child: Column(
               children: [
+                SizedBox(height: 1.h,),
                 name_bar2(),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: 1.h,),
+                        SizedBox(height: (3.h)/2,),
                         Container(
                           padding: EdgeInsets.symmetric( vertical: 3.h ),
                           color: greyBG,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              AdminOrderCountContainer(),
-                              AdminOrderCountContainer()
+                              AdminOrderCountContainer(
+                                title: "Priority Orders",
+                                quantity: 4,
+                                onTap: (){
+                                  Navigator.pushNamed(context, "/OrdersAdmin");
+                                },
+                              ),
+                              AdminOrderCountContainer(
+                                title: "Total Orders",
+                                quantity: 12,
+                                onTap: (){
+                                  Navigator.pushNamed(context, "/OrdersAdmin");
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -123,7 +135,7 @@ class _AdminHomeState extends State<AdminHome> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 2.h,),
+                              SizedBox(height: (5.h)/2,),
                             ],
                           ),
                         ),
@@ -189,7 +201,7 @@ class _AdminHomeState extends State<AdminHome> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 2.h,),
+                              SizedBox(height: (5.h)/2,),
                             ],
                           ),
                         ),
