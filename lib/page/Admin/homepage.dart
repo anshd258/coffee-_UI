@@ -4,7 +4,6 @@ import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
-import '../../widgets/Admin/adminOrderCountContainer.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -25,8 +24,8 @@ class _AdminHomeState extends State<AdminHome> {
           Container(
         height: 100.h,
         width: 100.w,
-        padding: EdgeInsets.all(0),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(0),
+        decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
             image: AssetImage("assets/AdminBG.jpg"),
@@ -50,7 +49,13 @@ class _AdminHomeState extends State<AdminHome> {
                   AdminOrderCountContainer()
                 ],
               ),
-              AdminHomeRowContainer()
+              AdminHomeRowContainer(
+                coffeeName: "Cappuccino",
+                coffeeDetails: "1/2 Full  Vanilla Syrup  Sugar X1",
+                onTap: () {
+                  Navigator.pushNamed(context, "/OrdersAdmin");
+                },
+              )
             ],
           ),
         ),

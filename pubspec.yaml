@@ -48,6 +48,7 @@ dependencies:
   pinput: ^2.2.21
   provider: ^6.0.5
   dropdown_button2: ^1.9.2
+  json_table: ^2.0.1
 
 
 dev_dependencies:
@@ -106,6 +107,7 @@ flutter:
     - assets/coffee1.png 
     - assets/coffee2.png 
     - assets/AdminBG.jpg 
+    - assets/coffee_cup.png 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

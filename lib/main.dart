@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/page/Admin/orders.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
@@ -60,7 +61,8 @@ class _main_appState extends State<main_app> {
                 "/otpinput": (context) => const Otpscreen(),
                 "/profile": (context) => const Profilepg(),
                 "/notifications": (context) => const NotificationPg(),
-                "/AdminHome": (context) => const AdminHome()
+                "/AdminHome": (context) => const AdminHome(),
+                "/OrdersAdmin":(context) => const Orders()
               },
             );
           },
