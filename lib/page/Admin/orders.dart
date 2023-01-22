@@ -182,7 +182,7 @@ class _OrdersState extends State<Orders> {
                             json = callRightJSON( tappedIndex ),
                             tableHeaderBuilder: (header) {
                               return Container(
-                                padding: EdgeInsets.all( 1.w ),
+                                padding: EdgeInsets.all( 2.w ),
                                 decoration: BoxDecoration(
                                   color: tableBlack,
                                   border: Border.all( color: borderWhite ),
@@ -201,7 +201,7 @@ class _OrdersState extends State<Orders> {
                             },
                             tableCellBuilder: (value) {
                               return Container(
-                                padding: EdgeInsets.all( 1.w ),
+                                padding: EdgeInsets.all( 2.w ),
                                 decoration: BoxDecoration(
                                   color: tableBlack,
                                   border: Border.all( color: borderWhite ),
