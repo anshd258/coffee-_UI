@@ -14,21 +14,29 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  final String json1 = '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
+  final String json1 =
+      '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
 
-  final String json2 = '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
+  final String json2 =
+      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
 
-  final String json3 = '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
-  
+  final String json3 =
+      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
+
   int tappedIndex = 0;
-  List<String> filterList = ["New Orders", "Orders Progress", "Completed Orders", "Reports"];
+  List<String> filterList = [
+    "New Orders",
+    "Orders Progress",
+    "Completed Orders",
+    "Reports"
+  ];
 
   @override
   Widget build(BuildContext context) {
     String headerVal = "";
     var json = jsonDecode(json1);
-    List<dynamic> callRightJSON( tappedIndex ) {
-      switch(tappedIndex) {
+    List<dynamic> callRightJSON(tappedIndex) {
+      switch (tappedIndex) {
         case 0:
           json = jsonDecode(json1);
           break;
@@ -44,6 +52,7 @@ class _OrdersState extends State<Orders> {
       }
       return json;
     }
+
     return Container(
       height: 100.h,
       width: 100.w,
@@ -66,16 +75,16 @@ class _OrdersState extends State<Orders> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: GestureDetector(
-              onTap: () { Navigator.pop(context); },
+              onTap: () {
+                Navigator.pop(context);
+              },
               child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
             ),
-            title: Text( "Orders",
+            title: Text(
+              "Orders",
               textAlign: TextAlign.start,
               style: GoogleFonts.inter(
-                color: white,
-                fontSize: 17.sp,
-                fontWeight: FontWeight.w500
-              ),
+                  color: white, fontSize: 17.sp, fontWeight: FontWeight.w500),
             ),
             backgroundColor: const Color.fromRGBO(35, 3, 9, 0.4),
             elevation: 0,
@@ -105,7 +114,7 @@ class _OrdersState extends State<Orders> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
-                              onTap: (){},
+                              onTap: () {},
                               child: SizedBox(
                                 width: 35.w,
                                 child: DecoratedBox(
@@ -113,27 +122,38 @@ class _OrdersState extends State<Orders> {
                                     color: Color.fromRGBO(36, 36, 36, 0.7),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: (1.h)/2),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: (1.h) / 2),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        SizedBox(width: 2.w,),
                                         SizedBox(
-                                          width: 3.h,
-                                          height: 3.h,
-                                          child: Image.asset("assets/coffee_cup.png", fit: BoxFit.fill,)
+                                          width: 2.w,
                                         ),
-                                        SizedBox(width: 2.w,),
-                                        Text( "Create Orders",
+                                        SizedBox(
+                                            width: 3.h,
+                                            height: 3.h,
+                                            child: Image.asset(
+                                              "assets/coffee_cup.png",
+                                              fit: BoxFit.fill,
+                                            )),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Create Orders",
                                           textAlign: TextAlign.start,
                                           style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500
-                                          ),
+                                              color: white,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500),
                                         ),
-                                        SizedBox(width: 2.w,),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -141,105 +161,112 @@ class _OrdersState extends State<Orders> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 2.h,),
+                          SizedBox(
+                            height: 2.h,
+                          ),
                           SizedBox(
                             height: 3.h,
                             child: ListView.builder(
                               itemCount: filterList.length,
                               scrollDirection: Axis.horizontal,
-                              itemBuilder: ( BuildContext context, int index ) {
+                              itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
-                                  onTap: (){
+                                  onTap: () {
                                     setState(() {
                                       tappedIndex = index;
-                                      switch(index) {
-                                        case 0:
-                                          json = jsonDecode(json1);
-                                          break;
-                                        case 1:
-                                          json = jsonDecode(json2);
-                                          break;
-                                        case 2:
-                                          json = jsonDecode(json3);
-                                          break;
-                                      }
+
+                                      // switch (index) {
+                                      //   case 0:
+                                      //     json = jsonDecode(json1);
+                                      //     break;
+                                      //   case 1:
+                                      //     json = jsonDecode(json2);
+                                      //     break;
+                                      //   case 2:
+                                      //     json = jsonDecode(json3);
+                                      //     break;
+                                      // }
                                     });
                                   },
                                   child: Container(
                                     alignment: Alignment.center,
                                     height: 4.h,
-                                    padding: EdgeInsets.symmetric(horizontal: 2.w),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 2.w),
                                     margin: EdgeInsets.only(right: 2.w),
-                                    color: tappedIndex == index 
-                                      ? const Color.fromRGBO(36, 36, 36, 0.7) 
-                                      : Colors.transparent,
-                                    child: Text( filterList[index].toString(),
+                                    color: tappedIndex == index
+                                        ? const Color.fromRGBO(36, 36, 36, 0.7)
+                                        : Colors.transparent,
+                                    child: Text(
+                                      filterList[index].toString(),
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.inter(
-                                        color: white,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500
-                                      ),
+                                          color: white,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 );
                               },
                             ),
                           ),
-                          SizedBox(height: 2.h,),
+                          SizedBox(
+                            height: 2.h,
+                          ),
                           JsonTable(
-                            json = callRightJSON( tappedIndex ),
+                            json = callRightJSON(tappedIndex),
                             tableHeaderBuilder: (header) {
                               headerVal = header.toString();
                               return Container(
-                                padding: EdgeInsets.all( 2.w ),
+                                padding: EdgeInsets.all(2.w),
                                 decoration: BoxDecoration(
                                   color: tableBlack,
-                                  border: Border.all( color: borderWhite ),
+                                  border: Border.all(color: borderWhite),
                                 ),
                                 child: Center(
-                                  child: Text( header.toString(),
+                                  child: Text(
+                                    header.toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.inter(
-                                      color: white,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w400
-                                    ),
+                                        color: white,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ),
                               );
                             },
                             tableCellBuilder: (value) {
                               return Container(
-                                padding: EdgeInsets.all( 2.w ),
+                                padding: EdgeInsets.all(2.w),
                                 decoration: BoxDecoration(
                                   color: tableBlack,
-                                  border: Border.all( color: borderWhite ),
+                                  border: Border.all(color: borderWhite),
                                 ),
                                 child: Center(
-                                  child: Text( value,
+                                  child: Text(
+                                    value,
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.inter(
-                                      color: headerVal == "Order Details" 
-                                        ? orderDetailsGreen 
-                                          : headerVal == "Order Status"
-                                            ? value != "Pending" && value != "Cancelled"
-                                             ? orderDetailsGreen
-                                              : value == "Pending"
-                                                ? pending 
-                                                  : value == "Cancelled"
-                                                    ? cancelled 
-                                                      : white
-                                                        :white,
-                                      fontSize: 14.sp,
-                                      fontWeight: headerVal == "Order Details" 
-                                      ? FontWeight.w500 
-                                        : headerVal == "Order Status" 
-                                          ? value != "Confirmed" 
-                                            ? FontWeight.w500 
-                                            : FontWeight.w400
-                                              : FontWeight.w400
-                                    ),
+                                        color: headerVal == "Order Details"
+                                            ? orderDetailsGreen
+                                            : headerVal == "Order Status"
+                                                ? value != "Pending" &&
+                                                        value != "Cancelled"
+                                                    ? orderDetailsGreen
+                                                    : value == "Pending"
+                                                        ? pending
+                                                        : value == "Cancelled"
+                                                            ? cancelled
+                                                            : white
+                                                : white,
+                                        fontSize: 14.sp,
+                                        fontWeight: headerVal == "Order Details"
+                                            ? FontWeight.w500
+                                            : headerVal == "Order Status"
+                                                ? value != "Confirmed"
+                                                    ? FontWeight.w500
+                                                    : FontWeight.w400
+                                                : FontWeight.w400),
                                   ),
                                 ),
                               );
