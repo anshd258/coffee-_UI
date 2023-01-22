@@ -25,7 +25,7 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
-
+    String headerVal = "";
     var json = jsonDecode(json1);
     List<dynamic> callRightJSON( tappedIndex ) {
       switch(tappedIndex) {
@@ -190,6 +190,7 @@ class _OrdersState extends State<Orders> {
                           JsonTable(
                             json = callRightJSON( tappedIndex ),
                             tableHeaderBuilder: (header) {
+                              headerVal = header.toString();
                               return Container(
                                 padding: EdgeInsets.all( 2.w ),
                                 decoration: BoxDecoration(
@@ -219,9 +220,25 @@ class _OrdersState extends State<Orders> {
                                   child: Text( value,
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.inter(
-                                      color: white,
+                                      color: headerVal == "Order Details" 
+                                        ? orderDetailsGreen 
+                                          : headerVal == "Order Status"
+                                            ? value != "Pending" && value != "Cancelled"
+                                             ? orderDetailsGreen
+                                              : value == "Pending"
+                                                ? pending 
+                                                  : value == "Cancelled"
+                                                    ? cancelled 
+                                                      : white
+                                                        :white,
                                       fontSize: 14.sp,
-                                      fontWeight: FontWeight.w400
+                                      fontWeight: headerVal == "Order Details" 
+                                      ? FontWeight.w500 
+                                        : headerVal == "Order Status" 
+                                          ? value != "Confirmed" 
+                                            ? FontWeight.w500 
+                                            : FontWeight.w400
+                                              : FontWeight.w400
                                     ),
                                   ),
                                 ),
