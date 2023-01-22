@@ -106,28 +106,37 @@ class _OrdersState extends State<Orders> {
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
                               onTap: (){},
-                              child: Container(
-                                height: 4.h,
+                              child: SizedBox(
                                 width: 35.w,
-                                color: const Color.fromRGBO(36, 36, 36, 0.7),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 3.h,
-                                      height: 3.h,
-                                      child: Image.asset("assets/coffee_cup.png", fit: BoxFit.fill,)
+                                child: DecoratedBox(
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(36, 36, 36, 0.7),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: (1.h)/2),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(width: 2.w,),
+                                        SizedBox(
+                                          width: 3.h,
+                                          height: 3.h,
+                                          child: Image.asset("assets/coffee_cup.png", fit: BoxFit.fill,)
+                                        ),
+                                        SizedBox(width: 2.w,),
+                                        Text( "Create Orders",
+                                          textAlign: TextAlign.start,
+                                          style: GoogleFonts.inter(
+                                            color: white,
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500
+                                          ),
+                                        ),
+                                        SizedBox(width: 2.w,),
+                                      ],
                                     ),
-                                    Text( "Create Orders",
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.inter(
-                                        color: white,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
