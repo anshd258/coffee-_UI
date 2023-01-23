@@ -6,7 +6,7 @@ import '../../constants/colors.dart';
 
 Future<void> ConfirmDialog(BuildContext context, String title) async {
   return await showDialog(
-    barrierColor: Colors.black87,
+    barrierColor: Color.fromRGBO(0, 0, 0, 0.75),
     barrierDismissible: true,
     context: context,
     builder: (context) => StatefulBuilder(
@@ -63,7 +63,7 @@ Future<void> ConfirmDialog(BuildContext context, String title) async {
                                 Navigator.pop(context);
                               },
                               child: Text(
-                                "CANCLE",
+                                "CANCEL",
                                 style: GoogleFonts.inter(
                                     color: Colors.black,
                                     fontSize: 14.sp,

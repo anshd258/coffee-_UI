@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/widgets/Admin/ConfirmationDialog.dart';
+import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
+import 'package:inter_coffee/widgets/Admin/OrderETA_Dialog.dart';
 import 'package:json_table/json_table.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -69,7 +72,7 @@ class _OrdersState extends State<Orders> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.03,
-        color: const Color.fromARGB(15, 255, 255, 255),
+        color: const Color.fromRGBO(0, 0, 0, 0.53),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -86,14 +89,14 @@ class _OrdersState extends State<Orders> {
               style: GoogleFonts.inter(
                   color: white, fontSize: 17.sp, fontWeight: FontWeight.w500),
             ),
-            backgroundColor: const Color.fromRGBO(35, 3, 9, 0.4),
+            backgroundColor: const Color.fromRGBO(77, 68, 64, 0.36),
             elevation: 0,
           ),
           body: Column(
             children: [
               Container(
                 height: 2.h,
-                color: const Color.fromRGBO(0, 0, 0, 0.8),
+                color: const Color.fromRGBO(0, 0, 0, 0.5),
               ),
               Expanded(
                 child: GlassContainer.frostedGlass(
@@ -101,7 +104,7 @@ class _OrdersState extends State<Orders> {
                   height: 87.h,
                   blur: 17,
                   frostedOpacity: 0.03,
-                  color: const Color.fromRGBO(0, 0, 0, 0.55),
+                  color: const Color.fromRGBO(0, 0, 0, 0.6),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: 2.h,
@@ -119,7 +122,7 @@ class _OrdersState extends State<Orders> {
                                 width: 35.w,
                                 child: DecoratedBox(
                                   decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(36, 36, 36, 0.7),
+                                    color: Color.fromRGBO(77, 68, 64, 0.36),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
@@ -174,18 +177,6 @@ class _OrdersState extends State<Orders> {
                                   onTap: () {
                                     setState(() {
                                       tappedIndex = index;
-
-                                      // switch (index) {
-                                      //   case 0:
-                                      //     json = jsonDecode(json1);
-                                      //     break;
-                                      //   case 1:
-                                      //     json = jsonDecode(json2);
-                                      //     break;
-                                      //   case 2:
-                                      //     json = jsonDecode(json3);
-                                      //     break;
-                                      // }
                                     });
                                   },
                                   child: Container(
@@ -215,6 +206,9 @@ class _OrdersState extends State<Orders> {
                           ),
                           JsonTable(
                             json = callRightJSON(tappedIndex),
+                            onRowSelect: (index, map) {
+                              ConfirmDialog(context, map);
+                            },
                             tableHeaderBuilder: (header) {
                               headerVal = header.toString();
                               return Container(
@@ -236,37 +230,47 @@ class _OrdersState extends State<Orders> {
                               );
                             },
                             tableCellBuilder: (value) {
-                              return Container(
-                                padding: EdgeInsets.all(2.w),
-                                decoration: BoxDecoration(
-                                  color: tableBlack,
-                                  border: Border.all(color: borderWhite),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    value,
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.inter(
-                                        color: headerVal == "Order Details"
-                                            ? orderDetailsGreen
-                                            : headerVal == "Order Status"
-                                                ? value != "Pending" &&
-                                                        value != "Cancelled"
-                                                    ? orderDetailsGreen
-                                                    : value == "Pending"
-                                                        ? pending
-                                                        : value == "Cancelled"
-                                                            ? cancelled
-                                                            : white
-                                                : white,
-                                        fontSize: 14.sp,
-                                        fontWeight: headerVal == "Order Details"
-                                            ? FontWeight.w500
-                                            : headerVal == "Order Status"
-                                                ? value != "Confirmed"
-                                                    ? FontWeight.w500
-                                                    : FontWeight.w400
-                                                : FontWeight.w400),
+                              return GestureDetector(
+                                onTap: () {
+                                  if( headerVal == "Order Status" && value == "Pending" ) {
+                                    OrderETA_Dialvog(context);
+                                  }
+                                  if( headerVal == "Order Details") {
+                                    OrderDetailsDialog(context);
+                                  }
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(2.w),
+                                  decoration: BoxDecoration(
+                                    color: tableBlack,
+                                    border: Border.all(color: borderWhite),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      value,
+                                      textAlign: TextAlign.start,
+                                      style: GoogleFonts.inter(
+                                          color: headerVal == "Order Details"
+                                              ? orderDetailsGreen
+                                              : headerVal == "Order Status"
+                                                  ? value != "Pending" &&
+                                                          value != "Cancelled"
+                                                      ? orderDetailsGreen
+                                                      : value == "Pending"
+                                                          ? pending
+                                                          : value == "Cancelled"
+                                                              ? cancelled
+                                                              : white
+                                                  : white,
+                                          fontSize: 14.sp,
+                                          fontWeight: headerVal == "Order Details"
+                                              ? FontWeight.w500
+                                              : headerVal == "Order Status"
+                                                  ? value != "Confirmed"
+                                                      ? FontWeight.w500
+                                                      : FontWeight.w400
+                                                  : FontWeight.w400),
+                                    ),
                                   ),
                                 ),
                               );

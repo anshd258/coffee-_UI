@@ -51,8 +51,8 @@ class _AdminHomeState extends State<AdminHome> {
                   height: 1.h,
                 ),
                 GestureDetector(
-                    onTap: () async {
-                      await OrderDetailsDialog(context);
+                    onTap: () {
+                      Navigator.pushNamed(context,"/AdminAccount");
                     },
                     child: name_bar2()),
                 Expanded(
