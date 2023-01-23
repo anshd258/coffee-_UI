@@ -1,4 +1,5 @@
 import '../../widgets/Admin/OrderETA_Dialog.dart';
+import '../../widgets/Admin/OrderDetailsDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
+import 'account.dart';
 import '../../widgets/Admin/ConfirmationDialog.dart';
 
 class AdminHome extends StatefulWidget {
@@ -50,7 +52,7 @@ class _AdminHomeState extends State<AdminHome> {
                 ),
                 GestureDetector(
                     onTap: () async {
-                      await ConfirmDialog(context, 'Are you sure to Confirm');
+                      await OrderDetailsDialog(context);
                     },
                     child: name_bar2()),
                 Expanded(

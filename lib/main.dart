@@ -16,6 +16,7 @@ import './provider/productsprovider.dart';
 import './provider/cartProductProvider.dart';
 import './page/notificationpg.dart';
 import './page/Admin/homepage.dart';
+import './page/Admin/account.dart';
 
 void main() {
   runApp(const main_app());
@@ -62,7 +63,8 @@ class _main_appState extends State<main_app> {
                 "/profile": (context) => const Profilepg(),
                 "/notifications": (context) => const NotificationPg(),
                 "/AdminHome": (context) => const AdminHome(),
-                "/OrdersAdmin":(context) => const Orders()
+                "/OrdersAdmin": (context) => const Orders(),
+                "/AdminAccount": (context) => const AccountAdmin()
               },
             );
           },
