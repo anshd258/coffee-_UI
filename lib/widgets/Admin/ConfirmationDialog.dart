@@ -1,10 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> ConfirmDialog(BuildContext context, String title) async {
+Future<void> ConfirmDialog(BuildContext context, String title, void Function() onTapOk ) async {
   return await showDialog(
     barrierColor: Color.fromRGBO(0, 0, 0, 0.75),
     barrierDismissible: true,
@@ -41,7 +43,7 @@ Future<void> ConfirmDialog(BuildContext context, String title) async {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: onTapOk,
                             child: Text(
                               "OK",
                               style: GoogleFonts.inter(

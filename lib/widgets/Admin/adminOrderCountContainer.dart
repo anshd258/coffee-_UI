@@ -20,7 +20,7 @@ class AdminOrderCountContainer extends StatelessWidget {
       onTap: onTap,
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.all(3.w),
-        height: 15.h,
+        height: 16.h,
         padding: EdgeInsets.all(3.w),
         width: 43.w,
         borderRadius: BorderRadius.circular(15),

@@ -42,8 +42,8 @@ class AdminHomeRowContainer extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Container(
-                height: 23.w,
-                width: 23.w,
+                height: 19.w,
+                width: 19.w,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(

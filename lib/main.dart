@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +65,8 @@ class _main_appState extends State<main_app> {
                 "/notifications": (context) => const NotificationPg(),
                 "/AdminHome": (context) => const AdminHome(),
                 "/OrdersAdmin": (context) => const Orders(),
-                "/AdminAccount": (context) => const AccountAdmin()
+                "/AdminAccount": (context) => const AccountAdmin(),
+                "/OrderConfirmed": (context) => const OrderConfirmed()
               },
             );
           },
