@@ -31,14 +31,20 @@ class _AccountAdminState extends State<AccountAdmin> {
           padding: EdgeInsets.all(0),
           frostedOpacity: 0.05,
           borderWidth: 0,
-          color: const Color.fromRGBO(0, 0, 0, 0.36),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(0, 0, 0, 0.43),
+                Color.fromRGBO(0, 0, 0, 0.85)
+              ]),
           borderColor: Colors.transparent,
           child: Scaffold(
             backgroundColor: Colors.black38,
             appBar: AppBar(
               titleSpacing: 0,
               leadingWidth: 14.w,
-              title: Text("Order Status",
+              title: Text("Account",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.inter(
                       color: Colors.white,
@@ -59,6 +65,7 @@ class _AccountAdminState extends State<AccountAdmin> {
                   borderRadius: BorderRadius.circular(10),
                   borderWidth: 0.5,
                   blur: 17,
+                  borderColor: Colors.white12,
                   frostedOpacity: 0.05,
                   child: Column(
                     children: [
@@ -144,7 +151,7 @@ class _AccountAdminState extends State<AccountAdmin> {
                                       ),
                                     ],
                                   ))
-                            ],
+                            ], 
                           ),
                         ),
                       )

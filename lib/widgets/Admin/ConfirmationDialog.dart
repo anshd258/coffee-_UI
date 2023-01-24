@@ -22,6 +22,7 @@ Future<void> ConfirmDialog(BuildContext context, String title) async {
               color: Colors.white10,
               padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
               borderRadius: BorderRadius.circular(15),
+              borderColor: Colors.white24,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

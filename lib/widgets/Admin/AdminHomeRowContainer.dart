@@ -4,12 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AdminHomeRowContainer extends StatelessWidget {
-  const AdminHomeRowContainer({
-    super.key,
-    required this.coffeeName,
-    required this.coffeeDetails,
-    required this.onTap
-  });
+  const AdminHomeRowContainer(
+      {super.key,
+      required this.coffeeName,
+      required this.coffeeDetails,
+      required this.onTap});
 
   final String coffeeName;
   final String coffeeDetails;
@@ -20,12 +19,13 @@ class AdminHomeRowContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: GlassContainer.frostedGlass(
-        margin: EdgeInsets.only( right: 6.w ),
+        margin: EdgeInsets.only(right: 6.w),
         height: 25.h,
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
         width: 43.w,
         borderRadius: BorderRadius.circular(6),
         frostedOpacity: 0.05,
+        borderColor: Colors.white30,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -22,6 +22,7 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
             borderWidth: 0.5,
             frostedOpacity: 0.03,
             height: 27.h,
+            borderColor: Colors.white24,
             width: 80.w,
             padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
             borderRadius: BorderRadius.circular(15),

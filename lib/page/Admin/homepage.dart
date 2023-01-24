@@ -8,7 +8,7 @@ import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
-import 'account.dart';
+
 import '../../widgets/Admin/ConfirmationDialog.dart';
 
 class AdminHome extends StatefulWidget {
@@ -22,6 +22,7 @@ class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //@todo -  make it responsive
       resizeToAvoidBottomInset: false,
       body:
           //stack for bottom nav bar  base image gradeint
@@ -42,7 +43,13 @@ class _AdminHomeState extends State<AdminHome> {
           width: 100.w,
           blur: 17,
           frostedOpacity: 0.05,
-          color: const Color.fromRGBO(0, 0, 0, 0.36),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(0, 0, 0, 0.43),
+                Color.fromRGBO(0, 0, 0, 0.85)
+              ]),
           borderColor: Colors.transparent,
           child: SafeArea(
             child: Column(
@@ -51,19 +58,17 @@ class _AdminHomeState extends State<AdminHome> {
                   height: 1.h,
                 ),
                 GestureDetector(
-                    onTap: () async {
-                      await OrderDetailsDialog(context);
+                    onTap: () {
+                      Navigator.pushNamed(context, "/AdminAccount");
                     },
                     child: name_bar2()),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: (3.h) / 2,
-                        ),
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 3.h),
+                          margin: EdgeInsets.only(top: 1.h),
+                          padding: EdgeInsets.symmetric(vertical: 2.h),
                           color: greyBG,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,17 +90,15 @@ class _AdminHomeState extends State<AdminHome> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 3.w),
-                          color: const Color.fromRGBO(0, 0, 0, 0.36),
+                          margin: EdgeInsets.only(top: 1.h),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 3.w, vertical: 2.5.h),
+                          color: Colors.white10,
+                          height: 34.h,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                height: (3.h) / 2,
-                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -124,9 +127,6 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                height: (3.h) / 2,
-                              ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -161,23 +161,18 @@ class _AdminHomeState extends State<AdminHome> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: (5.h) / 2,
-                              ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 3.w),
-                          color: const Color.fromRGBO(0, 0, 0, 0.36),
+                          margin: EdgeInsets.only(top: 1.h),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 3.w, vertical: 2.5.h),
+                          color: Colors.white10,
+                          height: 34.h,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                height: (3.h) / 2,
-                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -206,9 +201,6 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                height: (3.h) / 2,
-                              ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -242,9 +234,6 @@ class _AdminHomeState extends State<AdminHome> {
                                     ),
                                   ],
                                 ),
-                              ),
-                              SizedBox(
-                                height: (5.h) / 2,
                               ),
                             ],
                           ),

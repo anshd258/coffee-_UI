@@ -4,12 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AdminOrderCountContainer extends StatelessWidget {
-  const AdminOrderCountContainer({
-    super.key,
-    required this.title,
-    required this.quantity,
-    required this.onTap
-  });
+  const AdminOrderCountContainer(
+      {super.key,
+      required this.title,
+      required this.quantity,
+      required this.onTap});
 
   final String title;
   final int quantity;
@@ -26,6 +25,7 @@ class AdminOrderCountContainer extends StatelessWidget {
         width: 43.w,
         borderRadius: BorderRadius.circular(15),
         frostedOpacity: 0.05,
+        borderColor: Colors.white30,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
