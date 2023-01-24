@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:inter_coffee/widgets/Admin/ConfirmationDialog.dart';
 import '../../constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -126,7 +127,9 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM");
+                  },
                   child: Text(
                     "Confirm Order",
                     style: GoogleFonts.inter(

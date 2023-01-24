@@ -59,7 +59,7 @@ class _AdminHomeState extends State<AdminHome> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, "/AdminAccount");
+                      Navigator.pushNamed(context,"/AdminAccount");
                     },
                     child: name_bar2()),
                 Expanded(

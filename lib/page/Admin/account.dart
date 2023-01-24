@@ -73,11 +73,13 @@ class _AccountAdminState extends State<AccountAdmin> {
                         child: Container(
                           height: 15.h,
                           width: 15.h,
+                          alignment: Alignment.center,
                           margin: EdgeInsets.only(top: 5.h, bottom: 5.h),
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 3),
                               shape: BoxShape.circle,
                               image: DecorationImage(
+                                  fit: BoxFit.cover,
                                   image: AssetImage("assets/user.jpeg"))),
                         ),
                       ),
@@ -151,7 +153,7 @@ class _AccountAdminState extends State<AccountAdmin> {
                                       ),
                                     ],
                                   ))
-                            ], 
+                            ],
                           ),
                         ),
                       )
