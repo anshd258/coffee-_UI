@@ -14,6 +14,7 @@ class Otpscreen extends StatefulWidget {
 class _OtpscreenState extends State<Otpscreen> {
   @override
   Widget build(BuildContext context) {
+    final phoneNo = ModalRoute.of(context)?.settings.arguments;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -45,9 +46,10 @@ class _OtpscreenState extends State<Otpscreen> {
             decoration: const BoxDecoration(
               color: Color.fromARGB(60, 31, 40, 50),
             ),
-            child: const Center(
-              child:
-                  OtpGlassContain(), //center glass container with inner widgets
+            child: Center(
+              child: OtpGlassContain(
+                  phonenumber: phoneNo
+                      .toString()), //center glass container with inner widgets
             ),
           ),
         ),

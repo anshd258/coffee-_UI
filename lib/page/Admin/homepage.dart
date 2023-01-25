@@ -22,7 +22,6 @@ class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //@todo -  make it responsive
       resizeToAvoidBottomInset: false,
       body:
           //stack for bottom nav bar  base image gradeint
@@ -59,7 +58,7 @@ class _AdminHomeState extends State<AdminHome> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context,"/AdminAccount");
+                      Navigator.pushNamed(context, "/AdminAccount");
                     },
                     child: name_bar2()),
                 Expanded(
@@ -113,8 +112,8 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, "/OrdersAdmin");
+                                      Navigator.pushNamed(context, "/AllOrders",
+                                          arguments: "Priority Orders");
                                     },
                                     child: Text(
                                       "View All",
@@ -131,32 +130,41 @@ class _AdminHomeState extends State<AdminHome> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: [
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -187,8 +195,8 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, "/OrdersAdmin");
+                                      Navigator.pushNamed(context, "/AllOrders",
+                                          arguments: "Total Orders");
                                     },
                                     child: Text(
                                       "View All",
@@ -205,32 +213,41 @@ class _AdminHomeState extends State<AdminHome> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: [
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
-                                    AdminHomeRowContainer(
-                                      coffeeName: "Cappuccino",
-                                      coffeeDetails:
-                                          "1/2 Full  Vanilla Syrup  Sugar X1",
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "/OrdersAdmin");
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: AdminHomeRowContainer(
+                                        coffeeName: "Cappuccino",
+                                        coffeeDetails:
+                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, "/OrdersAdmin");
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'package:provider/provider.dart';
+import '../provider/loginAuthProvider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpGlassContain extends StatefulWidget {
-  const OtpGlassContain({super.key});
+  String phonenumber;
+  OtpGlassContain({super.key, required this.phonenumber});
 
   @override
   State<OtpGlassContain> createState() => _OtpGlassContainState();
@@ -26,6 +28,11 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
     otpcontroller.dispose();
     focusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -156,8 +163,20 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           ),
           GestureDetector(
             onTap: () {
+              if (widget.phonenumber == "1234567890") {
+                context
+                    .read<LoginAuthProvider>()
+                    .Login(widget.phonenumber, otpcontroller.text, "admin");
+              } else {
+                context
+                    .read<LoginAuthProvider>()
+                    .Login(widget.phonenumber, otpcontroller.text, "user");
+              }
               Navigator.pushNamedAndRemoveUntil(
-                  context, "/page2", (route) => false);
+                context,
+                "/switcher",
+                (route) => false,
+              );
             },
             child: Container(
               height: 7.7.h,

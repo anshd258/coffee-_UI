@@ -1,5 +1,6 @@
 import 'dart:math';
-
+import 'package:provider/provider.dart';
+import '../provider/loginAuthProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -250,7 +251,9 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    context.read<LoginAuthProvider>().logout();
+                  },
                   child: Transform.rotate(
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",

@@ -114,7 +114,8 @@ class glass_container extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(
-                  context, "/otpinput", (route) => false);
+                  context, "/otpinput", (route) => false,
+                  arguments: ctr.text);
             },
             child: Container(
               height: 7.7.h,
