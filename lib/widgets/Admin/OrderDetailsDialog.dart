@@ -18,28 +18,28 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
             color: Colors.white10,
             borderWidth: 0.5,
             frostedOpacity: 0.03,
-            height: 27.h,
+            height: 40.h,
             borderColor: Colors.white24,
             width: 80.w,
-            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.5.h),
+            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.5.h),
             borderRadius: BorderRadius.circular(15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Order Details",
-                    style: GoogleFonts.inter(
-                        color: Colors.white70,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Order Details",
+                      style: GoogleFonts.inter(
+                          color: Colors.white70,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 1.5.h, top: 2.5.h),
                     width: 50.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,10 +63,8 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                           ),
                         ]),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
                     width: 60.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,10 +92,8 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                           ),
                         ]),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
                     width: 55.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,10 +146,8 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                           ),
                         ]),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
                     width: 43.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,9 +170,9 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                                 fontWeight: FontWeight.w400),
                           ),
                         ]),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         );

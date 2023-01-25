@@ -17,7 +17,7 @@ class _AccountAdminState extends State<AccountAdmin> {
     return Container(
       height: 100.h,
       width: 100.w,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
@@ -28,10 +28,10 @@ class _AccountAdminState extends State<AccountAdmin> {
           height: 100.h,
           width: 100.w,
           blur: 17,
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           frostedOpacity: 0.05,
           borderWidth: 0,
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
@@ -49,12 +49,13 @@ class _AccountAdminState extends State<AccountAdmin> {
                   style: GoogleFonts.inter(
                       color: Colors.white,
                       fontSize: 17.sp,
-                      fontWeight: FontWeight.w600)),
+                      fontWeight: FontWeight.w500)),
               leading: GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
               ),
-              backgroundColor: Colors.white12,
+              backgroundColor: const Color.fromRGBO(77, 68, 64, 0.36),
+              // backgroundColor: Colors.white12,
             ),
             body: Center(
               child: GlassContainer.frostedGlass(

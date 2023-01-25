@@ -128,7 +128,7 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM");
+                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM", (){});
                   },
                   child: Text(
                     "Confirm Order",

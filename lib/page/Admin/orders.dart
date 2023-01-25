@@ -72,7 +72,13 @@ class _OrdersState extends State<Orders> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.03,
-        color: const Color.fromRGBO(0, 0, 0, 0.53),
+        gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(0, 0, 0, 0.55),
+                Color.fromRGBO(0, 0, 0, 0.85)
+              ]),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -104,7 +110,7 @@ class _OrdersState extends State<Orders> {
                   height: 87.h,
                   blur: 17,
                   frostedOpacity: 0.03,
-                  color: const Color.fromRGBO(0, 0, 0, 0.6),
+                  color: Color.fromRGBO(0, 0, 0, 0.06),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: 2.h,
@@ -117,7 +123,9 @@ class _OrdersState extends State<Orders> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, "/OrderConfirmed");
+                              },
                               child: SizedBox(
                                 width: 35.w,
                                 child: DecoratedBox(
@@ -206,9 +214,9 @@ class _OrdersState extends State<Orders> {
                           ),
                           JsonTable(
                             json = callRightJSON(tappedIndex),
-                            onRowSelect: (index, map) {
-                              ConfirmDialog(context, map);
-                            },
+                            // onRowSelect: (index, map) {
+                            //   ConfirmDialog(context, map);
+                            // },
                             tableHeaderBuilder: (header) {
                               headerVal = header.toString();
                               return Container(
@@ -235,8 +243,10 @@ class _OrdersState extends State<Orders> {
                                   if( headerVal == "Order Status" && value == "Pending" ) {
                                     OrderETA_Dialvog(context);
                                   }
-                                  if( headerVal == "Order Details") {
-                                    OrderDetailsDialog(context);
+                                  if( headerVal == "Order Status" && value == "Confirmed" ) {
+                                    ConfirmDialog(context, "READY TO PICK UP", (){
+                                      Navigator.pushNamed(context, "/OrderConfirmed");
+                                    });
                                   }
                                 },
                                 child: Container(
@@ -246,30 +256,54 @@ class _OrdersState extends State<Orders> {
                                     border: Border.all(color: borderWhite),
                                   ),
                                   child: Center(
-                                    child: Text(
-                                      value,
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.inter(
-                                          color: headerVal == "Order Details"
-                                              ? orderDetailsGreen
-                                              : headerVal == "Order Status"
-                                                  ? value != "Pending" &&
-                                                          value != "Cancelled"
-                                                      ? orderDetailsGreen
-                                                      : value == "Pending"
-                                                          ? pending
-                                                          : value == "Cancelled"
-                                                              ? cancelled
-                                                              : white
-                                                  : white,
-                                          fontSize: 14.sp,
-                                          fontWeight: headerVal == "Order Details"
-                                              ? FontWeight.w500
-                                              : headerVal == "Order Status"
-                                                  ? value != "Confirmed"
-                                                      ? FontWeight.w500
-                                                      : FontWeight.w400
-                                                  : FontWeight.w400),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          value,
+                                          textAlign: TextAlign.start,
+                                          style: GoogleFonts.inter(
+                                            textStyle: headerVal == "Order Details" 
+                                              ? const TextStyle(
+                                                decoration: TextDecoration.underline,
+                                              ) 
+                                                : null ,
+                                            color: headerVal == "Order Details"
+                                                ? orderDetailsGreen
+                                                : headerVal == "Order Status"
+                                                    ? value != "Pending" &&
+                                                            value != "Cancelled"
+                                                        ? orderDetailsGreen
+                                                        : value == "Pending"
+                                                            ? pending
+                                                            : value == "Cancelled"
+                                                                ? cancelled
+                                                                : white
+                                                    : white,
+                                            fontSize: 14.sp,
+                                            fontWeight: headerVal == "Order Details"
+                                                ? FontWeight.w500
+                                                : headerVal == "Order Status"
+                                                    ? value != "Confirmed"
+                                                        ? FontWeight.w500
+                                                        : FontWeight.w400
+                                                    : FontWeight.w400
+                                          ),
+                                        ),
+                                        headerVal == "Order Details" 
+                                         ? GestureDetector(
+                                          onTap: (){
+                                            OrderDetailsDialog(context);
+                                          },
+                                           child: Center(
+                                             child: Icon( 
+                                              Icons.remove_red_eye_outlined, 
+                                              color: white,
+                                              size: 19.5.sp,
+                                             ),
+                                           ),
+                                         )
+                                          : const Text("")
+                                      ],
                                     ),
                                   ),
                                 ),
