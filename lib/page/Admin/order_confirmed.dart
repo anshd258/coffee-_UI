@@ -45,7 +45,7 @@ class _OrderConfirmedState extends State<OrderConfirmed> {
             appBar: AppBar(
               titleSpacing: 0,
               leadingWidth: 14.w,
-              title: Text("Account",
+              title: Text("Confirmation",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.inter(
                       color: Colors.white,
@@ -72,27 +72,21 @@ class _OrderConfirmedState extends State<OrderConfirmed> {
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(
-                          left: 10.w,
-                          right: 10.w,
-                          top: 5.h
-                        ),
+                        margin:
+                            EdgeInsets.only(left: 10.w, right: 10.w, top: 5.h),
                         child: Image.asset("assets/check.png"),
                       ),
                       Align(
                         alignment: Alignment.center,
                         child: Container(
                           margin: EdgeInsets.only(
-                            left: 10.w,
-                            right: 10.w,
-                            top: 3.h
-                          ),
+                              left: 10.w, right: 10.w, top: 3.h),
                           child: Text(
                             "Order Confirmed",
                             style: GoogleFonts.inter(
-                                        color: white,
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w400),
+                                color: white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
                       ),
@@ -101,13 +95,13 @@ class _OrderConfirmedState extends State<OrderConfirmed> {
                           Navigator.pushNamed(context, "/OrdersAdmin");
                         },
                         child: Text(
-                              "Go back to Orders",
-                              style: GoogleFonts.inter(
-                                          decoration: TextDecoration.underline,
-                                          color: white,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400),
-                            ),
+                          "Go back to Orders",
+                          style: GoogleFonts.inter(
+                              decoration: TextDecoration.underline,
+                              color: white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ],
                   )),
