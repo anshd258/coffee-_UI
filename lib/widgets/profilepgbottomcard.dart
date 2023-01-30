@@ -6,6 +6,8 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../provider/router.dart';
+
 class Profilepgbottom extends StatefulWidget {
   const Profilepgbottom({super.key});
 
@@ -230,7 +232,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       borderColor: Colors.white12,
                       shadowColor: Colors.white70,
                       padding: EdgeInsets.all(1.w),
-                      child: Image.asset("assets/ICONS/logout2.png",
+                      child:Image.asset("assets/ICONS/logout2.png",
                           color: Colors.white,
                           scale: 0.23.h,
                           alignment: Alignment.centerRight),
@@ -252,6 +254,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    context.read<routing>().settingroute = 1;
                     Navigator.pushNamedAndRemoveUntil(
                         context, "/", (route) => false);
                   },

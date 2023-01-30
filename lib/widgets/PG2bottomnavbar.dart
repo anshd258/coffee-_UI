@@ -214,12 +214,18 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
                     width: 0.4,
                     color: page5 ? Colors.white : Colors.transparent,
                   )),
-              child: Image.asset(
-                "assets/new.png",
-                fit: BoxFit.scaleDown,
-                scale: 2,
-                color: Colors.white,
-              ),
+              child: role == "admin"
+                  ? Icon(
+                      Icons.manage_accounts_outlined,
+                      size: 20.sp,
+                      color: Colors.white,
+                    )
+                  : Image.asset(
+                      "assets/new.png",
+                      fit: BoxFit.scaleDown,
+                      scale: 2,
+                      color: Colors.white,
+                    ),
             ),
           ),
         ],

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "955145349606",
+    "project_id": "swift-cafe-4f5fa",
+    "storage_bucket": "swift-cafe-4f5fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955145349606:android:742164ff41824d380e8e27",
+        "android_client_info": {
+          "package_name": "com.example.swift_cafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955145349606-fbkrf3pk3svd2od9s0kqf1f853jnn93u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDNs2oWg3tv5vLsyVXO6z5GsaHuP4fFI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955145349606-fbkrf3pk3svd2od9s0kqf1f853jnn93u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
