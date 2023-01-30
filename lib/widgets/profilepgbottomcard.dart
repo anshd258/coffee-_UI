@@ -252,7 +252,8 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    context.read<LoginAuthProvider>().logout();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, "/", (route) => false);
                   },
                   child: Transform.rotate(
                       child: Image.asset(

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -76,7 +78,24 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Image.asset("assets/cp1.png", scale: 1),
+                                Container(
+                                    height: 35.h,
+                                    alignment: Alignment.centerRight,
+                                    width: 65.w,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                              "assets/cp1.png",
+                                            ),
+                                            fit: BoxFit.contain)),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      height: 10.h,
+                                      width: 20.w,
+                                      child: Image.asset(
+                                          "assets/greencheck.png",
+                                          scale: 1),
+                                    )),
                                 Column(
                                   children: [
                                     Text(

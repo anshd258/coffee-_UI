@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/productmodal.dart';
-
 import 'package:provider/provider.dart';
+import '../provider/loginAuthProvider.dart';
+
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -20,6 +21,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
 
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
     // final choiceofmilk = context.watch<currentcartdata>().CM;
     // final choiceofsuger = context.watch<currentcartdata>().CS;
     // final choiceoffilling = context.watch<currentcartdata>().cFF;
@@ -37,39 +39,49 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
       print(data.toJson());
     }
 
+    double width = 32.5.w;
+    if (role != "admin") {
+      width = 80.w;
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: role == "admin"
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.center,
       children: [
         //checkbox for selection of high priority
-        Row(children: [
-          Checkbox(
-              checkColor: Colors.white,
-              side: BorderSide(color: Colors.white),
-              activeColor: Colors.greenAccent.shade700,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(3)),
-              value: checknox,
-              onChanged: (onChanged) {
-                setState(() {
-                  checknox = onChanged!;
-                });
-              }),
-          //text of high prioriity
-          Text(
-            "High Priority",
-            style: GoogleFonts.inter(
-              color: const Color.fromRGBO(205, 205, 205, 1),
-              fontSize: 14,
+        if (role == "admin") ...[
+          Row(children: [
+            Checkbox(
+                checkColor: Colors.white,
+                side: BorderSide(color: Colors.white),
+                activeColor: Colors.greenAccent.shade700,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(3)),
+                value: checknox,
+                onChanged: (onChanged) {
+                  setState(() {
+                    checknox = onChanged!;
+                  });
+                }),
+            //text of high prioriity
+            Text(
+              "High Priority",
+              style: GoogleFonts.inter(
+                color: const Color.fromRGBO(205, 205, 205, 1),
+                fontSize: 14,
+              ),
             ),
-          ),
-          //for padding
-          SizedBox(
-            width: 2.w,
-          ),
-          //for padding
-          Image.asset("assets/8.png"),
-        ]), //image ofurgent symbol],),
+            //for padding
+            SizedBox(
+              width: 2.w,
+            ),
+            //for padding
+            Image.asset("assets/8.png"),
+          ]),
+        ],
+        //image ofurgent symbol],),
 
         //submit elevated button
         ElevatedButton(
@@ -85,7 +97,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
                 fontWeight: FontWeight.w500),
           ),
           style: ElevatedButton.styleFrom(
-              fixedSize: Size(32.5.w, 5.h),
+              fixedSize: Size(width, 5.h),
               elevation: 5,
               backgroundColor: Colors.greenAccent.shade700,
               shape: RoundedRectangleBorder(

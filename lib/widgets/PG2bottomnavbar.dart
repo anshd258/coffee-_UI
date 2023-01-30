@@ -4,6 +4,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
 
+import '../provider/loginAuthProvider.dart';
+
 class Pg2BottonavBar extends StatefulWidget {
   const Pg2BottonavBar({super.key});
 
@@ -25,6 +27,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
   bool page5 = false;
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
     //switch case for bottom navigaton bar
 
     switch (val) {
@@ -194,6 +197,9 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           GestureDetector(
             onTap: () {
               val = 5;
+              if (role == "admin") {
+                Navigator.pushNamed(context, "/AdminHome");
+              }
 
               setState(() {});
             },

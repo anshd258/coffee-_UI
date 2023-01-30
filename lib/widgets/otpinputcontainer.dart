@@ -174,7 +174,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               }
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                "/switcher",
+                "/page2",
                 (route) => false,
               );
             },
