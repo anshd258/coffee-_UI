@@ -33,6 +33,26 @@ class AllOrders extends StatelessWidget {
       19,
       20
     ];
+    final List products = [
+      {
+        "productid": 0123,
+        "name": "latte",
+        "quantity": 2,
+        "choices": ["full", "2 X suger", "2 x choclate"]
+      },
+      {
+        "productid": 0123,
+        "name": "cappucino",
+        "quantity": 1,
+        "choices": ["full", "2 X suger", "2 x choclate"]
+      },
+      {
+        "productid": 0123,
+        "name": "esprresso",
+        "quantity": 3,
+        "choices": ["full", "2 X suger", "2 x choclate"]
+      },
+    ];
     final title = ModalRoute.of(context)!.settings.arguments;
 
     return Container(
@@ -79,13 +99,13 @@ class AllOrders extends StatelessWidget {
             ),
             body: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, mainAxisSpacing: 2.h),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 2.h,
+                    childAspectRatio: 20.h / 50.w),
                 padding: EdgeInsets.only(top: 2.h),
                 itemCount: items.length,
                 itemBuilder: (context, index) => AdminHomeRowContainer(
-                    coffeeName: "coffeeName",
-                    coffeeDetails: "coffeeDetails",
-                    onTap: () {}))),
+                    orderId: "OD0013267", products: products, onTap: () {}))),
       ),
     );
   }

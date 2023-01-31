@@ -198,7 +198,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
             onTap: () {
               val = 5;
               if (role == "admin") {
-                Navigator.pushNamed(context, "/AdminHome");
+                context.read<routing>().settingroute = val;
               }
 
               setState(() {});
@@ -215,9 +215,10 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
                     color: page5 ? Colors.white : Colors.transparent,
                   )),
               child: role == "admin"
-                  ? Icon(
-                      Icons.manage_accounts_outlined,
-                      size: 20.sp,
+                  ? Image.asset(
+                      "assets/Priority.png",
+                      fit: BoxFit.scaleDown,
+                      scale: 2.5,
                       color: Colors.white,
                     )
                   : Image.asset(

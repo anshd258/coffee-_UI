@@ -19,6 +19,26 @@ class AdminHome extends StatefulWidget {
 }
 
 class _AdminHomeState extends State<AdminHome> {
+  final List products = [
+    {
+      "productid": 0123,
+      "name": "latte",
+      "quantity": 2,
+      "choices": ["full", "2 X suger", "2 x choclate"]
+    },
+    {
+      "productid": 0123,
+      "name": "cappucino",
+      "quantity": 1,
+      "choices": ["full", "2 X suger", "2 x choclate"]
+    },
+    {
+      "productid": 0123,
+      "name": "esprresso",
+      "quantity": 3,
+      "choices": ["full", "2 X suger", "2 x choclate"]
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,9 +153,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
@@ -145,9 +164,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
@@ -157,9 +175,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
@@ -216,9 +233,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
@@ -228,9 +244,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
@@ -240,9 +255,8 @@ class _AdminHomeState extends State<AdminHome> {
                                     Padding(
                                       padding: EdgeInsets.only(right: 4.w),
                                       child: AdminHomeRowContainer(
-                                        coffeeName: "Cappuccino",
-                                        coffeeDetails:
-                                            "1/2 Full  Vanilla Syrup  Sugar X1",
+                                        orderId: "OD00128395",
+                                        products: products,
                                         onTap: () {
                                           Navigator.pushNamed(
                                               context, "/OrdersAdmin");
