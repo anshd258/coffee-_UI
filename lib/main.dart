@@ -26,6 +26,8 @@ void main() {
   runApp(const main_app());
 }
 
+bool isAdmin = true;
+
 class main_app extends StatefulWidget {
   const main_app({super.key});
 
