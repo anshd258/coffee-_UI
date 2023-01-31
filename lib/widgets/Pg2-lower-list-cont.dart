@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,7 +31,8 @@ class _PgLowerListContState extends State<PgLowerListCont> {
             width: 90.w,
             blur: 17,
             frostedOpacity: 0.04,
-            color: Color.fromARGB(70, 255, 255, 255),
+            color: productTileUserSide,
+            // color: Color.fromARGB(70, 255, 255, 255),
             elevation: 10,
             borderColor: Colors.white10,
             borderRadius: BorderRadius.circular(8),
@@ -63,7 +65,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                                   fontSize: 17.5.sp,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 205, 205, 205),
+                                  color: titleUserList,
                                 ),
                               ),
                               Image(image: AssetImage("assets/6.png"))
@@ -120,7 +122,8 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       Text(
                         widget.e.discription!,
                         style: GoogleFonts.inter(
-                            color: Color.fromARGB(160, 255, 255, 255),
+                            color: userTileDesc,
+                            // color: Color.fromARGB(160, 255, 255, 255),
                             fontSize: 13.5.sp,
                             textStyle: TextStyle(
                               wordSpacing: 1,

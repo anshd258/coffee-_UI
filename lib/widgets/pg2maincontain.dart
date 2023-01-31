@@ -28,110 +28,109 @@ class _PG2maincontState extends State<PG2maincont> {
       children: [
         //namebar with name date delete icon and profie image
         Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.symmetric( vertical: 1.h ),
-          color: nameBar,
-          child: const Center(child: name_bar2())
-        ),
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            color: nameBar,
+            child: const Center(child: name_bar2())),
         //for padding
-        isAdmin ? GlassContainer.frostedGlass(
-          height: 9.5.h,
-          width: 100.w,
-          borderColor: Colors.transparent,
-          gradient: LinearGradient(
-            colors: searchBarBG,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight
-          ),
-          borderWidth: 0.0,
-          blur: isAdmin ? 15 : 0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //textfield for searcching
-              TextField(
-                cursorColor: const Color.fromARGB(255, 182, 182, 182),
-                decoration: InputDecoration(
-                    hintText: "Search favorite Beverages",
-                    hintStyle: GoogleFonts.inter(
-                      color: const Color.fromARGB(100, 182, 182, 182),
-                      fontSize: 12,
+        isAdmin
+            ? GlassContainer.frostedGlass(
+                height: 9.5.h,
+                width: 100.w,
+                borderColor: Colors.transparent,
+                gradient: LinearGradient(
+                    colors: searchBarBG,
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight),
+                borderWidth: 0.0,
+                blur: isAdmin ? 15 : 0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //textfield for searcching
+                    TextField(
+                      cursorColor: const Color.fromARGB(255, 182, 182, 182),
+                      decoration: InputDecoration(
+                          hintText: "Search favorite Beverages",
+                          hintStyle: GoogleFonts.inter(
+                            color: const Color.fromARGB(100, 182, 182, 182),
+                            fontSize: 12,
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.tune_rounded,
+                            color: Color.fromARGB(255, 182, 182, 182),
+                          ),
+                          prefixIcon: const Icon(Icons.search,
+                              color: Color.fromARGB(255, 182, 182, 182)),
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          fillColor: Colors.white,
+                          constraints: BoxConstraints(
+                            maxWidth: 90.w,
+                            maxHeight: 5.5.h,
+                          )),
                     ),
-                    suffixIcon: const Icon(
-                      Icons.tune_rounded,
-                      color: Color.fromARGB(255, 182, 182, 182),
+                    //for gapping
+                    // SizedBox(
+                    //   height: 1.3.h,
+                    // ),
+                  ],
+                ),
+              )
+            : Container(
+                height: 9.5.h,
+                width: 100.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //textfield for searcching
+                    TextField(
+                      cursorColor: const Color.fromARGB(255, 182, 182, 182),
+                      decoration: InputDecoration(
+                          hintText: "Search favorite Beverages",
+                          hintStyle: GoogleFonts.inter(
+                            color: const Color.fromARGB(100, 182, 182, 182),
+                            fontSize: 12,
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.tune_rounded,
+                            color: Color.fromARGB(255, 182, 182, 182),
+                          ),
+                          prefixIcon: const Icon(Icons.search,
+                              color: Color.fromARGB(255, 182, 182, 182)),
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          fillColor: Colors.white,
+                          constraints: BoxConstraints(
+                            maxWidth: 90.w,
+                            maxHeight: 5.5.h,
+                          )),
                     ),
-                    prefixIcon:
-                        const Icon(Icons.search, color: Color.fromARGB(255, 182, 182, 182)),
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        )),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        )),
-                    fillColor: Colors.white,
-                    constraints: BoxConstraints(
-                      maxWidth: 90.w,
-                      maxHeight: 5.5.h,
-                    )),
+                    //for gapping
+                    // SizedBox(
+                    //   height: 1.3.h,
+                    // ),
+                  ],
+                ),
               ),
-              //for gapping
-              // SizedBox(
-              //   height: 1.3.h,
-              // ),
-            ],
-          ),
-        )
-        : Container(
-          height: 9.5.h,
-          width: 100.w,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //textfield for searcching
-              TextField(
-                cursorColor: const Color.fromARGB(255, 182, 182, 182),
-                decoration: InputDecoration(
-                    hintText: "Search favorite Beverages",
-                    hintStyle: GoogleFonts.inter(
-                      color: const Color.fromARGB(100, 182, 182, 182),
-                      fontSize: 12,
-                    ),
-                    suffixIcon: const Icon(
-                      Icons.tune_rounded,
-                      color: Color.fromARGB(255, 182, 182, 182),
-                    ),
-                    prefixIcon:
-                        const Icon(Icons.search, color: Color.fromARGB(255, 182, 182, 182)),
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        )),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                        )),
-                    fillColor: Colors.white,
-                    constraints: BoxConstraints(
-                      maxWidth: 90.w,
-                      maxHeight: 5.5.h,
-                    )),
-              ),
-              //for gapping
-              // SizedBox(
-              //   height: 1.3.h,
-              // ),
-            ],
-          ),
-        ),
         SizedBox(
           height: 1.3.h,
         ),
@@ -185,20 +184,23 @@ class _PG2maincontState extends State<PG2maincont> {
         // //some more padding
         // SizedBox(height: 2.h),
         //bottom get it instently text
-        isAdmin 
-          ? const SizedBox(height: 0, width: 0,) 
+        isAdmin
+            ? const SizedBox(
+                height: 0,
+                width: 0,
+              )
             : Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "   Get it instantly",
-                style: GoogleFonts.inter(
-                  fontSize: 17.sp,
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.w400,
-                  color: const Color.fromARGB(255, 205, 205, 205),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "   Get it instantly",
+                  style: GoogleFonts.inter(
+                    fontSize: 17.sp,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w400,
+                    color: titleUserList,
+                  ),
                 ),
               ),
-            ),
         //for padding
         SizedBox(
           height: 1.8.h,
@@ -215,24 +217,31 @@ class _PG2maincontState extends State<PG2maincont> {
             width: 100.w,
             decoration: BoxDecoration(
               // change the color here to change it to white
-                color: Color.fromARGB(60, 0, 0, 0),
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              // color: Color.fromARGB(60, 0, 0, 0),
+              color: userListBG,
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Column(
               children: [
-                isAdmin ? Container(
-                  padding: EdgeInsets.symmetric( vertical: 1.h ),
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "   Get it instantly",
-                    style: GoogleFonts.inter(
-                      fontSize: 17.sp,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromARGB(255, 205, 205, 205),
-                    ),
-                  ),
-                ) : const SizedBox(height: 0, width: 0,),
+                isAdmin
+                    ? Container(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "   Get it instantly",
+                          style: GoogleFonts.inter(
+                            fontSize: 17.sp,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w400,
+                            color: titleUserList,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        height: 0,
+                        width: 0,
+                      ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
