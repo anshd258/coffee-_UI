@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/widgets/otpinputcontainer.dart';
 import '../widgets/glassContainer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -33,9 +34,9 @@ class _OtpscreenState extends State<Otpscreen> {
           //brown gradient over the base image
           height: 100.h,
           width: 100.w,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
+              colors: backgroundFirst3Screen,
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),

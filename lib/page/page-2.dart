@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
 
@@ -20,12 +21,12 @@ class _page_2State extends State<page_2> {
           //stack for bottom nav bar  base image gradeint
 
           //base image of the page
-          SafeArea(
+      SafeArea(
         child: Container(
           height: 100.h,
           width: 100.w,
-          padding: EdgeInsets.all(0),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(0),
+          decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage("assets/bg1.jpg"),
@@ -33,11 +34,11 @@ class _page_2State extends State<page_2> {
           ),
           child: Container(
             height: 100.h,
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             width: 100.w,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
+                colors: page2BGgradient,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -47,9 +48,12 @@ class _page_2State extends State<page_2> {
                 width: 100.w,
                 blur: 17,
                 frostedOpacity: 0.04,
-                color: Color.fromARGB(38, 255, 255, 255),
+                gradient: LinearGradient(
+                colors: backgroundFirst3Screen,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
                 borderColor: Colors.transparent,
-                padding: EdgeInsets.only(top: 1.5.h),
                 child: const PG2maincont()),
           ),
         ),

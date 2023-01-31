@@ -1,3 +1,4 @@
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 
@@ -63,7 +64,12 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
       blur: 16,
       frostedOpacity: 0.04,
       borderRadius: BorderRadius.circular(25),
-      color: Color.fromARGB(38, 255, 255, 255),
+      // gradient: LinearGradient(
+      //   colors: glassShadeFirst3Screen,
+      //   begin: Alignment.topLeft,
+      //   end: Alignment.bottomRight,
+      // ),
+      color: const Color.fromARGB(38, 255, 255, 255),
 
       borderColor: Colors.white38,
       child: Column(
@@ -144,6 +150,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               ),
               TextButton(
                 onPressed: () {},
+                style: TextButton.styleFrom(),
                 child: Text(
                   'RESEND',
                   style: GoogleFonts.inter(
@@ -154,7 +161,6 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1),
                 ),
-                style: TextButton.styleFrom(),
               )
             ],
           ),
@@ -184,7 +190,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       alignment: Alignment.center,
                       image: AssetImage("assets/loginbutton.png"),
                       fit: BoxFit.fill)),

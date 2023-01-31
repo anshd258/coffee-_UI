@@ -19,11 +19,11 @@ class glass_container extends StatelessWidget {
       //inner glass container
       height: 88.h,
       width: 90.w,
-      blur: 17,
+      blur: 14,
       frostedOpacity: 0.04,
 
       borderRadius: BorderRadius.circular(25),
-      color: Color.fromARGB(36, 255, 255, 255),
+      color: const Color.fromARGB(36, 255, 255, 255),
 
       borderColor: Colors.white38,
       child: Column(
