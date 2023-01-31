@@ -6,7 +6,7 @@ import './order-confirmation-pg.dart';
 import '../widgets/PG2bottomnavbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
-
+import 'Admin/homepage.dart';
 import './notificationpg.dart';
 
 class Toggle extends StatefulWidget {
@@ -32,6 +32,8 @@ class _ToggleState extends State<Toggle> {
           NotificationPg()
         ] else if (id == 4) ...[
           Orderconfirmationpg()
+        ] else if (id == 5) ...[
+          AdminHome()
         ],
         Positioned(
           bottom: -0.5.h,

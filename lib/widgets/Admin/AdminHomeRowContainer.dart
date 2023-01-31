@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import './OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AdminHomeRowContainer extends StatelessWidget {
   const AdminHomeRowContainer(
       {super.key,
-      required this.coffeeName,
-      required this.coffeeDetails,
+      required this.orderId,
+      required this.products,
       required this.onTap});
 
-  final String coffeeName;
-  final String coffeeDetails;
+  final String orderId;
+  final List products;
   final VoidCallback onTap;
 
   @override
@@ -53,24 +55,37 @@ class AdminHomeRowContainer extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                coffeeName,
+                orderId,
                 style: GoogleFonts.inter(
                     color: Colors.white70,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600),
               ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: SizedBox(
-                child: Text(
-                  coffeeDetails,
-                  style: GoogleFonts.inter(
-                      color: Colors.white70,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
+            GestureDetector(
+              onTap: () => OrderDetailsDialog(context),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    height: 6.h,
+                    width: 40.w,
+                    child: SingleChildScrollView(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: products.map((e) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                              child: Text(
+                                "${e["name"]} x ${e["quantity"].toString()}",
+                                style: GoogleFonts.inter(
+                                    color: Colors.white70,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            );
+                          }).toList()),
+                    ),
+                  )),
             ),
             // Align(
             //   alignment: Alignment.topLeft,
