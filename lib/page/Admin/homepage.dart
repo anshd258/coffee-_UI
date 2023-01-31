@@ -114,7 +114,7 @@ class _AdminHomeState extends State<AdminHome> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 3.w, vertical: 2.5.h),
                           color: Colors.white10,
-                          height: 34.h,
+                          // height: 34.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -194,7 +194,7 @@ class _AdminHomeState extends State<AdminHome> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 3.w, vertical: 2.5.h),
                           color: Colors.white10,
-                          height: 34.h,
+                          // height: 37.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

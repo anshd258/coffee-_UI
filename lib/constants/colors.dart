@@ -22,7 +22,55 @@ List<Color> glassShadeFirst3Screen = isAdmin
         // Color.fromRGBO(255, 255, 255, 0.38),
         // Color.fromRGBO(255, 255, 255, 0.77)
       ]
-    : const [Color.fromARGB(38, 255, 255, 255)];
+    : const [
+      Color.fromARGB(38, 255, 255, 255),
+      Color.fromARGB(38, 255, 255, 255),
+    ];
+
+List<Color> glassShadeMyAccounts = isAdmin
+    ? const [
+        Color.fromRGBO(255, 255, 255, 0.47),
+        Color.fromRGBO(255, 255, 255, 0.12),
+        Color.fromRGBO(255, 255, 255, 0.54),
+        // Color.fromRGBO(255, 255, 255, 0.83),
+        // Color.fromRGBO(255, 255, 255, 0.14),
+        // Color.fromRGBO(255, 255, 255, 0.38),
+        // Color.fromRGBO(255, 255, 255, 0.77)
+      ]
+    : const [
+      Color.fromARGB(60, 255, 255, 255),
+      Color.fromARGB(60, 255, 255, 255),
+    ];
+
+List<Color> glassShadeConfirmOrder = isAdmin
+    ? const [
+        Color.fromRGBO(255, 255, 255, 0.47),
+        Color.fromRGBO(255, 255, 255, 0.12),
+        Color.fromRGBO(255, 255, 255, 0.54),
+        // Color.fromRGBO(255, 255, 255, 0.83),
+        // Color.fromRGBO(255, 255, 255, 0.14),
+        // Color.fromRGBO(255, 255, 255, 0.38),
+        // Color.fromRGBO(255, 255, 255, 0.77)
+      ]
+    : const [
+      Color.fromARGB(40, 255, 255, 255),
+      Color.fromARGB(40, 255, 255, 255),
+    ];
+
+List<Color> glassShadeOrderList = isAdmin
+    ? const [
+        Color.fromRGBO(255, 255, 255, 0.47),
+        Color.fromRGBO(255, 255, 255, 0.12),
+        Color.fromRGBO(255, 255, 255, 0.54),
+        // Color.fromRGBO(255, 255, 255, 0.83),
+        // Color.fromRGBO(255, 255, 255, 0.14),
+        // Color.fromRGBO(255, 255, 255, 0.38),
+        // Color.fromRGBO(255, 255, 255, 0.77)
+      ]
+    : const [
+      Color.fromARGB(50, 255, 255, 255),
+      Color.fromARGB(50, 255, 255, 255),
+    ];
 
 List<Color> backgroundFirst3Screen = isAdmin
     ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
@@ -31,6 +79,20 @@ List<Color> backgroundFirst3Screen = isAdmin
         Color.fromRGBO(80, 114, 235, 0),
         Color.fromRGBO(80, 114, 235, 0),
         Color.fromRGBO(207, 123, 75, 0.51)
+      ];
+
+List<Color> allScreenBGGradient = isAdmin
+    ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
+    : const [
+        Color.fromARGB(15, 255, 255, 255),
+        Color.fromARGB(15, 255, 255, 255),
+      ];
+
+List<Color> notificationScreenBGGradient = isAdmin
+    ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
+    : const [
+        Color.fromARGB(0, 255, 255, 255),
+        Color.fromARGB(0, 255, 255, 255),
       ];
 
 List<Color> page2BGgradient = isAdmin
@@ -72,3 +134,15 @@ Color bottomNavBarItem =
 
 Color productTileUserSide =
     isAdmin ? Colors.white : const Color.fromARGB(70, 255, 255, 255);
+
+Color notificationOptions =
+    isAdmin ? Colors.white : Colors.white70;
+
+// Colors for Status Bar
+Color titleStatusBar = isAdmin
+    ? const Color.fromRGBO(58, 23, 23, 1)
+    : Colors.white;
+
+Color bgStatusBar = isAdmin
+    ? Colors.white
+    : Colors.white12;

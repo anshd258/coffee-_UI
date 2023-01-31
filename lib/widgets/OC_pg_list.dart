@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,12 @@ class _OcpageListState extends State<OcpageList> {
             borderWidth: 0,
             blur: 17,
             frostedOpacity: 0.04,
-            color: Color.fromARGB(40, 255, 255, 255),
+            // color: Color.fromARGB(40, 255, 255, 255),
+            gradient: LinearGradient(
+              colors: glassShadeConfirmOrder,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight
+            ),
             borderColor: Colors.white24,
             borderRadius: BorderRadius.circular(5),
             child: Row(

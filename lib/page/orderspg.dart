@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/ordertiles.dart';
 
@@ -30,7 +31,12 @@ class _OrderPgState extends State<OrderPg> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0,
-        color: Color.fromARGB(15, 255, 255, 255),
+        // color: Color.fromARGB(15, 255, 255, 255),
+        gradient: LinearGradient(
+          colors: allScreenBGGradient,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter
+        ),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -39,12 +45,12 @@ class _OrderPgState extends State<OrderPg> {
             leadingWidth: 14.w,
             title: Text("Order List",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp)),
+                style: GoogleFonts.inter(color: titleStatusBar, fontSize: 17.sp)),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
+              child: Image.asset("assets/ICONS/arrow3.png", scale: 3, color: titleStatusBar,),
             ),
-            backgroundColor: Colors.white12,
+            backgroundColor: bgStatusBar,
           ),
           body: SizedBox(
             child: Center(

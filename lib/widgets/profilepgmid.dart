@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilepgMid extends StatelessWidget {
@@ -18,7 +19,12 @@ class ProfilepgMid extends StatelessWidget {
       borderWidth: 1,
       blur: 17,
       frostedOpacity: 0.04,
-      color: Color.fromARGB(60, 255, 255, 255),
+      // color: Color.fromARGB(60, 255, 255, 255),
+      gradient: LinearGradient(
+        colors: glassShadeMyAccounts,
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight
+      ),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),

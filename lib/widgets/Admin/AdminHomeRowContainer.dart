@@ -22,7 +22,7 @@ class AdminHomeRowContainer extends StatelessWidget {
       onTap: onTap,
       child: GlassContainer.frostedGlass(
         // margin: EdgeInsets.only(right: 6.w),
-        height: 25.h,
+        height: 28.h,
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
         width: 43.w,
         borderRadius: BorderRadius.circular(6),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/OC_pg_list.dart';
 
@@ -58,7 +59,11 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.04,
-        color: Color.fromARGB(15, 255, 255, 255),
+        gradient: LinearGradient(
+          colors: allScreenBGGradient,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter
+        ),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -68,8 +73,8 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
             leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 18.sp)),
-            backgroundColor: Colors.white12,
+                style: GoogleFonts.inter(color: titleStatusBar, fontSize: 18.sp)),
+            backgroundColor: bgStatusBar,
           ),
           body: Center(
             child: Stack(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/page/page-1.dart';
 import 'bottombartoggle.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +14,14 @@ class Switcher extends StatelessWidget {
     final role = context.watch<LoginAuthProvider>().role;
     final phonenumber = context.watch<LoginAuthProvider>().phoneNumber;
     if (phonenumber == null) {
+      isAdmin = true;
       return const page_1();
     } else {
       if (role == "admin") {
+        isAdmin = true;
         return const AdminHome();
       } else {
+        isAdmin = true;
         return const Toggle();
       }
     }

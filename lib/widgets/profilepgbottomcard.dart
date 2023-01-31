@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,12 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
       borderWidth: 1,
       blur: 17,
       frostedOpacity: 0.04,
-      color: Color.fromARGB(60, 255, 255, 255),
+      // color: Color.fromARGB(60, 255, 255, 255),
+      gradient: LinearGradient(
+        colors: glassShadeMyAccounts,
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight
+      ),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),

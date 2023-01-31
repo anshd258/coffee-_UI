@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderDetailspg extends StatefulWidget {
@@ -31,7 +32,12 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.03,
-        color: Color.fromARGB(15, 255, 255, 255),
+        // color: Color.fromARGB(15, 255, 255, 255),
+        gradient: LinearGradient(
+          colors: allScreenBGGradient,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter
+        ),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -41,14 +47,14 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
             title: Text("Order Status",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
-                    color: Colors.white,
+                    color: titleStatusBar,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
+              child: Image.asset("assets/ICONS/arrow3.png", scale: 3, color: titleStatusBar,),
             ),
-            backgroundColor: Colors.white12,
+            backgroundColor: bgStatusBar,
           ),
           body: Center(
             child: Stack(
@@ -61,7 +67,12 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     child: GlassContainer.frostedGlass(
                       borderRadius: BorderRadius.circular(10),
                       borderWidth: 0.5,
-                      color: Color.fromARGB(40, 255, 255, 255),
+                      // color: Color.fromARGB(40, 255, 255, 255),
+                      gradient: LinearGradient(
+                        colors: glassShadeConfirmOrder,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight
+                      ),
                       borderColor: Colors.white38,
                       frostedOpacity: 0.04,
                       margin: EdgeInsets.only(top: 2.8.h),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderPgTiles extends StatelessWidget {
@@ -14,12 +15,17 @@ class OrderPgTiles extends StatelessWidget {
       onTap: () {},
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
-        height: 16.h,
+        height: 19.h,
         width: 90.w,
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.05,
-        color: Color.fromARGB(50, 255, 255, 255),
+        // color: Color.fromARGB(50, 255, 255, 255),
+        gradient: LinearGradient(
+          colors: glassShadeOrderList,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight
+        ),
         borderColor: Colors.white24,
         borderRadius: BorderRadius.circular(8),
         child: Column(
