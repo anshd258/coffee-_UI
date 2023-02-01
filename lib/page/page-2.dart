@@ -3,6 +3,8 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
+import 'package:provider/provider.dart';
+import '../provider/productsprovider.dart';
 
 class page_2 extends StatefulWidget {
   const page_2({super.key});
@@ -15,13 +17,14 @@ class _page_2State extends State<page_2> {
   @override
   Widget build(BuildContext context) {
     //page 2 scaffold
+    final data = context.watch<ProductsProvider>().orders;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body:
           //stack for bottom nav bar  base image gradeint
 
           //base image of the page
-      SafeArea(
+          SafeArea(
         child: Container(
           height: 100.h,
           width: 100.w,
@@ -49,12 +52,14 @@ class _page_2State extends State<page_2> {
                 blur: 17,
                 frostedOpacity: 0.04,
                 gradient: LinearGradient(
-                colors: backgroundFirst3Screen,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
+                  colors: backgroundFirst3Screen,
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
                 borderColor: Colors.transparent,
-                child: const PG2maincont()),
+                child: data == null
+                    ? PG2maincont()
+                    : CircularProgressIndicator()),
           ),
         ),
       ),

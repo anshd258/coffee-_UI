@@ -22,7 +22,7 @@ class _PG2maincontState extends State<PG2maincont> {
 
   @override
   Widget build(BuildContext context) {
-    final data = context.watch<ProductsProvider>().products;
+    final data = context.watch<ProductsProvider>().orders;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -246,11 +246,13 @@ class _PG2maincontState extends State<PG2maincont> {
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: data!.map((e) {
-                        return PgLowerListCont(
-                          e: e,
-                        );
-                      }).toList(),
+                      children: data == null
+                          ? [CircularProgressIndicator()]
+                          : data.map((e) {
+                              return PgLowerListCont(
+                                e: e,
+                              );
+                            }).toList(),
                     ),
                   ),
                 ),

@@ -3,10 +3,10 @@ import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/productmodal.dart';
+import '../models/products_list_model.dart';
 
 class PgLowerListCont extends StatefulWidget {
-  final Products e;
+  final ProductList e;
   const PgLowerListCont({super.key, required this.e});
 
   @override
@@ -120,7 +120,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
 
                       //discription text
                       Text(
-                        widget.e.discription!,
+                        widget.e.description!,
                         style: GoogleFonts.inter(
                             color: userTileDesc,
                             // color: Color.fromARGB(160, 255, 255, 255),
@@ -153,7 +153,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                               image: AssetImage(
-                                widget.e.imageUrl!,
+                                widget.e.img!,
                               ),
                               fit: BoxFit.fill),
                         ),
