@@ -1,5 +1,6 @@
 import 'dart:math';
-
+import '../provider/OrderHistoryProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,10 +22,9 @@ class ProfilepgMid extends StatelessWidget {
       frostedOpacity: 0.04,
       // color: Color.fromARGB(60, 255, 255, 255),
       gradient: LinearGradient(
-        colors: glassShadeMyAccounts,
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight
-      ),
+          colors: glassShadeMyAccounts,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
@@ -103,7 +103,10 @@ class ProfilepgMid extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, "/orderspg"),
+                  onTap: () {
+                    context.read<OrderHistory>().fetchOrders();
+                    Navigator.pushNamed(context, "/orderspg");
+                  },
                   child: Transform.rotate(
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",

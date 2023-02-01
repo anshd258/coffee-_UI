@@ -3,14 +3,19 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../models/order_details_model.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/loginAuthProvider.dart';
 
 class OrderPgTiles extends StatelessWidget {
-  const OrderPgTiles({
-    Key? key,
-  }) : super(key: key);
+  final Data order;
+  const OrderPgTiles({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
+    final createddate = DateTime.parse(order.createdDate!);
     return GestureDetector(
       onTap: () {},
       child: GlassContainer.frostedGlass(
@@ -22,10 +27,9 @@ class OrderPgTiles extends StatelessWidget {
         frostedOpacity: 0.05,
         // color: Color.fromARGB(50, 255, 255, 255),
         gradient: LinearGradient(
-          colors: glassShadeOrderList,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight
-        ),
+            colors: glassShadeOrderList,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
         borderColor: Colors.white24,
         borderRadius: BorderRadius.circular(8),
         child: Column(
@@ -46,7 +50,7 @@ class OrderPgTiles extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Latte",
+                        order.orderNo!,
                         style: GoogleFonts.inter(
                           fontSize: 18.sp,
                           letterSpacing: 1,
@@ -64,18 +68,20 @@ class OrderPgTiles extends StatelessWidget {
                       //for showing ratings
                       Row(
                         children: [
-                          Text(
-                            "FULL",
-                            style: GoogleFonts.inter(
-                              fontSize: 13.sp,
-                              color: Color.fromARGB(255, 205, 205, 205),
+                          if (role == 'admin') ...[
+                            Text(
+                              "priority: ${order.priority.toString()}",
+                              style: GoogleFonts.inter(
+                                fontSize: 13.sp,
+                                color: Color.fromARGB(255, 205, 205, 205),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20.w,
-                          ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                          ],
                           Text(
-                            "SUGER X 2",
+                            order.currentState!,
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 13.sp,
@@ -141,7 +147,7 @@ class OrderPgTiles extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "06 Nov 2022 at 07:27PM",
+                    "${createddate.day}/${createddate.month}/${createddate.year} ",
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       color: Color.fromARGB(255, 205, 205, 205),
