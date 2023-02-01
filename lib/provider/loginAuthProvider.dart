@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 
 class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
@@ -14,6 +15,13 @@ class LoginAuthProvider with ChangeNotifier {
     accessToken = token;
     role = roleAssiged;
     notifyListeners();
+    if (role == "admin") {
+      isAdmin = true;
+      notifyListeners();
+    } else {
+      isAdmin = false;
+      notifyListeners();
+    }
   }
 
   void logout() {
