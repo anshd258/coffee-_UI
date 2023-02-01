@@ -17,7 +17,7 @@ class _page_2State extends State<page_2> {
   @override
   Widget build(BuildContext context) {
     //page 2 scaffold
-    final data = context.watch<ProductsProvider>().orders;
+    final data = context.watch<ProductsProvider>().productslist;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body:
@@ -57,9 +57,8 @@ class _page_2State extends State<page_2> {
                   end: Alignment.bottomCenter,
                 ),
                 borderColor: Colors.transparent,
-                child: data == null
-                    ? PG2maincont()
-                    : CircularProgressIndicator()),
+                child:
+                    data.isEmpty ? CircularProgressIndicator() : PG2maincont()),
           ),
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:inter_coffee/page/Admin/orders.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
+import './provider/OrderHistoryProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './page/bottombartoggle.dart';
 import './page/page-1.dart';
@@ -40,6 +41,9 @@ class _main_appState extends State<main_app> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          ChangeNotifierProvider<OrderHistory>(
+            create: (context) => OrderHistory(),
+          ),
           ChangeNotifierProvider<routing>(
             create: (context) => routing(),
           ),

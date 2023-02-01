@@ -22,7 +22,7 @@ class _PG2maincontState extends State<PG2maincont> {
 
   @override
   Widget build(BuildContext context) {
-    final data = context.watch<ProductsProvider>().orders;
+    final data = context.watch<ProductsProvider>().productslist;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
