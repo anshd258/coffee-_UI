@@ -24,7 +24,7 @@ class ProductsProvider with ChangeNotifier {
     final List<ProductList> loadedorders = [];
     responseData.forEach((element) {
       loadedorders.add(ProductList(
-              description: "lorenipsum", img: "good image", name: "latte")
+              description: "lorenipsum", img: "good image", name: "Latte")
           // ProductList(
           //   id: element["id"],
           //   description: element["description"],
