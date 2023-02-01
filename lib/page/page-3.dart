@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/models/cartProductModal.dart';
 
-import 'package:inter_coffee/models/productmodal.dart';
+import 'package:inter_coffee/models/products_list_model.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
@@ -37,8 +37,8 @@ class _Page3State extends State<Page3> {
 
   @override
   Widget build(BuildContext context) {
-    final Products args =
-        ModalRoute.of(context)?.settings.arguments as Products;
+    final ProductList args =
+        ModalRoute.of(context)?.settings.arguments as ProductList;
 
     print(args.name);
 
@@ -66,7 +66,7 @@ class _Page3State extends State<Page3> {
               height: 50.h,
               width: 100.w,
               child: Image(
-                image: AssetImage(args.imageUrl!),
+                image: AssetImage(args.img!),
                 fit: BoxFit.fill,
               ),
             ),

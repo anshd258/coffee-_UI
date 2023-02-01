@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
-import '../models/productmodal.dart';
+import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
-
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3highPrioButton extends StatefulWidget {
-  final Products selectedproduct;
+  final ProductList selectedproduct;
   Pg3highPrioButton({super.key, required this.selectedproduct});
 
   @override
@@ -32,10 +31,10 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
     void display() {
       data.id = widget.selectedproduct.id;
       data.name = widget.selectedproduct.name;
-      data.price = widget.selectedproduct.price;
-      data.discription = widget.selectedproduct.discription;
-      data.imageUrl = widget.selectedproduct.imageUrl;
-      data.id = widget.selectedproduct.id;
+
+      data.discription = widget.selectedproduct.description;
+      data.imageUrl = widget.selectedproduct.img;
+
       print(data.toJson());
     }
 

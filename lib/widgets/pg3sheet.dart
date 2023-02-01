@@ -8,11 +8,11 @@ import './pg3milkswitchgride.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import './pg3sugergirde.dart';
-import '../models/productmodal.dart';
+import '../models/products_list_model.dart';
 import './pg3ETAgrid.dart';
 
 class Pg3BottomSheet extends StatefulWidget {
-  final Products data;
+  final ProductList data;
   Pg3BottomSheet({super.key, required this.data});
 
   @override
@@ -174,7 +174,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               SizedBox(
                 width: 90.w,
                 child: Text(
-                  widget.data.discription!,
+                  widget.data.description!,
                   style: GoogleFonts.inter(
                       color: const Color.fromARGB(255, 197, 197, 197),
                       fontSize: 14.5.sp,
