@@ -27,33 +27,12 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   final items = ["SUGER X1", "SUGER X2", "1/2 SUGER", "NO SUGER"];
   String selecteditem = "SUGER X1";
 
-  final productsList = {
-    "id": "1f60879f-3482-45c9-a5e9-5ea30253e2cd",
-    "name": "Cold Coffee",
-    "img": "Good Link of Img",
-    "description":
-        "This is a delicious coffee  made with Latte Machine & ancient coffee from Chikmangaluru",
-    "choice": {
-      "syrups": {
-        "type": "Check_Box",
-        "choice": ["Vanilla", "Chocolate", "Swaberry"]
-      },
-      "cup_filling": {
-        "type": "Check_Box",
-        "choice": ["Full", "Half", "Quarter"]
-      },
-      "sugar_levels": {
-        "type": "Check_Box",
-        "choice": ["Full XI", "Half XII", "Quater XIIII"]
-      },
-      "milk_categories": {
-        "type": "Check_Box",
-        "choice": ["Skim Cream", "Full Cream", "HomoGenies Milk"]
-      }
-    }
-  };
   @override
   Widget build(BuildContext context) {
+
+    final ProductList productsList =
+        ModalRoute.of(context)?.settings.arguments as ProductList;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -96,7 +75,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            productsList['name'].toString(),
+                            productsList.name.toString(),
                             style: GoogleFonts.inter(
                               fontSize: 21.sp,
                               letterSpacing: 1,
@@ -200,7 +179,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               SizedBox(
                 width: 90.w,
                 child: Text(
-                  productsList['description'].toString(),
+                  productsList.description.toString(),
                   style: GoogleFonts.inter(
                       color: const Color.fromARGB(255, 197, 197, 197),
                       fontSize: 14.5.sp,
@@ -468,8 +447,8 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //     );
               //   },
               // ),
-              const Expanded(
-                child: AllProductPropertiesRender(),
+              Expanded(
+                child: AllProductPropertiesRender( productList: productsList ),
               ),
             ],
           ),

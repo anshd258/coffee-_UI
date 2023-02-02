@@ -17,10 +17,11 @@ class Pg3togglebutton extends StatefulWidget {
 
 class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   //toggle button state
+  String isSelected = "";
   
   @override
   Widget build(BuildContext context) {
-    String isSelected = widget.list[0];
+    isSelected = widget.list[0];
     List<String> mainList = widget.list;
 
     // return ListView.builder(
@@ -57,7 +58,8 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
     //     );
     //   },
     // );
-
+    Color bgColor = Colors.white;
+    Color txtColor = Colors.black87;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -72,14 +74,16 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
                 setState(() {
                 //  context.read<CartProductsProvider>().currentproduct;
                  isSelected = e;
+                 bgColor = Colors.greenAccent.shade700;
+                 txtColor = Colors.white;
+                //  isSelected == e ? Colors.greenAccent.shade700 : Colors.white;
                 });
               },
               style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(0),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  backgroundColor:
-                      isSelected == e ? Colors.greenAccent.shade700 : Colors.white),
+                  backgroundColor: isSelected == e ? Colors.greenAccent.shade700 : Colors.white ),
               child: Text(
                 e,
                 style: GoogleFonts.inter(

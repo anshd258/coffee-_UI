@@ -25,7 +25,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         // for detecting clicks and directing them to next page-3
         GestureDetector(
           onTap: () =>
-              Navigator.of(context).pushNamed('/page3', arguments: widget.e.choice),
+              Navigator.of(context).pushNamed('/page3', arguments: widget.e),
           child: GlassContainer.frostedGlass(
             height: 17.h,
             width: 90.w,
@@ -119,20 +119,22 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //padding between inner row and discription
 
                       //discription text
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 01.h),
-                          child: Text(
-                            widget.e.description!,
-                            maxLines: 5,
-                            style: GoogleFonts.inter(
-                                color: userTileDesc,
-                                // color: Color.fromARGB(160, 255, 255, 255),
-                                fontSize: 13.5.sp,
-                                textStyle: TextStyle(
-                                  wordSpacing: 1,
-                                )),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 01.h),
+                            child: Text(
+                              widget.e.description!,
+                              maxLines: 5,
+                              style: GoogleFonts.inter(
+                                  color: userTileDesc,
+                                  // color: Color.fromARGB(160, 255, 255, 255),
+                                  fontSize: 13.5.sp,
+                                  textStyle: TextStyle(
+                                    wordSpacing: 1,
+                                  )),
+                            ),
                           ),
                         ),
                       ),
