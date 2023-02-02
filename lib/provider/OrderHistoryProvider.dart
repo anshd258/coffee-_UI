@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import './loginAuthProvider.dart';
 import 'package:flutter/material.dart';
 import '../models/order_details_model.dart';
 import 'package:http/http.dart' as http;
@@ -11,16 +11,18 @@ class OrderHistory with ChangeNotifier {
     return _orderList;
   }
 
-  final token =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzUzNzAxNTUsInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTM1MjE1NX0._awpbx5vWlgsEB068ElcXjAts1jNM6dPx-dPOlzS-kBKtcIiN9di9d4fhnGQNx6DjLfoctrYwqROZxrL-xo1SA";
+  final accessToken =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzUzNjg4NzQsInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTM1MDg3NH0.3Xfc4LFvaXPQ1teSX9fZmR69MAFAVW4mFFSEzVvsReKOs_HxEkVxmamDaUV_CGpHGLHnS9GscZaB1wPQ14WrSg";
   Future<void> fetchOrders() async {
     final url = 'https://swift-cafe-dev.swifttrackmile.codes/orderHistory';
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $accessToken',
     });
+    print("here too");
     final responseData = json.decode(response.body) as Map<String, dynamic>;
+    print(responseData.toString());
     if (responseData['message'] == 'SUCCESS') {
       print("sucess");
       _orderList.add(Data(

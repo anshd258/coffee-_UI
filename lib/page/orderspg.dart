@@ -16,6 +16,11 @@ class OrderPg extends StatefulWidget {
 
 class _OrderPgState extends State<OrderPg> {
   List test = [1, 2, 3];
+  @override
+  void initState() {
+    context.read<OrderHistory>().fetchOrders();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

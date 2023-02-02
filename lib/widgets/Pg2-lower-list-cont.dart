@@ -25,7 +25,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         // for detecting clicks and directing them to next page-3
         GestureDetector(
           onTap: () =>
-              Navigator.of(context).pushNamed('/page3', arguments: widget.e),
+              Navigator.of(context).pushNamed('/page3', arguments: widget.e.choice),
           child: GlassContainer.frostedGlass(
             height: 17.h,
             width: 90.w,
@@ -49,7 +49,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   height: 15.h,
                   width: 53.w,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       //name of the product
                       Align(
@@ -119,15 +119,22 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //padding between inner row and discription
 
                       //discription text
-                      Text(
-                        widget.e.description!,
-                        style: GoogleFonts.inter(
-                            color: userTileDesc,
-                            // color: Color.fromARGB(160, 255, 255, 255),
-                            fontSize: 13.5.sp,
-                            textStyle: TextStyle(
-                              wordSpacing: 1,
-                            )),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 01.h),
+                          child: Text(
+                            widget.e.description!,
+                            maxLines: 5,
+                            style: GoogleFonts.inter(
+                                color: userTileDesc,
+                                // color: Color.fromARGB(160, 255, 255, 255),
+                                fontSize: 13.5.sp,
+                                textStyle: TextStyle(
+                                  wordSpacing: 1,
+                                )),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -152,7 +159,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: AssetImage(
+                              image: NetworkImage(
                                 widget.e.img!,
                               ),
                               fit: BoxFit.fill),
