@@ -72,7 +72,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                       maxLines: 2,
                       style: GoogleFonts.inter(
                           color: const Color.fromARGB(255, 197, 197, 197),
-                          fontSize: 16.5.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w300),
                     ),
                   ),

@@ -1,43 +1,39 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DropDownSelection extends StatefulWidget {
-  const DropDownSelection({super.key});
+  final List<String> list;
+  const DropDownSelection({super.key, required this.list});
 
   @override
   State<DropDownSelection> createState() => _DropDownSelectionState();
 }
 
 class _DropDownSelectionState extends State<DropDownSelection> {
-  String selecteditem = ansList.isEmpty == true ? "" : ansList[0];
+  
   @override
   Widget build(BuildContext context) {
+    String selecteditem = widget.list[0];
+    List<String> mainList = widget.list;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
       width: 60.w,
       child: DropdownButtonHideUnderline(
         child: DropdownButton2(
-          items: ansList
+          items: mainList
               .map((e) => DropdownMenuItem<String>(
                     alignment: Alignment.centerLeft,
                     value: e.toString(),
-                    child: GestureDetector(
-                      onTap: () {
-                        selecteditem = e;
-                      },
-                      child: Text(
-                        e,
-                        maxLines: 2,
-                        style: GoogleFonts.inter(
-                            color: const Color.fromARGB(255, 197, 197, 197),
-                            fontSize: 16.5.sp,
-                            fontWeight: FontWeight.w300),
-                      ),
+                    child: Text(
+                      e,
+                      maxLines: 2,
+                      style: GoogleFonts.inter(
+                          color: const Color.fromARGB(255, 197, 197, 197),
+                          fontSize: 16.5.sp,
+                          fontWeight: FontWeight.w300),
                     ),
                   ))
               .toList(),
@@ -97,11 +93,10 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
-            // selecteditem = ansList[index];
-            // selecteditem = value.toString();
-            // setState(() {
-            //   selecteditem = value as String;
-            // });
+            selecteditem = value.toString();
+            setState(() {
+              selecteditem = value as String;
+            });
           },
         ),
       ),

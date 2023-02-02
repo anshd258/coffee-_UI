@@ -20,17 +20,6 @@ List<String> ansList = [];
 class _AllProductPropertiesRenderState
     extends State<AllProductPropertiesRender> {
   String selecteditem = "";
-  @override
-  void initState() {
-    super.initState();
-    selecteditem = "";
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    selecteditem;
-  }
 
   final productsList = {
     "id": "1f60879f-3482-45c9-a5e9-5ea30253e2cd",
@@ -69,12 +58,14 @@ class _AllProductPropertiesRenderState
         );
 
       case "Drop_Down":
-        return DropDownSelection();
+        return DropDownSelection( list: ansList );
 
       case "List":
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 1.h),
-          child: Pg3togglebutton(),
+        return Container(
+          padding: EdgeInsets.symmetric( vertical: 1.h, horizontal: 5.w ),
+          child: Pg3togglebutton(
+            list: ansList,
+          )
         );
     }
 
@@ -105,23 +96,25 @@ class _AllProductPropertiesRenderState
 
         String type = detailsOfSelection.values.elementAt(0).toString();
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: Text(
-                "Choice of ${txt.replaceFirst(txt[0], txt[0].toUpperCase())}",
-                style: GoogleFonts.inter(
-                  fontSize: 19.sp,
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromARGB(255, 205, 205, 205),
+        return Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Text(
+                  "Choice of ${txt.replaceFirst(txt[0], txt[0].toUpperCase())}",
+                  style: GoogleFonts.inter(
+                    fontSize: 19.sp,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w700,
+                    color: const Color.fromARGB(255, 205, 205, 205),
+                  ),
                 ),
               ),
-            ),
-            typeClassifier(type),
-          ],
+              typeClassifier(type),
+            ],
+          ),
         );
       },
     );
