@@ -1,3 +1,4 @@
+import 'package:inter_coffee/main.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 import '../provider/productsprovider.dart';
@@ -173,10 +174,12 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                 context
                     .read<LoginAuthProvider>()
                     .Login(widget.phonenumber, otpcontroller.text, "admin");
+                isAdmin = true;
               } else {
                 context
                     .read<LoginAuthProvider>()
                     .Login(widget.phonenumber, otpcontroller.text, "user");
+                isAdmin = false;
               }
               Navigator.pushNamedAndRemoveUntil(
                 context,

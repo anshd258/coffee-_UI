@@ -52,7 +52,7 @@ class _Page3State extends State<Page3> {
           Container(
             height: 100.h,
             width: 100.w,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
               image: AssetImage("assets/bg1.jpg"),
               fit: BoxFit.fill,
@@ -65,8 +65,9 @@ class _Page3State extends State<Page3> {
             child: SizedBox(
               height: 50.h,
               width: 100.w,
-              child: Image(
-                image: AssetImage(args.img!),
+              child: const Image(
+                image: AssetImage('assets/7.jpg'),
+                // image: AssetImage(args.img!),
                 fit: BoxFit.fill,
               ),
             ),
