@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../main.dart';
 
 class LoginAuthProvider with ChangeNotifier {
@@ -10,18 +13,35 @@ class LoginAuthProvider with ChangeNotifier {
     return role;
   }
 
-  void Login(String pnumber, String token, String roleAssiged) {
-    phoneNumber = pnumber;
-    accessToken = token;
-    role = roleAssiged;
-    notifyListeners();
-    if (role == "admin") {
-      isAdmin = true;
+  Future<void> Login(
+      String pnumber, String roleAssiged, BuildContext context) async {
+    final url = "https://swift-cafe-dev.swifttrackmile.codes/login";
+
+    await http
+        .post(Uri.parse(url), body: json.encode({"phoneNo": "+91$phoneNumber"}))
+        .then((value) {
+      final response = json.decode(value.body);
+      accessToken = response['token'];
+      role = roleAssiged;
       notifyListeners();
-    } else {
-      isAdmin = false;
-      notifyListeners();
-    }
+      if (role == "admin") {
+        isAdmin = true;
+        notifyListeners();
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          "/page2",
+          (route) => false,
+        );
+      } else {
+        isAdmin = false;
+        notifyListeners();
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          "/page2",
+          (route) => false,
+        );
+      }
+    });
   }
 
   void logout() {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import './loginAuthProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -9,52 +10,25 @@ class ProductsProvider with ChangeNotifier {
     return products;
   }
 
-  final token =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzUzMDE2NDksInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTI4MzY0OX0.9XDdZLxCqDwmUQ8xGNpx4Rp07b098srHUZ1nsV0aZnY76HlMT5QZgmUZeRC8dDKBw5s2ue_3YlEYobeB6WzX4g";
+  final accessToken =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzUzNjg4NzQsInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTM1MDg3NH0.3Xfc4LFvaXPQ1teSX9fZmR69MAFAVW4mFFSEzVvsReKOs_HxEkVxmamDaUV_CGpHGLHnS9GscZaB1wPQ14WrSg";
   Future<void> getproducts() async {
     const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    }).then((value) {
-      print(value.body.toString());
-
-      products.add(
-          ProductList(description: "235235525", img: "6", name: "latte"));
-      notifyListeners();
+      'Authorization': 'Bearer $accessToken',
     });
-    final responseData = json.decode(response) as List<Map<String, dynamic>>;
+    final responseData = json.decode(response.body) as List<dynamic>;
     final List<ProductList> loadedorders = [];
+
     responseData.forEach((element) {
-      loadedorders.add(ProductList(
-              description: "lorenipsum", img: "good image", name: "Latte")
-          // ProductList(
-          //   id: element["id"],
-          //   description: element["description"],
-          //   img: element["img"],
-          //   name: element["name"],
-          //   choice: Choice(
-          //     cupFilling: Syrups(
-          //       type: element["choice"]["cupfilling"]["type"],
-          //       choice: element["choice"]["cupfilling"]["choice"] as List<String>,
-          //     ),
-          //     milkCategories: Syrups(
-          //         type: element["choice"]["milkcategories"]["type"],
-          //         choice: element["choice"]["milkcategories"]["choice"]
-          //             as List<String>),
-          //     sugarLevels: Syrups(
-          //       type: element["choice"]["sugerlevels"]["type"],
-          //       choice: element["choice"]["sugerlevels"]["choice"],
-          //     ),
-          //     syrups: Syrups(
-          //       type: element["choice"]["syrups"]["type"],
-          //       choice: element["choice"]["syrups"]["choice"],
-          //     ),
-          //   ),
-          // ),
-          );
+      final data = element as Map<String, dynamic>;
+      print(data['id']);
+      loadedorders.add(ProductList.fromJson(data));
+      print(productslist);
     });
+    print(loadedorders);
     products = loadedorders;
     notifyListeners();
   }

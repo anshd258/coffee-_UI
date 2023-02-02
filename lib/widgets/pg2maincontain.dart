@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/main.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/productsprovider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,11 @@ class PG2maincont extends StatefulWidget {
 
 class _PG2maincontState extends State<PG2maincont> {
   //data of the products offerd
+  @override
+  void initState() {
+    context.read<ProductsProvider>().getproducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

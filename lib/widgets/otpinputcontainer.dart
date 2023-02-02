@@ -38,6 +38,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
 
   @override
   Widget build(BuildContext context) {
+  
     const focusedBorderColor = Color.fromRGBO(23, 171, 144, 1);
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
     const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
@@ -169,23 +170,16 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           ),
           GestureDetector(
             onTap: () {
-              context.read<ProductsProvider>().getproducts();
+              
               if (widget.phonenumber == "1234567890") {
-                context
-                    .read<LoginAuthProvider>()
-                    .Login(widget.phonenumber, otpcontroller.text, "admin");
+                context.read<LoginAuthProvider>().Login(
+                    widget.phonenumber,  "admin", context);
                 isAdmin = true;
               } else {
-                context
-                    .read<LoginAuthProvider>()
-                    .Login(widget.phonenumber, otpcontroller.text, "user");
+                context.read<LoginAuthProvider>().Login(
+                    widget.phonenumber, "user", context);
                 isAdmin = false;
               }
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/page2",
-                (route) => false,
-              );
             },
             child: Container(
               height: 7.7.h,
