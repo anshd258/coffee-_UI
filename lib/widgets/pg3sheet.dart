@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:inter_coffee/widgets/pg3togglebutton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './pg3milkswitchgride.dart';
@@ -97,7 +98,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                           Text(
                             productsList['name'].toString(),
                             style: GoogleFonts.inter(
-                              fontSize: 22.sp,
+                              fontSize: 21.sp,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w700,
                               color: Color.fromARGB(255, 205, 205, 205),
@@ -194,12 +195,12 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //   ),
               // ),
               SizedBox(
-                height: 2.h,
+                height: 1.h,
               ),
               SizedBox(
                 width: 90.w,
                 child: Text(
-                  widget.data.description!,
+                  productsList['description'].toString(),
                   style: GoogleFonts.inter(
                       color: const Color.fromARGB(255, 197, 197, 197),
                       fontSize: 14.5.sp,
@@ -445,6 +446,31 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //   });
               //   },
               // ),
+              // ListView.builder(
+              //   itemCount: productsList.keys.last.length,
+              //   itemBuilder: (context, index) {
+              //     String txt = productsList.keys.elementAt(index).toString();
+              //     return Column(
+              //       children: [
+              //         Padding(
+              //           padding: EdgeInsets.symmetric(horizontal: 5.w),
+              //           child: Text(
+              //             txt,
+              //             style: GoogleFonts.inter(
+              //               fontSize: 19.sp,
+              //               letterSpacing: 1,
+              //               fontWeight: FontWeight.w700,
+              //               color: const Color.fromARGB(255, 205, 205, 205),
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     );
+              //   },
+              // ),
+              const Expanded(
+                child: AllProductPropertiesRender(),
+              ),
             ],
           ),
         ),

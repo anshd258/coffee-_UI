@@ -24,7 +24,6 @@ class _ToggleState extends State<Toggle> {
   @override
   Widget build(BuildContext context) {
     final id = context.watch<routing>().gettingroute;
-    final data = context.watch<ProductsProvider>().orders;
     return Container(
       height: 100.h,
       width: 100.w,

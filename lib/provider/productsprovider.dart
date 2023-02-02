@@ -21,7 +21,7 @@ class ProductsProvider with ChangeNotifier {
       print(value.body.toString());
 
       products.add(
-          ProductList(description: "235235525", img: "noimage", name: "latte"));
+          ProductList(description: "235235525", img: "6", name: "latte"));
       notifyListeners();
     });
     final responseData = json.decode(response) as List<Map<String, dynamic>>;

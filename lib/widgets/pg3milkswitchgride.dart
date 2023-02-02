@@ -6,24 +6,19 @@ import 'package:provider/provider.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class Pg3MilkSwitch extends StatefulWidget {
-  Pg3MilkSwitch({
+class ChoiceSwitch extends StatefulWidget {
+  final List list;
+  const ChoiceSwitch({
     super.key,
+    required this.list
   });
 
   @override
-  State<Pg3MilkSwitch> createState() => _Pg3MilkSwitchState();
+  State<ChoiceSwitch> createState() => _ChoiceSwitchState();
 }
 
-class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
-  List values = [
-    "Sikkim milk",
-    "Full Cream Milk",
-    "Almond Milk",
-    "Oat Milk",
-    "Soy Milk",
-    "Lactose Free Milk"
-  ];
+class _ChoiceSwitchState extends State<ChoiceSwitch> {
+  
   @override
   Widget build(BuildContext context) {
     print("working");
@@ -35,7 +30,7 @@ class _Pg3MilkSwitchState extends State<Pg3MilkSwitch> {
         padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 0),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
-        children: values.map((e) {
+        children: widget.list.map((e) {
           print(e.toString());
           final _ctr = ValueNotifier<bool>(false);
           @override
