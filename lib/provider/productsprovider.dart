@@ -11,7 +11,7 @@ class ProductsProvider with ChangeNotifier {
   }
 
   final accessToken =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzUzNjg4NzQsInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTM1MDg3NH0.3Xfc4LFvaXPQ1teSX9fZmR69MAFAVW4mFFSEzVvsReKOs_HxEkVxmamDaUV_CGpHGLHnS9GscZaB1wPQ14WrSg";
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3MDI4MTgwMTU4IiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzU0NDc2OTMsInVzZXJJZCI6IjJhMWI2NGY0LWI1NmQtNGUxMC04MGM3LTUwM2ZjNTc1ZjQ4YSIsImlhdCI6MTY3NTQyOTY5M30.YVwm7rQOcHj2dQRiSOwrcrJ-TjLCymFxcKfKaN93Gi0LdbTVdg3PjLy7AY5Aonpixb622_jB-aUs8pSpwBLRYQ";
   Future<void> getproducts() async {
     const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
     final response = await http.get(Uri.parse(url), headers: {

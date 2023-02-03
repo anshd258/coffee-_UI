@@ -6,7 +6,7 @@ class CartProductsProvider with ChangeNotifier {
   List<CartProductsModal> cartData = [];
   CartProductsModal currentproduct = CartProductsModal();
 
-  void AddingProductsTooCart(CartProductsModal data) {
+  void AddingProductsToCart(CartProductsModal data) {
     cartData.add(data);
     notifyListeners();
   }

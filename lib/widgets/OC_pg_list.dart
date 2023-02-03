@@ -57,7 +57,8 @@ class _OcpageListState extends State<OcpageList> {
                     alignment: Alignment.center,
                     child: Image(
                       image: AssetImage(
-                        widget.e["image"],
+                        // widget.e["imageUrl"],
+                        "assets/7.jpg"
                       ),
                       fit: BoxFit.contain,
                       alignment: Alignment.bottomRight,

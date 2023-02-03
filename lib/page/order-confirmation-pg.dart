@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/cartProductModal.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/OC_pg_list.dart';
 
@@ -13,7 +14,7 @@ class Orderconfirmationpg extends StatefulWidget {
 }
 
 class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
-  List productsInfo = [
+  List productsInfo = [ 
     {
       "name": "Hot Cappuccino",
       "rating": "4.9",
@@ -42,8 +43,10 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
           "Caffè latte is a milk coffee that is a made up of one or two shots of espresso, steamed milk and a final, thin layer of frothed milk on top."
     },
   ];
+  
   @override
   Widget build(BuildContext context) {
+    // productsInfo.add(CartProductsModal().toJson());
     return Container(
       height: 100.h,
       width: 100.w,

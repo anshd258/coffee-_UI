@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/cartProductModal.dart';
+import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
@@ -85,8 +87,24 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
         //submit elevated button
         ElevatedButton(
           onPressed: () {
-            display();
-            Navigator.pop(context);
+            // display();
+            // Navigator.pop(context);
+            CartProductsProvider().AddingProductsToCart(
+                  CartProductsModal(
+                    id: id,
+                    name: name,
+                    ratings: ratings,
+                    numberOfReviews: numberOfReviews,
+                    price: price,
+                    discription: discription,
+                    imageUrl: imageUrl,
+                    quantity: quantity,
+                    choiceOfCupFilling: choiceOfCupFilling,
+                    choiceOfMilk: choiceOfMilk,
+                    choiceOfSuger: choiceOfSuger
+                  )
+                );
+                Navigator.pushNamed(context, "/orderconfirmPg");
           },
           child: Text(
             "Submit",

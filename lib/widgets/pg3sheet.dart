@@ -126,6 +126,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                                 .currentproduct
                                 .quantity = value ?? "1";
                             dropdownvalue = int.parse(value!);
+                            quantity = value;
                           });
                         },
                       ),

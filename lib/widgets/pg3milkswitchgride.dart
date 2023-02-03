@@ -16,18 +16,19 @@ class ChoiceSwitch extends StatefulWidget {
   @override
   State<ChoiceSwitch> createState() => _ChoiceSwitchState();
 }
-
+String isSelected = "";
 class _ChoiceSwitchState extends State<ChoiceSwitch> {
   
   @override
   Widget build(BuildContext context) {
+    isSelected = widget.list[0];
     print("working");
     return GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 5.w / 0.6.h,
+        childAspectRatio: 5.w / 0.7.h,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 0),
+        padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 0),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: widget.list.map((e) {
@@ -38,6 +39,8 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
             super.initState();
             _ctr.addListener(() {
               setState(() {
+                isSelected == e 
+                  ? _ctr.value = true : _ctr.value = false;
                 print(e);
                 context
                     .read<CartProductsProvider>()
@@ -54,18 +57,25 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AdvancedSwitch(
-                    width: 8.w,
-                    height: 2.h,
-                    controller: _ctr,
-                    enabled: true,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSelected = e;
+                      });
+                    },
+                    child: AdvancedSwitch(
+                      width: 8.w,
+                      height: 2.h,
+                      controller: _ctr,
+                      enabled: true,
+                    ),
                   ),
                   SizedBox(
                     width: 4.w,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    height: 5.h,
+                    // height: 5.h,
                     width: 30.w,
                     child: Text(
                       e,
