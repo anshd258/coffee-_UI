@@ -22,12 +22,10 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
   final defaultPinTheme = PinTheme(height: 1.h, width: 1.h);
 
   final otpcontroller = TextEditingController();
-  final focusNode = FocusNode();
 
   @override
   void dispose() {
     otpcontroller.dispose();
-    focusNode.dispose();
     super.dispose();
   }
 
@@ -38,7 +36,6 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
 
   @override
   Widget build(BuildContext context) {
-  
     const focusedBorderColor = Color.fromRGBO(23, 171, 144, 1);
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
     const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
@@ -115,7 +112,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           Pinput(
             length: 5,
             controller: otpcontroller,
-            focusNode: focusNode,
+            autofocus: true,
             defaultPinTheme: defaultPinTheme,
             androidSmsAutofillMethod:
                 AndroidSmsAutofillMethod.smsUserConsentApi,
@@ -170,14 +167,15 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           ),
           GestureDetector(
             onTap: () {
-              
               if (widget.phonenumber == "1234567890") {
-                context.read<LoginAuthProvider>().Login(
-                    widget.phonenumber,  "admin", context);
+                context
+                    .read<LoginAuthProvider>()
+                    .Login(widget.phonenumber, "admin", context);
                 isAdmin = true;
               } else {
-                context.read<LoginAuthProvider>().Login(
-                    widget.phonenumber, "user", context);
+                context
+                    .read<LoginAuthProvider>()
+                    .Login(widget.phonenumber, "user", context);
                 isAdmin = false;
               }
             },
