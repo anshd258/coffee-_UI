@@ -42,10 +42,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                 isSelected == e 
                   ? _ctr.value = true : _ctr.value = false;
                 print(e);
-                context
-                    .read<CartProductsProvider>()
-                    .currentproduct
-                    .choiceOfMilk = _ctr.value?e.toString():"";
+              
               });
             });
           }

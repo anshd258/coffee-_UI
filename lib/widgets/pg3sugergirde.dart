@@ -37,10 +37,7 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
             super.initState();
             _ctr.addListener(() {
               setState(() {
-                context
-                    .read<CartProductsProvider>()
-                    .currentproduct
-                    .choiceOfSuger =  _ctr.value?e.toString():"";
+
               });
             });
           }

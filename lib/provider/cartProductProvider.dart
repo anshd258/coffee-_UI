@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../models/cartProductModal.dart';
-import '../models/productmodal.dart';
+import '../models/order_prouct.dart';
 
 class CartProductsProvider with ChangeNotifier {
-  List<CartProductsModal> cartData = [];
-  CartProductsModal currentproduct = CartProductsModal();
+  List<orderProduct> cartData = [];
+  orderProduct currentproduct = orderProduct();
 
-  void AddingProductsToCart(CartProductsModal data) {
+  void AddingProductsToCart(orderProduct data) {
     cartData.add(data);
+    print(cartData.toString());
     notifyListeners();
   }
 }

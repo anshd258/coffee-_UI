@@ -29,7 +29,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-
+    
     final ProductList productsList =
         ModalRoute.of(context)?.settings.arguments as ProductList;
 
@@ -122,9 +122,10 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         onChanged: (String? value) {
                           setState(() {
                             context
-                                .read<CartProductsProvider>()
-                                .currentproduct
-                                .quantity = value ?? "1";
+                                    .read<CartProductsProvider>()
+                                    .currentproduct
+                                    .quantity =
+                                value == null ? 1 : int.parse(value);
                             dropdownvalue = int.parse(value!);
                             quantity = value;
                           });
@@ -449,7 +450,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //   },
               // ),
               Expanded(
-                child: AllProductPropertiesRender( productList: productsList ),
+                child: AllProductPropertiesRender(productList: productsList),
               ),
             ],
           ),

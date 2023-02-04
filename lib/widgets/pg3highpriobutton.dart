@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/models/cartProductModal.dart';
-import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
+
+import 'package:inter_coffee/models/order_prouct.dart';
+
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
@@ -31,11 +32,11 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
     var data = context.watch<CartProductsProvider>().currentproduct;
 
     void display() {
-      data.id = widget.selectedproduct.id;
-      data.name = widget.selectedproduct.name;
+      // data.id = widget.selectedproduct.id;
+      // data.name = widget.selectedproduct.name;
 
-      data.discription = widget.selectedproduct.description;
-      data.imageUrl = widget.selectedproduct.img;
+      // data.discription = widget.selectedproduct.description;
+      // data.imageUrl = widget.selectedproduct.img;
 
       print(data.toJson());
     }
@@ -89,22 +90,14 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
-            CartProductsProvider().AddingProductsToCart(
-                  CartProductsModal(
-                    id: id,
-                    name: name,
-                    ratings: ratings,
-                    numberOfReviews: numberOfReviews,
-                    price: price,
-                    discription: discription,
-                    imageUrl: imageUrl,
-                    quantity: quantity,
-                    choiceOfCupFilling: choiceOfCupFilling,
-                    choiceOfMilk: choiceOfMilk,
-                    choiceOfSuger: choiceOfSuger
-                  )
-                );
-                Navigator.pushNamed(context, "/orderconfirmPg");
+            CartProductsProvider().AddingProductsToCart(orderProduct(
+                productId: "8748237428737278347",
+                quantity: 2,
+                choice: [
+                  Choice(name: 'eta', choices: ["10"]),
+                  Choice(name: 'syrup', choices: ["vannila", "choco"])
+                ]));
+            Navigator.pushNamed(context, "/orderconfirmPg");
           },
           child: Text(
             "Submit",
