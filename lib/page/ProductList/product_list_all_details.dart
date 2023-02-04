@@ -47,22 +47,21 @@ class _AllProductPropertiesRenderState
         );
 
       case "Drop_Down":
-        return DropDownSelection( list: ansList );
+        return DropDownSelection(list: ansList);
 
       case "List":
         return Container(
-          padding: EdgeInsets.symmetric( vertical: 1.h, horizontal: 5.w ),
-          child: Pg3togglebutton(
-            list: ansList,
-          )
-        );
+            padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
+            child: Pg3togglebutton(
+              list: ansList,
+            ));
     }
 
-    if( heading == "Cup Filling" ) {
+    if (heading == "Cup Filling") {
       choiceOfCupFilling = isSelected.isNotEmpty ? isSelected : "";
-    } else if( heading == "Milk Categories") {
+    } else if (heading == "Milk Categories") {
       choiceOfMilk = isSelected.isNotEmpty ? isSelected : "";
-    } else if( heading == "Sugar Levels") {
+    } else if (heading == "Sugar Levels") {
       choiceOfSuger = isSelected.isNotEmpty ? isSelected : "";
     }
     print(isSelected);
@@ -83,7 +82,7 @@ class _AllProductPropertiesRenderState
     quantity = "1";
 
     Map<String, dynamic> selection =
-        widget.productList.choice?.toJson() as Map<String, dynamic>;
+        widget.productList.choice as Map<String, dynamic>;
 
     return Column(
       children: selection.entries.map((e) {
@@ -121,8 +120,7 @@ class _AllProductPropertiesRenderState
             typeClassifier(type),
           ],
         );
-      }
-      ).toList(),
+      }).toList(),
     );
   }
 }

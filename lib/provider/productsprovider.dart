@@ -11,7 +11,7 @@ class ProductsProvider with ChangeNotifier {
   }
 
   final accessToken =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3MDI4MTgwMTU4IiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzU0NDc2OTMsInVzZXJJZCI6IjJhMWI2NGY0LWI1NmQtNGUxMC04MGM3LTUwM2ZjNTc1ZjQ4YSIsImlhdCI6MTY3NTQyOTY5M30.YVwm7rQOcHj2dQRiSOwrcrJ-TjLCymFxcKfKaN93Gi0LdbTVdg3PjLy7AY5Aonpixb622_jB-aUs8pSpwBLRYQ";
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3OTgyNDkxMjYyIiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzU1MzA3NTYsInVzZXJJZCI6IjRlMjUzNjBlLTk2N2QtNDViZS05MWNiLTVlYThmNDlmZDIyMiIsImlhdCI6MTY3NTUxMjc1Nn0.T7AiFSt5XOCJA8t7MZ2GrgISBV_STNigCuJp_wtQDsjt9vrU0ppOAYlckBO1fvI6UN_b68FsZp7Pr7AkV91BxQ";
   Future<void> getproducts() async {
     const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
@@ -24,11 +24,10 @@ class ProductsProvider with ChangeNotifier {
 
     responseData.forEach((element) {
       final data = element as Map<String, dynamic>;
-      print(data['id']);
+
       loadedorders.add(ProductList.fromJson(data));
-      print(productslist);
     });
-    print(loadedorders);
+    print(loadedorders.first.choice.toString());
     products = loadedorders;
     notifyListeners();
   }

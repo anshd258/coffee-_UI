@@ -4,6 +4,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/products_list_model.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 
 class PgLowerListCont extends StatefulWidget {
   final ProductList e;
@@ -24,8 +26,11 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         ),
         // for detecting clicks and directing them to next page-3
         GestureDetector(
-          onTap: () =>
-              Navigator.of(context).pushNamed('/page3', arguments: widget.e),
+          onTap: () {
+            context.read<CartProductsProvider>().currentproduct.choice = [];
+            Navigator.of(context)
+                .pushNamed('/page3', arguments: widget.e);
+          },
           child: GlassContainer.frostedGlass(
             height: 17.h,
             width: 90.w,
