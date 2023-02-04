@@ -1,14 +1,12 @@
 import 'dart:convert';
-import './loginAuthProvider.dart';
 import 'package:flutter/material.dart';
-import '../models/order_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class MyData with ChangeNotifier {
   String? orderState;
   String? estTime;
 
-   final accessToken =
+  final accessToken =
       "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTE3MDI4MTgwMTU4IiwiaXNVc2VyIjp0cnVlLCJleHAiOjE2NzU0NDc2OTMsInVzZXJJZCI6IjJhMWI2NGY0LWI1NmQtNGUxMC04MGM3LTUwM2ZjNTc1ZjQ4YSIsImlhdCI6MTY3NTQyOTY5M30.YVwm7rQOcHj2dQRiSOwrcrJ-TjLCymFxcKfKaN93Gi0LdbTVdg3PjLy7AY5Aonpixb622_jB-aUs8pSpwBLRYQ";
   void fetchData(String orderid) async {
     final url =

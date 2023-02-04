@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inter_coffee/page/page-3.dart';
-import 'package:inter_coffee/provider/productsprovider.dart';
-import 'package:inter_coffee/widgets/pg3sheet.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './page-2.dart';
 import './profilepg.dart';
@@ -20,24 +17,23 @@ class Toggle extends StatefulWidget {
 }
 
 class _ToggleState extends State<Toggle> {
-  
   @override
   Widget build(BuildContext context) {
     final id = context.watch<routing>().gettingroute;
-    return Container(
+    return SizedBox(
       height: 100.h,
       width: 100.w,
       child: Stack(children: [
         if (id == 1) ...[
-          page_2()
+          const page_2()
         ] else if (id == 2) ...[
-          Profilepg()
+          const Profilepg()
         ] else if (id == 3) ...[
-          NotificationPg()
+          const NotificationPg()
         ] else if (id == 4) ...[
-          Orderconfirmationpg()
+          const Orderconfirmationpg()
         ] else if (id == 5) ...[
-          AdminHome()
+          const AdminHome()
         ],
         Positioned(
           bottom: -0.5.h,

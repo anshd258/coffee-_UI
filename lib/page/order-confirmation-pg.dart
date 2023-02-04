@@ -75,17 +75,17 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                       onPressed: () {
                         Navigator.pushNamed(context, "/orderdetailsPg");
                       },
-                      child: Text(
-                        "Confirm and Place Order",
-                        style: GoogleFonts.inter(
-                            color: Colors.white, fontSize: 16.sp),
-                      ),
                       style: ElevatedButton.styleFrom(
                           elevation: 5,
                           fixedSize: Size(50.w, 4.5.h),
                           backgroundColor: Colors.greenAccent.shade700,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),
+                      child: Text(
+                        "Confirm and Place Order",
+                        style: GoogleFonts.inter(
+                            color: Colors.white, fontSize: 16.sp),
+                      ),
                     ),
                   ),
                 ),

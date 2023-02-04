@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/provider/cartProductProvider.dart';
-import 'package:provider/provider.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChoiceSwitch extends StatefulWidget {
   final List list;
-  const ChoiceSwitch({
-    super.key,
-    required this.list
-  });
+  const ChoiceSwitch({super.key, required this.list});
 
   @override
   State<ChoiceSwitch> createState() => _ChoiceSwitchState();
 }
+
 String isSelected = "";
+
 class _ChoiceSwitchState extends State<ChoiceSwitch> {
-  
   @override
   Widget build(BuildContext context) {
     isSelected = widget.list[0];
@@ -27,22 +23,20 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
         crossAxisCount: 2,
         childAspectRatio: 5.w / 0.7.h,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 0),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: widget.list.map((e) {
           print(e.toString());
-          final _ctr = ValueNotifier<bool>(false);
+          final ctr = ValueNotifier<bool>(false);
           @override
           void initState() {
             super.initState();
-            _ctr.addListener(() {
+            ctr.addListener(() {
               setState(() {
-                isSelected == e 
-                  ? _ctr.value = true : _ctr.value = false;
+                isSelected == e ? ctr.value = true : ctr.value = false;
                 print(e);
-              
               });
             });
           }
@@ -63,7 +57,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                     child: AdvancedSwitch(
                       width: 8.w,
                       height: 2.h,
-                      controller: _ctr,
+                      controller: ctr,
                       enabled: true,
                     ),
                   ),

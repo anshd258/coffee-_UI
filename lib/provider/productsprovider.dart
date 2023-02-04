@@ -22,11 +22,11 @@ class ProductsProvider with ChangeNotifier {
     final responseData = json.decode(response.body) as List<dynamic>;
     final List<ProductList> loadedorders = [];
 
-    responseData.forEach((element) {
+    for (var element in responseData) {
       final data = element as Map<String, dynamic>;
 
       loadedorders.add(ProductList.fromJson(data));
-    });
+    }
     print(loadedorders.first.choice.toString());
     products = loadedorders;
     notifyListeners();

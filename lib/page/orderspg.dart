@@ -71,12 +71,12 @@ class _OrderPgState extends State<OrderPg> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 100.w,
                     height: 90.h,
                     child: SingleChildScrollView(
                         child: data.isEmpty
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : Column(
                                 children: data.map((e) {
                                   return OrderPgTiles(

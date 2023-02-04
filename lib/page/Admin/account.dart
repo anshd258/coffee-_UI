@@ -79,14 +79,14 @@ class _AccountAdminState extends State<AccountAdmin> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 3),
                               shape: BoxShape.circle,
-                              image: DecorationImage(
+                              image: const DecorationImage(
                                   fit: BoxFit.cover,
                                   image: AssetImage("assets/user.jpeg"))),
                         ),
                       ),
                       Align(
                         alignment: Alignment.center,
-                        child: Container(
+                        child: SizedBox(
                           height: 13.h,
                           width: 75.w,
                           child: Row(

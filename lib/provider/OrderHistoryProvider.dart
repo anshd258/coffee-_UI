@@ -6,14 +6,14 @@ import '../models/order_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class OrderHistory with ChangeNotifier {
-  List<Data> _orderList = [];
+  final List<Data> _orderList = [];
 
   List<Data> get History {
     return _orderList;
   }
 
   Future<void> fetchOrders() async {
-    final url = 'https://swift-cafe-dev.swifttrackmile.codes/orderHistory';
+    const url = 'https://swift-cafe-dev.swifttrackmile.codes/orderHistory';
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

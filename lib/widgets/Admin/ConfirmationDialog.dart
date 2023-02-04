@@ -1,21 +1,20 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> ConfirmDialog(BuildContext context, String title, void Function() onTapOk ) async {
+Future<void> ConfirmDialog(
+    BuildContext context, String title, void Function() onTapOk) async {
   return await showDialog(
-    barrierColor: Color.fromRGBO(0, 0, 0, 0.75),
+    barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
     barrierDismissible: true,
     context: context,
     builder: (context) => StatefulBuilder(
       builder: (BuildContext context, setState) {
         return Dialog(
             backgroundColor: Colors.transparent,
-            insetPadding: EdgeInsets.all(0),
+            insetPadding: const EdgeInsets.all(0),
             child: GlassContainer.frostedGlass(
               height: 15.h,
               width: 65.w,
@@ -35,7 +34,7 @@ Future<void> ConfirmDialog(BuildContext context, String title, void Function() o
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w600),
                     ),
-                    Container(
+                    SizedBox(
                       height: 4.h,
                       width: 50.w,
                       child: Row(
@@ -44,6 +43,12 @@ Future<void> ConfirmDialog(BuildContext context, String title, void Function() o
                         children: [
                           ElevatedButton(
                             onPressed: onTapOk,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey.shade300,
+                                fixedSize: Size(3.h, 15.w),
+                                padding: const EdgeInsets.all(0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
                             child: Text(
                               "OK",
                               style: GoogleFonts.inter(
@@ -51,12 +56,6 @@ Future<void> ConfirmDialog(BuildContext context, String title, void Function() o
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w600),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey.shade300,
-                                fixedSize: Size(3.h, 15.w),
-                                padding: EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5))),
                           ),
                           SizedBox(
                             height: 4.h,
@@ -65,6 +64,12 @@ Future<void> ConfirmDialog(BuildContext context, String title, void Function() o
                               onPressed: () {
                                 Navigator.pop(context);
                               },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade300,
+                                  minimumSize: Size(4.h, 25.w),
+                                  padding: EdgeInsets.all(1.w),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
                               child: Text(
                                 "CANCEL",
                                 style: GoogleFonts.inter(
@@ -72,12 +77,6 @@ Future<void> ConfirmDialog(BuildContext context, String title, void Function() o
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey.shade300,
-                                  minimumSize: Size(4.h, 25.w),
-                                  padding: EdgeInsets.all(1.w),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5))),
                             ),
                           )
                         ],

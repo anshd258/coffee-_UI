@@ -13,9 +13,9 @@ class LoginAuthProvider with ChangeNotifier {
     return role;
   }
 
-  Future<void> Login(
+  Future<void> login(
       String pnumber, String roleAssiged, BuildContext context) async {
-    final url = "https://swift-cafe-dev.swifttrackmile.codes/login";
+    const url = "https://swift-cafe-dev.swifttrackmile.codes/login";
 
     await http
         .post(Uri.parse(url), body: json.encode({"phoneNo": "+91$phoneNumber"}))

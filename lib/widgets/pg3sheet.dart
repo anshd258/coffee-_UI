@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
-import 'package:inter_coffee/widgets/pg3togglebutton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import './pg3milkswitchgride.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
-import './pg3sugergirde.dart';
 import '../models/products_list_model.dart';
-import './pg3ETAgrid.dart';
 
 class Pg3BottomSheet extends StatefulWidget {
   final ProductList data;
-  Pg3BottomSheet({super.key, required this.data});
+  const Pg3BottomSheet({super.key, required this.data});
 
   @override
   State<Pg3BottomSheet> createState() => _Pg3BottomSheetState();
@@ -29,7 +24,6 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    
     final ProductList productsList =
         ModalRoute.of(context)?.settings.arguments as ProductList;
 
@@ -44,9 +38,9 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
           width: 100.w,
           blur: 20,
           frostedOpacity: 0.04,
-          color: Color.fromARGB(25, 189, 189, 189),
+          color: const Color.fromARGB(25, 189, 189, 189),
           borderColor: Colors.transparent,
-          borderRadius: BorderRadius.vertical(
+          borderRadius: const BorderRadius.vertical(
               top: Radius.circular(30), bottom: Radius.zero),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -80,10 +74,10 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                               fontSize: 21.sp,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w700,
-                              color: Color.fromARGB(255, 205, 205, 205),
+                              color: const Color.fromARGB(255, 205, 205, 205),
                             ),
                           ),
-                          Image(image: AssetImage("assets/6.png"))
+                          const Image(image: AssetImage("assets/6.png"))
                         ],
                       ),
                     ),
@@ -99,22 +93,23 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         style: GoogleFonts.inter(
                             fontSize: 14.sp, color: Colors.white38),
                         alignment: Alignment.center,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         iconEnabledColor:
                             const Color.fromARGB(255, 217, 217, 217),
                         focusColor: Colors.white30,
-                        underline: Text(""),
+                        underline: const Text(""),
                         dropdownColor: Colors.black,
-                        items: [
-                          const DropdownMenuItem(
+                        items: const [
+                          DropdownMenuItem(
                             value: '1',
                             child: Text('1'),
                           ),
-                          const DropdownMenuItem(
+                          DropdownMenuItem(
                             value: '2',
                             child: Text('2'),
                           ),
-                          const DropdownMenuItem(
+                          DropdownMenuItem(
                             value: '3',
                             child: Text('3'),
                           ),
@@ -185,7 +180,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                   style: GoogleFonts.inter(
                       color: const Color.fromARGB(255, 197, 197, 197),
                       fontSize: 14.5.sp,
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         wordSpacing: 1,
                       )),
                 ),

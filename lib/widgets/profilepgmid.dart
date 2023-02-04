@@ -69,7 +69,7 @@ class ProfilepgMid extends StatelessWidget {
           SizedBox(
             height: 1.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,11 +111,11 @@ class ProfilepgMid extends StatelessWidget {
                     Navigator.pushNamed(context, "/orderspg");
                   },
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -126,7 +126,7 @@ class ProfilepgMid extends StatelessWidget {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,11 +165,11 @@ class ProfilepgMid extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -180,7 +180,7 @@ class ProfilepgMid extends StatelessWidget {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,11 +219,11 @@ class ProfilepgMid extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),

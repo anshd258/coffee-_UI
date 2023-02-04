@@ -88,14 +88,14 @@ class glass_container extends StatelessWidget {
             // obscureText: true,
             // obscuringCharacter: "*",
             controller: ctr,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             cursorColor: Colors.white,
             decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
+              enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
@@ -122,7 +122,7 @@ class glass_container extends StatelessWidget {
               width: 55.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       alignment: Alignment.center,
                       image: AssetImage("assets/loginbutton.png"),
                       fit: BoxFit.fill)),

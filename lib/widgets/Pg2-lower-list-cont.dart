@@ -28,8 +28,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         GestureDetector(
           onTap: () {
             context.read<CartProductsProvider>().currentproduct.choice = [];
-            Navigator.of(context)
-                .pushNamed('/page3', arguments: widget.e);
+            Navigator.of(context).pushNamed('/page3', arguments: widget.e);
           },
           child: GlassContainer.frostedGlass(
             height: 17.h,
@@ -59,7 +58,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //name of the product
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Container(
+                        child: SizedBox(
                           width: 40.w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +72,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                                   color: titleUserList,
                                 ),
                               ),
-                              Image(image: AssetImage("assets/6.png"))
+                              const Image(image: AssetImage("assets/6.png"))
                             ],
                           ),
                         ),
@@ -136,7 +135,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                                   color: userTileDesc,
                                   // color: Color.fromARGB(160, 255, 255, 255),
                                   fontSize: 13.5.sp,
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                     wordSpacing: 1,
                                   )),
                             ),
@@ -151,7 +150,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   width: 3.w,
                 ),
                 //column in the main row with image and the add button
-                Container(
+                SizedBox(
                   height: 15.h,
                   child: Stack(
                     alignment: Alignment.center,
@@ -181,7 +180,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                             width: 15.w,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 102, 163, 92),
+                                color: const Color.fromARGB(255, 102, 163, 92),
                                 borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               "ADD",

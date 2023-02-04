@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DropDownSelection extends StatefulWidget {
@@ -13,7 +12,6 @@ class DropDownSelection extends StatefulWidget {
 }
 
 class _DropDownSelectionState extends State<DropDownSelection> {
-  
   @override
   Widget build(BuildContext context) {
     String selecteditem = widget.list[0];

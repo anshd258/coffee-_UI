@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:provider/provider.dart';
-import '../provider/cartProductProvider.dart';
-
 
 class Pg3SugerGride extends StatefulWidget {
-  Pg3SugerGride({super.key});
+  const Pg3SugerGride({super.key});
 
   @override
   State<Pg3SugerGride> createState() => _Pg3SugerGrideState();
@@ -26,19 +23,17 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
         crossAxisCount: 2,
         childAspectRatio: 3.5 / 1,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 2.h),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: suger.map((e) {
-          final _ctr = ValueNotifier<bool>(false);
+          final ctr = ValueNotifier<bool>(false);
           @override
           void initState() {
             super.initState();
-            _ctr.addListener(() {
-              setState(() {
-
-              });
+            ctr.addListener(() {
+              setState(() {});
             });
           }
 
@@ -52,7 +47,7 @@ class _Pg3SugerGrideState extends State<Pg3SugerGride> {
                   AdvancedSwitch(
                     width: 8.w,
                     height: 2.h,
-                    controller: _ctr,
+                    controller: ctr,
                     enabled: true,
                   ),
                   SizedBox(

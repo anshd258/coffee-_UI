@@ -25,10 +25,9 @@ class _notificationContainerState extends State<notificationContainer> {
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       borderRadius: BorderRadius.circular(10),
       gradient: LinearGradient(
-        colors: glassShadeOrderList,
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight
-      ),
+          colors: glassShadeOrderList,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       child: Row(children: [
         Container(
           height: 9.h,
@@ -58,7 +57,7 @@ class _notificationContainerState extends State<notificationContainer> {
                   fontSize: 17.sp,
                   letterSpacing: 1,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromARGB(255, 205, 205, 205),
+                  color: const Color.fromARGB(255, 205, 205, 205),
                 ),
               ),
               RichText(
@@ -81,7 +80,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ] else if (widget
@@ -91,7 +90,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ] else ...[
@@ -100,7 +99,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ]
@@ -113,7 +112,7 @@ class _notificationContainerState extends State<notificationContainer> {
                 style: GoogleFonts.inter(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(205, 205, 205, 205),
+                  color: const Color.fromARGB(205, 205, 205, 205),
                 ),
               ),
             ],

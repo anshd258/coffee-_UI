@@ -55,7 +55,7 @@ class OrderPgTiles extends StatelessWidget {
                           fontSize: 18.sp,
                           letterSpacing: 1,
                           fontWeight: FontWeight.w500,
-                          color: Color.fromARGB(255, 205, 205, 205),
+                          color: const Color.fromARGB(255, 205, 205, 205),
                         ),
                       ),
 
@@ -73,7 +73,7 @@ class OrderPgTiles extends StatelessWidget {
                               "priority: ${order.priority.toString()}",
                               style: GoogleFonts.inter(
                                 fontSize: 13.sp,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                                color: const Color.fromARGB(255, 205, 205, 205),
                               ),
                             ),
                             SizedBox(
@@ -85,7 +85,7 @@ class OrderPgTiles extends StatelessWidget {
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 13.sp,
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   wordSpacing: 1,
                                 )),
                           ),
@@ -100,7 +100,7 @@ class OrderPgTiles extends StatelessWidget {
                         "FULL CREAM MILK",
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
-                          color: Color.fromARGB(255, 205, 205, 205),
+                          color: const Color.fromARGB(255, 205, 205, 205),
                         ),
                       ),
                       //for padding
@@ -150,7 +150,7 @@ class OrderPgTiles extends StatelessWidget {
                     "${createddate.day}/${createddate.month}/${createddate.year} ",
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      color: Color.fromARGB(255, 205, 205, 205),
+                      color: const Color.fromARGB(255, 205, 205, 205),
                     ),
                   ),
                   SizedBox(
@@ -160,6 +160,9 @@ class OrderPgTiles extends StatelessWidget {
                       onPressed: () {
                         // Navigator.pushNamed(context, "/profile");
                       },
+                      style: OutlinedButton.styleFrom(
+                          side: BorderSide(color: Colors.green.shade400),
+                          padding: const EdgeInsets.all(1)),
                       child: Text(
                         "Order Again",
                         style: GoogleFonts.inter(
@@ -167,9 +170,6 @@ class OrderPgTiles extends StatelessWidget {
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w500),
                       ),
-                      style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.green.shade400),
-                          padding: EdgeInsets.all(1)),
                     ),
                   )
                 ],

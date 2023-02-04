@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
-import 'package:provider/provider.dart';
-import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 
 class Pg3togglebutton extends StatefulWidget {
   final List<String> list;
@@ -18,7 +13,7 @@ class Pg3togglebutton extends StatefulWidget {
 class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   //toggle button state
   String isSelected = "";
-  
+
   @override
   Widget build(BuildContext context) {
     isSelected = widget.list[0];
@@ -63,39 +58,39 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: mainList.map((e) {
-          return Container(
-            // height: 3.h,
-            // width: 17.w,
-            padding: EdgeInsets.symmetric( horizontal: 0.5.w, vertical: 0.25.h ),
-            margin: EdgeInsets.only( right: 2.5.w ),
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
+          children: mainList.map((e) {
+        return Container(
+          // height: 3.h,
+          // width: 17.w,
+          padding: EdgeInsets.symmetric(horizontal: 0.5.w, vertical: 0.25.h),
+          margin: EdgeInsets.only(right: 2.5.w),
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
                 //  context.read<CartProductsProvider>().currentproduct;
-                 isSelected = e;
-                 bgColor = Colors.greenAccent.shade700;
-                 txtColor = Colors.white;
+                isSelected = e;
+                bgColor = Colors.greenAccent.shade700;
+                txtColor = Colors.white;
                 //  isSelected == e ? Colors.greenAccent.shade700 : Colors.white;
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  backgroundColor: isSelected == e ? Colors.greenAccent.shade700 : Colors.white ),
-              child: Text(
-                e,
-                style: GoogleFonts.inter(
-                    color: isSelected == e ? Colors.white : Colors.black87,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600),
-              ),
+              });
+            },
+            style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                backgroundColor: isSelected == e
+                    ? Colors.greenAccent.shade700
+                    : Colors.white),
+            child: Text(
+              e,
+              style: GoogleFonts.inter(
+                  color: isSelected == e ? Colors.white : Colors.black87,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600),
             ),
-          );
-        }).toList()
-      ),
+          ),
+        );
+      }).toList()),
     );
-
   }
 }

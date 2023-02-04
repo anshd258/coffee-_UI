@@ -1,8 +1,6 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/models/products_list_model.dart';
 import 'package:inter_coffee/widgets/ProductList/drop_down_list.dart';
 import 'package:inter_coffee/widgets/pg3milkswitchgride.dart';

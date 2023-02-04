@@ -1,5 +1,3 @@
-
-
 class Data {
   String? orderId;
   String? orderNo;
@@ -21,8 +19,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
     orderNo = json['orderNo'];
-    userId =
-        json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
+    userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
     createdDate = json['createdDate'];
     currentState = json['currentState'];
     nextStateEstTime = json['next_state_est_time'];
@@ -30,16 +27,16 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['orderId'] = this.orderId;
-    data['orderNo'] = this.orderNo;
-    if (this.userId != null) {
-      data['userId'] = this.userId!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['orderId'] = orderId;
+    data['orderNo'] = orderNo;
+    if (userId != null) {
+      data['userId'] = userId!.toJson();
     }
-    data['createdDate'] = this.createdDate;
-    data['currentState'] = this.currentState;
-    data['next_state_est_time'] = this.nextStateEstTime;
-    data['priority'] = this.priority;
+    data['createdDate'] = createdDate;
+    data['currentState'] = currentState;
+    data['next_state_est_time'] = nextStateEstTime;
+    data['priority'] = priority;
     return data;
   }
 }
@@ -58,10 +55,10 @@ class UserId {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['phoneNo'] = this.phoneNo;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['phoneNo'] = phoneNo;
+    data['name'] = name;
     return data;
   }
 }
