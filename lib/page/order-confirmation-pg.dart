@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/OC_pg_list.dart';
 
@@ -14,12 +15,9 @@ class Orderconfirmationpg extends StatefulWidget {
 }
 
 class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
-  List productsInfo = [ 
-  
-  ];
-  
   @override
   Widget build(BuildContext context) {
+    List productsInfo = context.watch<CartProductsProvider>().cartData;
     // productsInfo.add(CartProductsModal().toJson());
     return Container(
       height: 100.h,
@@ -37,10 +35,9 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
         blur: 17,
         frostedOpacity: 0.04,
         gradient: LinearGradient(
-          colors: allScreenBGGradient,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
-        ),
+            colors: allScreenBGGradient,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -50,7 +47,8 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
             leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: titleStatusBar, fontSize: 18.sp)),
+                style:
+                    GoogleFonts.inter(color: titleStatusBar, fontSize: 18.sp)),
             backgroundColor: bgStatusBar,
           ),
           body: Center(

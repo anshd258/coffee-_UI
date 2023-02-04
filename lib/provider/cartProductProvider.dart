@@ -7,7 +7,7 @@ class CartProductsProvider with ChangeNotifier {
 
   void AddingProductsToCart(orderProduct data) {
     cartData.add(data);
-    print(cartData.toString());
+    print(cartData.length);
     notifyListeners();
   }
 }

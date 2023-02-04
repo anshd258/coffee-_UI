@@ -51,6 +51,7 @@ dependencies:
   json_table: ^2.0.1
   syncfusion_flutter_datepicker: ^20.4.44
   flutter_datetime_picker: ^1.5.1
+  url_launcher: ^6.1.8
 
 
 dev_dependencies:

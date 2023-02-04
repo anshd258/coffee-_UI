@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:nice_buttons/nice_buttons.dart';
 import './swiftcafetext.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -170,9 +170,19 @@ class glass_container extends StatelessWidget {
           ),
           //privacy policy textbutton
           TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context,
-                    "/otpinput"); //navigating to 2nd page when the button is clicked
+              onPressed: () async{
+               final urli = Uri(
+                path: "/",
+                scheme: "https",
+                host: "privacy.swift-cafe-dev.swifttrackmile.codes",
+              );
+               if (await canLaunchUrl(urli)) {
+                print(urli);
+                await launchUrl(
+                  urli,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
               },
               child: Text(
                 "Privacy Policy",
