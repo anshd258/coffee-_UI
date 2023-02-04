@@ -123,7 +123,8 @@ class _OcpageListState extends State<OcpageList> {
                                 "FULL",
                                 style: GoogleFonts.inter(
                                     fontSize: 12.5.sp,
-                                    color: const Color.fromARGB(255, 205, 205, 205),
+                                    color: const Color.fromARGB(
+                                        255, 205, 205, 205),
                                     fontWeight: FontWeight.w600),
                               ),
                               //for padding
@@ -142,7 +143,8 @@ class _OcpageListState extends State<OcpageList> {
                                 style: GoogleFonts.inter(
                                   fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
-                                  color: const Color.fromARGB(255, 205, 205, 205),
+                                  color:
+                                      const Color.fromARGB(255, 205, 205, 205),
                                 ),
                               ),
                             ],

@@ -103,7 +103,8 @@ class _Page3State extends State<Page3> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                        width: 0.5, color: const Color.fromARGB(70, 14, 14, 14)),
+                        width: 0.5,
+                        color: const Color.fromARGB(70, 14, 14, 14)),
                     color: const Color.fromRGBO(51, 51, 51, 0.90)),
                 child: Pg3highPrioButton(
                   selectedproduct: args,

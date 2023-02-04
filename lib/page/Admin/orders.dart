@@ -142,7 +142,8 @@ class _OrdersState extends State<Orders> {
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: const Color.fromRGBO(77, 68, 64, 0.36),
+                                    color:
+                                        const Color.fromRGBO(77, 68, 64, 0.36),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(

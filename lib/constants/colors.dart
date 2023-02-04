@@ -105,7 +105,8 @@ List<Color> searchBarBG = const [
   Color.fromRGBO(255, 255, 255, 0.05)
 ];
 
-Color nameBar = isAdmin ? const Color.fromRGBO(255, 255, 255, 1) : Colors.transparent;
+Color nameBar =
+    isAdmin ? const Color.fromRGBO(255, 255, 255, 1) : Colors.transparent;
 
 Color userPageMainBG =
     isAdmin ? const Color.fromRGBO(125, 80, 57, 0.6) : Colors.transparent;

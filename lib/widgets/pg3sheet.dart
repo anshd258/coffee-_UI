@@ -93,7 +93,8 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         style: GoogleFonts.inter(
                             fontSize: 14.sp, color: Colors.white38),
                         alignment: Alignment.center,
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         iconEnabledColor:
                             const Color.fromARGB(255, 217, 217, 217),
                         focusColor: Colors.white30,
