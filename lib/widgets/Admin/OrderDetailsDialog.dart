@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +12,7 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
       builder: (BuildContext context, setState) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetPadding: EdgeInsets.all(0),
+          insetPadding: const EdgeInsets.all(0),
           child: GlassContainer.frostedGlass(
             color: Colors.white10,
             borderWidth: 0.5,

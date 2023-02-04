@@ -14,10 +14,8 @@ class Orderconfirmationpg extends StatefulWidget {
 }
 
 class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
-  List productsInfo = [ 
-  
-  ];
-  
+  List productsInfo = [];
+
   @override
   Widget build(BuildContext context) {
     // productsInfo.add(CartProductsModal().toJson());
@@ -37,10 +35,9 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
         blur: 17,
         frostedOpacity: 0.04,
         gradient: LinearGradient(
-          colors: allScreenBGGradient,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
-        ),
+            colors: allScreenBGGradient,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -50,7 +47,8 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
             leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: titleStatusBar, fontSize: 18.sp)),
+                style:
+                    GoogleFonts.inter(color: titleStatusBar, fontSize: 18.sp)),
             backgroundColor: bgStatusBar,
           ),
           body: Center(
@@ -77,17 +75,17 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                       onPressed: () {
                         Navigator.pushNamed(context, "/orderdetailsPg");
                       },
-                      child: Text(
-                        "Confirm and Place Order",
-                        style: GoogleFonts.inter(
-                            color: Colors.white, fontSize: 16.sp),
-                      ),
                       style: ElevatedButton.styleFrom(
                           elevation: 5,
                           fixedSize: Size(50.w, 4.5.h),
                           backgroundColor: Colors.greenAccent.shade700,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),
+                      child: Text(
+                        "Confirm and Place Order",
+                        style: GoogleFonts.inter(
+                            color: Colors.white, fontSize: 16.sp),
+                      ),
                     ),
                   ),
                 ),

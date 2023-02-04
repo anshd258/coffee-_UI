@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/main.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/productsprovider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../widgets/pg2-mid-row-cont.dart';
 import 'namebar2.dart';
 import '../widgets/Pg2-lower-list-cont.dart';
 
@@ -92,7 +90,7 @@ class _PG2maincontState extends State<PG2maincont> {
                   ],
                 ),
               )
-            : Container(
+            : SizedBox(
                 height: 9.5.h,
                 width: 100.w,
                 child: Column(
@@ -253,7 +251,7 @@ class _PG2maincontState extends State<PG2maincont> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: data == null
-                          ? [CircularProgressIndicator()]
+                          ? [const CircularProgressIndicator()]
                           : data.map((e) {
                               return PgLowerListCont(
                                 e: e,

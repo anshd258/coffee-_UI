@@ -12,7 +12,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3highPrioButton extends StatefulWidget {
   final ProductList selectedproduct;
-  Pg3highPrioButton({super.key, required this.selectedproduct});
+  const Pg3highPrioButton({super.key, required this.selectedproduct});
 
   @override
   State<Pg3highPrioButton> createState() => _Pg3highPrioButtonState();
@@ -57,7 +57,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           Row(children: [
             Checkbox(
                 checkColor: Colors.white,
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: Colors.white),
                 activeColor: Colors.greenAccent.shade700,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3)),
@@ -99,6 +99,12 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
                 ]));
             Navigator.pushNamed(context, "/orderconfirmPg");
           },
+          style: ElevatedButton.styleFrom(
+              fixedSize: Size(width, 5.h),
+              elevation: 5,
+              backgroundColor: Colors.greenAccent.shade700,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7))),
           child: Text(
             "Submit",
             style: GoogleFonts.inter(
@@ -106,12 +112,6 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
                 fontSize: 16.5.sp,
                 fontWeight: FontWeight.w500),
           ),
-          style: ElevatedButton.styleFrom(
-              fixedSize: Size(width, 5.h),
-              elevation: 5,
-              backgroundColor: Colors.greenAccent.shade700,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7))),
         )
       ],
     );

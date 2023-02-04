@@ -44,7 +44,7 @@ class AdminOrderCountContainer extends StatelessWidget {
               child: Text(
                 quantity.toString(),
                 style: GoogleFonts.inter(
-                    color: Color.fromRGBO(255, 255, 255, 0.702),
+                    color: const Color.fromRGBO(255, 255, 255, 0.702),
                     fontSize: 25.sp,
                     fontWeight: FontWeight.w700),
               ),

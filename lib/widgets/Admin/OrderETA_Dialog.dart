@@ -17,7 +17,7 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
       builder: (BuildContext context, setState) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetPadding: EdgeInsets.all(0),
+          insetPadding: const EdgeInsets.all(0),
           child: GlassContainer.frostedGlass(
             color: Colors.white10,
             borderWidth: 0.5,
@@ -128,20 +128,20 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM", (){});
+                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM", () {});
                   },
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(35.w, 3.h),
+                      backgroundColor: green,
+                      padding: const EdgeInsets.all(0),
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7))),
                   child: Text(
                     "Confirm Order",
                     style: GoogleFonts.inter(
                         fontSize: 15.sp, fontWeight: FontWeight.w600),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(35.w, 3.h),
-                      backgroundColor: green,
-                      padding: EdgeInsets.all(0),
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7))),
                 )
               ],
             ),

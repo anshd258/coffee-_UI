@@ -6,7 +6,6 @@ import 'package:inter_coffee/models/notificationmodal.dart';
 import 'package:inter_coffee/provider/notificationprovider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
-import '../provider/productsprovider.dart';
 import '../widgets/notificationcontainer.dart';
 
 class NotificationPg extends StatefulWidget {
@@ -48,10 +47,9 @@ class _NotificationPgState extends State<NotificationPg> {
         frostedOpacity: 0.03,
         // color: Color.fromARGB(0, 255, 255, 255),
         gradient: LinearGradient(
-          colors: notificationScreenBGGradient,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
-        ),
+            colors: notificationScreenBGGradient,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -81,73 +79,73 @@ class _NotificationPgState extends State<NotificationPg> {
             ),
             backgroundColor: bgStatusBar,
             bottom: PreferredSize(
-                preferredSize: Size(100.w, 5.h),
-                child: Center(
-                  child: Container(
-                    width: 90.w,
-                    height: 5.h,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  archive = false;
-                                  allnotif = true;
-                                });
-                              },
-                              child: Text(
-                                'All($numberofnotification)',
-                                style: GoogleFonts.inter(
-                                    color: titleStatusBar,
-                                    decoration: allnotif
-                                        ? TextDecoration.underline
-                                        : TextDecoration.none,
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    letterSpacing: 1),
-                              ),
-                              style: TextButton.styleFrom(),
+              preferredSize: Size(100.w, 5.h),
+              child: Center(
+                child: SizedBox(
+                  width: 90.w,
+                  height: 5.h,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                archive = false;
+                                allnotif = true;
+                              });
+                            },
+                            style: TextButton.styleFrom(),
+                            child: Text(
+                              'All($numberofnotification)',
+                              style: GoogleFonts.inter(
+                                  color: titleStatusBar,
+                                  decoration: allnotif
+                                      ? TextDecoration.underline
+                                      : TextDecoration.none,
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  letterSpacing: 1),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  archive = true;
-                                  allnotif = false;
-                                });
-                              },
-                              child: Text(
-                                'Archive',
-                                style: GoogleFonts.inter(
-                                    color: titleStatusBar,
-                                    decoration: archive
-                                        ? TextDecoration.underline
-                                        : TextDecoration.none,
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    letterSpacing: 1),
-                              ),
-                              style: TextButton.styleFrom(),
-                            )
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.settings_outlined,
-                              size: 22.sp,
-                              color: titleStatusBar,
-                            ))
-                      ],
-                    ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                archive = true;
+                                allnotif = false;
+                              });
+                            },
+                            style: TextButton.styleFrom(),
+                            child: Text(
+                              'Archive',
+                              style: GoogleFonts.inter(
+                                  color: titleStatusBar,
+                                  decoration: archive
+                                      ? TextDecoration.underline
+                                      : TextDecoration.none,
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  letterSpacing: 1),
+                            ),
+                          )
+                        ],
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.settings_outlined,
+                            size: 22.sp,
+                            color: titleStatusBar,
+                          ))
+                    ],
                   ),
                 ),
-             ),
+              ),
+            ),
           ),
           body: Center(
             heightFactor: 95.h,

@@ -1,7 +1,6 @@
 import 'package:inter_coffee/main.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
-import '../provider/productsprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -49,7 +48,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           fontStyle: FontStyle.normal,
           letterSpacing: 1),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 130, 130, 130),
+        color: const Color.fromARGB(255, 130, 130, 130),
         border: Border.all(color: Colors.white24),
         borderRadius: BorderRadius.circular(7),
       ),
@@ -121,7 +120,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                   context, "/page2", (route) => false);
             }),
             pinAnimationType: PinAnimationType.fade,
-            animationDuration: Duration(milliseconds: 15),
+            animationDuration: const Duration(milliseconds: 15),
             animationCurve: Curves.bounceInOut,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,

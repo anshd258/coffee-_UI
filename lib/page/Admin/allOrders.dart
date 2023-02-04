@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -7,7 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/AdminHomeRowContainer.dart';
 
 class AllOrders extends StatelessWidget {
-  AllOrders({super.key});
+  const AllOrders({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class AllOrders extends StatelessWidget {
     return Container(
       height: 100.h,
       width: 100.w,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
@@ -69,10 +68,10 @@ class AllOrders extends StatelessWidget {
         height: 100.h,
         width: 100.w,
         blur: 17,
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         frostedOpacity: 0.05,
         borderWidth: 0,
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [

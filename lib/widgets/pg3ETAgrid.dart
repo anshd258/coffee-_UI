@@ -21,23 +21,23 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
         crossAxisCount: 2,
         childAspectRatio: 3.5 / 1,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 2.h),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: ETA.map((e) {
-          final _ctr = ValueNotifier<bool>(false);
+          final ctr = ValueNotifier<bool>(false);
           @override
           void initState() {
             super.initState();
-            _ctr.addListener(() {
+            ctr.addListener(() {
               setState(() {
                 context
                     .read<CartProductsProvider>()
                     .currentproduct
                     .choice!
                     .add(Choice(name: "eta", choices: [
-                      ...[_ctr.value.toString()]
+                      ...[ctr.value.toString()]
                     ]));
               });
             });
@@ -53,7 +53,7 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
                   AdvancedSwitch(
                     width: 8.w,
                     height: 2.h,
-                    controller: _ctr,
+                    controller: ctr,
                     enabled: true,
                   ),
                   SizedBox(

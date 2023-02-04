@@ -96,16 +96,16 @@ class _ProgresspgState extends State<Progresspg> {
                     onPressed: () {
                       Navigator.pushNamed(context, "/orderspg");
                     },
-                    child: Text(
-                      "Order Details",
-                      style: GoogleFonts.inter(color: Colors.white),
-                    ),
                     style: ElevatedButton.styleFrom(
                         elevation: 5,
                         fixedSize: Size(68.w, 4.h),
                         backgroundColor: Colors.greenAccent.shade700,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(7))),
+                    child: Text(
+                      "Order Details",
+                      style: GoogleFonts.inter(color: Colors.white),
+                    ),
                   ),
                 ),
                 SizedBox(

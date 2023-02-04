@@ -48,7 +48,7 @@ class AdminHomeRowContainer extends StatelessWidget {
                 width: 19.w,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage("assets/3.png"), fit: BoxFit.fill)),
               ),
             ),
@@ -66,7 +66,7 @@ class AdminHomeRowContainer extends StatelessWidget {
               onTap: () => OrderDetailsDialog(context),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Container(
+                  child: SizedBox(
                     height: 6.h,
                     width: 40.w,
                     child: SingleChildScrollView(

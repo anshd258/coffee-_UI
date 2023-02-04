@@ -17,7 +17,7 @@ class ProductList {
     if (choicedata != null) {
       List<Syrups> loadedchoices = [];
       // print(choicedata);
-      choicedata.entries.forEach((element) {
+      for (var element in choicedata.entries) {
         final data = element;
 
         loadedchoices.add(Syrups(
@@ -26,7 +26,7 @@ class ProductList {
             choice: data.value['choice'] != null
                 ? data.value['choice'] as List<dynamic>
                 : null));
-      });
+      }
       print(loadedchoices.first.name);
       print(loadedchoices.first.type);
       print(loadedchoices.first.choice.toString());
@@ -35,13 +35,13 @@ class ProductList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['img'] = this.img;
-    data['description'] = this.description;
-    if (this.choice != null) {
-      data['choice'] = this.choice!.toString();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['img'] = img;
+    data['description'] = description;
+    if (choice != null) {
+      data['choice'] = choice!.toString();
     }
     return data;
   }
@@ -61,10 +61,10 @@ class Syrups {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['choice'] = this.choice;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['type'] = type;
+    data['choice'] = choice;
     return data;
   }
 }

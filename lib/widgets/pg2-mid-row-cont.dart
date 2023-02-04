@@ -41,13 +41,13 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    child: Image(
-                      image: AssetImage(widget.e["image"].toString()),
-                    ),
                     height: 13.h,
                     width: 40.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Image(
+                      image: AssetImage(widget.e["image"].toString()),
                     ),
                   ),
                 ),
@@ -60,7 +60,7 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
                       fontSize: 13,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 205, 205, 205),
+                      color: const Color.fromARGB(255, 205, 205, 205),
                     ),
                   ),
                 ),
@@ -76,7 +76,7 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
                     style: GoogleFonts.inter(
                         color: const Color.fromARGB(255, 197, 197, 197),
                         fontSize: 8,
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           wordSpacing: 1,
                         )),
                   ),
@@ -146,6 +146,5 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
         ),
       ],
     );
-    ;
   }
 }

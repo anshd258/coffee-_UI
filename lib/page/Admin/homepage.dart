@@ -1,5 +1,3 @@
-import '../../widgets/Admin/OrderETA_Dialog.dart';
-import '../../widgets/Admin/OrderDetailsDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +7,6 @@ import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
 
-import '../../widgets/Admin/ConfirmationDialog.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -62,7 +59,7 @@ class _AdminHomeState extends State<AdminHome> {
           width: 100.w,
           blur: 17,
           frostedOpacity: 0.05,
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
@@ -80,7 +77,7 @@ class _AdminHomeState extends State<AdminHome> {
                     onTap: () {
                       Navigator.pushNamed(context, "/AdminAccount");
                     },
-                    child: name_bar2()),
+                    child: const name_bar2()),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(

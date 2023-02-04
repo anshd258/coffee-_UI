@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class name_bar2 extends StatelessWidget {
@@ -9,7 +8,7 @@ class name_bar2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 90.w,
       // padding: EdgeInsets.symmetric(horizontal: 5.w),
       // alignment: Alignment.topLeft,
@@ -34,8 +33,7 @@ class name_bar2 extends StatelessWidget {
                     Text(
                       "02/01/2023",
                       style: GoogleFonts.inter(
-                          color: nameAndDateInNameBar,
-                          fontSize: 14.sp),
+                          color: nameAndDateInNameBar, fontSize: 14.sp),
                     ),
                     SizedBox(
                       height: 0.3.h,

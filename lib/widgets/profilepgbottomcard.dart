@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:provider/provider.dart';
-import '../provider/loginAuthProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,10 +26,9 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
       frostedOpacity: 0.04,
       // color: Color.fromARGB(60, 255, 255, 255),
       gradient: LinearGradient(
-        colors: glassShadeMyAccounts,
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight
-      ),
+          colors: glassShadeMyAccounts,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
@@ -73,7 +71,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
           SizedBox(
             height: 1.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,11 +106,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -123,7 +121,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,11 +156,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -173,7 +171,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -208,11 +206,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -223,7 +221,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -238,7 +236,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       borderColor: Colors.white12,
                       shadowColor: Colors.white70,
                       padding: EdgeInsets.all(1.w),
-                      child:Image.asset("assets/ICONS/logout2.png",
+                      child: Image.asset("assets/ICONS/logout2.png",
                           color: Colors.white,
                           scale: 0.23.h,
                           alignment: Alignment.centerRight),
@@ -265,11 +263,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                         context, "/", (route) => false);
                   },
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/order_prouct.dart';
 
 import 'package:inter_coffee/models/products_list_model.dart';
-import 'package:provider/provider.dart';
-import '../provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
 import 'package:inter_coffee/widgets/pg3sheet.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -74,7 +71,7 @@ class _Page3State extends State<Page3> {
           ),
           //main content of tthe page
           AnimatedPositioned(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 200),
             top: offset.h,
             child: Container(
               height: 100.h,
@@ -106,7 +103,7 @@ class _Page3State extends State<Page3> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                        width: 0.5, color: Color.fromARGB(70, 14, 14, 14)),
+                        width: 0.5, color: const Color.fromARGB(70, 14, 14, 14)),
                     color: const Color.fromRGBO(51, 51, 51, 0.90)),
                 child: Pg3highPrioButton(
                   selectedproduct: args,

@@ -36,10 +36,9 @@ class _OcpageListState extends State<OcpageList> {
             frostedOpacity: 0.04,
             // color: Color.fromARGB(40, 255, 255, 255),
             gradient: LinearGradient(
-              colors: glassShadeConfirmOrder,
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight
-            ),
+                colors: glassShadeConfirmOrder,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
             borderColor: Colors.white24,
             borderRadius: BorderRadius.circular(5),
             child: Row(
@@ -55,11 +54,10 @@ class _OcpageListState extends State<OcpageList> {
                     borderRadius: BorderRadius.circular(8),
                     padding: EdgeInsets.only(top: 1.h, left: 1.h),
                     alignment: Alignment.center,
-                    child: Image(
+                    child: const Image(
                       image: AssetImage(
-                        // widget.e["imageUrl"],
-                        "assets/7.jpg"
-                      ),
+                          // widget.e["imageUrl"],
+                          "assets/7.jpg"),
                       fit: BoxFit.contain,
                       alignment: Alignment.bottomRight,
                     ),
@@ -88,7 +86,7 @@ class _OcpageListState extends State<OcpageList> {
                                 fontSize: 15.sp,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                                color: const Color.fromARGB(255, 205, 205, 205),
                               ),
                             ),
                           ),
@@ -97,13 +95,14 @@ class _OcpageListState extends State<OcpageList> {
                             size: 3.h,
                             numberSize: 0.8.w,
                             elevation: 0,
-                            style: CartStepperStyle(
+                            style: const CartStepperStyle(
                                 activeBackgroundColor: Colors.transparent),
                             didChangeCount: (value) {
-                              if (value <= 5)
+                              if (value <= 5) {
                                 setState(() {
                                   counter = value;
                                 });
+                              }
                             },
                           )
                         ],
@@ -124,7 +123,7 @@ class _OcpageListState extends State<OcpageList> {
                                 "FULL",
                                 style: GoogleFonts.inter(
                                     fontSize: 12.5.sp,
-                                    color: Color.fromARGB(255, 205, 205, 205),
+                                    color: const Color.fromARGB(255, 205, 205, 205),
                                     fontWeight: FontWeight.w600),
                               ),
                               //for padding
@@ -143,7 +142,7 @@ class _OcpageListState extends State<OcpageList> {
                                 style: GoogleFonts.inter(
                                   fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
-                                  color: Color.fromARGB(255, 205, 205, 205),
+                                  color: const Color.fromARGB(255, 205, 205, 205),
                                 ),
                               ),
                             ],
@@ -168,7 +167,7 @@ class _OcpageListState extends State<OcpageList> {
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 12.5.sp,
                                 fontWeight: FontWeight.w600,
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   wordSpacing: 1,
                                 )),
                           ),
@@ -191,6 +190,9 @@ class _OcpageListState extends State<OcpageList> {
                           children: [
                             TextButton(
                               onPressed: () {},
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(28.w, 3.h),
+                              ),
                               child: Text(
                                 "Instructions for Cafe",
                                 style: GoogleFonts.inter(
@@ -199,12 +201,12 @@ class _OcpageListState extends State<OcpageList> {
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(28.w, 3.h),
-                              ),
                             ),
                             TextButton(
                               onPressed: () {},
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(23.w, 3.h),
+                              ),
                               child: Text(
                                 "Add More Items",
                                 style: GoogleFonts.inter(
@@ -212,9 +214,6 @@ class _OcpageListState extends State<OcpageList> {
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
-                              ),
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(23.w, 3.h),
                               ),
                             )
                           ],

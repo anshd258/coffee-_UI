@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/widgets/otpinputcontainer.dart';
-import '../widgets/glassContainer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Otpscreen extends StatefulWidget {

@@ -23,9 +23,9 @@ List<Color> glassShadeFirst3Screen = isAdmin
         // Color.fromRGBO(255, 255, 255, 0.77)
       ]
     : const [
-      Color.fromARGB(38, 255, 255, 255),
-      Color.fromARGB(38, 255, 255, 255),
-    ];
+        Color.fromARGB(38, 255, 255, 255),
+        Color.fromARGB(38, 255, 255, 255),
+      ];
 
 List<Color> glassShadeMyAccounts = isAdmin
     ? const [
@@ -38,9 +38,9 @@ List<Color> glassShadeMyAccounts = isAdmin
         // Color.fromRGBO(255, 255, 255, 0.77)
       ]
     : const [
-      Color.fromARGB(60, 255, 255, 255),
-      Color.fromARGB(60, 255, 255, 255),
-    ];
+        Color.fromARGB(60, 255, 255, 255),
+        Color.fromARGB(60, 255, 255, 255),
+      ];
 
 List<Color> glassShadeConfirmOrder = isAdmin
     ? const [
@@ -53,9 +53,9 @@ List<Color> glassShadeConfirmOrder = isAdmin
         // Color.fromRGBO(255, 255, 255, 0.77)
       ]
     : const [
-      Color.fromARGB(40, 255, 255, 255),
-      Color.fromARGB(40, 255, 255, 255),
-    ];
+        Color.fromARGB(40, 255, 255, 255),
+        Color.fromARGB(40, 255, 255, 255),
+      ];
 
 List<Color> glassShadeOrderList = isAdmin
     ? const [
@@ -68,9 +68,9 @@ List<Color> glassShadeOrderList = isAdmin
         // Color.fromRGBO(255, 255, 255, 0.77)
       ]
     : const [
-      Color.fromARGB(50, 255, 255, 255),
-      Color.fromARGB(50, 255, 255, 255),
-    ];
+        Color.fromARGB(50, 255, 255, 255),
+        Color.fromARGB(50, 255, 255, 255),
+      ];
 
 List<Color> backgroundFirst3Screen = isAdmin
     ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
@@ -105,7 +105,7 @@ List<Color> searchBarBG = const [
   Color.fromRGBO(255, 255, 255, 0.05)
 ];
 
-Color nameBar = isAdmin ? Color.fromRGBO(255, 255, 255, 1) : Colors.transparent;
+Color nameBar = isAdmin ? const Color.fromRGBO(255, 255, 255, 1) : Colors.transparent;
 
 Color userPageMainBG =
     isAdmin ? const Color.fromRGBO(125, 80, 57, 0.6) : Colors.transparent;
@@ -115,8 +115,8 @@ Color userListBG = isAdmin
     : const Color.fromARGB(60, 0, 0, 0);
 
 Color nameAndDateInNameBar = isAdmin
-    ? Color.fromRGBO(58, 23, 23, 1)
-    : Color.fromARGB(255, 182, 182, 182);
+    ? const Color.fromRGBO(58, 23, 23, 1)
+    : const Color.fromARGB(255, 182, 182, 182);
 
 Color titleUserList = isAdmin
     ? const Color.fromRGBO(58, 23, 23, 1)
@@ -135,14 +135,10 @@ Color bottomNavBarItem =
 Color productTileUserSide =
     isAdmin ? Colors.white : const Color.fromARGB(70, 255, 255, 255);
 
-Color notificationOptions =
-    isAdmin ? Colors.white : Colors.white70;
+Color notificationOptions = isAdmin ? Colors.white : Colors.white70;
 
 // Colors for Status Bar
-Color titleStatusBar = isAdmin
-    ? const Color.fromRGBO(58, 23, 23, 1)
-    : Colors.white;
+Color titleStatusBar =
+    isAdmin ? const Color.fromRGBO(58, 23, 23, 1) : Colors.white;
 
-Color bgStatusBar = isAdmin
-    ? Colors.white
-    : Colors.white12;
+Color bgStatusBar = isAdmin ? Colors.white : Colors.white12;

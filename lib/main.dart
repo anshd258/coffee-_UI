@@ -79,7 +79,7 @@ class _mainAppState extends State<mainApp> {
                 "/AdminHome": (context) => const AdminHome(),
                 "/OrdersAdmin": (context) => const Orders(),
                 "/AdminAccount": (context) => const AccountAdmin(),
-                "/AllOrders": (context) => AllOrders(),
+                "/AllOrders": (context) => const AllOrders(),
                 "/OrderConfirmed": (context) => const OrderConfirmed()
               },
             );

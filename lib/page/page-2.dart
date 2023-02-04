@@ -3,8 +3,6 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
-import 'package:provider/provider.dart';
-import '../provider/productsprovider.dart';
 
 class page_2 extends StatefulWidget {
   const page_2({super.key});
@@ -57,7 +55,7 @@ class _page_2State extends State<page_2> {
                   end: Alignment.bottomCenter,
                 ),
                 borderColor: Colors.transparent,
-                child: PG2maincont()),
+                child: const PG2maincont()),
           ),
         ),
       ),
