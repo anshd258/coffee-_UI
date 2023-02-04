@@ -24,19 +24,19 @@ import './page/Admin/allOrders.dart';
 import './page/Admin/account.dart';
 
 void main() {
-  runApp(const main_app());
+  runApp(const mainApp());
 }
 
 bool isAdmin = true;
 
-class main_app extends StatefulWidget {
-  const main_app({super.key});
+class mainApp extends StatefulWidget {
+  const mainApp({super.key});
 
   @override
-  State<main_app> createState() => _main_appState();
+  State<mainApp> createState() => _mainAppState();
 }
 
-class _main_appState extends State<main_app> {
+class _mainAppState extends State<mainApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
