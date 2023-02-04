@@ -170,12 +170,12 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               if (widget.phonenumber == "1234567890") {
                 context
                     .read<LoginAuthProvider>()
-                    .Login(widget.phonenumber, "admin", context);
+                    .login(widget.phonenumber, "admin", context);
                 isAdmin = true;
               } else {
                 context
                     .read<LoginAuthProvider>()
-                    .Login(widget.phonenumber, "user", context);
+                    .login(widget.phonenumber, "user", context);
                 isAdmin = false;
               }
             },
