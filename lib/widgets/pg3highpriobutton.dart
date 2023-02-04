@@ -90,7 +90,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
-            CartProductsProvider().AddingProductsToCart(orderProduct(
+            context.read<CartProductsProvider>().AddingProductsToCart(orderProduct(
                 productId: "8748237428737278347",
                 quantity: 2,
                 choice: [

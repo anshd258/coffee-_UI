@@ -19,8 +19,12 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   //dropdown meenue state
   var dropdownvalue = 1;
 
-  final items = ["SUGER X1", "SUGER X2", "1/2 SUGER", "NO SUGER"];
-  String selecteditem = "SUGER X1";
+  final choices = [
+    Syrups(
+        choice: ["Vanilla", "Chocolate", "Swaberry"],
+        name: "syrup",
+        type: "toggle")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -444,6 +448,10 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //     );
               //   },
               // ),
+              ...choices.map((e){return Container(
+                
+              );}).toList(),
+          
               Expanded(
                 child: AllProductPropertiesRender(productList: productsList),
               ),
