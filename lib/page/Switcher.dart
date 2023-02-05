@@ -14,7 +14,7 @@ class Switcher extends StatelessWidget {
     final role = context.watch<LoginAuthProvider>().role;
     final phonenumber = context.watch<LoginAuthProvider>().phoneNumber;
     if (phonenumber == null) {
-      isAdmin = true;
+      isAdmin = false;
       return const page_1();
     } else {
       if (role == "admin") {
