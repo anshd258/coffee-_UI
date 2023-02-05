@@ -74,49 +74,49 @@ class ProfilepgMid extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      child: Image.asset(
-                        "assets/milk1.png",
-                        fit: BoxFit.scaleDown,
-                        scale: 1.8,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Your Orders",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
                 GestureDetector(
                   onTap: () {
                     context.read<OrderHistory>().fetchOrders();
                     Navigator.pushNamed(context, "/orderspg");
                   },
-                  child: Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
+                  child: Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        borderColor: Colors.white12,
+                        shadowColor: Colors.white70,
+                        child: Image.asset(
+                          "assets/milk1.png",
+                          fit: BoxFit.scaleDown,
+                          scale: 1.8,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "Your Orders",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                Transform.rotate(
+                    angle: pi / 180 * 180,
+                    child: Image.asset(
+                      "assets/ICONS/arrow3.png",
+                      scale: 3,
+                    )),
               ],
             ),
           ),
