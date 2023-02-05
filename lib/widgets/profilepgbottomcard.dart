@@ -226,49 +226,49 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      padding: EdgeInsets.all(1.w),
-                      child: Image.asset("assets/ICONS/logout2.png",
-                          color: Colors.white,
-                          scale: 0.23.h,
-                          alignment: Alignment.centerRight),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Logout",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
                 GestureDetector(
                   onTap: () {
                     context.read<routing>().settingroute = 1;
                     Navigator.pushNamedAndRemoveUntil(
                         context, "/", (route) => false);
                   },
-                  child: Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
+                  child: Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        borderColor: Colors.white12,
+                        shadowColor: Colors.white70,
+                        padding: EdgeInsets.all(1.w),
+                        child: Image.asset("assets/ICONS/logout2.png",
+                            color: Colors.white,
+                            scale: 0.23.h,
+                            alignment: Alignment.centerRight),
+                      ),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "Logout",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                Transform.rotate(
+                    angle: pi / 180 * 180,
+                    child: Image.asset(
+                      "assets/ICONS/arrow3.png",
+                      scale: 3,
+                    )),
               ],
             ),
           ),
