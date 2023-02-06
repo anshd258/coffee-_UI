@@ -12,9 +12,15 @@ class DropDownSelection extends StatefulWidget {
 }
 
 class _DropDownSelectionState extends State<DropDownSelection> {
+  String selecteditem = "";
+  @override
+  void initState() {
+    selecteditem = widget.list[0];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String selecteditem = widget.list[0];
     List<String> mainList = widget.list;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
@@ -91,7 +97,6 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
-            selecteditem = value.toString();
             setState(() {
               selecteditem = value as String;
             });

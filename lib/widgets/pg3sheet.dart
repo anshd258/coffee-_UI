@@ -25,6 +25,16 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
       "name": "syrup",
       "type": "Check_Box"
     },
+    {
+      "choice": ["Vanilla", "Chocolate", "Swaberry"],
+      "name": "syrup",
+      "type": "List"
+    },
+    {
+      "choice": ["Vanilla", "Chocolate", "Swaberry"],
+      "name": "syrup",
+      "type": "Drop_Down"
+    },
   ];
 
   @override
@@ -458,7 +468,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //     );
               //   },
               // ),
-          
+
               Expanded(
                 child: AllProductPropertiesRender(choices: choices),
               ),

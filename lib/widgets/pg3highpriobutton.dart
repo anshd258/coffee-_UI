@@ -90,13 +90,14 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
-            context.read<CartProductsProvider>().AddingProductsToCart(orderProduct(
-                productId: "8748237428737278347",
-                quantity: 2,
-                choice: [
-                  Choice(name: 'eta', choices: ["10"]),
-                  Choice(name: 'syrup', choices: ["vannila", "choco"])
-                ]));
+            context.read<CartProductsProvider>().AddingProductsToCart(
+                    orderProduct(
+                        productId: "8748237428737278347",
+                        quantity: 2,
+                        choice: [
+                      Choice(name: 'eta', choices: ["10"]),
+                      Choice(name: 'syrup', choices: ["vannila", "choco"])
+                    ]));
             Navigator.pushNamed(context, "/orderconfirmPg");
           },
           style: ElevatedButton.styleFrom(

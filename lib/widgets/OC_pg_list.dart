@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 import 'package:cart_stepper/cart_stepper.dart';
 
 class OcpageList extends StatefulWidget {
-  final e;
+  final orderProduct e;
   const OcpageList({super.key, required this.e});
 
   @override
@@ -15,6 +18,12 @@ class OcpageList extends StatefulWidget {
 
 class _OcpageListState extends State<OcpageList> {
   int counter = 1;
+  @override
+  void initState() {
+    counter = widget.e.quantity!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,7 +90,9 @@ class _OcpageListState extends State<OcpageList> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.e["name"],
+                              widget.e.productId!.substring(
+                                  widget.e.productId!.length - 6,
+                                  widget.e.productId!.length - 1),
                               style: GoogleFonts.inter(
                                 fontSize: 15.sp,
                                 letterSpacing: 1,
@@ -98,6 +109,11 @@ class _OcpageListState extends State<OcpageList> {
                             style: const CartStepperStyle(
                                 activeBackgroundColor: Colors.transparent),
                             didChangeCount: (value) {
+                              if (value == 0) {
+                                context
+                                    .read<CartProductsProvider>()
+                                    .removeProduct(widget.e);
+                              }
                               if (value <= 5) {
                                 setState(() {
                                   counter = value;

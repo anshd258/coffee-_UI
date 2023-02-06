@@ -10,4 +10,10 @@ class CartProductsProvider with ChangeNotifier {
     print(cartData.length);
     notifyListeners();
   }
+
+  void removeProduct(orderProduct data) {
+    cartData.remove(data);
+    print(cartData.length);
+    notifyListeners();
+  }
 }

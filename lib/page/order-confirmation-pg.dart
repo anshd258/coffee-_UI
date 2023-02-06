@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -17,7 +18,8 @@ class Orderconfirmationpg extends StatefulWidget {
 class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
   @override
   Widget build(BuildContext context) {
-    List productsInfo = context.watch<CartProductsProvider>().cartData;
+    List<orderProduct> productsInfo =
+        context.watch<CartProductsProvider>().cartData;
     // productsInfo.add(CartProductsModal().toJson());
     return Container(
       height: 100.h,

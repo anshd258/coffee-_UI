@@ -27,7 +27,6 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         // for detecting clicks and directing them to next page-3
         GestureDetector(
           onTap: () {
-            context.read<CartProductsProvider>().currentproduct.choice = [];
             Navigator.of(context).pushNamed('/page3', arguments: widget.e);
           },
           child: GlassContainer.frostedGlass(

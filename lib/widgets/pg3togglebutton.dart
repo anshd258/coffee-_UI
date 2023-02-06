@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3togglebutton extends StatefulWidget {
   final List<String> list;
+
   const Pg3togglebutton({super.key, required this.list});
 
   @override
@@ -13,10 +14,14 @@ class Pg3togglebutton extends StatefulWidget {
 class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   //toggle button state
   String isSelected = "";
+  @override
+  void initState() {
+    isSelected = widget.list.first;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    isSelected = widget.list[0];
     List<String> mainList = widget.list;
 
     // return ListView.builder(
@@ -53,6 +58,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
     //     );
     //   },
     // );
+
     Color bgColor = Colors.white;
     Color txtColor = Colors.black87;
     return SingleChildScrollView(
@@ -60,18 +66,25 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       child: Row(
           children: mainList.map((e) {
         return Container(
-          // height: 3.h,
-          // width: 17.w,
+          height: 4.h,
           padding: EdgeInsets.symmetric(horizontal: 0.5.w, vertical: 0.25.h),
           margin: EdgeInsets.only(right: 2.5.w),
           child: ElevatedButton(
+            onLongPress: () {
+              setState(() {
+                isSelected = "";
+              });
+            },
             onPressed: () {
+              print(e);
+              print(isSelected);
               setState(() {
                 //  context.read<CartProductsProvider>().currentproduct;
                 isSelected = e;
-                bgColor = Colors.greenAccent.shade700;
-                txtColor = Colors.white;
-                //  isSelected == e ? Colors.greenAccent.shade700 : Colors.white;
+                // bgColor = Colors.greenAccent.shade700;
+                // txtColor = Colors.white;
+
+                // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
               });
             },
             style: ElevatedButton.styleFrom(
