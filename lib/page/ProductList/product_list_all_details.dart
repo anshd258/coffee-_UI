@@ -8,8 +8,8 @@ import 'package:inter_coffee/widgets/pg3togglebutton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllProductPropertiesRender extends StatefulWidget {
-  final ProductList productList;
-  const AllProductPropertiesRender({super.key, required this.productList});
+  final List<Map<String, Object>> choices;
+  const AllProductPropertiesRender({super.key, required this.choices});
 
   @override
   State<AllProductPropertiesRender> createState() =>
@@ -31,6 +31,7 @@ String choiceOfSuger = "";
 
 class _AllProductPropertiesRenderState
     extends State<AllProductPropertiesRender> {
+
   String selecteditem = "";
   String heading = "";
 
@@ -70,21 +71,53 @@ class _AllProductPropertiesRenderState
   @override
   Widget build(BuildContext context) {
     // Map<String, Object> productsList = widget.productList as Map<String, Object>;
-    id = widget.productList.id!;
-    name = widget.productList.name!;
-    discription = widget.productList.description!;
-    ratings = "4.9";
-    price = "100";
-    numberOfReviews = "375";
-    imageUrl = widget.productList.img!;
-    quantity = "1";
-
-    Map<String, dynamic> selection =
-        widget.productList.choice as Map<String, dynamic>;
+    
 
     return Column(
-      children: selection.entries.map((e) {
-        String txt = e.key.toString();
+      // children: selection.entries.map((e) {
+      //   String txt = e.key.toString();
+      //   int cap = txt.lastIndexOf("_");
+      //   if (cap > -1) {
+      //     txt =
+      //         txt.replaceRange(cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
+      //   }
+      //   heading = txt;
+
+      //   Map<String, dynamic> detailsOfSelection = e.value;
+      //   List<String> list =
+      //       detailsOfSelection.values.elementAt(1) as List<String>;
+      //   ansList = list;
+      //   selecteditem = list[0];
+
+      //   String type = detailsOfSelection.values.elementAt(0).toString();
+
+      //   return Column(
+      //     crossAxisAlignment: CrossAxisAlignment.start,
+      //     children: [
+      //       Padding(
+      //         padding: EdgeInsets.symmetric(horizontal: 5.w),
+      //         child: Text(
+      //           "Choice of ${txt.replaceFirst(txt[0], txt[0].toUpperCase())}",
+      //           style: GoogleFonts.inter(
+      //             fontSize: 19.sp,
+      //             letterSpacing: 1,
+      //             fontWeight: FontWeight.w700,
+      //             color: const Color.fromARGB(255, 205, 205, 205),
+      //           ),
+      //         ),
+      //       ),
+      //       typeClassifier(type),
+      //     ],
+      //   );
+      // }).toList(),
+      children: widget.choices.map((e) {
+        Syrups objectOfList = Syrups(
+          name: e['name'].toString(),
+          type: e['type'].toString(),
+          choice: e['choice'] as List<dynamic>,
+        );
+
+        String txt = objectOfList.name.toString();
         int cap = txt.lastIndexOf("_");
         if (cap > -1) {
           txt =
@@ -92,13 +125,11 @@ class _AllProductPropertiesRenderState
         }
         heading = txt;
 
-        Map<String, dynamic> detailsOfSelection = e.value;
-        List<String> list =
-            detailsOfSelection.values.elementAt(1) as List<String>;
+        List<String> list = objectOfList.choice!.cast<String>();
         ansList = list;
         selecteditem = list[0];
 
-        String type = detailsOfSelection.values.elementAt(0).toString();
+        String type = objectOfList.type.toString();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

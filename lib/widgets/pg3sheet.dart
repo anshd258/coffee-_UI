@@ -20,16 +20,26 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   var dropdownvalue = 1;
 
   final choices = [
-    Syrups(
-        choice: ["Vanilla", "Chocolate", "Swaberry"],
-        name: "syrup",
-        type: "toggle")
+    {
+      "choice": ["Vanilla", "Chocolate", "Swaberry"],
+      "name": "syrup",
+      "type": "Check_Box"
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     final ProductList productsList =
         ModalRoute.of(context)?.settings.arguments as ProductList;
+
+    id = widget.data.id!;
+    name = widget.data.name!;
+    discription = widget.data.description!;
+    ratings = "4.9";
+    price = "100";
+    numberOfReviews = "375";
+    imageUrl = widget.data.img!;
+    quantity = "1";
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -448,12 +458,9 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               //     );
               //   },
               // ),
-              ...choices.map((e){return Container(
-                
-              );}).toList(),
           
               Expanded(
-                child: AllProductPropertiesRender(productList: productsList),
+                child: AllProductPropertiesRender(choices: choices),
               ),
             ],
           ),
