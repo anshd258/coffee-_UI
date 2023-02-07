@@ -250,13 +250,11 @@ class _PG2maincontState extends State<PG2maincont> {
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: data == null
-                          ? [const CircularProgressIndicator()]
-                          : data.map((e) {
-                              return PgLowerListCont(
-                                e: e,
-                              );
-                            }).toList(),
+                      children: data.map((e) {
+                        return PgLowerListCont(
+                          e: e,
+                        );
+                      }).toList(),
                     ),
                   ),
                 ),

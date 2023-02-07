@@ -65,41 +65,42 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       scrollDirection: Axis.horizontal,
       child: Row(
           children: mainList.map((e) {
-        return Container(
-          height: 4.h,
-          padding: EdgeInsets.symmetric(horizontal: 0.5.w, vertical: 0.25.h),
-          margin: EdgeInsets.only(right: 2.5.w),
-          child: ElevatedButton(
-            onLongPress: () {
-              setState(() {
-                isSelected = "";
-              });
-            },
-            onPressed: () {
-              print(e);
-              print(isSelected);
-              setState(() {
-                //  context.read<CartProductsProvider>().currentproduct;
-                isSelected = e;
-                // bgColor = Colors.greenAccent.shade700;
-                // txtColor = Colors.white;
-
-                // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
-              });
-            },
-            style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                backgroundColor: isSelected == e
-                    ? Colors.greenAccent.shade700
-                    : Colors.white),
-            child: Text(
-              e,
-              style: GoogleFonts.inter(
-                  color: isSelected == e ? Colors.white : Colors.black87,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600),
+        return GestureDetector(
+          onLongPress: () {
+            setState(() {
+              isSelected = "";
+            });
+          },
+          onTap: () {
+            print(e);
+            print(isSelected);
+            setState(() {
+              //  context.read<CartProductsProvider>().currentproduct;
+              isSelected = e;
+              // bgColor = Colors.greenAccent.shade700;
+              // txtColor = Colors.white;
+    
+              // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
+            });
+          },
+          child: Container(
+            height: 4.h,
+            padding: EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 0.25.h),
+            margin: EdgeInsets.only(right: 2.5.w),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: isSelected == e
+                ? Colors.greenAccent.shade700
+                  : Colors.white,
+            ),
+            child: Center(
+              child: Text(
+                e,
+                style: GoogleFonts.inter(
+                    color: isSelected == e ? Colors.white : Colors.black87,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
           ),
         );

@@ -57,7 +57,9 @@ class _OrderPgState extends State<OrderPg> {
                 style:
                     GoogleFonts.inter(color: titleStatusBar, fontSize: 17.sp)),
             leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                Navigator.pushNamed(context, "/page2");
+              },
               child: Image.asset(
                 "assets/ICONS/arrow3.png",
                 scale: 3,

@@ -11,4 +11,9 @@ class routing with ChangeNotifier {
     routeID = id;
     notifyListeners();
   }
+  
+  void settingRoute(int id) {
+    routeID = id;
+    notifyListeners();
+  }
 }

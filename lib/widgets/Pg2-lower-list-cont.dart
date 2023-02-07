@@ -18,6 +18,13 @@ class PgLowerListCont extends StatefulWidget {
 class _PgLowerListContState extends State<PgLowerListCont> {
   @override
   Widget build(BuildContext context) {
+    ImageProvider<Object> imageChecker() {
+      if (widget.e.img != null) {
+        return NetworkImage(widget.e.img!);
+      }
+      return AssetImage('7.jpg');
+    }
+
     return Column(
       children: [
         //for padding
@@ -52,7 +59,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   height: 15.h,
                   width: 53.w,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       //name of the product
                       Align(
@@ -65,7 +72,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                               Text(
                                 widget.e.name!,
                                 style: GoogleFonts.inter(
-                                  fontSize: 17.5.sp,
+                                  fontSize: 18.sp,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.w500,
                                   color: titleUserList,
@@ -122,23 +129,19 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //padding between inner row and discription
 
                       //discription text
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 01.h),
-                            child: Text(
-                              widget.e.description!,
-                              maxLines: 5,
-                              style: GoogleFonts.inter(
-                                  color: userTileDesc,
-                                  // color: Color.fromARGB(160, 255, 255, 255),
-                                  fontSize: 13.5.sp,
-                                  textStyle: const TextStyle(
-                                    wordSpacing: 1,
-                                  )),
-                            ),
-                          ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 01.h),
+                        child: Text(
+                          widget.e.description!,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.inter(
+                              color: userTileDesc,
+                              // color: Color.fromARGB(160, 255, 255, 255),
+                              fontSize: 15.sp,
+                              textStyle: const TextStyle(
+                                wordSpacing: 1,
+                              )),
                         ),
                       ),
                     ],
@@ -164,9 +167,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: NetworkImage(
-                                widget.e.img!,
-                              ),
+                              image: imageChecker(),
                               fit: BoxFit.fill),
                         ),
                       ),
