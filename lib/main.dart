@@ -11,6 +11,7 @@ import './page/page-1.dart';
 import './provider/loginAuthProvider.dart';
 import './page/orderspg.dart';
 import './page/Switcher.dart';
+import './page/delivery_status.dart';
 import './page/page-3.dart';
 import './page/order-confirmation-pg.dart';
 import './page/order_details_pg.dart';
@@ -76,6 +77,7 @@ class _mainAppState extends State<mainApp> {
                 "/otpinput": (context) => const Otpscreen(),
                 "/profile": (context) => const Profilepg(),
                 "/notifications": (context) => const NotificationPg(),
+                "/deliveryStatus": (context) => const OrderStatus(),
                 "/AdminHome": (context) => const AdminHome(),
                 "/OrdersAdmin": (context) => const Orders(),
                 "/AdminAccount": (context) => const AccountAdmin(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../widgets/Admin/OrderDetailsDialog.dart';
 
 class OrderStatus extends StatefulWidget {
   const OrderStatus({super.key});
@@ -77,12 +78,16 @@ class _OrderStatusState extends State<OrderStatus> {
                         children: [
                           Container(
                               margin: EdgeInsets.only(
-                                  left: 35, top: 30, right: 26.w),
+                                left: 35,
+                                top: 30,
+                              ),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Image.asset("assets/cp1.png", scale: 4),
+                                  Container(
+                                      margin: EdgeInsets.only(right: 3.w),
+                                      child: Image.asset("assets/cp1.png",
+                                          scale: 4)),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -416,7 +421,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                       EdgeInsets.only(left: 9.w, right: 9.w),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, "/orderspg");
+                                      OrderDetailsDialog(context);
                                     },
                                     style: ElevatedButton.styleFrom(
                                         elevation: 5,

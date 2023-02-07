@@ -16,4 +16,9 @@ class CartProductsProvider with ChangeNotifier {
     print(cartData.length);
     notifyListeners();
   }
+
+  void clearCart() {
+    cartData.clear();
+    notifyListeners();
+  }
 }
