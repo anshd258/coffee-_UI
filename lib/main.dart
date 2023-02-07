@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/page/Admin/order_confirmed.dart';
+import 'package:inter_coffee/page/Admin/orders.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
+import './provider/OrderHistoryProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './page/bottombartoggle.dart';
 import './page/page-1.dart';
+import './provider/loginAuthProvider.dart';
 import './page/orderspg.dart';
+import './page/Switcher.dart';
+import './page/delivery_status.dart';
 import './page/page-3.dart';
 import './page/order-confirmation-pg.dart';
 import './page/order_details_pg.dart';
@@ -15,23 +21,30 @@ import './provider/productsprovider.dart';
 import './provider/cartProductProvider.dart';
 import './page/notificationpg.dart';
 import './page/Admin/homepage.dart';
+import './page/Admin/allOrders.dart';
+import './page/Admin/account.dart';
 
 void main() {
-  runApp(const main_app());
+  runApp(const mainApp());
 }
 
-class main_app extends StatefulWidget {
-  const main_app({super.key});
+bool isAdmin = true;
+
+class mainApp extends StatefulWidget {
+  const mainApp({super.key});
 
   @override
-  State<main_app> createState() => _main_appState();
+  State<mainApp> createState() => _mainAppState();
 }
 
-class _main_appState extends State<main_app> {
+class _mainAppState extends State<mainApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          ChangeNotifierProvider<OrderHistory>(
+            create: (context) => OrderHistory(),
+          ),
           ChangeNotifierProvider<routing>(
             create: (context) => routing(),
           ),
@@ -43,16 +56,20 @@ class _main_appState extends State<main_app> {
           ),
           ChangeNotifierProvider<NotificationProvider>(
             create: (context) => NotificationProvider(),
+          ),
+          ChangeNotifierProvider<LoginAuthProvider>(
+            create: (context) => LoginAuthProvider(),
           )
         ],
         child: ResponsiveSizer(
           builder: (p0, p1, p2) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: "/AdminHome",
+              initialRoute: "/switcher",
               routes: {
                 "/": (context) => const page_1(),
                 "/page2": (context) => const Toggle(),
+                "/switcher": (context) => const Switcher(),
                 "/page3": (context) => const Page3(),
                 "/orderconfirmPg": (context) => const Orderconfirmationpg(),
                 "/orderdetailsPg": (context) => const OrderDetailspg(),
@@ -60,7 +77,12 @@ class _main_appState extends State<main_app> {
                 "/otpinput": (context) => const Otpscreen(),
                 "/profile": (context) => const Profilepg(),
                 "/notifications": (context) => const NotificationPg(),
-                "/AdminHome": (context) => const AdminHome()
+                "/deliveryStatus": (context) => const OrderStatus(),
+                "/AdminHome": (context) => const AdminHome(),
+                "/OrdersAdmin": (context) => const Orders(),
+                "/AdminAccount": (context) => const AccountAdmin(),
+                "/AllOrders": (context) => const AllOrders(),
+                "/OrderConfirmed": (context) => const OrderConfirmed()
               },
             );
           },

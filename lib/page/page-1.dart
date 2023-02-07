@@ -33,7 +33,12 @@ class _page_1State extends State<page_1> {
           width: 100.w,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.transparent, Color.fromARGB(50, 207, 123, 75)],
+              colors: [
+                Color.fromRGBO(80, 114, 235, 0),
+                Color.fromRGBO(80, 114, 235, 0),
+                Color.fromRGBO(80, 114, 235, 0),
+                Color.fromRGBO(207, 123, 75, 0.51)
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),

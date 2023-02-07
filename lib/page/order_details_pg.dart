@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderDetailspg extends StatefulWidget {
@@ -29,7 +30,11 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0.03,
-        color: Color.fromARGB(15, 255, 255, 255),
+        // color: Color.fromARGB(15, 255, 255, 255),
+        gradient: LinearGradient(
+            colors: allScreenBGGradient,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -39,14 +44,18 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
             title: Text("Order Status",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
-                    color: Colors.white,
+                    color: titleStatusBar,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
+              child: Image.asset(
+                "assets/ICONS/arrow3.png",
+                scale: 3,
+                color: titleStatusBar,
+              ),
             ),
-            backgroundColor: Colors.white12,
+            backgroundColor: bgStatusBar,
           ),
           body: Center(
             child: Stack(
@@ -59,7 +68,11 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     child: GlassContainer.frostedGlass(
                       borderRadius: BorderRadius.circular(10),
                       borderWidth: 0.5,
-                      color: Color.fromARGB(40, 255, 255, 255),
+                      // color: Color.fromARGB(40, 255, 255, 255),
+                      gradient: LinearGradient(
+                          colors: glassShadeConfirmOrder,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight),
                       borderColor: Colors.white38,
                       frostedOpacity: 0.04,
                       margin: EdgeInsets.only(top: 2.8.h),
@@ -69,14 +82,31 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
+                          SizedBox(
                             height: 54.h,
                             width: 84.w,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Image.asset("assets/cp1.png", scale: 1),
+                                Container(
+                                    height: 35.h,
+                                    alignment: Alignment.centerRight,
+                                    width: 65.w,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                              "assets/cp1.png",
+                                            ),
+                                            fit: BoxFit.contain)),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      height: 10.h,
+                                      width: 20.w,
+                                      child: Image.asset(
+                                          "assets/greencheck.png",
+                                          scale: 1),
+                                    )),
                                 Column(
                                   children: [
                                     Text(
@@ -118,6 +148,12 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                       onPressed: () {
                         Navigator.pushNamed(context, "/orderspg");
                       },
+                      style: ElevatedButton.styleFrom(
+                          elevation: 5,
+                          fixedSize: Size(50.w, 4.5.h),
+                          backgroundColor: Colors.greenAccent.shade700,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7))),
                       child: Text(
                         "Order Details",
                         style: GoogleFonts.inter(
@@ -126,12 +162,6 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                             fontWeight: FontWeight.w600,
                             letterSpacing: 1),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          fixedSize: Size(50.w, 4.5.h),
-                          backgroundColor: Colors.greenAccent.shade700,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7))),
                     ),
                   ),
                 ),

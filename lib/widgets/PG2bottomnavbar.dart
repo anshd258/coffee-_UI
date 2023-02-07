@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
+
+import '../provider/loginAuthProvider.dart';
 
 class Pg2BottonavBar extends StatefulWidget {
   const Pg2BottonavBar({super.key});
@@ -25,6 +28,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
   bool page5 = false;
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
     //switch case for bottom navigaton bar
 
     switch (val) {
@@ -82,7 +86,8 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
       width: 90.w,
       blur: 15,
       alignment: Alignment.center,
-      color: Colors.black38,
+      color: bottomNavBarBG,
+      // color: Colors.black38,
       borderColor: Colors.transparent,
       borderRadius: const BorderRadius.all(
         Radius.circular(9),
@@ -102,7 +107,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page1 ? Colors.black38 : Colors.transparent,
+                  color: page1 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -127,7 +132,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page2 ? Colors.black38 : Colors.transparent,
+                  color: page2 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -152,7 +157,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page3 ? Colors.black38 : Colors.transparent,
+                  color: page3 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -177,7 +182,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page4 ? Colors.black38 : Colors.transparent,
+                  color: page4 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -194,6 +199,9 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           GestureDetector(
             onTap: () {
               val = 5;
+              if (role == "admin") {
+                context.read<routing>().settingroute = val;
+              }
 
               setState(() {});
             },
@@ -202,18 +210,25 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page5 ? Colors.black38 : Colors.transparent,
+                  color: page5 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
                     color: page5 ? Colors.white : Colors.transparent,
                   )),
-              child: Image.asset(
-                "assets/new.png",
-                fit: BoxFit.scaleDown,
-                scale: 2,
-                color: Colors.white,
-              ),
+              child: role == "admin"
+                  ? Image.asset(
+                      "assets/Priority.png",
+                      fit: BoxFit.scaleDown,
+                      scale: 2.5,
+                      color: Colors.white,
+                    )
+                  : Image.asset(
+                      "assets/new.png",
+                      fit: BoxFit.scaleDown,
+                      scale: 2,
+                      color: Colors.white,
+                    ),
             ),
           ),
         ],

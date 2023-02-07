@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
+import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/main.dart';
 import 'package:provider/provider.dart';
 import '../provider/productsprovider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../widgets/pg2-mid-row-cont.dart';
 import 'namebar2.dart';
 import '../widgets/Pg2-lower-list-cont.dart';
 
@@ -16,54 +18,123 @@ class PG2maincont extends StatefulWidget {
 
 class _PG2maincontState extends State<PG2maincont> {
   //data of the products offerd
+  @override
+  void initState() {
+    context.read<ProductsProvider>().getproducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final data = context.watch<ProductsProvider>().products;
+    final data = context.watch<ProductsProvider>().productslist;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        //for gapping
-
         //namebar with name date delete icon and profie image
-        name_bar2(),
+        Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            color: nameBar,
+            child: const Center(child: name_bar2())),
         //for padding
-        SizedBox(
-          height: 2.h,
-        ),
-        //textfield for searcching
-        TextField(
-          cursorColor: Color.fromARGB(255, 182, 182, 182),
-          decoration: InputDecoration(
-              hintText: "Search favorite Beverages",
-              hintStyle: GoogleFonts.inter(
-                color: Color.fromARGB(100, 182, 182, 182),
-                fontSize: 12,
+        isAdmin
+            ? GlassContainer.frostedGlass(
+                height: 9.5.h,
+                width: 100.w,
+                borderColor: Colors.transparent,
+                gradient: LinearGradient(
+                    colors: searchBarBG,
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight),
+                borderWidth: 0.0,
+                blur: isAdmin ? 15 : 0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //textfield for searcching
+                    TextField(
+                      cursorColor: const Color.fromARGB(255, 182, 182, 182),
+                      decoration: InputDecoration(
+                          hintText: "Search favorite Beverages",
+                          hintStyle: GoogleFonts.inter(
+                            color: const Color.fromARGB(100, 182, 182, 182),
+                            fontSize: 12,
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.tune_rounded,
+                            color: Color.fromARGB(255, 182, 182, 182),
+                          ),
+                          prefixIcon: const Icon(Icons.search,
+                              color: Color.fromARGB(255, 182, 182, 182)),
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          fillColor: Colors.white,
+                          constraints: BoxConstraints(
+                            maxWidth: 90.w,
+                            maxHeight: 5.5.h,
+                          )),
+                    ),
+                    //for gapping
+                    // SizedBox(
+                    //   height: 1.3.h,
+                    // ),
+                  ],
+                ),
+              )
+            : SizedBox(
+                height: 9.5.h,
+                width: 100.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //textfield for searcching
+                    TextField(
+                      cursorColor: const Color.fromARGB(255, 182, 182, 182),
+                      decoration: InputDecoration(
+                          hintText: "Search favorite Beverages",
+                          hintStyle: GoogleFonts.inter(
+                            color: const Color.fromARGB(100, 182, 182, 182),
+                            fontSize: 12,
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.tune_rounded,
+                            color: Color.fromARGB(255, 182, 182, 182),
+                          ),
+                          prefixIcon: const Icon(Icons.search,
+                              color: Color.fromARGB(255, 182, 182, 182)),
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              )),
+                          fillColor: Colors.white,
+                          constraints: BoxConstraints(
+                            maxWidth: 90.w,
+                            maxHeight: 5.5.h,
+                          )),
+                    ),
+                    //for gapping
+                    // SizedBox(
+                    //   height: 1.3.h,
+                    // ),
+                  ],
+                ),
               ),
-              suffixIcon: Icon(
-                Icons.tune_rounded,
-                color: Color.fromARGB(255, 182, 182, 182),
-              ),
-              prefixIcon:
-                  Icon(Icons.search, color: Color.fromARGB(255, 182, 182, 182)),
-              filled: true,
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(3),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                  )),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(3),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                  )),
-              fillColor: Colors.white,
-              constraints: BoxConstraints(
-                maxWidth: 90.w,
-                maxHeight: 5.5.h,
-              )),
-        ),
-        //for gapping
         SizedBox(
           height: 1.3.h,
         ),
@@ -117,18 +188,23 @@ class _PG2maincontState extends State<PG2maincont> {
         // //some more padding
         // SizedBox(height: 2.h),
         //bottom get it instently text
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "   Get it instantly",
-            style: GoogleFonts.inter(
-              fontSize: 17.sp,
-              letterSpacing: 1,
-              fontWeight: FontWeight.w400,
-              color: Color.fromARGB(255, 205, 205, 205),
-            ),
-          ),
-        ),
+        isAdmin
+            ? const SizedBox(
+                height: 0,
+                width: 0,
+              )
+            : Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "   Get it instantly",
+                  style: GoogleFonts.inter(
+                    fontSize: 17.sp,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w400,
+                    color: titleUserList,
+                  ),
+                ),
+              ),
         //for padding
         SizedBox(
           height: 1.8.h,
@@ -144,17 +220,45 @@ class _PG2maincontState extends State<PG2maincont> {
           child: Container(
             width: 100.w,
             decoration: BoxDecoration(
-                color: Color.fromARGB(60, 0, 0, 0),
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: data!.map((e) {
-                  return PgLowerListCont(
-                    e: e,
-                  );
-                }).toList(),
-              ),
+              // change the color here to change it to white
+              // color: Color.fromARGB(60, 0, 0, 0),
+              color: userListBG,
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            child: Column(
+              children: [
+                isAdmin
+                    ? Container(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "   Get it instantly",
+                          style: GoogleFonts.inter(
+                            fontSize: 17.sp,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w400,
+                            color: titleUserList,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        height: 0,
+                        width: 0,
+                      ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: data.map((e) {
+                        return PgLowerListCont(
+                          e: e,
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         )

@@ -1,9 +1,13 @@
 import 'dart:math';
-
+import '../provider/OrderHistoryProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../provider/loginAuthProvider.dart';
 
 class ProfilepgMid extends StatelessWidget {
   const ProfilepgMid({
@@ -12,13 +16,18 @@ class ProfilepgMid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final token = context.watch<LoginAuthProvider>().accessToken;
     return GlassContainer.frostedGlass(
       height: 24.h,
       width: 90.w,
       borderWidth: 1,
       blur: 17,
       frostedOpacity: 0.04,
-      color: Color.fromARGB(60, 255, 255, 255),
+      // color: Color.fromARGB(60, 255, 255, 255),
+      gradient: LinearGradient(
+          colors: glassShadeMyAccounts,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
@@ -60,51 +69,54 @@ class ProfilepgMid extends StatelessWidget {
           SizedBox(
             height: 1.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      child: Image.asset(
-                        "assets/milk1.png",
-                        fit: BoxFit.scaleDown,
-                        scale: 1.8,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Your Orders",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
                 GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, "/orderspg"),
-                  child: Transform.rotate(
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
+                  onTap: () {
+                    context.read<OrderHistory>().fetchOrders();
+                    Navigator.pushNamed(context, "/orderspg");
+                  },
+                  child: Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        borderColor: Colors.white12,
+                        shadowColor: Colors.white70,
+                        child: Image.asset(
+                          "assets/milk1.png",
+                          fit: BoxFit.scaleDown,
+                          scale: 1.8,
+                          color: Colors.white,
+                        ),
                       ),
-                      angle: pi / 180 * 180),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "Your Orders",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                Transform.rotate(
+                    angle: pi / 180 * 180,
+                    child: Image.asset(
+                      "assets/ICONS/arrow3.png",
+                      scale: 3,
+                    )),
               ],
             ),
           ),
@@ -114,7 +126,7 @@ class ProfilepgMid extends StatelessWidget {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,11 +165,11 @@ class ProfilepgMid extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -168,7 +180,7 @@ class ProfilepgMid extends StatelessWidget {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,11 +219,11 @@ class ProfilepgMid extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),

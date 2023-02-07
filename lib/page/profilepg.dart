@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/profilepgmid.dart';
 import '../widgets/profilepgbottomcard.dart';
@@ -30,7 +31,10 @@ class _ProfilepgState extends State<Profilepg> {
         borderWidth: 0,
         blur: 17,
         frostedOpacity: 0,
-        color: Color.fromARGB(15, 255, 255, 255),
+        gradient: LinearGradient(
+            colors: allScreenBGGradient,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
         borderColor: Colors.transparent,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -42,8 +46,11 @@ class _ProfilepgState extends State<Profilepg> {
             leadingWidth: 6.w,
             title: Text("My Account ",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 17.sp)),
-            backgroundColor: Colors.white12,
+                style: GoogleFonts.inter(
+                    color: titleStatusBar,
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w500)),
+            backgroundColor: bgStatusBar,
           ),
           body: Center(
               child: Column(
@@ -55,7 +62,7 @@ class _ProfilepgState extends State<Profilepg> {
                 borderWidth: 1,
                 blur: 17,
                 frostedOpacity: 0.04,
-                color: Color.fromARGB(60, 255, 255, 255),
+                color: const Color.fromARGB(60, 255, 255, 255),
                 borderColor: Colors.white24,
                 borderRadius: BorderRadius.circular(10),
                 margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
@@ -101,7 +108,7 @@ class _ProfilepgState extends State<Profilepg> {
                           color: Colors.white30,
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.green),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               image: AssetImage("assets/user.jpeg"))),
                     )
                   ],

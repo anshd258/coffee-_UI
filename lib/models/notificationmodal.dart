@@ -17,7 +17,7 @@ class NotificationModal {
     name = json['name'];
     image = json["image"];
     orderstate = json['orderstate'] != null
-        ? new Orderstate.fromJson(json['orderstate'])
+        ? Orderstate.fromJson(json['orderstate'])
         : null;
     date = json['date'];
   }
@@ -40,10 +40,10 @@ class Orderstate {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['completed'] = this.completed;
-    data['inprocess'] = this.inprocess;
-    data['canclled'] = this.canclled;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['completed'] = completed;
+    data['inprocess'] = inprocess;
+    data['canclled'] = canclled;
     return data;
   }
 }

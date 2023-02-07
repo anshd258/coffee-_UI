@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './page-2.dart';
 import './profilepg.dart';
@@ -6,7 +7,7 @@ import './order-confirmation-pg.dart';
 import '../widgets/PG2bottomnavbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
-
+import 'Admin/homepage.dart';
 import './notificationpg.dart';
 
 class Toggle extends StatefulWidget {
@@ -20,18 +21,20 @@ class _ToggleState extends State<Toggle> {
   @override
   Widget build(BuildContext context) {
     final id = context.watch<routing>().gettingroute;
-    return Container(
+    return SizedBox(
       height: 100.h,
       width: 100.w,
       child: Stack(children: [
         if (id == 1) ...[
-          page_2()
-        ] else if (id == 2) ...[
-          Profilepg()
+          const page_2()
+        ] else if ( id == 2 ) ...[
+          const Profilepg()
         ] else if (id == 3) ...[
-          NotificationPg()
+          const NotificationPg()
         ] else if (id == 4) ...[
-          Orderconfirmationpg()
+          const Orderconfirmationpg()
+        ] else if (id == 5) ...[
+          const AdminHome()
         ],
         Positioned(
           bottom: -0.5.h,

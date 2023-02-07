@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
@@ -13,28 +14,31 @@ class ETAgridpg3 extends StatefulWidget {
 }
 
 class _ETAgridpg3State extends State<ETAgridpg3> {
-  final ETA = ["5 Mins","10 Mins","15 mins"];
+  final ETA = ["5 Mins", "10 Mins", "15 mins"];
   @override
   Widget build(BuildContext context) {
     return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 3.5 / 1,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 2.h),
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: ETA.map((e) {
-          final _ctr = ValueNotifier<bool>(false);
+          final ctr = ValueNotifier<bool>(false);
           @override
           void initState() {
             super.initState();
-            _ctr.addListener(() {
+            ctr.addListener(() {
               setState(() {
                 context
                     .read<CartProductsProvider>()
                     .currentproduct
-                    .choiceOfSuger = _ctr.value ? e.toString() : "";
+                    .choice!
+                    .add(Choice(name: "eta", choices: [
+                      ...[ctr.value.toString()]
+                    ]));
               });
             });
           }
@@ -49,7 +53,7 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
                   AdvancedSwitch(
                     width: 8.w,
                     height: 2.h,
-                    controller: _ctr,
+                    controller: ctr,
                     enabled: true,
                   ),
                   SizedBox(

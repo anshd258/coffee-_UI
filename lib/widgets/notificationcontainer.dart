@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/notificationmodal.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -23,6 +24,10 @@ class _notificationContainerState extends State<notificationContainer> {
       margin: EdgeInsets.symmetric(vertical: 0.7.h),
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       borderRadius: BorderRadius.circular(10),
+      gradient: LinearGradient(
+          colors: glassShadeOrderList,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       child: Row(children: [
         Container(
           height: 9.h,
@@ -36,14 +41,14 @@ class _notificationContainerState extends State<notificationContainer> {
         Container(
           padding: EdgeInsets.only(
             left: 5.w,
-            top: 5.w,
-            bottom: 5.w,
+            top: 1.8.h,
+            // bottom: 5.w,
           ),
           alignment: Alignment.centerLeft,
           width: 62.w,
-          height: 13.h,
+          // height: 15.h,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -52,7 +57,7 @@ class _notificationContainerState extends State<notificationContainer> {
                   fontSize: 17.sp,
                   letterSpacing: 1,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromARGB(255, 205, 205, 205),
+                  color: const Color.fromARGB(255, 205, 205, 205),
                 ),
               ),
               RichText(
@@ -75,7 +80,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ] else if (widget
@@ -85,7 +90,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ] else ...[
@@ -94,7 +99,7 @@ class _notificationContainerState extends State<notificationContainer> {
                               style: GoogleFonts.inter(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(205, 205, 205, 205),
+                                color: const Color.fromARGB(205, 205, 205, 205),
                               ),
                             ),
                           ]
@@ -107,7 +112,7 @@ class _notificationContainerState extends State<notificationContainer> {
                 style: GoogleFonts.inter(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(205, 205, 205, 205),
+                  color: const Color.fromARGB(205, 205, 205, 205),
                 ),
               ),
             ],

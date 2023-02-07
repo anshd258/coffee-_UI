@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/productmodal.dart';
+import '../models/products_list_model.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 
 class PgLowerListCont extends StatefulWidget {
-  final Products e;
+  final ProductList e;
   const PgLowerListCont({super.key, required this.e});
 
   @override
@@ -15,6 +18,13 @@ class PgLowerListCont extends StatefulWidget {
 class _PgLowerListContState extends State<PgLowerListCont> {
   @override
   Widget build(BuildContext context) {
+    ImageProvider<Object> imageChecker() {
+      if (widget.e.img != null) {
+        return NetworkImage(widget.e.img!);
+      }
+      return AssetImage('7.jpg');
+    }
+
     return Column(
       children: [
         //for padding
@@ -23,14 +33,16 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         ),
         // for detecting clicks and directing them to next page-3
         GestureDetector(
-          onTap: () =>
-              Navigator.of(context).pushNamed('/page3', arguments: widget.e),
+          onTap: () {
+            Navigator.of(context).pushNamed('/page3', arguments: widget.e);
+          },
           child: GlassContainer.frostedGlass(
             height: 17.h,
             width: 90.w,
             blur: 17,
             frostedOpacity: 0.04,
-            color: Color.fromARGB(70, 255, 255, 255),
+            color: productTileUserSide,
+            // color: Color.fromARGB(70, 255, 255, 255),
             elevation: 10,
             borderColor: Colors.white10,
             borderRadius: BorderRadius.circular(8),
@@ -52,7 +64,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //name of the product
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Container(
+                        child: SizedBox(
                           width: 40.w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,13 +72,13 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                               Text(
                                 widget.e.name!,
                                 style: GoogleFonts.inter(
-                                  fontSize: 17.5.sp,
+                                  fontSize: 18.sp,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 205, 205, 205),
+                                  color: titleUserList,
                                 ),
                               ),
-                              Image(image: AssetImage("assets/6.png"))
+                              const Image(image: AssetImage("assets/6.png"))
                             ],
                           ),
                         ),
@@ -117,14 +129,20 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //padding between inner row and discription
 
                       //discription text
-                      Text(
-                        widget.e.discription!,
-                        style: GoogleFonts.inter(
-                            color: Color.fromARGB(160, 255, 255, 255),
-                            fontSize: 13.5.sp,
-                            textStyle: TextStyle(
-                              wordSpacing: 1,
-                            )),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 01.h),
+                        child: Text(
+                          widget.e.description!,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.inter(
+                              color: userTileDesc,
+                              // color: Color.fromARGB(160, 255, 255, 255),
+                              fontSize: 15.sp,
+                              textStyle: const TextStyle(
+                                wordSpacing: 1,
+                              )),
+                        ),
                       ),
                     ],
                   ),
@@ -134,7 +152,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   width: 3.w,
                 ),
                 //column in the main row with image and the add button
-                Container(
+                SizedBox(
                   height: 15.h,
                   child: Stack(
                     alignment: Alignment.center,
@@ -149,9 +167,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: AssetImage(
-                                widget.e.imageUrl!,
-                              ),
+                              image: imageChecker(),
                               fit: BoxFit.fill),
                         ),
                       ),
@@ -164,7 +180,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                             width: 15.w,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 102, 163, 92),
+                                color: const Color.fromARGB(255, 102, 163, 92),
                                 borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               "ADD",

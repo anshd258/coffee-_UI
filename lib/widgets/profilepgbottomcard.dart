@@ -1,9 +1,12 @@
 import 'dart:math';
-
+import 'package:inter_coffee/constants/colors.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../provider/router.dart';
 
 class Profilepgbottom extends StatefulWidget {
   const Profilepgbottom({super.key});
@@ -21,7 +24,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
       borderWidth: 1,
       blur: 17,
       frostedOpacity: 0.04,
-      color: Color.fromARGB(60, 255, 255, 255),
+      // color: Color.fromARGB(60, 255, 255, 255),
+      gradient: LinearGradient(
+          colors: glassShadeMyAccounts,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
       borderColor: Colors.white24,
       borderRadius: BorderRadius.circular(10),
       padding: EdgeInsets.only(left: 4.w, right: 4.w),
@@ -64,7 +71,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
           SizedBox(
             height: 1.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,11 +106,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -114,7 +121,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,11 +156,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -164,7 +171,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -199,11 +206,11 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
+                      angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
-                      ),
-                      angle: pi / 180 * 180),
+                      )),
                 ),
               ],
             ),
@@ -214,50 +221,54 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          Container(
+          SizedBox(
             width: 85.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      padding: EdgeInsets.all(1.w),
-                      child: Image.asset("assets/ICONS/logout2.png",
-                          color: Colors.white,
-                          scale: 0.23.h,
-                          alignment: Alignment.centerRight),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Logout",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Transform.rotate(
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
+                  onTap: () {
+                    context.read<routing>().settingroute = 1;
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, "/", (route) => false);
+                  },
+                  child: Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        borderColor: Colors.white12,
+                        shadowColor: Colors.white70,
+                        padding: EdgeInsets.all(1.w),
+                        child: Image.asset("assets/ICONS/logout2.png",
+                            color: Colors.white,
+                            scale: 0.23.h,
+                            alignment: Alignment.centerRight),
                       ),
-                      angle: pi / 180 * 180),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "Logout",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                Transform.rotate(
+                    angle: pi / 180 * 180,
+                    child: Image.asset(
+                      "assets/ICONS/arrow3.png",
+                      scale: 3,
+                    )),
               ],
             ),
           ),

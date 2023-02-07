@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../provider/cartProductProvider.dart';
 import 'package:cart_stepper/cart_stepper.dart';
 
 class OcpageList extends StatefulWidget {
-  final e;
+  final orderProduct e;
   const OcpageList({super.key, required this.e});
 
   @override
@@ -14,6 +18,12 @@ class OcpageList extends StatefulWidget {
 
 class _OcpageListState extends State<OcpageList> {
   int counter = 1;
+  @override
+  void initState() {
+    counter = widget.e.quantity!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +43,11 @@ class _OcpageListState extends State<OcpageList> {
             borderWidth: 0,
             blur: 17,
             frostedOpacity: 0.04,
-            color: Color.fromARGB(40, 255, 255, 255),
+            // color: Color.fromARGB(40, 255, 255, 255),
+            gradient: LinearGradient(
+                colors: glassShadeConfirmOrder,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
             borderColor: Colors.white24,
             borderRadius: BorderRadius.circular(5),
             child: Row(
@@ -49,10 +63,10 @@ class _OcpageListState extends State<OcpageList> {
                     borderRadius: BorderRadius.circular(8),
                     padding: EdgeInsets.only(top: 1.h, left: 1.h),
                     alignment: Alignment.center,
-                    child: Image(
+                    child: const Image(
                       image: AssetImage(
-                        widget.e["image"],
-                      ),
+                          // widget.e["imageUrl"],
+                          "assets/7.jpg"),
                       fit: BoxFit.contain,
                       alignment: Alignment.bottomRight,
                     ),
@@ -76,12 +90,14 @@ class _OcpageListState extends State<OcpageList> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.e["name"],
+                              widget.e.productId!.substring(
+                                  widget.e.productId!.length - 6,
+                                  widget.e.productId!.length - 1),
                               style: GoogleFonts.inter(
                                 fontSize: 15.sp,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 205, 205, 205),
+                                color: const Color.fromARGB(255, 205, 205, 205),
                               ),
                             ),
                           ),
@@ -90,13 +106,19 @@ class _OcpageListState extends State<OcpageList> {
                             size: 3.h,
                             numberSize: 0.8.w,
                             elevation: 0,
-                            style: CartStepperStyle(
+                            style: const CartStepperStyle(
                                 activeBackgroundColor: Colors.transparent),
                             didChangeCount: (value) {
-                              if (value <= 5)
+                              if (value == 0) {
+                                context
+                                    .read<CartProductsProvider>()
+                                    .removeProduct(widget.e);
+                              }
+                              if (value <= 5) {
                                 setState(() {
                                   counter = value;
                                 });
+                              }
                             },
                           )
                         ],
@@ -117,7 +139,8 @@ class _OcpageListState extends State<OcpageList> {
                                 "FULL",
                                 style: GoogleFonts.inter(
                                     fontSize: 12.5.sp,
-                                    color: Color.fromARGB(255, 205, 205, 205),
+                                    color: const Color.fromARGB(
+                                        255, 205, 205, 205),
                                     fontWeight: FontWeight.w600),
                               ),
                               //for padding
@@ -136,7 +159,8 @@ class _OcpageListState extends State<OcpageList> {
                                 style: GoogleFonts.inter(
                                   fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
-                                  color: Color.fromARGB(255, 205, 205, 205),
+                                  color:
+                                      const Color.fromARGB(255, 205, 205, 205),
                                 ),
                               ),
                             ],
@@ -161,7 +185,7 @@ class _OcpageListState extends State<OcpageList> {
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 12.5.sp,
                                 fontWeight: FontWeight.w600,
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   wordSpacing: 1,
                                 )),
                           ),
@@ -184,6 +208,9 @@ class _OcpageListState extends State<OcpageList> {
                           children: [
                             TextButton(
                               onPressed: () {},
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(28.w, 3.h),
+                              ),
                               child: Text(
                                 "Instructions for Cafe",
                                 style: GoogleFonts.inter(
@@ -192,12 +219,12 @@ class _OcpageListState extends State<OcpageList> {
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
                               ),
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(28.w, 3.h),
-                              ),
                             ),
                             TextButton(
                               onPressed: () {},
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(23.w, 3.h),
+                              ),
                               child: Text(
                                 "Add More Items",
                                 style: GoogleFonts.inter(
@@ -205,9 +232,6 @@ class _OcpageListState extends State<OcpageList> {
                                     fontWeight: FontWeight.w600,
                                     color: const Color.fromARGB(
                                         255, 197, 197, 197)),
-                              ),
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(23.w, 3.h),
                               ),
                             )
                           ],

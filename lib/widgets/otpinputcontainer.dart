@@ -1,15 +1,17 @@
-import 'dart:ui';
-
+import 'package:inter_coffee/main.dart';
+import 'package:provider/provider.dart';
+import '../provider/loginAuthProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nice_buttons/nice_buttons.dart';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpGlassContain extends StatefulWidget {
-  const OtpGlassContain({super.key});
+  String phonenumber;
+  OtpGlassContain({super.key, required this.phonenumber});
 
   @override
   State<OtpGlassContain> createState() => _OtpGlassContainState();
@@ -19,13 +21,16 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
   final defaultPinTheme = PinTheme(height: 1.h, width: 1.h);
 
   final otpcontroller = TextEditingController();
-  final focusNode = FocusNode();
 
   @override
   void dispose() {
     otpcontroller.dispose();
-    focusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -43,7 +48,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           fontStyle: FontStyle.normal,
           letterSpacing: 1),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 130, 130, 130),
+        color: const Color.fromARGB(255, 130, 130, 130),
         border: Border.all(color: Colors.white24),
         borderRadius: BorderRadius.circular(7),
       ),
@@ -56,7 +61,12 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
       blur: 16,
       frostedOpacity: 0.04,
       borderRadius: BorderRadius.circular(25),
-      color: Color.fromARGB(38, 255, 255, 255),
+      // gradient: LinearGradient(
+      //   colors: glassShadeFirst3Screen,
+      //   begin: Alignment.topLeft,
+      //   end: Alignment.bottomRight,
+      // ),
+      color: const Color.fromARGB(38, 255, 255, 255),
 
       borderColor: Colors.white38,
       child: Column(
@@ -101,7 +111,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           Pinput(
             length: 5,
             controller: otpcontroller,
-            focusNode: focusNode,
+            autofocus: true,
             defaultPinTheme: defaultPinTheme,
             androidSmsAutofillMethod:
                 AndroidSmsAutofillMethod.smsUserConsentApi,
@@ -110,7 +120,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                   context, "/page2", (route) => false);
             }),
             pinAnimationType: PinAnimationType.fade,
-            animationDuration: Duration(milliseconds: 15),
+            animationDuration: const Duration(milliseconds: 15),
             animationCurve: Curves.bounceInOut,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
@@ -137,6 +147,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               ),
               TextButton(
                 onPressed: () {},
+                style: TextButton.styleFrom(),
                 child: Text(
                   'RESEND',
                   style: GoogleFonts.inter(
@@ -147,7 +158,6 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1),
                 ),
-                style: TextButton.styleFrom(),
               )
             ],
           ),
@@ -156,8 +166,17 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, "/page2", (route) => false);
+              if (widget.phonenumber == "1234567890") {
+                context
+                    .read<LoginAuthProvider>()
+                    .login(widget.phonenumber, "admin", context);
+                isAdmin = true;
+              } else {
+                context
+                    .read<LoginAuthProvider>()
+                    .login(widget.phonenumber, "user", context);
+                isAdmin = false;
+              }
             },
             child: Container(
               height: 7.7.h,
@@ -165,7 +184,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       alignment: Alignment.center,
                       image: AssetImage("assets/loginbutton.png"),
                       fit: BoxFit.fill)),

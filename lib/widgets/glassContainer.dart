@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:nice_buttons/nice_buttons.dart';
 import './swiftcafetext.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -19,11 +19,11 @@ class glass_container extends StatelessWidget {
       //inner glass container
       height: 88.h,
       width: 90.w,
-      blur: 17,
+      blur: 14,
       frostedOpacity: 0.04,
 
       borderRadius: BorderRadius.circular(25),
-      color: Color.fromARGB(36, 255, 255, 255),
+      color: const Color.fromARGB(36, 255, 255, 255),
 
       borderColor: Colors.white38,
       child: Column(
@@ -88,14 +88,14 @@ class glass_container extends StatelessWidget {
             // obscureText: true,
             // obscuringCharacter: "*",
             controller: ctr,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             cursorColor: Colors.white,
             decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
+              enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
@@ -114,14 +114,15 @@ class glass_container extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(
-                  context, "/otpinput", (route) => false);
+                  context, "/otpinput", (route) => false,
+                  arguments: ctr.text);
             },
             child: Container(
               height: 7.7.h,
               width: 55.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       alignment: Alignment.center,
                       image: AssetImage("assets/loginbutton.png"),
                       fit: BoxFit.fill)),
@@ -169,9 +170,19 @@ class glass_container extends StatelessWidget {
           ),
           //privacy policy textbutton
           TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context,
-                    "/otpinput"); //navigating to 2nd page when the button is clicked
+              onPressed: () async{
+               final urli = Uri(
+                path: "/",
+                scheme: "https",
+                host: "privacy.swift-cafe-dev.swifttrackmile.codes",
+              );
+               if (await canLaunchUrl(urli)) {
+                print(urli);
+                await launchUrl(
+                  urli,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
               },
               child: Text(
                 "Privacy Policy",
