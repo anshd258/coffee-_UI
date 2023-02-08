@@ -6,7 +6,7 @@ import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../models/order_details_model.dart';
 import 'package:provider/provider.dart';
-
+import 'package:line_icons/line_icons.dart';
 import '../provider/loginAuthProvider.dart';
 
 class OrderPgTiles extends StatelessWidget {
@@ -19,7 +19,7 @@ class OrderPgTiles extends StatelessWidget {
     final createddate = DateTime.parse(order.createdDate!);
     return GestureDetector(
       onTap: () {
-        OrderDetailsDialog(context);                           
+        OrderDetailsDialog(context);
       },
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
@@ -148,6 +148,7 @@ class OrderPgTiles extends StatelessWidget {
               width: 80.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "${createddate.day}/${createddate.month}/${createddate.year} ",
@@ -158,21 +159,41 @@ class OrderPgTiles extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 2.5.h,
-                    width: 18.w,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/deliveryStatus", arguments: order.orderNo);
-                      },
-                      style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.green.shade400),
-                          padding: const EdgeInsets.all(1)),
-                      child: Text(
-                        "Order Again",
-                        style: GoogleFonts.inter(
-                            color: Colors.green.shade400,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w500),
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/deliveryStatus",
+                                arguments: order.orderNo);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            child: Icon(
+                              LineIcons.alternateMapMarked,
+                              size: 19.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            // Navigator.pushNamed(context, "/deliveryStatus",
+                            //     arguments: order.orderNo);
+                          },
+                          style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: Colors.green.shade400),
+                              padding: const EdgeInsets.all(1)),
+                          child: Text(
+                            "Order Again",
+                            style: GoogleFonts.inter(
+                                color: Colors.green.shade400,
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],

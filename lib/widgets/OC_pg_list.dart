@@ -88,9 +88,7 @@ class _OcpageListState extends State<OcpageList> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.e.productId!.substring(
-                                  widget.e.productId!.length - 6,
-                                  widget.e.productId!.length - 1),
+                              widget.e.productId!,
                               style: GoogleFonts.inter(
                                 fontSize: 15.sp,
                                 letterSpacing: 1,
