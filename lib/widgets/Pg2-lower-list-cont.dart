@@ -59,12 +59,12 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                   height: 15.h,
                   width: 53.w,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       //name of the product
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: SizedBox(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 0.5.h),
                           width: 40.w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,7 +130,6 @@ class _PgLowerListContState extends State<PgLowerListCont> {
 
                       //discription text
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 01.h),
                         child: Text(
                           widget.e.description!,
                           maxLines: 3,
@@ -167,8 +166,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: imageChecker(),
-                              fit: BoxFit.fill),
+                              image: imageChecker(), fit: BoxFit.fill),
                         ),
                       ),
 
