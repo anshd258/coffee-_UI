@@ -28,7 +28,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
   bool page5 = false;
   @override
   Widget build(BuildContext context) {
-    final role = context.watch<LoginAuthProvider>().role;
+    final role = context.watch<LoginAuthProvider>().userRole;
     val = context.read<routing>().gettingroute;
     //switch case for bottom navigaton bar
 
@@ -200,7 +200,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           GestureDetector(
             onTap: () {
               val = 5;
-              if (role == "admin") {
+              if (role == "admin"&& role != null) {
                 context.read<routing>().settingroute = val;
               }
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
+import 'loginhandler/loginsharedpref.dart';
 
 class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
@@ -15,37 +16,34 @@ class LoginAuthProvider with ChangeNotifier {
 
   Future<void> login(
       String pnumber, String roleAssiged, BuildContext context) async {
-    const url = "https://swift-cafe-dev.swifttrackmile.codes/login";
+    setRole(roleAssiged);
+    role = await getRole();
+    notifyListeners();
 
-    await http
-        .post(Uri.parse(url), body: json.encode({"phoneNo": "+91$phoneNumber"}))
-        .then((value) {
-      final response = json.decode(value.body);
-      accessToken = response['token'];
-      role = roleAssiged;
-      if (phoneNumber == "1234567890") role = "admin";
+    if (role == "admin") {
+      print(role);
+      isAdmin = true;
       notifyListeners();
-      if (role == "admin") {
-        isAdmin = true;
-        notifyListeners();
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          "/page2",
-          (route) => false,
-        );
-      } else {
-        isAdmin = false;
-        notifyListeners();
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          "/page2",
-          (route) => false,
-        );
-      }
-    });
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        "/page2",
+        (route) => false,
+      );
+    } else {
+      print(role);
+      isAdmin = false;
+      notifyListeners();
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        "/page2",
+        (route) => false,
+      );
+    }
   }
 
   void logout() {
+    setRole("");
+    isAdmin = false;
     phoneNumber = null;
     accessToken = null;
     role = null;

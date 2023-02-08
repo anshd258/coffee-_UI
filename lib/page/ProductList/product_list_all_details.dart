@@ -8,7 +8,7 @@ import 'package:inter_coffee/widgets/pg3togglebutton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllProductPropertiesRender extends StatefulWidget {
-  final List<Map<String, Object>> choices;
+  final List<Syrups>? choices;
   const AllProductPropertiesRender({super.key, required this.choices});
 
   @override
@@ -113,52 +113,49 @@ class _AllProductPropertiesRenderState
         //     ],
         //   );
         // }).toList(),
-        children: widget.choices.map((e) {
-          Syrups objectOfList = Syrups(
-            name: e['name'].toString(),
-            type: e['type'].toString(),
-            choice: e['choice'] as List<dynamic>,
-          );
+        children: widget.choices != null
+            ? widget.choices!.map((e) {
+                String txt = e.name.toString();
+                int cap = txt.lastIndexOf("_");
+                if (cap > -1) {
+                  txt = txt.replaceRange(
+                      cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
+                }
+                heading = txt;
 
-          String txt = objectOfList.name.toString();
-          int cap = txt.lastIndexOf("_");
-          if (cap > -1) {
-            txt = txt.replaceRange(
-                cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
-          }
-          heading = txt;
+                List<String> list = e.choice!.cast<String>();
+                ansList = list;
+                selecteditem = list[0];
 
-          List<String> list = objectOfList.choice!.cast<String>();
-          ansList = list;
-          selecteditem = list[0];
+                String type = e.type.toString();
 
-          String type = objectOfList.type.toString();
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
-                child: Text(
-                  "Choice of ${txt.replaceFirst(txt[0], txt[0].toUpperCase())}",
-                  style: GoogleFonts.inter(
-                    fontSize: 19.sp,
-                    letterSpacing: 1,
-                    fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(255, 205, 205, 205),
-                  ),
-                ),
-              ),
-              typeClassifier(type),
-              Divider(
-                color: Colors.white70,
-                endIndent: 5.w,
-                indent: 5.w,
-                height: 2.5.h,
-              ),
-            ],
-          );
-        }).toList(),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+                      child: Text(
+                        txt.replaceFirst(txt[0], txt[0].toUpperCase()),
+                        style: GoogleFonts.inter(
+                          fontSize: 19.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w700,
+                          color: const Color.fromARGB(255, 205, 205, 205),
+                        ),
+                      ),
+                    ),
+                    typeClassifier(type),
+                    Divider(
+                      color: Colors.white70,
+                      endIndent: 5.w,
+                      indent: 5.w,
+                      height: 2.5.h,
+                    ),
+                  ],
+                );
+              }).toList()
+            : [],
       ),
     );
   }

@@ -8,24 +8,22 @@ class ProductList {
   ProductList({this.id, this.name, this.img, this.description, this.choice});
 
   ProductList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    img = json['img'];
-    description = json['description'];
-    print(json['choice']);
-    // List<dynamic>? loadedChoice = json['choice'] as List<dynamic>;
-    // if (loadedChoice != null) {
-    //   List<Syrups> loadedchoicesdata = [];
-    //   // print(choicedata);
-    //   loadedChoice.forEach((element) {
-    //     final data = element as Map<String, dynamic>;
-    //     print(data.toString());
-    //     loadedchoicesdata.add(Syrups(
-    //         name: data['name'],
-    //         type: data['type'],
-    //         choice: data['choice'] as List<String>));
-    //   });
-    // }
+    id = json['productId'];
+    name = json['productName'];
+    img = json['productImgLink'];
+    description = json['desc'];
+
+    List<dynamic>? loadedChoice = json['choices'] as List<dynamic>;
+    if (loadedChoice != null) {
+      List<Syrups> loadedchoicesdata = [];
+      // print(choicedata);
+      loadedChoice.forEach((element) {
+        final data = element as Map<String, dynamic>;
+
+        loadedchoicesdata.add(Syrups.fromJson(data));
+      });
+      choice = loadedchoicesdata;
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -50,8 +48,11 @@ class Syrups {
 
   Syrups.fromJson(Map<String, dynamic> json) {
     name = json['name'];
+    print(name);
     type = json['type'];
+    print(type);
     choice = json['choice'].cast<String>();
+    print(choice);
   }
 
   Map<String, dynamic> toJson() {

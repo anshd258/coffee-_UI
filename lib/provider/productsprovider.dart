@@ -18,14 +18,15 @@ class ProductsProvider with ChangeNotifier {
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessToken',
     });
-    final responseData = json.decode(response.body) as List<dynamic>;
+    final responseData = json.decode(response.body);
     final List<ProductList> loadedorders = [];
+    final loadData = responseData['data'] as List<dynamic>;
 
-    for (var element in responseData) {
+    loadData.forEach((element) {
       final data = element as Map<String, dynamic>;
-      print(data);
+
       loadedorders.add(ProductList.fromJson(data));
-    }
+    });
     print(loadedorders.first.choice.toString());
     products = loadedorders;
     notifyListeners();

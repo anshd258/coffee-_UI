@@ -19,23 +19,23 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   //dropdown meenue state
   var dropdownvalue = 1;
 
-  final choices = [
-    {
-      "name": "Syrup",
-      "type": "Check_Box",
-      "choice": ["Vanilla", "Chocolate", "Stwaberry"]
-    },
-    {
-      "name": "Filling",
-      "type": "List",
-      "choice": ["Hazelnut", "Caremul", "Pina Colada"]
-    },
-    {
-      "name": "Suger",
-      "type": "Drop_Down",
-      "choice": ["2 X Suger", "1/3 X Suger  ", "3/4 X Suger"]
-    }
-  ];
+  // final choices = [
+  //   {
+  //     "name": "Syrup",
+  //     "type": "Check_Box",
+  //     "choice": ["Vanilla", "Chocolate", "Stwaberry"]
+  //   },
+  //   {
+  //     "name": "Filling",
+  //     "type": "List",
+  //     "choice": ["Hazelnut", "Caremul", "Pina Colada"]
+  //   },
+  //   {
+  //     "name": "Suger",
+  //     "type": "Drop_Down",
+  //     "choice": ["2 X Suger", "1/3 X Suger  ", "3/4 X Suger"]
+  //   }
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -470,7 +470,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
               // ),
 
               Expanded(
-                child: AllProductPropertiesRender(choices: choices),
+                child: AllProductPropertiesRender(choices: productsList.choice),
               ),
             ],
           ),

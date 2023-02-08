@@ -21,7 +21,6 @@ class _Page3State extends State<Page3> {
   void initState() {
     ctr.addListener(() {
       setState(() {
-        print(ctr.offset);
         if (ctr.offset == 0) {
           offset = 40;
         } else {
@@ -36,8 +35,6 @@ class _Page3State extends State<Page3> {
   Widget build(BuildContext context) {
     final ProductList args =
         ModalRoute.of(context)?.settings.arguments as ProductList;
-
-    print(args.name);
 
     //page 3 scaffold
     return Scaffold(
