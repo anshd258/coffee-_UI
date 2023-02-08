@@ -71,15 +71,15 @@ class ProfilepgMid extends StatelessWidget {
           ),
           SizedBox(
             width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    context.read<OrderHistory>().fetchOrders();
-                    Navigator.pushNamed(context, "/orderspg");
-                  },
-                  child: Row(
+            child: GestureDetector(
+              onTap: () {
+                context.read<OrderHistory>().fetchOrders();
+                Navigator.pushNamed(context, "/orderspg");
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
                       GlassContainer.frostedGlass(
                         height: 4.h,
@@ -110,14 +110,14 @@ class ProfilepgMid extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                Transform.rotate(
-                    angle: pi / 180 * 180,
-                    child: Image.asset(
-                      "assets/ICONS/arrow3.png",
-                      scale: 3,
-                    )),
-              ],
+                  Transform.rotate(
+                      angle: pi / 180 * 180,
+                      child: Image.asset(
+                        "assets/ICONS/arrow3.png",
+                        scale: 3,
+                      )),
+                ],
+              ),
             ),
           ),
           Divider(

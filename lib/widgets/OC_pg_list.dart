@@ -38,7 +38,7 @@ class _OcpageListState extends State<OcpageList> {
           // onTap: () =>
           //     Navigator.of(context).pushNamed('/page3', arguments: widget.e),
           child: GlassContainer.frostedGlass(
-            height: 15.h,
+            height: 16.h,
             width: 93.w,
             borderWidth: 0,
             blur: 17,
@@ -57,18 +57,16 @@ class _OcpageListState extends State<OcpageList> {
 
                 Center(
                   child: GlassContainer.frostedGlass(
-                    height: 12.h,
+                    height: 13.h,
                     width: 25.w,
                     borderColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
-                    padding: EdgeInsets.only(top: 1.h, left: 1.h),
                     alignment: Alignment.center,
                     child: const Image(
                       image: AssetImage(
                           // widget.e["imageUrl"],
                           "assets/7.jpg"),
-                      fit: BoxFit.contain,
-                      alignment: Alignment.bottomRight,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -76,7 +74,7 @@ class _OcpageListState extends State<OcpageList> {
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
-                  height: 13.h,
+                  height: 14.h,
                   width: 60.w,
                   margin: EdgeInsets.only(left: 3.w),
                   child: Column(
@@ -201,37 +199,44 @@ class _OcpageListState extends State<OcpageList> {
                         color: Colors.black45,
                       ),
                       SizedBox(
-                        height: 3.h,
-                        width: 58.w,
+                        height: 4.h,
+                        width: 60.w,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(28.w, 3.h),
-                              ),
-                              child: Text(
-                                "Instructions for Cafe",
-                                style: GoogleFonts.inter(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: const Color.fromARGB(
-                                        255, 197, 197, 197)),
+                            GestureDetector(
+                              onTap: () {},
+                              child: SizedBox(
+                                width: 32.w,
+                                height: 4.h,
+                                child: Center(
+                                  child: Text(
+                                    "Instructions for Cafe",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color.fromARGB(
+                                            255, 197, 197, 197)),
+                                  ),
+                                ),
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(23.w, 3.h),
-                              ),
-                              child: Text(
-                                "Add More Items",
-                                style: GoogleFonts.inter(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: const Color.fromARGB(
-                                        255, 197, 197, 197)),
+                            GestureDetector(
+                              onTap: () {},
+                              child: SizedBox(
+                                width: 28.w,
+                                height: 4.h,
+                                child: Center(
+                                  child: Text(
+                                    "Add More Items",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color.fromARGB(
+                                            255, 197, 197, 197)),
+                                  ),
+                                ),
                               ),
                             )
                           ],

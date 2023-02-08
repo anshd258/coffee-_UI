@@ -221,18 +221,18 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
             indent: 5.w,
             height: 2.5.h,
           ),
-          SizedBox(
-            width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    context.read<routing>().settingroute = 1;
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, "/", (route) => false);
-                  },
-                  child: Row(
+          GestureDetector(
+            onTap: () {
+              context.read<routing>().settingroute = 1;
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/", (route) => false);
+            },
+            child: SizedBox(
+              width: 85.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
                       GlassContainer.frostedGlass(
                         height: 4.h,
@@ -262,14 +262,14 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                       ),
                     ],
                   ),
-                ),
-                Transform.rotate(
-                    angle: pi / 180 * 180,
-                    child: Image.asset(
-                      "assets/ICONS/arrow3.png",
-                      scale: 3,
-                    )),
-              ],
+                  Transform.rotate(
+                      angle: pi / 180 * 180,
+                      child: Image.asset(
+                        "assets/ICONS/arrow3.png",
+                        scale: 3,
+                      )),
+                ],
+              ),
             ),
           ),
         ],

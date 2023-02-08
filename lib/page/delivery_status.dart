@@ -420,9 +420,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   padding:
                                       EdgeInsets.only(left: 9.w, right: 9.w),
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      OrderDetailsDialog(context);
-                                    },
+                                    onPressed: () {},
                                     style: ElevatedButton.styleFrom(
                                         elevation: 5,
                                         fixedSize: Size(50.w, 4.5.h),
