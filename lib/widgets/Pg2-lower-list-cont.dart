@@ -19,10 +19,13 @@ class _PgLowerListContState extends State<PgLowerListCont> {
   @override
   Widget build(BuildContext context) {
     ImageProvider<Object> imageChecker() {
-      if (widget.e.img != null) {
-        return NetworkImage(widget.e.img!);
-      }
-      return AssetImage('7.jpg');
+      // print(widget.e.img);
+      // if (widget.e.img == "coffee-1.jpeg") widget.e.img = "assets/7.jpg";
+      // print(widget.e.img);
+      // if (widget.e.img != null) {
+      //   return NetworkImage(widget.e.img!);
+      // }
+      return AssetImage('assets/7.jpg');
     }
 
     return Column(
@@ -72,7 +75,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                               Text(
                                 widget.e.name!,
                                 style: GoogleFonts.inter(
-                                  fontSize: 18.sp,
+                                  fontSize: 17.5.sp,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.w500,
                                   color: titleUserList,
@@ -131,13 +134,15 @@ class _PgLowerListContState extends State<PgLowerListCont> {
                       //discription text
                       Container(
                         child: Text(
-                          widget.e.description!,
+                          widget.e.description == null
+                              ? "No Available Description"
+                              : widget.e.description!,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.inter(
                               color: userTileDesc,
                               // color: Color.fromARGB(160, 255, 255, 255),
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               textStyle: const TextStyle(
                                 wordSpacing: 1,
                               )),

@@ -1,4 +1,5 @@
 import 'package:inter_coffee/main.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 import 'package:flutter/material.dart';
@@ -166,6 +167,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           ),
           GestureDetector(
             onTap: () {
+              context.read<CartProductsProvider>().clearCart();
               if (widget.phonenumber == "1234567890") {
                 context
                     .read<LoginAuthProvider>()

@@ -146,7 +146,8 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     padding: EdgeInsets.only(left: 9.w, right: 9.w),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, "/orderspg");
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, "/page2", (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 5,

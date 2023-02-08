@@ -23,6 +23,7 @@ class _OrderStatusState extends State<OrderStatus> {
   // bool visible = false;
   @override
   Widget build(BuildContext context) {
+    final orderid = ModalRoute.of(context)!.settings.arguments as String;
     return Container(
       height: 100.h,
       width: 100.w,
@@ -92,7 +93,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("1 Latte",
+                                      Text(orderid,
                                           textAlign: TextAlign.start,
                                           style: GoogleFonts.inter(
                                               color: white,
@@ -101,21 +102,6 @@ class _OrderStatusState extends State<OrderStatus> {
                                       const SizedBox(
                                         height: 3,
                                       ),
-                                      Text("Full, Full Cream Milk, Sugar X 1",
-                                          textAlign: TextAlign.start,
-                                          style: GoogleFonts.inter(
-                                              color: white,
-                                              fontSize: 11.sp,
-                                              fontWeight: FontWeight.w200)),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text("#Order000001",
-                                          textAlign: TextAlign.start,
-                                          style: GoogleFonts.inter(
-                                              color: white,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500)),
                                     ],
                                   )
                                 ],
@@ -420,9 +406,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   padding:
                                       EdgeInsets.only(left: 9.w, right: 9.w),
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      OrderDetailsDialog(context);
-                                    },
+                                    onPressed: () {},
                                     style: ElevatedButton.styleFrom(
                                         elevation: 5,
                                         fixedSize: Size(50.w, 4.5.h),

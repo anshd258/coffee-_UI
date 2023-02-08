@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/ordertiles.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,7 @@ class _OrderPgState extends State<OrderPg> {
                     GoogleFonts.inter(color: titleStatusBar, fontSize: 17.sp)),
             leading: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/page2");
+                Navigator.pop(context);
               },
               child: Image.asset(
                 "assets/ICONS/arrow3.png",

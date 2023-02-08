@@ -16,24 +16,6 @@ class Orderconfirmationpg extends StatefulWidget {
 }
 
 class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
-  List<Widget> emptyList = [];
-  Future<void> emptyCart() async {
-    Future.delayed(Duration(seconds: 1), () {
-      emptyList.add(Container(
-          width: 100.w,
-          height: 90.h,
-          alignment: Alignment.center,
-          child: Text(
-            "Add Something To Order 😋",
-            style: GoogleFonts.quicksand(
-                fontSize: 17.sp,
-                fontWeight: FontWeight.w400,
-                color: Colors.white70),
-          )));
-      setState(() {});
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     List<orderProduct> productsInfo =
@@ -80,7 +62,19 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: productsInfo.isEmpty
-                          ? emptyList
+                          ? [
+                              Container(
+                                  width: 100.w,
+                                  height: 90.h,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "Add Something To Order 😋",
+                                    style: GoogleFonts.quicksand(
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white70),
+                                  )),
+                            ]
                           : productsInfo.map((e) {
                               return OcpageList(e: e);
                             }).toList(),
@@ -97,7 +91,7 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                       onPressed: () {
                         Navigator.pushNamed(context, "/orderdetailsPg");
                         context.read<CartProductsProvider>().clearCart();
-                        emptyCart();
+                        setState(() {});
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 5,

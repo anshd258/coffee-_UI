@@ -12,26 +12,20 @@ class ProductList {
     name = json['name'];
     img = json['img'];
     description = json['description'];
-    Map<String, dynamic>? choicedata =
-        json['choice'] != null ? json['choice'] as Map<String, dynamic> : null;
-    if (choicedata != null) {
-      List<Syrups> loadedchoices = [];
-      // print(choicedata);
-      for (var element in choicedata.entries) {
-        final data = element;
-
-        loadedchoices.add(Syrups(
-            name: data.key,
-            type: data.value['type'].toString(),
-            choice: data.value['choice'] != null
-                ? data.value['choice'] as List<dynamic>
-                : null));
-      }
-      print(loadedchoices.first.name);
-      print(loadedchoices.first.type);
-      print(loadedchoices.first.choice.toString());
-      choice = loadedchoices;
-    }
+    print(json['choice']);
+    // List<dynamic>? loadedChoice = json['choice'] as List<dynamic>;
+    // if (loadedChoice != null) {
+    //   List<Syrups> loadedchoicesdata = [];
+    //   // print(choicedata);
+    //   loadedChoice.forEach((element) {
+    //     final data = element as Map<String, dynamic>;
+    //     print(data.toString());
+    //     loadedchoicesdata.add(Syrups(
+    //         name: data['name'],
+    //         type: data['type'],
+    //         choice: data['choice'] as List<String>));
+    //   });
+    // }
   }
 
   Map<String, dynamic> toJson() {

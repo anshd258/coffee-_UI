@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../models/order_details_model.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,9 @@ class OrderPgTiles extends StatelessWidget {
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(order.createdDate!);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        OrderDetailsDialog(context);                           
+      },
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
         height: 19.h,
@@ -158,7 +161,7 @@ class OrderPgTiles extends StatelessWidget {
                     width: 18.w,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, "/deliveryStatus");
+                        Navigator.pushNamed(context, "/deliveryStatus", arguments: order.orderNo);
                       },
                       style: OutlinedButton.styleFrom(
                           side: BorderSide(color: Colors.green.shade400),

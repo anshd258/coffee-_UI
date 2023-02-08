@@ -150,6 +150,12 @@ class _AllProductPropertiesRenderState
                 ),
               ),
               typeClassifier(type),
+              Divider(
+                color: Colors.white70,
+                endIndent: 5.w,
+                indent: 5.w,
+                height: 2.5.h,
+              ),
             ],
           );
         }).toList(),

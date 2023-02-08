@@ -11,7 +11,6 @@ class ProductsProvider with ChangeNotifier {
     return products;
   }
 
- 
   Future<void> getproducts() async {
     const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
@@ -24,7 +23,7 @@ class ProductsProvider with ChangeNotifier {
 
     for (var element in responseData) {
       final data = element as Map<String, dynamic>;
-
+      print(data);
       loadedorders.add(ProductList.fromJson(data));
     }
     print(loadedorders.first.choice.toString());
