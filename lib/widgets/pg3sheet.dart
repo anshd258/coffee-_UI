@@ -21,20 +21,20 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
 
   final choices = [
     {
-      "choice": ["Vanilla", "Chocolate", "Swaberry"],
-      "name": "syrup",
-      "type": "Check_Box"
+      "name": "Syrup",
+      "type": "Check_Box",
+      "choice": ["Vanilla", "Chocolate", "Stwaberry"]
     },
     {
-      "choice": ["Vanilla", "Chocolate", "Swaberry"],
-      "name": "syrup",
-      "type": "List"
+      "name": "Filling",
+      "type": "List",
+      "choice": ["Hazelnut", "Caremul", "Pina Colada"]
     },
     {
-      "choice": ["Vanilla", "Chocolate", "Swaberry"],
-      "name": "syrup",
-      "type": "Drop_Down"
-    },
+      "name": "Suger",
+      "type": "Drop_Down",
+      "choice": ["2 X Suger", "1/3 X Suger  ", "3/4 X Suger"]
+    }
   ];
 
   @override
