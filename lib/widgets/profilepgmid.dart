@@ -16,7 +16,7 @@ class ProfilepgMid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final token = context.watch<LoginAuthProvider>().accessToken;
+    // final token = context.watch<LoginAuthProvider>().accessToken;
     return GlassContainer.frostedGlass(
       height: 24.h,
       width: 90.w,

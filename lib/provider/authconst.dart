@@ -1,2 +1,2 @@
-final accessToken =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0NDk5NDA1MTQiLCJpc1VzZXIiOnRydWUsImV4cCI6MTY4MTkxNzc4OCwidXNlcklkIjoiNTIzYjg2MDEtMzdlYS00ZmYyLTg4NmYtYmNjYWMyOWYxZWM2IiwiaWF0IjoxNjc1ODY5Nzg4fQ.lA8OWEvL9FjulXY6Suu7oeyN8ZwQnZ6Wq-9IQDd0LqJ7F3oe4tdstgcmVZMK-BYkHtvvF7EMCWTFU12R227nbg";
+String? accessTokken;
+final baseurl = "https://swift-cafe-dev.swifttrackmile.codes";

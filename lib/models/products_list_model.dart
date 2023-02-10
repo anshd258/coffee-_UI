@@ -48,11 +48,11 @@ class Syrups {
 
   Syrups.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    print(name);
+
     type = json['type'];
-    print(type);
+
     choice = json['choice'].cast<String>();
-    print(choice);
+
   }
 
   Map<String, dynamic> toJson() {

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -223,6 +224,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
           ),
           GestureDetector(
             onTap: () {
+              context.read<LoginAuthProvider>().logout();
               context.read<routing>().settingroute = 1;
               Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
             },
