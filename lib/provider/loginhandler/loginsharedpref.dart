@@ -19,6 +19,6 @@ Future<void> setToken(String tokken) async {
 
 Future<void> setRole(String role) async {
   final SharedPreferences instence = await SharedPreferences.getInstance();
-  role == "admin" ? isAdmin = true : isAdmin = false;
+  role == "admin" || role == "ADMIN" ? isAdmin = true : isAdmin = false;
   instence.setString("role", role);
 }

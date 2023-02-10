@@ -21,7 +21,7 @@ class LoginAuthProvider with ChangeNotifier {
     if (pnumber == "1234567890" || phoneNumber == "1234567890") role = "admin";
     notifyListeners();
 
-    if (role == "admin") {
+    if (role == "admin" || role == "ADMIN" ) {
       print(role);
       isAdmin = true;
       notifyListeners();
