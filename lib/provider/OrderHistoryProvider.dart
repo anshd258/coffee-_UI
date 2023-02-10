@@ -1,4 +1,5 @@
 import 'dart:convert';
+import './loginhandler/loginsharedpref.dart';
 import './loginAuthProvider.dart';
 import 'authconst.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class OrderHistory with ChangeNotifier {
   }
 
   Future<void> fetchOrders() async {
+   final accessTokken = await getToken();
     const url = 'https://swift-cafe-dev.swifttrackmile.codes/orderHistory';
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
