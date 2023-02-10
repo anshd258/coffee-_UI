@@ -14,7 +14,7 @@ class MyData with ChangeNotifier {
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $accessToken',
+      'Authorization': 'Bearer $accessTokken',
     });
     final decodedData = json.decode(response.body) as Map<String, dynamic>;
     if (decodedData['message'] == 'SUCCESS') {

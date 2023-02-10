@@ -12,11 +12,12 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<void> getproducts() async {
+    print(" new access tokken $accessTokken");
     const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $accessToken',
+      'Authorization': 'Bearer $accessTokken',
     });
     final responseData = json.decode(response.body);
     final List<ProductList> loadedorders = [];
@@ -27,7 +28,7 @@ class ProductsProvider with ChangeNotifier {
 
       loadedorders.add(ProductList.fromJson(data));
     });
-    print(loadedorders.first.choice.toString());
+
     products = loadedorders;
     notifyListeners();
   }

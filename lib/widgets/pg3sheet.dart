@@ -58,10 +58,10 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
       children: [
         //main glasscontainer
         GlassContainer.frostedGlass(
-          height: 155.h,
+          height: (50 + productsList.choice!.length * 25).h,
           width: 100.w,
           blur: 20,
-          frostedOpacity: 0.04,
+          frostedOpacity: 0.00,
           color: const Color.fromARGB(25, 189, 189, 189),
           borderColor: Colors.transparent,
           borderRadius: const BorderRadius.vertical(
@@ -209,9 +209,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                       )),
                 ),
               ),
-              SizedBox(
-                height: 3.h,
-              ),
+
               // Row(
               //   children: [
               //     SizedBox(
