@@ -20,6 +20,7 @@ class LoginAuthProvider with ChangeNotifier {
         body:
             json.encode({"phoneNo": pnumber, "deviceToken": "14", "otp": OTP}));
     final loadedData = json.decode(response.body);
+    print(loadedData);
 
     if (response.statusCode == 200) {
       if (loadedData['role'] == 'USER') {

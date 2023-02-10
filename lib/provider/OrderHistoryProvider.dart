@@ -46,7 +46,7 @@ class OrderHistory with ChangeNotifier {
           nextStateEstTime: orderData['next_state_est_time'],
           priority: orderData['priority'],
         ));
-        print(_orderList[0].orderId);
+        print(_orderList.last.orderNo);
       });
       // _orderList = loadedOrders;
       notifyListeners();

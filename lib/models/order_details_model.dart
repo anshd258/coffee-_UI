@@ -19,7 +19,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
     if (json['orderNo'] == null) {
-      orderNo = "0000";
+      orderNo = json['orderId'];
     } else {
       orderNo = json['orderNo'];
     }
