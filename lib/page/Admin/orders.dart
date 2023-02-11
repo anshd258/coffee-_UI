@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../widgets/Admin/reportstable.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -19,6 +22,13 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
+  late String placedOrders;
+  @override
+  void initState() async {
+    placedOrders = await context.watch<OrdersTable>().getOrdersPlaced();
+    super.initState();
+  }
+
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
   final String json1 =
@@ -359,7 +369,8 @@ class _OrdersState extends State<Orders> {
                           ),
                           if (tappedIndex <= 2) ...[
                             JsonTable(
-                              json = callRightJSON(tappedIndex),
+                              // json = callRightJSON(tappedIndex),
+                              jsonDecode(placedOrders),
                               // onRowSelect: (index, map) {
                               //   ConfirmDialog(context, map);
                               // },
