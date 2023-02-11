@@ -23,7 +23,7 @@ class LoginAuthProvider with ChangeNotifier {
     print(loadedData);
     if (response.statusCode == 200) {
       if (loadedData['role'] == 'USER') {
-        await setRole('user');
+        await setRole('admin');
       } else {
         await setRole('admin');
       }
