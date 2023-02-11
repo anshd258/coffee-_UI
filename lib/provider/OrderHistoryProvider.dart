@@ -26,29 +26,30 @@ class OrderHistory with ChangeNotifier {
     print(responseData.toString());
     if (responseData['message'] == 'SUCCESS') {
       print("sucess");
-      _orderList.add(OrderDetails(
-          orderId: "13214",
-          priority: false,
-          orderNo: "1212",
-          createdDate: "2023-01-25T12:37:25.010+00:00",
-          currentState: "progress"));
-      notifyListeners();
+      // _orderList.add(Data(
+      //     orderId: "13214",
+      //     priority: false,
+      //     orderNo: "1212",
+      //     createdDate: "2023-01-25T12:37:25.010+00:00",
+      //     currentState: "progress"));
+      // notifyListeners();
       // final List<Data> loadedOrders = [];
-      // responseData['data'].forEach((orderData) {
-      //   loadedOrders.add(Data(
-      //     orderId: orderData['orderId'],
-      //     orderNo: orderData['orderNo'],
-      //     userId: UserId(
-      //       id: orderData['userId']['id'],
-      //       phoneNo: orderData['userId']['phoneNo'],
-      //       name: orderData['userId']['name'],
-      //     ),
-      //     createdDate: orderData['createdDate'],
-      //     currentState: orderData['currentState'],
-      //     nextStateEstTime: orderData['next_state_est_time'],
-      //     priority: orderData['priority'],
-      //   ));
-      // });
+      responseData['data'].forEach((orderData) {
+        _orderList.add(OrderDetails(
+          orderId: orderData['orderId'],
+          orderNo: orderData['orderNo'],
+          userId: UserId(
+            id: orderData['userId']['id'],
+            phoneNo: orderData['userId']['phoneNo'],
+            name: orderData['userId']['name'],
+          ),
+          createdDate: orderData['createdDate'],
+          currentState: orderData['currentState'],
+          nextStateEstTime: orderData['next_state_est_time'],
+          priority: orderData['priority'],
+        ));
+        print(_orderList.last.orderNo);
+      });
       // _orderList = loadedOrders;
       notifyListeners();
     }

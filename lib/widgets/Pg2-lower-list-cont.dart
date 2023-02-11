@@ -22,9 +22,9 @@ class _PgLowerListContState extends State<PgLowerListCont> {
       // print(widget.e.img);
       // if (widget.e.img == "coffee-1.jpeg") widget.e.img = "assets/7.jpg";
       // print(widget.e.img);
-      // if (widget.e.img != null) {
-      //   return NetworkImage(widget.e.img!);
-      // }
+      if (widget.e.img != null) {
+        return NetworkImage(widget.e.img!);
+      }
       return AssetImage('assets/7.jpg');
     }
 

@@ -18,8 +18,11 @@ class OrderDetails {
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
-    orderNo = json['orderNo'];
-    print(json['userId']);
+    if (json['orderNo'] == null) {
+      orderNo = json['orderId'];
+    } else {
+      orderNo = json['orderNo'];
+    }
     userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
     createdDate = json['createdDate'];
     currentState = json['currentState'];

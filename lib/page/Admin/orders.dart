@@ -1,4 +1,8 @@
 import 'dart:convert';
+import 'package:inter_coffee/page/Admin/homepage.dart';
+import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../widgets/Admin/reportstable.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -19,6 +23,21 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
+  void getPlacedOrdersList() async {
+    await getOrdersPlaced();
+  }
+
+  @override
+  void initState() {
+    getPlacedOrdersList();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
   final String json1 =
@@ -358,117 +377,131 @@ class _OrdersState extends State<Orders> {
                             height: 2.h,
                           ),
                           if (tappedIndex <= 2) ...[
-                            JsonTable(
-                              json = callRightJSON(tappedIndex),
-                              // onRowSelect: (index, map) {
-                              //   ConfirmDialog(context, map);
-                              // },
-                              tableHeaderBuilder: (header) {
-                                headerVal = header.toString();
-                                return Container(
-                                  padding: EdgeInsets.all(2.w),
-                                  decoration: BoxDecoration(
-                                    color: tableBlack,
-                                    border: Border.all(color: borderWhite),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      header.toString(),
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.inter(
-                                          color: white,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ),
-                                );
-                              },
-                              tableCellBuilder: (value) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    if (headerVal == "Order Status" &&
-                                        value == "Pending") {
-                                      OrderETA_Dialvog(context);
-                                    }
-                                    if (headerVal == "Order Status" &&
-                                        value == "Confirmed") {
-                                      ConfirmDialog(context, "READY TO PICK UP",
-                                          () {
-                                        Navigator.pushNamed(
-                                            context, "/OrderConfirmed");
-                                      });
-                                    }
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(2.w),
-                                    decoration: BoxDecoration(
-                                      color: tableBlack,
-                                      border: Border.all(color: borderWhite),
-                                    ),
-                                    child: Center(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            value,
-                                            textAlign: TextAlign.start,
-                                            style: GoogleFonts.inter(
-                                                textStyle:
-                                                    headerVal == "Order Details"
-                                                        ? const TextStyle(
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                          )
-                                                        : null,
-                                                color: headerVal ==
-                                                        "Order Details"
-                                                    ? orderDetailsGreen
-                                                    : headerVal ==
-                                                            "Order Status"
-                                                        ? value != "Pending" &&
-                                                                value !=
-                                                                    "Cancelled"
-                                                            ? orderDetailsGreen
-                                                            : value == "Pending"
-                                                                ? pending
-                                                                : value ==
-                                                                        "Cancelled"
-                                                                    ? cancelled
-                                                                    : white
-                                                        : white,
-                                                fontSize: 14.sp,
-                                                fontWeight: headerVal ==
-                                                        "Order Details"
-                                                    ? FontWeight.w500
-                                                    : headerVal ==
-                                                            "Order Status"
-                                                        ? value != "Confirmed"
-                                                            ? FontWeight.w500
-                                                            : FontWeight.w400
-                                                        : FontWeight.w400),
-                                          ),
-                                          headerVal == "Order Details"
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    OrderDetailsDialog(context);
-                                                  },
+                            FutureBuilder<String>(
+                                future: getOrdersPlaced(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return JsonTable(
+                                            // json = callRightJSON(tappedIndex),
+                                            jsonDecode(snapshot.data!),
+                                            // onRowSelect: (index, map) {
+                                            //   ConfirmDialog(context, map);
+                                            // },
+                                            tableHeaderBuilder: (header) {
+                                              headerVal = header.toString();
+                                              return Container(
+                                                padding: EdgeInsets.all(2.w),
+                                                decoration: BoxDecoration(
+                                                  color: tableBlack,
+                                                  border: Border.all(
+                                                      color: borderWhite),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    header.toString(),
+                                                    textAlign: TextAlign.start,
+                                                    style: GoogleFonts.inter(
+                                                        color: white,
+                                                        fontSize: 14.sp,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            tableCellBuilder: (value) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  if (headerVal ==
+                                                          "Order Status" &&
+                                                      value == "Pending") {
+                                                    OrderETA_Dialvog(context);
+                                                  }
+                                                  if (headerVal ==
+                                                          "Order Status" &&
+                                                      value == "Confirmed") {
+                                                    ConfirmDialog(context,
+                                                        "READY TO PICK UP", () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          "/OrderConfirmed");
+                                                    });
+                                                  }
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(2.w),
+                                                  decoration: BoxDecoration(
+                                                    color: tableBlack,
+                                                    border: Border.all(
+                                                        color: borderWhite),
+                                                  ),
                                                   child: Center(
-                                                    child: Icon(
-                                                      Icons
-                                                          .remove_red_eye_outlined,
-                                                      color: white,
-                                                      size: 19.5.sp,
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          value,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: GoogleFonts.inter(
+                                                              textStyle: headerVal == "Order Details"
+                                                                  ? const TextStyle(
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .underline,
+                                                                    )
+                                                                  : null,
+                                                              color: headerVal == "Order Details"
+                                                                  ? orderDetailsGreen
+                                                                  : headerVal == "Order Status"
+                                                                      ? value != "Pending" && value != "Cancelled"
+                                                                          ? orderDetailsGreen
+                                                                          : value == "Pending"
+                                                                              ? pending
+                                                                              : value == "Cancelled"
+                                                                                  ? cancelled
+                                                                                  : white
+                                                                      : white,
+                                                              fontSize: 14.sp,
+                                                              fontWeight: headerVal == "Order Details"
+                                                                  ? FontWeight.w500
+                                                                  : headerVal == "Order Status"
+                                                                      ? value != "Confirmed"
+                                                                          ? FontWeight.w500
+                                                                          : FontWeight.w400
+                                                                      : FontWeight.w400),
+                                                        ),
+                                                        headerVal ==
+                                                                "Order Details"
+                                                            ? GestureDetector(
+                                                                onTap: () {
+                                                                  OrderDetailsDialog(
+                                                                      context);
+                                                                },
+                                                                child: Center(
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .remove_red_eye_outlined,
+                                                                    color:
+                                                                        white,
+                                                                    size:
+                                                                        19.5.sp,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : const Text("")
+                                                      ],
                                                     ),
                                                   ),
-                                                )
-                                              : const Text("")
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                  } else {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                }),
                           ] else ...[
                             ReportsTable()
                           ],
