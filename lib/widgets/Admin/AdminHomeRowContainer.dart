@@ -12,7 +12,7 @@ class AdminHomeRowContainer extends StatelessWidget {
       required this.products,
       required this.onTap});
 
-  final String orderId;
+  final String? orderId;
   final List products;
   final VoidCallback onTap;
 
@@ -54,13 +54,15 @@ class AdminHomeRowContainer extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: Text(
-                orderId,
-                style: GoogleFonts.inter(
-                    color: Colors.white70,
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.w600),
-              ),
+              child: orderId == null
+                  ? CircularProgressIndicator.adaptive()
+                  : Text(
+                      orderId!.substring(orderId!.length-10, orderId!.length),
+                      style: GoogleFonts.inter(
+                          color: Colors.white70,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w600),
+                    ),
             ),
             GestureDetector(
               onTap: () => OrderDetailsDialog(context),

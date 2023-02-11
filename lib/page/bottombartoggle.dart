@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../provider/merchantProvider/priorityordercount.dart';
 import './page-2.dart';
 import './profilepg.dart';
 import './order-confirmation-pg.dart';
@@ -27,14 +31,30 @@ class _ToggleState extends State<Toggle> {
       child: Stack(children: [
         if (id == 1) ...[
           const page_2()
-        ] else if ( id == 2 ) ...[
+        ] else if (id == 2) ...[
           const Profilepg()
         ] else if (id == 3) ...[
           const NotificationPg()
         ] else if (id == 4) ...[
           const Orderconfirmationpg()
         ] else if (id == 5) ...[
-          const AdminHome()
+          MultiProvider(
+            providers: [
+               ChangeNotifierProvider<AllOrderProvider>(
+                create: (context) => AllOrderProvider(),
+              ),
+               ChangeNotifierProvider<PriorityOrderProvider>(
+                create: (context) => PriorityOrderProvider(),
+              ),
+              ChangeNotifierProvider<PriorityOrderCount>(
+                create: (context) => PriorityOrderCount(),
+              ),
+              ChangeNotifierProvider<TotalOrderCount>(
+                create: (context) => TotalOrderCount(),
+              ),
+            ],
+            child: AdminHome(),
+          )
         ],
         Positioned(
           bottom: -0.5.h,

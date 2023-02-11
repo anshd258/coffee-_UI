@@ -12,8 +12,8 @@ class ProductList {
     name = json['productName'];
     img = json['productImgLink'];
     description = json['desc'];
-
-    List<dynamic>? loadedChoice = json['choices'] as List<dynamic>;
+ 
+    List<dynamic>? loadedChoice = json['choices'];
     if (loadedChoice != null) {
       List<Syrups> loadedchoicesdata = [];
       // print(choicedata);
@@ -52,7 +52,6 @@ class Syrups {
     type = json['type'];
 
     choice = json['choice'].cast<String>();
-
   }
 
   Map<String, dynamic> toJson() {

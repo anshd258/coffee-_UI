@@ -10,7 +10,7 @@ import 'package:line_icons/line_icons.dart';
 import '../provider/loginAuthProvider.dart';
 
 class OrderPgTiles extends StatelessWidget {
-  final Data order;
+  final OrderDetails order;
   const OrderPgTiles({Key? key, required this.order}) : super(key: key);
 
   @override

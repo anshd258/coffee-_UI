@@ -7,9 +7,9 @@ import '../models/order_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class OrderHistory with ChangeNotifier {
-  final List<Data> _orderList = [];
+  final List<OrderDetails> _orderList = [];
 
-  List<Data> get History {
+  List<OrderDetails> get History {
     return _orderList;
   }
 
@@ -26,7 +26,7 @@ class OrderHistory with ChangeNotifier {
     print(responseData.toString());
     if (responseData['message'] == 'SUCCESS') {
       print("sucess");
-      _orderList.add(Data(
+      _orderList.add(OrderDetails(
           orderId: "13214",
           priority: false,
           orderNo: "1212",

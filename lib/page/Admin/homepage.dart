@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_details_model.dart';
+import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../provider/merchantProvider/priorityOrderWithStatus.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
+import '../../provider/merchantProvider/priorityordercount.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -36,7 +42,22 @@ class _AdminHomeState extends State<AdminHome> {
     },
   ];
   @override
+  void initState() {
+    context.read<PriorityOrderCount>().getCount();
+    context.read<TotalOrderCount>().getCount();
+    context.read<AllOrderProvider>().getOrders();
+    context.read<PriorityOrderProvider>().getPriorityOrders();
+    super.initState();
+  }
+
+  List<OrderDetails>? listOfOrders;
+  List<OrderDetails>? priorityOrder;
+  @override
   Widget build(BuildContext context) {
+    final priorityCount = context.watch<PriorityOrderCount>().count;
+    final totalCount = context.watch<TotalOrderCount>().count;
+    listOfOrders = context.watch<AllOrderProvider>().orders;
+    priorityOrder = context.watch<PriorityOrderProvider>().priorityOrders;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body:
@@ -90,14 +111,14 @@ class _AdminHomeState extends State<AdminHome> {
                             children: [
                               AdminOrderCountContainer(
                                 title: "Priority Orders",
-                                quantity: 4,
+                                quantity: priorityCount,
                                 onTap: () {
                                   Navigator.pushNamed(context, "/OrdersAdmin");
                                 },
                               ),
                               AdminOrderCountContainer(
                                 title: "Total Orders",
-                                quantity: 12,
+                                quantity: totalCount,
                                 onTap: () {
                                   Navigator.pushNamed(context, "/OrdersAdmin");
                                 },
@@ -143,45 +164,27 @@ class _AdminHomeState extends State<AdminHome> {
                                 ],
                               ),
                               SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                      children: priorityOrder == null
+                                          ? [
+                                              CircularProgressIndicator
+                                                  .adaptive(),
+                                            ]
+                                          : priorityOrder!.map((e) {
+                                              return Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 4.w),
+                                                child: AdminHomeRowContainer(
+                                                  orderId: e.orderId,
+                                                  products: products,
+                                                  onTap: () {
+                                                    Navigator.pushNamed(context,
+                                                        "/OrdersAdmin");
+                                                  },
+                                                ),
+                                              );
+                                            }).toList())),
                             ],
                           ),
                         ),
@@ -225,42 +228,22 @@ class _AdminHomeState extends State<AdminHome> {
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 4.w),
-                                      child: AdminHomeRowContainer(
-                                        orderId: "OD00128395",
-                                        products: products,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, "/OrdersAdmin");
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                    children: listOfOrders == null
+                                        ? [CircularProgressIndicator.adaptive()]
+                                        : listOfOrders!.map((e) {
+                                            return Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 4.w),
+                                              child: AdminHomeRowContainer(
+                                                orderId: e.orderId,
+                                                products: products,
+                                                onTap: () {
+                                                  Navigator.pushNamed(
+                                                      context, "/OrdersAdmin");
+                                                },
+                                              ),
+                                            );
+                                          }).toList()),
                               ),
                             ],
                           ),

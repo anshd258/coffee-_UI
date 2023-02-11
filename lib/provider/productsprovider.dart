@@ -16,13 +16,14 @@ class ProductsProvider with ChangeNotifier {
   Future<void> getproducts() async {
     final accessTokken = await getToken();
     print(" new access tokken $accessTokken");
-    const url = "https://swift-cafe-dev.swifttrackmile.codes/getProductList";
+    final url = "$baseurl/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessTokken',
     });
     final responseData = json.decode(response.body);
+
     final List<ProductList> loadedorders = [];
     final loadData = responseData['data'] as List<dynamic>;
 

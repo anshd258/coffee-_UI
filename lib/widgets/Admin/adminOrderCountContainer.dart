@@ -11,7 +11,7 @@ class AdminOrderCountContainer extends StatelessWidget {
       required this.onTap});
 
   final String title;
-  final int quantity;
+  final int? quantity;
   final VoidCallback onTap;
 
   @override
@@ -41,7 +41,7 @@ class AdminOrderCountContainer extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.center,
-              child: Text(
+              child: quantity == null? CircularProgressIndicator.adaptive(): Text(
                 quantity.toString(),
                 style: GoogleFonts.inter(
                     color: const Color.fromRGBO(255, 255, 255, 0.702),

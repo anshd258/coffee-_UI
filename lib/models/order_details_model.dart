@@ -1,4 +1,4 @@
-class Data {
+class OrderDetails {
   String? orderId;
   String? orderNo;
   UserId? userId;
@@ -7,7 +7,7 @@ class Data {
   String? nextStateEstTime;
   bool? priority;
 
-  Data(
+  OrderDetails(
       {this.orderId,
       this.orderNo,
       this.userId,
@@ -16,9 +16,10 @@ class Data {
       this.nextStateEstTime,
       this.priority});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  OrderDetails.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
     orderNo = json['orderNo'];
+    print(json['userId']);
     userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
     createdDate = json['createdDate'];
     currentState = json['currentState'];
@@ -45,6 +46,7 @@ class UserId {
   String? id;
   String? phoneNo;
   String? name;
+  String? email;
 
   UserId({this.id, this.phoneNo, this.name});
 
@@ -52,6 +54,7 @@ class UserId {
     id = json['id'];
     phoneNo = json['phoneNo'];
     name = json['name'];
+    email = json['email'];
   }
 
   Map<String, dynamic> toJson() {
