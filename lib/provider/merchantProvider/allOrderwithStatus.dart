@@ -12,6 +12,7 @@ List<dynamic> jsonToDecode = [];
 
 class AllOrderProvider with ChangeNotifier {
   List<OrderDetails>? orders;
+  List<dynamic>? orderJsonTableData;
 
   Future<void> getOrders() async {
     final accessTokken = await getToken();
@@ -26,17 +27,12 @@ class AllOrderProvider with ChangeNotifier {
       if (responseData['message'] == 'SUCCESS') {
         final List<OrderDetails> loadedordersdetails = [];
         final loadData = responseData['data'] as List<dynamic>;
-        jsonToDecode = loadData;
-        String ans = '[';
+        orderJsonTableData = loadData;
         loadData.forEach((element) {
           final data = element as Map<String, dynamic>;
           loadedordersdetails.add(OrderDetails.fromJson(data));
-          ans += '$data';
         });
-        ans += ']';
         orders = loadedordersdetails;
-        placedOrders = ans;
-        print(placedOrders);
         notifyListeners();
       }
     }

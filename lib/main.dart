@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
+import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
+import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
@@ -43,7 +46,18 @@ class _mainAppState extends State<mainApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          
+           ChangeNotifierProvider<AllOrderProvider>(
+                create: (context) => AllOrderProvider(),
+              ),
+               ChangeNotifierProvider<PriorityOrderProvider>(
+                create: (context) => PriorityOrderProvider(),
+              ),
+              ChangeNotifierProvider<PriorityOrderCount>(
+                create: (context) => PriorityOrderCount(),
+              ),
+              ChangeNotifierProvider<TotalOrderCount>(
+                create: (context) => TotalOrderCount(),
+              ),
           ChangeNotifierProvider<OrderHistory>(
             create: (context) => OrderHistory(),
           ),
