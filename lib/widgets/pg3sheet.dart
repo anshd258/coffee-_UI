@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
@@ -18,24 +19,6 @@ class Pg3BottomSheet extends StatefulWidget {
 class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   //dropdown meenue state
   var dropdownvalue = 1;
-
-  // final choices = [
-  //   {
-  //     "name": "Syrup",
-  //     "type": "Check_Box",
-  //     "choice": ["Vanilla", "Chocolate", "Stwaberry"]
-  //   },
-  //   {
-  //     "name": "Filling",
-  //     "type": "List",
-  //     "choice": ["Hazelnut", "Caremul", "Pina Colada"]
-  //   },
-  //   {
-  //     "name": "Suger",
-  //     "type": "Drop_Down",
-  //     "choice": ["2 X Suger", "1/3 X Suger  ", "3/4 X Suger"]
-  //   }
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +123,8 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         ],
                         onChanged: (String? value) {
                           setState(() {
-                            context
-                                    .read<CartProductsProvider>()
-                                    .currentproduct
-                                    .quantity =
+                            currentproduct
+                                    .quantityOfProduct =
                                 value == null ? 1 : int.parse(value);
                             dropdownvalue = int.parse(value!);
                             quantity = value;

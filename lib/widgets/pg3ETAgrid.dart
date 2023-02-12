@@ -32,13 +32,8 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
             super.initState();
             ctr.addListener(() {
               setState(() {
-                context
-                    .read<CartProductsProvider>()
-                    .currentproduct
-                    .choice!
-                    .add(Choice(name: "eta", choices: [
-                      ...[ctr.value.toString()]
-                    ]));
+                context.read<CartProductsProvider>().currentproduct.eta =
+                    ctr.value.toString();
               });
             });
           }

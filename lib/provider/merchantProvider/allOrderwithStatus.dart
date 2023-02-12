@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../authconst.dart';
 import '../loginhandler/loginsharedpref.dart';
+
+List<dynamic> jsonToDecode = [];
 
 class AllOrderProvider with ChangeNotifier {
   List<OrderDetails>? orders;
@@ -22,11 +26,17 @@ class AllOrderProvider with ChangeNotifier {
       if (responseData['message'] == 'SUCCESS') {
         final List<OrderDetails> loadedordersdetails = [];
         final loadData = responseData['data'] as List<dynamic>;
+        jsonToDecode = loadData;
+        String ans = '[';
         loadData.forEach((element) {
           final data = element as Map<String, dynamic>;
           loadedordersdetails.add(OrderDetails.fromJson(data));
+          ans += '$data';
         });
+        ans += ']';
         orders = loadedordersdetails;
+        placedOrders = ans;
+        print(placedOrders);
         notifyListeners();
       }
     }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:inter_coffee/page/Admin/homepage.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/Admin/reportstable.dart';
@@ -383,7 +384,7 @@ class _OrdersState extends State<Orders> {
                                   if (snapshot.hasData) {
                                     return JsonTable(
                                             // json = callRightJSON(tappedIndex),
-                                            jsonDecode(snapshot.data!),
+                                            jsonDecode(json.decode(jsonToDecode)),
                                             // onRowSelect: (index, map) {
                                             //   ConfirmDialog(context, map);
                                             // },

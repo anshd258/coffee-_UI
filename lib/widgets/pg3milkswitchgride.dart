@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:provider/provider.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChoiceSwitch extends StatefulWidget {
   final List list;
-  const ChoiceSwitch({super.key, required this.list});
+  final String heading;
+  const ChoiceSwitch({super.key, required this.list, required this.heading});
 
   @override
   State<ChoiceSwitch> createState() => _ChoiceSwitchState();
@@ -18,6 +21,33 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
   @override
   Widget build(BuildContext context) {
     isSelected = widget.list[0];
+    void cartAssigner(String text, String value) {
+      switch (text) {
+        case "choiceOfCupFilling":
+          currentproduct
+              .choiceOfCupFilling = value;
+          break;
+
+        case "choiceOfMilk":
+          currentproduct.choiceOfMilk =
+              value;
+          break;
+
+        case "choiceOfSugar":
+          currentproduct.choiceOfSugar =
+              value;
+          break;
+
+        case "choiceOfSyrup":
+          currentproduct.choiceOfSyrup =
+              value;
+          break;
+
+        case "eta":
+          currentproduct.eta = value;
+          break;
+      }
+    }
     print("working");
     return GridView.count(
         crossAxisCount: 2,
@@ -52,6 +82,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                     onTap: () {
                       setState(() {
                         isSelected = e;
+                        cartAssigner(widget.heading, isSelected);
                       });
                     },
                     child: AdvancedSwitch(

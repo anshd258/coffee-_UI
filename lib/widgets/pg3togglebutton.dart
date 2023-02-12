@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Pg3togglebutton extends StatefulWidget {
   final List<String> list;
+  final String heading;
 
-  const Pg3togglebutton({super.key, required this.list});
+  const Pg3togglebutton({super.key, required this.list, required this.heading});
 
   @override
   State<Pg3togglebutton> createState() => _Pg3togglebuttonState();
@@ -23,6 +26,34 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   @override
   Widget build(BuildContext context) {
     List<String> mainList = widget.list;
+
+    void cartAssigner(String text, String value) {
+      switch (text) {
+        case "choiceOfCupFilling":
+          currentproduct
+              .choiceOfCupFilling = value;
+          break;
+
+        case "choiceOfMilk":
+          currentproduct.choiceOfMilk =
+              value;
+          break;
+
+        case "choiceOfSugar":
+          currentproduct.choiceOfSugar =
+              value;
+          break;
+
+        case "choiceOfSyrup":
+          currentproduct.choiceOfSyrup =
+              value;
+          break;
+
+        case "eta":
+          currentproduct.eta = value;
+          break;
+      }
+    }
 
     // return ListView.builder(
     //   scrollDirection: Axis.horizontal,
@@ -77,9 +108,10 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
             setState(() {
               //  context.read<CartProductsProvider>().currentproduct;
               isSelected = e;
+              cartAssigner(widget.heading, isSelected);
               // bgColor = Colors.greenAccent.shade700;
               // txtColor = Colors.white;
-    
+
               // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
             });
           },
@@ -89,9 +121,8 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
             margin: EdgeInsets.only(right: 2.5.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: isSelected == e
-                ? Colors.greenAccent.shade700
-                  : Colors.white,
+              color:
+                  isSelected == e ? Colors.greenAccent.shade700 : Colors.white,
             ),
             child: Center(
               child: Text(

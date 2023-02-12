@@ -1,11 +1,15 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DropDownSelection extends StatefulWidget {
   final List<String> list;
-  const DropDownSelection({super.key, required this.list});
+  final String heading;
+  const DropDownSelection(
+      {super.key, required this.list, required this.heading});
 
   @override
   State<DropDownSelection> createState() => _DropDownSelectionState();
@@ -22,6 +26,34 @@ class _DropDownSelectionState extends State<DropDownSelection> {
   @override
   Widget build(BuildContext context) {
     List<String> mainList = widget.list;
+    void cartAssigner(String text, String value) {
+      switch (text) {
+        case "choiceOfCupFilling":
+          currentproduct
+              .choiceOfCupFilling = value;
+          break;
+
+        case "choiceOfMilk":
+          currentproduct.choiceOfMilk =
+              value;
+          break;
+
+        case "choiceOfSugar":
+          currentproduct.choiceOfSugar =
+              value;
+          break;
+
+        case "choiceOfSyrup":
+          currentproduct.choiceOfSyrup =
+              value;
+          break;
+
+        case "eta":
+          currentproduct.eta = value;
+          break;
+      }
+    }
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
       width: 60.w,
@@ -99,6 +131,7 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           onChanged: (value) {
             setState(() {
               selecteditem = value as String;
+              cartAssigner(widget.heading, selecteditem);
             });
           },
         ),

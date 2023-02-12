@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/pg2maincontain.dart';
 
@@ -12,6 +13,7 @@ class page_2 extends StatefulWidget {
 }
 
 class _page_2State extends State<page_2> {
+
   @override
   Widget build(BuildContext context) {
     //page 2 scaffold

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -9,7 +10,7 @@ import '../provider/cartProductProvider.dart';
 import 'package:cart_stepper/cart_stepper.dart';
 
 class OcpageList extends StatefulWidget {
-  final orderProduct e;
+  final AddProductToCart e;
   const OcpageList({super.key, required this.e});
 
   @override
@@ -20,7 +21,7 @@ class _OcpageListState extends State<OcpageList> {
   int counter = 1;
   @override
   void initState() {
-    counter = widget.e.quantity!;
+    counter = widget.e.quantityOfProduct!;
     super.initState();
   }
 
@@ -62,10 +63,8 @@ class _OcpageListState extends State<OcpageList> {
                     borderColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     alignment: Alignment.center,
-                    child: const Image(
-                      image: AssetImage(
-                          // widget.e["imageUrl"],
-                          "assets/7.jpg"),
+                    child: Image(
+                      image: NetworkImage(widget.e.imgUrl!),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -88,7 +87,7 @@ class _OcpageListState extends State<OcpageList> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.e.productId!,
+                              widget.e.name!,
                               style: GoogleFonts.inter(
                                 fontSize: 15.sp,
                                 letterSpacing: 1,

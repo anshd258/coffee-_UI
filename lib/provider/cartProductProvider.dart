@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import '../models/order_prouct.dart';
+import 'package:inter_coffee/models/add_product_to_cart.dart';
 
+AddProductToCart currentproduct = AddProductToCart();
 class CartProductsProvider with ChangeNotifier {
-  List<orderProduct> cartData = [];
-  
-  orderProduct currentproduct = orderProduct();
+  List<AddProductToCart> cartData = [];
 
-  void AddingProductsToCart(orderProduct data) {
+  void addingProductsToCart(AddProductToCart data) {
     cartData.add(data);
     print(cartData.length);
     notifyListeners();
   }
 
-  void removeProduct(orderProduct data) {
+  void removeProduct(AddProductToCart data) {
     cartData.remove(data);
     print(cartData.length);
     notifyListeners();

@@ -14,8 +14,13 @@ Future<String> getOrdersPlaced() async {
     'Accept': 'application/json',
     'Authorization': 'Bearer $accessTokken',
   });
-  final responseData = json.decode(response.body);
-  print(responseData['data']);
-  placedOrders = responseData['data'].toString();
-  return responseData['data'].toString();
+  final responseData = jsonDecode(response.body);
+  // print(responseData['data']);
+  // placedOrders = responseData['data'].toString();
+  List<Map<String, dynamic>> listans =
+      responseData['data'].cast<Map<String, dynamic>>();
+  String ans = listans.toString().replaceAll("null", "ORDER01");
+  // placedOrders = ans;
+  // print(ans);
+  return ans;
 }
