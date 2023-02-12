@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/models/products_list_model.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/ProductList/drop_down_list.dart';
 import 'package:inter_coffee/widgets/pg3milkswitchgride.dart';
 import 'package:inter_coffee/widgets/pg3togglebutton.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllProductPropertiesRender extends StatefulWidget {
@@ -39,32 +42,42 @@ class _AllProductPropertiesRenderState
       case "Check_Box":
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: ChoiceSwitch(
-            list: ansList,
-          ),
+          child: ChoiceSwitch(list: ansList, heading: heading),
         );
 
       case "Drop_Down":
-        return DropDownSelection(list: ansList);
+        return DropDownSelection(list: ansList, heading: heading);
 
       case "List":
         return Container(
             padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
-            child: Pg3togglebutton(
-              list: ansList,
-            ));
+            child: Pg3togglebutton(list: ansList, heading: heading));
     }
-
-    if (heading == "Cup Filling") {
-      choiceOfCupFilling = isSelected.isNotEmpty ? isSelected : "";
-    } else if (heading == "Milk Categories") {
-      choiceOfMilk = isSelected.isNotEmpty ? isSelected : "";
-    } else if (heading == "Sugar Levels") {
-      choiceOfSuger = isSelected.isNotEmpty ? isSelected : "";
-    }
-    print(isSelected);
 
     return const SizedBox();
+  }
+
+  void headingSelector(String text) {
+    switch (text) {
+      case "Choice of Cup Filling":
+        heading = "choiceOfCupFilling";
+        break;
+
+      case "Choice of Milk":
+        heading = "choiceOfMilk";
+        break;
+
+      case "Choice of Sugar":
+        heading = "choiceOfSugar";
+        break;
+
+      case "Choice of Syrups":
+        heading = "choiceOfSyrup";
+        break;
+      case "ETA":
+        heading = "eta";
+        break;
+    }
   }
 
   @override
@@ -121,7 +134,8 @@ class _AllProductPropertiesRenderState
                   txt = txt.replaceRange(
                       cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
                 }
-                heading = txt;
+                print("this is text -> $txt");
+                headingSelector(txt);
 
                 List<String> list = e.choice!.cast<String>();
                 ansList = list;

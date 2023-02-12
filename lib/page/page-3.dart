@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:inter_coffee/models/products_list_model.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/pg3highpriobutton.dart';
 import 'package:inter_coffee/widgets/pg3sheet.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Page3 extends StatefulWidget {
@@ -36,6 +38,10 @@ class _Page3State extends State<Page3> {
     final ProductList args =
         ModalRoute.of(context)?.settings.arguments as ProductList;
 
+    currentproduct.imgUrl = args.img!;
+    currentproduct.name = args.name!;
+    currentproduct.productId = args.id!;
+
     //page 3 scaffold
     return Scaffold(
       body:
@@ -59,8 +65,8 @@ class _Page3State extends State<Page3> {
             child: SizedBox(
               height: 50.h,
               width: 100.w,
-              child: const Image(
-                image: AssetImage('assets/7.jpg'),
+              child: Image(
+                image: NetworkImage(args.img!),
                 // image: AssetImage(args.img!),
                 fit: BoxFit.fill,
               ),

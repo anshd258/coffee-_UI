@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/user_details_model.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/profilepgmid.dart';
 import '../widgets/profilepgbottomcard.dart';
@@ -67,52 +69,63 @@ class _ProfilepgState extends State<Profilepg> {
                 borderRadius: BorderRadius.circular(10),
                 margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
                 padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 3.h),
-                            Text(
-                              "Joshua Scanlan",
-                              style: GoogleFonts.inter(
-                                fontSize: 16.sp,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white70,
+                child: FutureBuilder<UserDetails>(
+                    future: getUserDetails(),
+                    builder: (context, snapshot) {
+
+                      if (!snapshot.hasData) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: 3.h),
+                                  Text(
+                                    snapshot.data!.name.toString(),
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16.sp,
+                                      letterSpacing: 1,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 0.5.h,
+                                  ),
+                                  Text(
+                                    snapshot.data!.emailId.toString(),
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14.sp,
+                                      letterSpacing: 1,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            Text(
-                              "Joshuascanlan@abc.com",
-                              style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white70,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 12.h,
-                      width: 22.w,
-                      decoration: BoxDecoration(
-                          color: Colors.white30,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.green),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/user.jpeg"))),
-                    )
-                  ],
-                ),
+                            ],
+                          ),
+                          Container(
+                            height: 12.h,
+                            width: 22.w,
+                            decoration: BoxDecoration(
+                                color: Colors.white30,
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.green),
+                                image: const DecorationImage(
+                                    image: AssetImage("assets/user.jpeg"))),
+                          )
+                        ],
+                      );
+                    }),
               ),
               const ProfilepgMid(),
               const Profilepgbottom()

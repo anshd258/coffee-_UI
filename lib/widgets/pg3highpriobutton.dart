@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 
 import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
@@ -29,17 +30,17 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
     // final choiceoffilling = context.watch<currentcartdata>().cFF;
     // final quant = context.watch<currentcartdata>().quantit;
     // final id = context.watch<currentcartdata>().identi;
-    var data = context.watch<CartProductsProvider>().currentproduct;
+    // var data = context.watch<CartProductsProvider>().currentproduct;
 
-    void display() {
+    // void display() {
       // data.id = widget.selectedproduct.id;
       // data.name = widget.selectedproduct.name;
 
       // data.discription = widget.selectedproduct.description;
       // data.imageUrl = widget.selectedproduct.img;
 
-      print(data.toJson());
-    }
+      // print(data.toJson());
+    // }                       
 
     double width = 32.5.w;
     if (role != "admin") {
@@ -90,11 +91,9 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
-            context.read<CartProductsProvider>().AddingProductsToCart(
-                    orderProduct(productId: "latte", quantity: 2, choice: [
-                  Choice(name: 'eta', choices: ["10"]),
-                  Choice(name: 'syrup', choices: ["vannila", "choco"])
-                ]));
+            CartProductsProvider().addingProductsToCart(
+              currentproduct
+            );
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
