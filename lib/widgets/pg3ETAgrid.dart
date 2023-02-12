@@ -32,8 +32,7 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
             super.initState();
             ctr.addListener(() {
               setState(() {
-                Provider.of<CartProductsProvider>(context, listen: false)
-                    .updateQuantity(1);
+                
               });
             });
           }

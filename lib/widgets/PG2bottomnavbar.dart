@@ -199,8 +199,11 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           ),
           GestureDetector(
             onTap: () {
-              val = 5;
-              if (role == "admin"&& role != null) {
+              if (role == "merchant" && role != null) {
+                val = 5;
+                context.read<routing>().settingroute = val;
+              } else if (role == 'admin' && role != null) {
+                val = 6;
                 context.read<routing>().settingroute = val;
               }
 
