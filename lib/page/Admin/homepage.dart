@@ -150,7 +150,10 @@ class _AdminHomeState extends State<AdminHome> {
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamed(context, "/AllOrders",
-                                          arguments: "Priority Orders");
+                                          arguments: [
+                                            "priority Orders",
+                                            priorityOrder
+                                          ]);
                                     },
                                     child: Text(
                                       "View All",
@@ -212,7 +215,10 @@ class _AdminHomeState extends State<AdminHome> {
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamed(context, "/AllOrders",
-                                          arguments: "Total Orders");
+                                          arguments: [
+                                            "Total Orders",
+                                            listOfOrders
+                                          ]);
                                     },
                                     child: Text(
                                       "View All",

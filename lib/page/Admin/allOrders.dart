@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/AdminHomeRowContainer.dart';
 
@@ -9,28 +10,6 @@ class AllOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20
-    ];
     final List products = [
       {
         "productid": 0123,
@@ -51,8 +30,10 @@ class AllOrders extends StatelessWidget {
         "choices": ["full", "2 X suger", "2 x choclate"]
       },
     ];
-    final title = ModalRoute.of(context)!.settings.arguments;
-
+    final data = ModalRoute.of(context)!.settings.arguments as List;
+    final title = data.first;
+    print(data);
+    final listofData = data[1] as List<OrderDetails>;
     return Container(
       height: 100.h,
       width: 100.w,
@@ -95,15 +76,27 @@ class AllOrders extends StatelessWidget {
               ),
               backgroundColor: Colors.white12,
             ),
-            body: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 2.h,
-                    childAspectRatio: 20.h / 50.w),
-                padding: EdgeInsets.only(top: 2.h),
-                itemCount: items.length,
-                itemBuilder: (context, index) => AdminHomeRowContainer(
-                    orderId: "OD0013267", products: products, onTap: () {}))),
+            body: listofData.isEmpty
+                ? Center(
+                    child: Text(
+                      "No $title To Display 😓",
+                      style: GoogleFonts.quicksand(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white70),
+                    ),
+                  )
+                : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 2.h,
+                        childAspectRatio: 20.h / 50.w),
+                    padding: EdgeInsets.only(top: 2.h),
+                    itemCount: listofData.length,
+                    itemBuilder: (context, index) => AdminHomeRowContainer(
+                        orderId: listofData[index].orderId,
+                        products: products,
+                        onTap: () {}))),
       ),
     );
   }

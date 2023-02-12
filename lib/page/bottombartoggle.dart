@@ -38,23 +38,7 @@ class _ToggleState extends State<Toggle> {
         ] else if (id == 4) ...[
           const Orderconfirmationpg()
         ] else if (id == 5) ...[
-          MultiProvider(
-            providers: [
-               ChangeNotifierProvider<AllOrderProvider>(
-                create: (context) => AllOrderProvider(),
-              ),
-               ChangeNotifierProvider<PriorityOrderProvider>(
-                create: (context) => PriorityOrderProvider(),
-              ),
-              ChangeNotifierProvider<PriorityOrderCount>(
-                create: (context) => PriorityOrderCount(),
-              ),
-              ChangeNotifierProvider<TotalOrderCount>(
-                create: (context) => TotalOrderCount(),
-              ),
-            ],
-            child: AdminHome(),
-          )
+          AdminHome(),
         ],
         Positioned(
           bottom: -0.5.h,
