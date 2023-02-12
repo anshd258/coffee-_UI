@@ -123,9 +123,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         ],
                         onChanged: (String? value) {
                           setState(() {
-                            currentproduct
-                                    .quantityOfProduct =
-                                value == null ? 1 : int.parse(value);
+                            Provider.of<CartProductsProvider>(context, listen: false).updateQuantity( value == null ? 1 : int.parse(value) );
                             dropdownvalue = int.parse(value!);
                             quantity = value;
                           });

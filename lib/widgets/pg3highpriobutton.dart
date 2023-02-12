@@ -33,14 +33,14 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
     // var data = context.watch<CartProductsProvider>().currentproduct;
 
     // void display() {
-      // data.id = widget.selectedproduct.id;
-      // data.name = widget.selectedproduct.name;
+    // data.id = widget.selectedproduct.id;
+    // data.name = widget.selectedproduct.name;
 
-      // data.discription = widget.selectedproduct.description;
-      // data.imageUrl = widget.selectedproduct.img;
+    // data.discription = widget.selectedproduct.description;
+    // data.imageUrl = widget.selectedproduct.img;
 
-      // print(data.toJson());
-    // }                       
+    // print(data.toJson());
+    // }
 
     double width = 32.5.w;
     if (role != "admin") {
@@ -91,9 +91,10 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
-            CartProductsProvider().addingProductsToCart(
-              currentproduct
-            );
+            Provider.of<CartProductsProvider>(context, listen: false)
+                .addingProductsToCart(
+                  context.read<CartProductsProvider>().currentproduct
+                );
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(

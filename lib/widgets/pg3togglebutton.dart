@@ -30,30 +30,33 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
     void cartAssigner(String text, String value) {
       switch (text) {
         case "choiceOfCupFilling":
-          currentproduct
-              .choiceOfCupFilling = value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfCupFilling(value);
           break;
 
         case "choiceOfMilk":
-          currentproduct.choiceOfMilk =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfMilk(value);
           break;
 
         case "choiceOfSugar":
-          currentproduct.choiceOfSugar =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfSugar(value);
           break;
 
         case "choiceOfSyrup":
-          currentproduct.choiceOfSyrup =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfSyrup(value);
           break;
 
         case "eta":
-          currentproduct.eta = value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateETA(value);
           break;
       }
     }
+
+    cartAssigner(widget.heading, mainList.first );
 
     // return ListView.builder(
     //   scrollDirection: Axis.horizontal,
@@ -97,11 +100,6 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       child: Row(
           children: mainList.map((e) {
         return GestureDetector(
-          onLongPress: () {
-            setState(() {
-              isSelected = "";
-            });
-          },
           onTap: () {
             print(e);
             print(isSelected);

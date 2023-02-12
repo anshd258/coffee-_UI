@@ -24,30 +24,32 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
     void cartAssigner(String text, String value) {
       switch (text) {
         case "choiceOfCupFilling":
-          currentproduct
-              .choiceOfCupFilling = value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfCupFilling(value);
           break;
 
         case "choiceOfMilk":
-          currentproduct.choiceOfMilk =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfMilk(value);
           break;
 
         case "choiceOfSugar":
-          currentproduct.choiceOfSugar =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfSugar(value);
           break;
 
         case "choiceOfSyrup":
-          currentproduct.choiceOfSyrup =
-              value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateChoiceOfSyrup(value);
           break;
 
         case "eta":
-          currentproduct.eta = value;
+          Provider.of<CartProductsProvider>(context, listen: false)
+              .updateETA(value);
           break;
       }
     }
+    cartAssigner(widget.heading, widget.list.first );
     print("working");
     return GridView.count(
         crossAxisCount: 2,

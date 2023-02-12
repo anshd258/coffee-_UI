@@ -63,7 +63,7 @@ class _AllProductPropertiesRenderState
         heading = "choiceOfCupFilling";
         break;
 
-      case "Choice of Milk":
+      case " Choice of Milk":
         heading = "choiceOfMilk";
         break;
 
@@ -71,7 +71,7 @@ class _AllProductPropertiesRenderState
         heading = "choiceOfSugar";
         break;
 
-      case "Choice of Syrups":
+      case "Choice of Syrup":
         heading = "choiceOfSyrup";
         break;
       case "ETA":
@@ -136,6 +136,7 @@ class _AllProductPropertiesRenderState
                 }
                 print("this is text -> $txt");
                 headingSelector(txt);
+                print("this is heading -> $heading");
 
                 List<String> list = e.choice!.cast<String>();
                 ansList = list;

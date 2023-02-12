@@ -38,9 +38,13 @@ class _Page3State extends State<Page3> {
     final ProductList args =
         ModalRoute.of(context)?.settings.arguments as ProductList;
 
-    currentproduct.imgUrl = args.img!;
-    currentproduct.name = args.name!;
-    currentproduct.productId = args.id!;
+    Provider.of<CartProductsProvider>(context, listen: false)
+        .updateImgUrl(args.img!);
+    Provider.of<CartProductsProvider>(context, listen: false)
+        .updateName(args.name!);
+    Provider.of<CartProductsProvider>(context, listen: false)
+        .updateProductId(args.id!);
+    Provider.of<CartProductsProvider>(context, listen: false).updateQuantity(1);
 
     //page 3 scaffold
     return Scaffold(
