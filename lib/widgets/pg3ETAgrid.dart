@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:provider/provider.dart';
-import '../provider/cartProductProvider.dart';
 
 class ETAgridpg3 extends StatefulWidget {
   const ETAgridpg3({super.key});

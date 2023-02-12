@@ -11,6 +11,10 @@ class CartProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearCurrentProduct() {
+    currentproduct = AddProductToCart();
+  }
+
   void updateName(String name) {
     currentproduct.name = name;
   }
@@ -42,7 +46,7 @@ class CartProductsProvider with ChangeNotifier {
   void updateChoiceOfSyrup(String name) {
     currentproduct.choiceOfSyrup = name;
   }
-  
+
   void updateETA(String name) {
     currentproduct.eta = name;
   }

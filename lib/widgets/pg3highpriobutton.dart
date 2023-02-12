@@ -93,8 +93,9 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
             // Navigator.pop(context);
             Provider.of<CartProductsProvider>(context, listen: false)
                 .addingProductsToCart(
-                  context.read<CartProductsProvider>().currentproduct
-                );
+                    context.read<CartProductsProvider>().currentproduct);
+            Provider.of<CartProductsProvider>(context, listen: false)
+                .clearCurrentProduct();
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
