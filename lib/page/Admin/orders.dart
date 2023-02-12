@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/page/Admin/homepage.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,7 @@ class _OrdersState extends State<Orders> {
   @override
   void initState() {
     getPlacedOrdersList();
+    context.read<AllOrderProvider>().getOrders();
     super.initState();
   }
 
@@ -66,8 +69,13 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
+
     final List<dynamic>? data =
         context.watch<AllOrderProvider>().orderJsonTableData;
+    if (role == 'admin') {
+      tappedIndex = 3;
+    }
     String headerVal = "";
     var json = jsonDecode(json1);
     List<dynamic> callRightJSON(tappedIndex) {
@@ -116,14 +124,16 @@ class _OrdersState extends State<Orders> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
-            ),
+            leading: role == "admin"
+                ? null
+                : GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
+                  ),
             title: Text(
-              "Orders",
+              role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,
               style: GoogleFonts.inter(
                   color: white, fontSize: 17.sp, fontWeight: FontWeight.w500),
@@ -201,41 +211,44 @@ class _OrdersState extends State<Orders> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          SizedBox(
-                            height: 3.h,
-                            child: ListView.builder(
-                              itemCount: filterList.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      tappedIndex = index;
-                                      // json = jsonDecode(json4);
-                                    });
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    height: 4.h,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 2.w),
-                                    margin: EdgeInsets.only(right: 2.w),
-                                    color: tappedIndex == index
-                                        ? const Color.fromRGBO(36, 36, 36, 0.7)
-                                        : Colors.transparent,
-                                    child: Text(
-                                      filterList[index].toString(),
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.inter(
-                                          color: white,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500),
+                          if (role == 'merchant') ...[
+                            SizedBox(
+                              height: 3.h,
+                              child: ListView.builder(
+                                itemCount: filterList.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        tappedIndex = index;
+                                        // json = jsonDecode(json4);
+                                      });
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: 4.h,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 2.w),
+                                      margin: EdgeInsets.only(right: 2.w),
+                                      color: tappedIndex == index
+                                          ? const Color.fromRGBO(
+                                              36, 36, 36, 0.7)
+                                          : Colors.transparent,
+                                      child: Text(
+                                        filterList[index].toString(),
+                                        textAlign: TextAlign.start,
+                                        style: GoogleFonts.inter(
+                                            color: white,
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
-                          ),
+                          ],
                           SizedBox(
                             height: 2.h,
                           ),
