@@ -5,6 +5,8 @@ import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../models/order_prouct.dart';
+
 class DropDownSelection extends StatefulWidget {
   final List<String> list;
   final String heading;
@@ -17,42 +19,62 @@ class DropDownSelection extends StatefulWidget {
 
 class _DropDownSelectionState extends State<DropDownSelection> {
   String selecteditem = "";
+  Choice tempChoice = Choice();
   @override
   void initState() {
     selecteditem = widget.list[0];
+    tempChoice.name = widget.heading;
+    tempChoice.type = "Drop_Down";
     super.initState();
   }
+
+  void setter(String data) {
+    context.read<CartProductsProvider>().currentChoie.remove(tempChoice);
+    tempChoice.choice = [];
+    tempChoice.choice!.add(data);
+    context.read<CartProductsProvider>().choiceSetter(tempChoice);
+    print(context.read<CartProductsProvider>().currentChoie.first.toJson());
+  }
+
+  // void remover() {
+  //   context
+  //       .read<CartProductsProvider>()
+  //       .currentproduct
+  //       .choice
+  //       ?.remove(tempChoice);
+  // }
 
   @override
   Widget build(BuildContext context) {
     List<String> mainList = widget.list;
-    void cartAssigner(String text, String value) {
-      switch (text) {
-        case "choiceOfCupFilling":
-          currentproduct
-              .choiceOfCupFilling = value;
-          break;
+    // void cartAssigner(String text, String value) {
+    //   switch (text) {
+    //     case "choiceOfCupFilling":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfCupFilling(value);
+    //       break;
 
-        case "choiceOfMilk":
-          currentproduct.choiceOfMilk =
-              value;
-          break;
+    //     case "choiceOfMilk":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfMilk(value);
+    //       break;
 
-        case "choiceOfSugar":
-          currentproduct.choiceOfSugar =
-              value;
-          break;
+    //     case "choiceOfSugar":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSugar(value);
+    //       break;
 
-        case "choiceOfSyrup":
-          currentproduct.choiceOfSyrup =
-              value;
-          break;
+    //     case "choiceOfSyrup":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSyrup(value);
+    //       break;
 
-        case "eta":
-          currentproduct.eta = value;
-          break;
-      }
-    }
+    //     case "eta":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateETA(value);
+    //       break;
+    //   }
+    // }
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
@@ -129,10 +151,15 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
-            setState(() {
-              selecteditem = value as String;
-              cartAssigner(widget.heading, selecteditem);
-            });
+            if (value != null) setter(value);
+            // cartAssigner(widget.heading, value!);
+            // setState(() {
+            //   selecteditem = value;
+            //   print("this is choice of Sugar -> ${context
+            //       .read<CartProductsProvider>()
+            //       .currentproduct
+            //       .choiceOfSugar}");
+            // });
           },
         ),
       ),

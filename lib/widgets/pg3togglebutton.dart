@@ -4,6 +4,8 @@ import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../models/order_prouct.dart';
+
 class Pg3togglebutton extends StatefulWidget {
   final List<String> list;
   final String heading;
@@ -17,43 +19,55 @@ class Pg3togglebutton extends StatefulWidget {
 class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   //toggle button state
   String isSelected = "";
+  Choice tempChoice = Choice();
   @override
   void initState() {
     isSelected = widget.list.first;
+    tempChoice.name = widget.heading;
+    tempChoice.type = "List";
     super.initState();
+  }
+
+  void setter(data) {
+    context.read<CartProductsProvider>().currentChoie.remove(tempChoice);
+    tempChoice.choice = [];
+    tempChoice.choice!.add(data);
+    context.read<CartProductsProvider>().choiceSetter(tempChoice);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(context.watch<CartProductsProvider>().currentproduct.toJson());
     List<String> mainList = widget.list;
 
-    void cartAssigner(String text, String value) {
-      switch (text) {
-        case "choiceOfCupFilling":
-          currentproduct
-              .choiceOfCupFilling = value;
-          break;
+    // void cartAssigner(String text, String value) {
+    //   switch (text) {
+    //     case "choiceOfCupFilling":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfCupFilling(value);
+    //       break;
 
-        case "choiceOfMilk":
-          currentproduct.choiceOfMilk =
-              value;
-          break;
+    //     case "choiceOfMilk":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfMilk(value);
+    //       break;
 
-        case "choiceOfSugar":
-          currentproduct.choiceOfSugar =
-              value;
-          break;
+    //     case "choiceOfSugar":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSugar(value);
+    //       break;
 
-        case "choiceOfSyrup":
-          currentproduct.choiceOfSyrup =
-              value;
-          break;
+    //     case "choiceOfSyrup":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSyrup(value);
+    //       break;
 
-        case "eta":
-          currentproduct.eta = value;
-          break;
-      }
-    }
+    //     case "eta":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateETA(value);
+    //       break;
+    //   }
+    // }
 
     // return ListView.builder(
     //   scrollDirection: Axis.horizontal,
@@ -97,22 +111,11 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       child: Row(
           children: mainList.map((e) {
         return GestureDetector(
-          onLongPress: () {
-            setState(() {
-              isSelected = "";
-            });
-          },
           onTap: () {
-            print(e);
-            print(isSelected);
-            setState(() {
-              //  context.read<CartProductsProvider>().currentproduct;
-              isSelected = e;
-              cartAssigner(widget.heading, isSelected);
-              // bgColor = Colors.greenAccent.shade700;
-              // txtColor = Colors.white;
+            setter(e);
 
-              // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
+            setState(() {
+              isSelected = e;
             });
           },
           child: Container(

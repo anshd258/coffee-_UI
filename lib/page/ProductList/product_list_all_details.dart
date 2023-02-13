@@ -63,7 +63,7 @@ class _AllProductPropertiesRenderState
         heading = "choiceOfCupFilling";
         break;
 
-      case "Choice of Milk":
+      case " Choice of Milk":
         heading = "choiceOfMilk";
         break;
 
@@ -71,7 +71,7 @@ class _AllProductPropertiesRenderState
         heading = "choiceOfSugar";
         break;
 
-      case "Choice of Syrups":
+      case "Choice of Syrup":
         heading = "choiceOfSyrup";
         break;
       case "ETA":
@@ -79,6 +79,35 @@ class _AllProductPropertiesRenderState
         break;
     }
   }
+
+  // void cartAssigner(String text, String value) {
+  //   switch (text) {
+  //     case "choiceOfCupFilling":
+  //       Provider.of<CartProductsProvider>(context, listen: false)
+  //           .updateChoiceOfCupFilling(value);
+  //       break;
+
+  //     case "choiceOfMilk":
+  //       Provider.of<CartProductsProvider>(context, listen: false)
+  //           .updateChoiceOfMilk(value);
+  //       break;
+
+  //     case "choiceOfSugar":
+  //       Provider.of<CartProductsProvider>(context, listen: false)
+  //           .updateChoiceOfSugar(value);
+  //       break;
+
+  //     case "choiceOfSyrup":
+  //       Provider.of<CartProductsProvider>(context, listen: false)
+  //           .updateChoiceOfSyrup(value);
+  //       break;
+
+  //     case "eta":
+  //       Provider.of<CartProductsProvider>(context, listen: false)
+  //           .updateETA(value);
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +165,7 @@ class _AllProductPropertiesRenderState
                 }
                 print("this is text -> $txt");
                 headingSelector(txt);
+                print("this is heading -> $heading");
 
                 List<String> list = e.choice!.cast<String>();
                 ansList = list;

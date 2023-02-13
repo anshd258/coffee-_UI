@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/add_product_to_cart.dart';
-import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,7 +61,6 @@ class _OcpageListState extends State<OcpageList> {
                     width: 25.w,
                     borderColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
-                    alignment: Alignment.center,
                     child: Image(
                       image: NetworkImage(widget.e.imgUrl!),
                       fit: BoxFit.fill,
@@ -105,9 +103,9 @@ class _OcpageListState extends State<OcpageList> {
                                 activeBackgroundColor: Colors.transparent),
                             didChangeCount: (value) {
                               if (value == 0) {
-                                context
-                                    .read<CartProductsProvider>()
-                                    .removeProduct(widget.e);
+                                // context
+                                //     .read<CartProductsProvider>()
+                                //     .removeProduct(widget.e);
                               }
                               if (value <= 5) {
                                 setState(() {
@@ -131,7 +129,7 @@ class _OcpageListState extends State<OcpageList> {
                           Row(
                             children: [
                               Text(
-                                "FULL",
+                                widget.e.choiceOfCupFilling!,
                                 style: GoogleFonts.inter(
                                     fontSize: 12.5.sp,
                                     color: const Color.fromARGB(
@@ -150,7 +148,7 @@ class _OcpageListState extends State<OcpageList> {
                               ),
                               //no of reviews text
                               Text(
-                                "FULL CREAM MILK",
+                                widget.e.choiceOfMilk!,
                                 style: GoogleFonts.inter(
                                   fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
@@ -175,7 +173,7 @@ class _OcpageListState extends State<OcpageList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "SUGER X 2",
+                            widget.e.choiceOfSugar!,
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 12.5.sp,

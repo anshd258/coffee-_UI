@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +21,7 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    print(context.watch<CartProductsProvider>().currentproduct.quantity);
     final ProductList productsList =
         ModalRoute.of(context)?.settings.arguments as ProductList;
 
@@ -123,9 +123,14 @@ class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
                         ],
                         onChanged: (String? value) {
                           setState(() {
-                            currentproduct
-                                    .quantityOfProduct =
-                                value == null ? 1 : int.parse(value);
+                            // context.read<CartProductsProvider>().currentproduct.quantityOfProduct = value == null ? 1 : int.parse(value);
+                            if (value != null) {
+                              context
+                                  .read<CartProductsProvider>()
+                                  .currentproduct
+                                  .quantity = int.parse(value);
+                            }
+
                             dropdownvalue = int.parse(value!);
                             quantity = value;
                           });

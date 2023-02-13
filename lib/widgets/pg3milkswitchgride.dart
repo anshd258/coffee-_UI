@@ -3,7 +3,7 @@ import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
-
+import '../models/order_prouct.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChoiceSwitch extends StatefulWidget {
@@ -18,36 +18,57 @@ class ChoiceSwitch extends StatefulWidget {
 String isSelected = "";
 
 class _ChoiceSwitchState extends State<ChoiceSwitch> {
+  Choice tempChoice = Choice();
+  void setter(String data) {
+    tempChoice.choice?.add(data);
+    print(tempChoice.choice.toString());
+  }
+
+  void remover() {
+    context
+        .read<CartProductsProvider>()
+        .currentproduct
+        .choice
+        ?.remove(tempChoice);
+  }
+
+  @override
+  void initState() {
+    tempChoice.name = widget.heading;
+    tempChoice.type = "Check_Box";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     isSelected = widget.list[0];
-    void cartAssigner(String text, String value) {
-      switch (text) {
-        case "choiceOfCupFilling":
-          currentproduct
-              .choiceOfCupFilling = value;
-          break;
+    // void cartAssigner(String text, String value) {
+    //   switch (text) {
+    //     case "choiceOfCupFilling":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfCupFilling(value);
+    //       break;
 
-        case "choiceOfMilk":
-          currentproduct.choiceOfMilk =
-              value;
-          break;
+    //     case "choiceOfMilk":
+    //       context.read<CartProductsProvider>().updateChoiceOfMilk(value);
+    //       break;
 
-        case "choiceOfSugar":
-          currentproduct.choiceOfSugar =
-              value;
-          break;
+    //     case "choiceOfSugar":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSugar(value);
+    //       break;
 
-        case "choiceOfSyrup":
-          currentproduct.choiceOfSyrup =
-              value;
-          break;
+    //     case "choiceOfSyrup":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateChoiceOfSyrup(value);
+    //       break;
 
-        case "eta":
-          currentproduct.eta = value;
-          break;
-      }
-    }
+    //     case "eta":
+    //       Provider.of<CartProductsProvider>(context, listen: false)
+    //           .updateETA(value);
+    //       break;
+    //   }
+    // }
     print("working");
     return GridView.count(
         crossAxisCount: 2,
@@ -66,6 +87,12 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
             ctr.addListener(() {
               setState(() {
                 isSelected == e ? ctr.value = true : ctr.value = false;
+                if (ctr.value) {
+                  // cartAssigner(widget.heading, e);
+                  setter(e);
+                } else if (!ctr.value) {
+                  remover();
+                }
                 print(e);
               });
             });
@@ -82,7 +109,12 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                     onTap: () {
                       setState(() {
                         isSelected = e;
-                        cartAssigner(widget.heading, isSelected);
+                        // cartAssigner(widget.heading, e);
+                        // print("this is choice of Milk -> ${context
+                        //   .read<CartProductsProvider>()
+                        //   .currentproduct
+                        //   .choiceOfMilk}"
+                        // );
                       });
                     },
                     child: AdvancedSwitch(

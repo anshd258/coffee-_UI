@@ -30,6 +30,7 @@ class _Page3State extends State<Page3> {
         }
       });
     });
+    context.read<CartProductsProvider>().currentsession();
     super.initState();
   }
 
@@ -37,10 +38,14 @@ class _Page3State extends State<Page3> {
   Widget build(BuildContext context) {
     final ProductList args =
         ModalRoute.of(context)?.settings.arguments as ProductList;
-
-    currentproduct.imgUrl = args.img!;
-    currentproduct.name = args.name!;
-    currentproduct.productId = args.id!;
+    context.read<CartProductsProvider>().currentproduct.productId = args.id;
+    print(context.read<CartProductsProvider>().currentproduct.productId);
+    // Provider.of<CartProductsProvider>(context, listen: false)
+    //     .updateImgUrl(args.img!);
+    // Provider.of<CartProductsProvider>(context, listen: false)
+    //     .updateName(args.name!);
+    // Provider.of<CartProductsProvider>(context, listen: false)
+    //     .updateProductId(args.id!);
 
     //page 3 scaffold
     return Scaffold(
