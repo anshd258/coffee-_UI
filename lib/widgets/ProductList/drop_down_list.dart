@@ -153,13 +153,9 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           onChanged: (value) {
             if (value != null) setter(value);
             // cartAssigner(widget.heading, value!);
-            // setState(() {
-            //   selecteditem = value;
-            //   print("this is choice of Sugar -> ${context
-            //       .read<CartProductsProvider>()
-            //       .currentproduct
-            //       .choiceOfSugar}");
-            // });
+            setState(() {
+              selecteditem = value!;
+            });
           },
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/add_product_to_cart.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
+import 'package:inter_coffee/provider/productsprovider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +11,7 @@ import '../provider/cartProductProvider.dart';
 import 'package:cart_stepper/cart_stepper.dart';
 
 class OcpageList extends StatefulWidget {
-  final AddProductToCart e;
+  final CartModal e;
   const OcpageList({super.key, required this.e});
 
   @override
@@ -20,12 +22,16 @@ class _OcpageListState extends State<OcpageList> {
   int counter = 1;
   @override
   void initState() {
-    counter = widget.e.quantityOfProduct!;
+    counter = widget.e.quantity!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final product = context
+        .watch<ProductsProvider>()
+        .products
+        .where((element) => element.id == widget.e.productId);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -62,7 +68,7 @@ class _OcpageListState extends State<OcpageList> {
                     borderColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     child: Image(
-                      image: NetworkImage(widget.e.imgUrl!),
+                      image: NetworkImage(product.first.img!),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -85,7 +91,7 @@ class _OcpageListState extends State<OcpageList> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.e.name!,
+                              product.first.name!,
                               style: GoogleFonts.inter(
                                 fontSize: 15.sp,
                                 letterSpacing: 1,
@@ -103,9 +109,9 @@ class _OcpageListState extends State<OcpageList> {
                                 activeBackgroundColor: Colors.transparent),
                             didChangeCount: (value) {
                               if (value == 0) {
-                                // context
-                                //     .read<CartProductsProvider>()
-                                //     .removeProduct(widget.e);
+                                context
+                                    .read<CartProductsProvider>()
+                                    .removeProduct(widget.e);
                               }
                               if (value <= 5) {
                                 setState(() {
@@ -129,7 +135,9 @@ class _OcpageListState extends State<OcpageList> {
                           Row(
                             children: [
                               Text(
-                                widget.e.choiceOfCupFilling!,
+                                ""
+                                // widget.e.choiceOfSugar!
+                                ,
                                 style: GoogleFonts.inter(
                                     fontSize: 12.5.sp,
                                     color: const Color.fromARGB(
@@ -148,7 +156,9 @@ class _OcpageListState extends State<OcpageList> {
                               ),
                               //no of reviews text
                               Text(
-                                widget.e.choiceOfMilk!,
+                                ""
+                                // widget.e.choiceOfSugar!
+                                ,
                                 style: GoogleFonts.inter(
                                   fontSize: 12.5.sp,
                                   fontWeight: FontWeight.w600,
@@ -173,7 +183,9 @@ class _OcpageListState extends State<OcpageList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.e.choiceOfSugar!,
+                            ""
+                            // widget.e.choiceOfSugar!
+                            ,
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 12.5.sp,

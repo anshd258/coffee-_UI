@@ -37,7 +37,7 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
 
   @override
   Widget build(BuildContext context) {
-    print(context.watch<CartProductsProvider>().currentproduct.toJson());
+    print(context.watch<CartProductsProvider>().cartData);
     List<String> mainList = widget.list;
 
     // void cartAssigner(String text, String value) {

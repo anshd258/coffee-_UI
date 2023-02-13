@@ -18,6 +18,11 @@ class Pg3BottomSheet extends StatefulWidget {
 class _Pg3BottomSheetState extends State<Pg3BottomSheet> {
   //dropdown meenue state
   var dropdownvalue = 1;
+  @override
+  void initState() {
+    context.read<CartProductsProvider>().currentproduct.quantity = 1;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
