@@ -46,18 +46,18 @@ class _mainAppState extends State<mainApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-           ChangeNotifierProvider<AllOrderProvider>(
-                create: (context) => AllOrderProvider(),
-              ),
-               ChangeNotifierProvider<PriorityOrderProvider>(
-                create: (context) => PriorityOrderProvider(),
-              ),
-              ChangeNotifierProvider<PriorityOrderCount>(
-                create: (context) => PriorityOrderCount(),
-              ),
-              ChangeNotifierProvider<TotalOrderCount>(
-                create: (context) => TotalOrderCount(),
-              ),
+          ChangeNotifierProvider<AllOrderProvider>(
+            create: (context) => AllOrderProvider(),
+          ),
+          ChangeNotifierProvider<PriorityOrderProvider>(
+            create: (context) => PriorityOrderProvider(),
+          ),
+            ChangeNotifierProvider<PriorityOrderCount>(
+              create: (context) => PriorityOrderCount(),
+            ),
+            ChangeNotifierProvider<TotalOrderCount>(
+              create: (context) => TotalOrderCount(),
+            ),
           ChangeNotifierProvider<OrderHistory>(
             create: (context) => OrderHistory(),
           ),

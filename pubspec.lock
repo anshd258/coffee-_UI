@@ -288,7 +288,7 @@ packages:
       name: pinput
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.23"
+    version: "2.2.21"
   platform:
     dependency: transitive
     description:
@@ -462,14 +462,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.4"
-  universal_platform:
-    dependency: transitive
-    description:
-      name: universal_platform
-      sha256: d315be0f6641898b280ffa34e2ddb14f3d12b1a37882557869646e0cc363d0cc
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0+1"
   url_launcher:
     dependency: "direct main"
     description:
@@ -549,4 +541,4 @@ packages:
     version: "1.0.0"
 sdks:
   dart: ">=2.18.4 <3.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.3.0"

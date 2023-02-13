@@ -20,8 +20,10 @@ String isSelected = "";
 class _ChoiceSwitchState extends State<ChoiceSwitch> {
   Choice tempChoice = Choice();
   void setter(String data) {
-    tempChoice.choice?.add(data);
-    print(tempChoice.choice.toString());
+    
+    tempChoice.choice!.add(data);
+
+    print("this is the set value -> ${tempChoice.choice.toString()}");
   }
 
   void remover() {
@@ -39,9 +41,12 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
     super.initState();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     isSelected = widget.list[0];
+    bool _isTapped = false;
     // void cartAssigner(String text, String value) {
     //   switch (text) {
     //     case "choiceOfCupFilling":
@@ -70,6 +75,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
     //   }
     // }
     print("working");
+    
     return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 5.w / 0.7.h,
@@ -115,13 +121,24 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                         //   .currentproduct
                         //   .choiceOfMilk}"
                         // );
+                        
                       });
+                      
                     },
-                    child: AdvancedSwitch(
-                      width: 8.w,
-                      height: 2.h,
-                      controller: ctr,
-                      enabled: true,
+                    child: Switch(
+                      value: _isTapped,
+                      onChanged: (value) {
+                        setState(() {
+                          isSelected = e;
+                          _isTapped = !_isTapped;
+                        });
+                        if (_isTapped) {
+                          // cartAssigner(widget.heading, e);
+                          setter(e);
+                        } else {
+                          remover();
+                        }
+                      },
                     ),
                   ),
                   SizedBox(
