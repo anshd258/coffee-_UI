@@ -3,7 +3,14 @@ import 'package:inter_coffee/models/add_product_to_cart.dart';
 
 class CartProductsProvider with ChangeNotifier {
   List<AddProductToCart> cartData = [];
-  AddProductToCart currentproduct = AddProductToCart();
+  AddProductToCart currentproduct = AddProductToCart(
+    quantityOfProduct: 1,
+    choiceOfCupFilling: "Full",
+    choiceOfMilk: "Skim Milk",
+    choiceOfSugar: "2 X Sugar",
+    choiceOfSyrup: "Chocolate",
+    eta: "5 min",
+  );
 
   void addingProductsToCart(AddProductToCart data) {
     cartData.add(data);
@@ -12,7 +19,15 @@ class CartProductsProvider with ChangeNotifier {
   }
 
   void clearCurrentProduct() {
-    currentproduct = AddProductToCart();
+    currentproduct = AddProductToCart(
+      quantityOfProduct: 1,
+      choiceOfCupFilling: "Full",
+      choiceOfMilk: "Skim Milk",
+      choiceOfSugar: "2 X Sugar",
+      choiceOfSyrup: "Chocolate",
+      eta: "5 min",
+    );
+    notifyListeners();
   }
 
   void updateName(String name) {

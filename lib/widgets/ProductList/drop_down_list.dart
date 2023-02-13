@@ -54,7 +54,6 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           break;
       }
     }
-    cartAssigner(widget.heading, mainList.first );
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
@@ -133,7 +132,11 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           onChanged: (value) {
             setState(() {
               selecteditem = value as String;
-              cartAssigner(widget.heading, selecteditem);
+              cartAssigner(widget.heading, value);
+              print("this is choice of Sugar -> ${context
+                  .read<CartProductsProvider>()
+                  .currentproduct
+                  .choiceOfSugar}");
             });
           },
         ),

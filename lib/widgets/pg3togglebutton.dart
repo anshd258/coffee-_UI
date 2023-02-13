@@ -56,8 +56,6 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       }
     }
 
-    cartAssigner(widget.heading, mainList.first );
-
     // return ListView.builder(
     //   scrollDirection: Axis.horizontal,
     //   itemCount: mainList.length,
@@ -104,13 +102,12 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
             print(e);
             print(isSelected);
             setState(() {
-              //  context.read<CartProductsProvider>().currentproduct;
               isSelected = e;
-              cartAssigner(widget.heading, isSelected);
-              // bgColor = Colors.greenAccent.shade700;
-              // txtColor = Colors.white;
-
-              // isSelected != e ? Colors.greenAccent.shade700 : Colors.white;
+              cartAssigner(widget.heading, e);
+              print("this is choice of Cup filling -> ${context
+                  .read<CartProductsProvider>()
+                  .currentproduct
+                  .choiceOfCupFilling}");
             });
           },
           child: Container(

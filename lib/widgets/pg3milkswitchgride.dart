@@ -49,7 +49,6 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
           break;
       }
     }
-    cartAssigner(widget.heading, widget.list.first );
     print("working");
     return GridView.count(
         crossAxisCount: 2,
@@ -84,7 +83,11 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                     onTap: () {
                       setState(() {
                         isSelected = e;
-                        cartAssigner(widget.heading, isSelected);
+                        cartAssigner(widget.heading, e);
+                        print("this is choice of Milk -> ${context
+                  .read<CartProductsProvider>()
+                  .currentproduct
+                  .choiceOfMilk}");
                       });
                     },
                     child: AdvancedSwitch(
