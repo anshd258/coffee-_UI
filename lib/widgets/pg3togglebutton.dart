@@ -101,9 +101,9 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
           onTap: () {
             print(e);
             print(isSelected);
+            cartAssigner(widget.heading, e);
             setState(() {
               isSelected = e;
-              cartAssigner(widget.heading, e);
               print("this is choice of Cup filling -> ${context
                   .read<CartProductsProvider>()
                   .currentproduct

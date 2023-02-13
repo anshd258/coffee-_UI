@@ -3,30 +3,16 @@ import 'package:inter_coffee/models/add_product_to_cart.dart';
 
 class CartProductsProvider with ChangeNotifier {
   List<AddProductToCart> cartData = [];
-  AddProductToCart currentproduct = AddProductToCart(
-    quantityOfProduct: 1,
-    choiceOfCupFilling: "Full",
-    choiceOfMilk: "Skim Milk",
-    choiceOfSugar: "2 X Sugar",
-    choiceOfSyrup: "Chocolate",
-    eta: "5 min",
-  );
+  AddProductToCart currentproduct = AddProductToCart();
 
-  void addingProductsToCart(AddProductToCart data) {
-    cartData.add(data);
+  void addingProductsToCart() {
+    cartData.add(currentproduct);
     print(cartData.length);
     notifyListeners();
   }
 
   void clearCurrentProduct() {
-    currentproduct = AddProductToCart(
-      quantityOfProduct: 1,
-      choiceOfCupFilling: "Full",
-      choiceOfMilk: "Skim Milk",
-      choiceOfSugar: "2 X Sugar",
-      choiceOfSyrup: "Chocolate",
-      eta: "5 min",
-    );
+    currentproduct = AddProductToCart();
     notifyListeners();
   }
 
@@ -48,14 +34,17 @@ class CartProductsProvider with ChangeNotifier {
 
   void updateChoiceOfCupFilling(String name) {
     currentproduct.choiceOfCupFilling = name;
+    print("This is Assignment of Value -> ${currentproduct.choiceOfCupFilling}");
   }
 
   void updateChoiceOfMilk(String name) {
     currentproduct.choiceOfMilk = name;
+    print("This is Assignment of Value -> ${currentproduct.choiceOfMilk}");
   }
 
   void updateChoiceOfSugar(String name) {
     currentproduct.choiceOfSugar = name;
+    print("This is Assignment of Value -> ${currentproduct.choiceOfSugar}");
   }
 
   void updateChoiceOfSyrup(String name) {

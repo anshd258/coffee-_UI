@@ -44,7 +44,6 @@ class _Page3State extends State<Page3> {
         .updateName(args.name!);
     Provider.of<CartProductsProvider>(context, listen: false)
         .updateProductId(args.id!);
-    Provider.of<CartProductsProvider>(context, listen: false).updateQuantity(1);
 
     //page 3 scaffold
     return Scaffold(

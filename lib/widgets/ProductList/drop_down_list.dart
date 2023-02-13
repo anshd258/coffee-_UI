@@ -130,9 +130,9 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
+            cartAssigner(widget.heading, value!);
             setState(() {
-              selecteditem = value as String;
-              cartAssigner(widget.heading, value);
+              selecteditem = value;
               print("this is choice of Sugar -> ${context
                   .read<CartProductsProvider>()
                   .currentproduct

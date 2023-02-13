@@ -29,8 +29,7 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
           break;
 
         case "choiceOfMilk":
-          Provider.of<CartProductsProvider>(context, listen: false)
-              .updateChoiceOfMilk(value);
+          context.read<CartProductsProvider>().updateChoiceOfMilk(value);
           break;
 
         case "choiceOfSugar":
@@ -67,6 +66,9 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
             ctr.addListener(() {
               setState(() {
                 isSelected == e ? ctr.value = true : ctr.value = false;
+                if( ctr.value ) {
+                  cartAssigner(widget.heading, e);
+                }
                 print(e);
               });
             });
@@ -85,9 +87,10 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
                         isSelected = e;
                         cartAssigner(widget.heading, e);
                         print("this is choice of Milk -> ${context
-                  .read<CartProductsProvider>()
-                  .currentproduct
-                  .choiceOfMilk}");
+                          .read<CartProductsProvider>()
+                          .currentproduct
+                          .choiceOfMilk}"
+                        );
                       });
                     },
                     child: AdvancedSwitch(

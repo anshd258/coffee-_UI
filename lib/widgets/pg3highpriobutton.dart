@@ -24,6 +24,34 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
 
   @override
   Widget build(BuildContext context) {
+    void nullCheckerForList() {
+
+      if( context.read<CartProductsProvider>().currentproduct.quantityOfProduct == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false).updateQuantity(1);
+      }
+      if( context.read<CartProductsProvider>().currentproduct.choiceOfCupFilling == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false)
+        .updateChoiceOfCupFilling("Full");
+      }
+      if( context.read<CartProductsProvider>().currentproduct.choiceOfSugar == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false)
+        .updateChoiceOfSugar("2 X Sugar");
+      }
+      if( context.read<CartProductsProvider>().currentproduct.choiceOfSyrup == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false)
+        .updateChoiceOfSyrup("Chocolate");
+      }
+      if( context.read<CartProductsProvider>().currentproduct.choiceOfMilk == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false)
+        .updateChoiceOfMilk("Skim Milk");
+      }
+      if( context.read<CartProductsProvider>().currentproduct.eta == null ) {
+        Provider.of<CartProductsProvider>(context, listen: false)
+        .updateETA("5 min");
+      }
+      
+    }
+
     final role = context.watch<LoginAuthProvider>().role;
     // final choiceofmilk = context.watch<currentcartdata>().CM;
     // final choiceofsuger = context.watch<currentcartdata>().CS;
@@ -91,9 +119,16 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
           onPressed: () {
             // display();
             // Navigator.pop(context);
+            print(
+              "While Submitting data -> ${Provider.of<CartProductsProvider>(context, listen: false).currentproduct.choiceOfCupFilling}"
+            );
+            print(
+              "While Submitting data -> ${Provider.of<CartProductsProvider>(context, listen: false).currentproduct.choiceOfSugar}"        );
+            print(
+              "While Submitting data -> ${Provider.of<CartProductsProvider>(context, listen: false).currentproduct.choiceOfMilk}"       );
+            nullCheckerForList();
             Provider.of<CartProductsProvider>(context, listen: false)
-                .addingProductsToCart(
-                    context.read<CartProductsProvider>().currentproduct);
+                .addingProductsToCart();
             Provider.of<CartProductsProvider>(context, listen: false)
                 .clearCurrentProduct();
             Navigator.pop(context);

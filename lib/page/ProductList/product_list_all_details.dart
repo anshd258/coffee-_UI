@@ -40,18 +40,15 @@ class _AllProductPropertiesRenderState
   Widget typeClassifier(String type) {
     switch (type) {
       case "Check_Box":
-        // cartAssigner(heading, ansList.first);
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: ChoiceSwitch(list: ansList, heading: heading),
         );
 
       case "Drop_Down":
-        
         return DropDownSelection(list: ansList, heading: heading);
 
       case "List":
-        // cartAssigner(heading, ansList.first);
         return Container(
             padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
             child: Pg3togglebutton(list: ansList, heading: heading));
@@ -175,7 +172,6 @@ class _AllProductPropertiesRenderState
                 selecteditem = list[0];
 
                 String type = e.type.toString();
-                // cartAssigner(heading, ansList.first);
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
