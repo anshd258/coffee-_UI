@@ -12,6 +12,17 @@ class OrderDetailspg extends StatefulWidget {
 }
 
 class _OrderDetailspgState extends State<OrderDetailspg> {
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pop(context);
+      },
+    );
+    super.initState();
+  }
+
   // bool visible = false;
   @override
   Widget build(BuildContext context) {
@@ -138,34 +149,34 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     ),
                   ),
                 ),
-                Positioned(
-                  left: 9.w,
-                  right: 9.w,
-                  bottom: 3.h,
-                  child: Container(
-                    padding: EdgeInsets.only(left: 9.w, right: 9.w),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/page2", (route) => false);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          fixedSize: Size(50.w, 4.5.h),
-                          backgroundColor: Colors.greenAccent.shade700,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7))),
-                      child: Text(
-                        "Order Details",
-                        style: GoogleFonts.inter(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   left: 9.w,
+                //   right: 9.w,
+                //   bottom: 3.h,
+                //   child: Container(
+                //     padding: EdgeInsets.only(left: 9.w, right: 9.w),
+                //     child: ElevatedButton(
+                //       onPressed: () {
+                //         Navigator.pushNamedAndRemoveUntil(
+                //             context, "/page2", (route) => false);
+                //       },
+                //       style: ElevatedButton.styleFrom(
+                //           elevation: 5,
+                //           fixedSize: Size(50.w, 4.5.h),
+                //           backgroundColor: Colors.greenAccent.shade700,
+                //           shape: RoundedRectangleBorder(
+                //               borderRadius: BorderRadius.circular(7))),
+                //       child: Text(
+                //         "Order Details",
+                //         style: GoogleFonts.inter(
+                //             color: Colors.white,
+                //             fontSize: 16.sp,
+                //             fontWeight: FontWeight.w600,
+                //             letterSpacing: 1),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: 3.h,
                 )
