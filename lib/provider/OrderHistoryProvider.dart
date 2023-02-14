@@ -29,11 +29,16 @@ class OrderHistory with ChangeNotifier {
     if (responseData['message'] == 'SUCCESS') {
       print("OrderHistoryProvider -> sucess");
       final loadedData = responseData['data'];
-        if( loadedData.first != null ) {
+        if( loadedData.first != null && loadedData.first['id'] == "41652fa1-c712-4711-a191-23fb9ddcb997" ) {
           _orderList.add(
             OrderHistoryModel.fromJson(loadedData.first)
           );
         }
+        // int len = _orderList.length;
+        // for( int i = 0; i < len; i++ ) {
+        //   Items it = _orderList[i].items;
+        //   if( _orderList[i].items == null || _orderList.first.items)
+        // }
         _orderList.forEach((element) {
            print(element.toJson());
          });

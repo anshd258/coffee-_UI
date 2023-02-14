@@ -26,6 +26,16 @@ class _OcpageListState extends State<OcpageList> {
     super.initState();
   }
 
+  String printSomething() {
+    String ans = "";
+    if( widget.e.choice != null ) {
+      if( widget.e.choice!.first.choice != null ) {
+        ans = widget.e.choice!.first.choice!.first.toString();
+      }
+    }
+    return ans;
+  }
+
   @override
   Widget build(BuildContext context) {
     final product = context
@@ -135,7 +145,7 @@ class _OcpageListState extends State<OcpageList> {
                           Row(
                             children: [
                               Text(
-                                ""
+                                printSomething()
                                 // widget.e.choiceOfSugar!
                                 ,
                                 style: GoogleFonts.inter(
