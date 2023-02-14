@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
+
 import './loginhandler/loginsharedpref.dart';
 import './loginAuthProvider.dart';
 import 'authconst.dart';
@@ -7,9 +10,9 @@ import '../models/order_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class OrderHistory with ChangeNotifier {
-  final List<OrderDetails> _orderList = [];
+  final List<OrderHistoryModel> _orderList = [];
 
-  List<OrderDetails> get History {
+  List<OrderHistoryModel> get History {
     return _orderList;
   }
 
@@ -23,33 +26,17 @@ class OrderHistory with ChangeNotifier {
     });
     print("here too");
     final responseData = json.decode(response.body) as Map<String, dynamic>;
-    print(responseData.toString());
     if (responseData['message'] == 'SUCCESS') {
-      print("sucess");
-      // _orderList.add(Data(
-      //     orderId: "13214",
-      //     priority: false,
-      //     orderNo: "1212",
-      //     createdDate: "2023-01-25T12:37:25.010+00:00",
-      //     currentState: "progress"));
-      // notifyListeners();
-      // final List<Data> loadedOrders = [];
-      responseData['data'].forEach((orderData) {
-        _orderList.add(OrderDetails(
-          orderId: orderData['orderId'],
-          orderNo: orderData['orderNo'],
-          userId: UserId(
-            id: orderData['userId']['id'],
-            phoneNo: orderData['userId']['phoneNo'],
-            name: orderData['userId']['name'],
-          ),
-          createdDate: orderData['createdDate'],
-          currentState: orderData['currentState'],
-          nextStateEstTime: orderData['next_state_est_time'],
-          priority: orderData['priority'],
-        ));
-        print(_orderList.last.orderNo);
-      });
+      print("OrderHistoryProvider -> sucess");
+      final loadedData = responseData['data'];
+        if( loadedData.first != null ) {
+          _orderList.add(
+            OrderHistoryModel.fromJson(loadedData.first)
+          );
+        }
+        _orderList.forEach((element) {
+           print(element.toJson());
+         });
       // _orderList = loadedOrders;
       notifyListeners();
     }

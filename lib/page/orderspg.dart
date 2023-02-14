@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/ordertiles.dart';
@@ -81,9 +82,11 @@ class _OrderPgState extends State<OrderPg> {
                         child: data.isEmpty
                             ? const CircularProgressIndicator()
                             : Column(
-                                children: data.map((e) {
+                                children: data.first.items!.map((e) {
                                   return OrderPgTiles(
                                     order: e,
+                                    orderNo: data.first.orderNo!,
+                                    createdDate: data.first.createdDate!,
                                   );
                                 }).toList(),
                               )),

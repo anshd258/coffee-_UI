@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../models/order_details_model.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
 import '../provider/loginAuthProvider.dart';
 
 class OrderPgTiles extends StatelessWidget {
-  final OrderDetails order;
-  const OrderPgTiles({Key? key, required this.order}) : super(key: key);
+  final Items order;
+  final String createdDate;
+  final String orderNo;
+  const OrderPgTiles({ Key? key, required this.order, required this.createdDate, required this.orderNo }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final role = context.watch<LoginAuthProvider>().role;
-    final createddate = DateTime.parse(order.createdDate!);
+    final createddate = DateTime.parse(createdDate);
     return GestureDetector(
       onTap: () {
         OrderDetailsDialog(context);
@@ -53,7 +55,7 @@ class OrderPgTiles extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        order.orderNo!,
+                        order.productName!,
                         style: GoogleFonts.inter(
                           fontSize: 18.sp,
                           letterSpacing: 1,
@@ -73,7 +75,8 @@ class OrderPgTiles extends StatelessWidget {
                         children: [
                           if (role == 'admin') ...[
                             Text(
-                              "priority: ${order.priority.toString()}",
+                              // "priority: ${order.priority.toString()}",
+                              "priority: No Data!!!",
                               style: GoogleFonts.inter(
                                 fontSize: 13.sp,
                                 color: const Color.fromARGB(255, 205, 205, 205),
@@ -84,7 +87,7 @@ class OrderPgTiles extends StatelessWidget {
                             ),
                           ],
                           Text(
-                            order.currentState!,
+                            "${createddate.hour}:${createddate.minute}",
                             style: GoogleFonts.inter(
                                 color: const Color.fromARGB(255, 197, 197, 197),
                                 fontSize: 13.sp,
@@ -100,7 +103,7 @@ class OrderPgTiles extends StatelessWidget {
                         height: 01.h,
                       ),
                       Text(
-                        "FULL CREAM MILK",
+                        order.choice!.first.choice!.first,
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
                           color: const Color.fromARGB(255, 205, 205, 205),
@@ -126,12 +129,12 @@ class OrderPgTiles extends StatelessWidget {
                     height: 8.h,
                     width: 18.w,
                     borderRadius: BorderRadius.circular(10),
-                    borderColor: Colors.white12,
-                    child: Center(
-                      child: Image.asset(
-                        "assets/3.png",
-                        height: 12.h,
-                        width: 23.w,
+                    // borderColor: Colors.white12,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        order.productImg!,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   )
@@ -166,7 +169,7 @@ class OrderPgTiles extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, "/deliveryStatus",
-                                arguments: order.orderNo);
+                                arguments: orderNo);
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),

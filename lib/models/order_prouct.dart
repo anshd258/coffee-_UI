@@ -11,17 +11,17 @@ class CartModal {
     if (json['choice'] != null) {
       choice = <Choice>[];
       json['choice'].forEach((v) {
-        choice!.add(new Choice.fromJson(v));
+        choice!.add(Choice.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product_id'] = this.productId;
-    data['quantity'] = this.quantity;
-    if (this.choice != null) {
-      data['choice'] = this.choice!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['product_id'] = productId;
+    data['quantity'] = quantity;
+    if (choice != null) {
+      data['choice'] = choice!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -41,10 +41,10 @@ class Choice {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['choice'] = this.choice;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['name'] = name;
+    data['type'] = type;
+    data['choice'] = choice;
     return data;
   }
 }
