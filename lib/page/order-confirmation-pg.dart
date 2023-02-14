@@ -97,9 +97,10 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                     padding: EdgeInsets.only(left: 10.w, right: 10.w),
                     child: ElevatedButton(
                       onPressed: () {
+                        context.read<CartProductsProvider>().postData();
                         Navigator.pushNamed(context, "/orderdetailsPg");
-                        context.read<CartProductsProvider>().clearCart();
-                        setState(() {});
+                        // context.read<CartProductsProvider>().clearCart();
+                        // setState(() {});
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 5,

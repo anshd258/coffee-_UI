@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/authconst.dart';
 import 'package:inter_coffee/provider/loginhandler/loginsharedpref.dart';
@@ -10,19 +13,33 @@ class CartProductsProvider with ChangeNotifier {
 
   Future<void> postData() async {
     final accessTokken = await getToken();
-    print(" new access tokken $accessTokken");
-    final url = "$baseurl/placeOrder";
     List<Map<String, dynamic>> currentData = [];
     cartData.forEach((element) {
       currentData.add(element.toJson());
     });
+    print({"orderProducts": currentData});
+    final url = "$baseurl/placeOrder";
+    final data = json.encode({"orderProducts": currentData});
+    final response = await http.post(Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $accessTokken',
+        },
+        body: data);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      cartData.clear();
+      notifyListeners();
+    }
+
+    // print("sending data$currentData");
   }
 
   void submit() {
     cartData.add(currentproduct);
-    cartData.forEach((element) {
-      print(element.toJson());
-    });
+
+    cartData.forEach((element) {});
   }
 
   void setCartData() {

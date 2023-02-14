@@ -45,7 +45,7 @@ dependencies:
   responsive_sizer: ^3.1.1
   cart_stepper: ^4.0.0
   flutter_screenutil: ^5.6.0
-  pinput: ^2.2.20
+  pinput: ^2.2.23
   provider: ^6.0.5
   dropdown_button2: ^1.9.2
   json_table: ^2.0.1
@@ -54,6 +54,8 @@ dependencies:
   url_launcher: ^6.1.8
   line_icons: ^2.0.1
   shared_preferences: ^2.0.17
+  flutter_switch: ^0.3.2
+
 
 
 dev_dependencies:
