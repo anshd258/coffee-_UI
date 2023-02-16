@@ -17,69 +17,15 @@ class Pg2BottonavBar extends StatefulWidget {
 class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
   //for managing the state
 
-  int val = 1;
-
   //bool value for indicating is that pagee on scree
 
-  bool page1 = true;
-  bool page2 = false;
-  bool page3 = false;
-  bool page4 = false;
-  bool page5 = false;
   @override
   Widget build(BuildContext context) {
-    final role = context.watch<LoginAuthProvider>().userRole;
-    val = context.read<routing>().gettingroute;
-    //switch case for bottom navigaton bar
+    bool page1 = true;
 
-    switch (val) {
-      case 1:
-        {
-          page1 = true;
-          page2 = false;
-          page3 = false;
-          page4 = false;
-          page5 = false;
-        }
-        break;
-      case 2:
-        {
-          page1 = false;
-          page2 = true;
-          page3 = false;
-          page4 = false;
-          page5 = false;
-        }
-        break;
-      case 3:
-        {
-          page1 = false;
-          page2 = false;
-          page3 = true;
-          page4 = false;
-          page5 = false;
-        }
-        break;
-      case 4:
-        {
-          page1 = false;
-          page2 = false;
-          page3 = false;
-          page4 = true;
-          page5 = false;
-        }
-        break;
-      case 5:
-        {
-          page1 = false;
-          page2 = false;
-          page3 = false;
-          page4 = false;
-          page5 = true;
-        }
-        break;
-      default:
-    }
+    final role = context.watch<LoginAuthProvider>().userRole;
+    final val = context.watch<routing>().gettingroute;
+    //switch case for bottom navigaton bar
 
     return GlassContainer.clearGlass(
       margin: const EdgeInsets.all(20),
@@ -99,8 +45,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
         children: [
           GestureDetector(
             onTap: () {
-              val = 1;
-              context.read<routing>().settingroute = val;
+              context.read<routing>().settingRoute(1);
               setState(() {});
             },
             child: Container(
@@ -108,11 +53,11 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page1 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 1 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: page1 ? Colors.white : Colors.transparent,
+                    color: val == 1 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
                 "assets/home.png",
@@ -124,8 +69,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           ),
           GestureDetector(
             onTap: () {
-              val = 2;
-              context.read<routing>().settingroute = val;
+              context.read<routing>().settingRoute(2);
               setState(() {});
             },
             child: Container(
@@ -133,11 +77,11 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page2 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 2 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: page2 ? Colors.white : Colors.transparent,
+                    color: val == 2 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
                 "assets/user.png",
@@ -149,8 +93,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           ),
           GestureDetector(
             onTap: () {
-              val = 3;
-              context.read<routing>().settingroute = val;
+              context.read<routing>().settingRoute(3);
               setState(() {});
             },
             child: Container(
@@ -158,11 +101,11 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page3 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 3 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: page3 ? Colors.white : Colors.transparent,
+                    color: val == 3 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
                 "assets/notification.png",
@@ -174,8 +117,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           ),
           GestureDetector(
             onTap: () {
-              val = 4;
-              context.read<routing>().settingroute = 4;
+              context.read<routing>().settingRoute(4);
               setState(() {});
             },
             child: Container(
@@ -183,11 +125,11 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page4 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 4 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: page4 ? Colors.white : Colors.transparent,
+                    color: val == 4 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
                 "assets/cart.png",
@@ -200,11 +142,9 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
           GestureDetector(
             onTap: () {
               if (role == "merchant" && role != null) {
-                val = 5;
-                context.read<routing>().settingroute = val;
+                context.read<routing>().settingRoute(5);
               } else if (role == 'admin' && role != null) {
-                val = 6;
-                context.read<routing>().settingroute = val;
+                context.read<routing>().settingRoute(6);
               }
 
               setState(() {});
@@ -214,11 +154,15 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: page5 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 5 || val == 6
+                      ? bottomNavBarItem
+                      : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: page5 ? Colors.white : Colors.transparent,
+                    color: val == 5 || val == 6
+                        ? Colors.white
+                        : Colors.transparent,
                   )),
               child: role == "admin"
                   ? Image.asset(

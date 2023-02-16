@@ -7,11 +7,6 @@ class routing with ChangeNotifier {
     return routeID;
   }
 
-  set settingroute(int id) {
-    routeID = id;
-    notifyListeners();
-  }
-  
   void settingRoute(int id) {
     routeID = id;
     notifyListeners();

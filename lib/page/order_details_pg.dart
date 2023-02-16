@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../provider/router.dart';
 
 class OrderDetailspg extends StatefulWidget {
   const OrderDetailspg({super.key});
@@ -18,6 +21,7 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
       const Duration(seconds: 3),
       () {
         Navigator.pop(context);
+        context.read<routing>().settingRoute(1);
       },
     );
     super.initState();
@@ -59,7 +63,10 @@ class _OrderDetailspgState extends State<OrderDetailspg> {
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                Navigator.pop(context);
+                context.read<routing>().settingRoute(1);
+              },
               child: Image.asset(
                 "assets/ICONS/arrow3.png",
                 scale: 3,

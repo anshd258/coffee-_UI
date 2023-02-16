@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/OC_pg_list.dart';
+import '../widgets/orderconfirmationDialog.dart';
 
 class Orderconfirmationpg extends StatefulWidget {
   const Orderconfirmationpg({super.key});
@@ -98,7 +99,7 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                     child: ElevatedButton(
                       onPressed: () {
                         context.read<CartProductsProvider>().postData();
-                        Navigator.pushNamed(context, "/orderdetailsPg");
+                        OrderConfirmatonDilog(context);
                         // context.read<CartProductsProvider>().clearCart();
                         // setState(() {});
                       },
