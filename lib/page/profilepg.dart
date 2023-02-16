@@ -72,10 +72,11 @@ class _ProfilepgState extends State<Profilepg> {
                 child: FutureBuilder<UserDetails>(
                     future: getUserDetails(),
                     builder: (context, snapshot) {
-
                       if (!snapshot.hasData) {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator.adaptive(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white70)),
                         );
                       }
 

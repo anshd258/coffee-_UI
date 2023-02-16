@@ -252,18 +252,24 @@ class _PG2maincontState extends State<PG2maincont> {
                         height: 0,
                         width: 0,
                       ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: data.map((e) {
-                        return PgLowerListCont(
-                          e: e,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
+                data.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator.adaptive(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white70)),
+                      )
+                    : Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: data.map((e) {
+                              return PgLowerListCont(
+                                e: e,
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),

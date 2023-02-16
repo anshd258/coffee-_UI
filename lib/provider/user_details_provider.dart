@@ -18,7 +18,7 @@ Future<UserDetails> getUserDetails() async {
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);
     if (responseData['message'] == 'SUCCESS') {
-      final loadData = responseData['data'] as Map<String,dynamic>;
+      final loadData = responseData['data'] as Map<String, dynamic>;
       currentUserDetails = UserDetails.fromJson(loadData);
     }
   }

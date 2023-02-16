@@ -80,7 +80,15 @@ class _OrderPgState extends State<OrderPg> {
                     height: 90.h,
                     child: SingleChildScrollView(
                         child: data.isEmpty
-                            ? const CircularProgressIndicator()
+                            ? Container(
+                                height: 100.h,
+                                width: 100.w,
+                                child: Center(
+                                    child: const CircularProgressIndicator
+                                        .adaptive(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white70),
+                                )))
                             : Column(
                                 children: data.first.items!.map((e) {
                                   return OrderPgTiles(
