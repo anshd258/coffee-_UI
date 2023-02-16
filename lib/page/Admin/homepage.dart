@@ -171,7 +171,7 @@ class _AdminHomeState extends State<AdminHome> {
                                   child: Row(
                                       children: priorityOrder == null
                                           ? [
-                                              CircularProgressIndicator
+                                              const CircularProgressIndicator
                                                   .adaptive(),
                                             ]
                                           : priorityOrder!.map((e) {
@@ -235,7 +235,7 @@ class _AdminHomeState extends State<AdminHome> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                     children: listOfOrders == null
-                                        ? [CircularProgressIndicator.adaptive()]
+                                        ? [const CircularProgressIndicator.adaptive()]
                                         : listOfOrders!.map((e) {
                                             return Padding(
                                               padding:

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
-import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
-import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
-import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
-import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../provider/merchantProvider/priorityordercount.dart';
 import './page-2.dart';
 import './profilepg.dart';
 import './order-confirmation-pg.dart';
@@ -39,9 +34,9 @@ class _ToggleState extends State<Toggle> {
         ] else if (id == 4) ...[
           const Orderconfirmationpg()
         ] else if (id == 5) ...[
-          AdminHome(),
-        ] else if (id == 6)...[
-          Orders()
+          const AdminHome(),
+        ] else if (id == 6) ...[
+          const Orders()
         ],
         Positioned(
           bottom: -0.5.h,

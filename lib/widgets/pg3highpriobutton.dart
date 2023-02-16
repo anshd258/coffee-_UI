@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:inter_coffee/models/order_prouct.dart';
 
-import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';

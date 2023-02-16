@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'authconst.dart';
-import './loginAuthProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +15,7 @@ class ProductsProvider with ChangeNotifier {
   Future<void> getproducts() async {
     final accessTokken = await getToken();
     print(" new access tokken $accessTokken");
-    final url = "$baseurl/getProductList";
+    const url = "$baseurl/getProductList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -27,11 +26,11 @@ class ProductsProvider with ChangeNotifier {
     final List<ProductList> loadedorders = [];
     final loadData = responseData['data'] as List<dynamic>;
 
-    loadData.forEach((element) {
+    for (var element in loadData) {
       final data = element as Map<String, dynamic>;
 
       loadedorders.add(ProductList.fromJson(data));
-    });
+    }
 
     products = loadedorders;
     notifyListeners();

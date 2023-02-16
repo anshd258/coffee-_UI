@@ -52,12 +52,12 @@ class _mainAppState extends State<mainApp> {
           ChangeNotifierProvider<PriorityOrderProvider>(
             create: (context) => PriorityOrderProvider(),
           ),
-            ChangeNotifierProvider<PriorityOrderCount>(
-              create: (context) => PriorityOrderCount(),
-            ),
-            ChangeNotifierProvider<TotalOrderCount>(
-              create: (context) => TotalOrderCount(),
-            ),
+          ChangeNotifierProvider<PriorityOrderCount>(
+            create: (context) => PriorityOrderCount(),
+          ),
+          ChangeNotifierProvider<TotalOrderCount>(
+            create: (context) => TotalOrderCount(),
+          ),
           ChangeNotifierProvider<OrderHistory>(
             create: (context) => OrderHistory(),
           ),

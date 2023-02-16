@@ -4,8 +4,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/products_list_model.dart';
-import 'package:provider/provider.dart';
-import '../provider/cartProductProvider.dart';
 
 class PgLowerListCont extends StatefulWidget {
   final ProductList e;
@@ -25,7 +23,7 @@ class _PgLowerListContState extends State<PgLowerListCont> {
       if (widget.e.img != null) {
         return NetworkImage(widget.e.img!);
       }
-      return AssetImage('assets/7.jpg');
+      return const AssetImage('assets/7.jpg');
     }
 
     return Column(

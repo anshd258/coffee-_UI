@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/models/products_list_model.dart';
-import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/ProductList/drop_down_list.dart';
 import 'package:inter_coffee/widgets/pg3milkswitchgride.dart';
 import 'package:inter_coffee/widgets/pg3togglebutton.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllProductPropertiesRender extends StatefulWidget {

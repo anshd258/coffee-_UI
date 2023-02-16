@@ -10,7 +10,7 @@ class PriorityOrderCount with ChangeNotifier {
 
   Future<void> getCount() async {
     final accessTokken = await getToken();
-    final url = "$baseurl/getPriorityOrdersCount";
+    const url = "$baseurl/getPriorityOrdersCount";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

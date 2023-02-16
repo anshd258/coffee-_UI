@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../provider/loginAuthProvider.dart';
 
 class ProfilepgMid extends StatelessWidget {
   const ProfilepgMid({
