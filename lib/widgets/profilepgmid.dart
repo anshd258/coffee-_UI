@@ -71,7 +71,7 @@ class ProfilepgMid extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              await context.read<OrderHistory>().fetchOrders();
+              
               Navigator.pushNamed(context, "/orderspg");
             },
             child: Container(
