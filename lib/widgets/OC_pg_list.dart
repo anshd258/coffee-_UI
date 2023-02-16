@@ -26,10 +26,10 @@ class _OcpageListState extends State<OcpageList> {
     super.initState();
   }
 
+  String ans = "";
   String printSomething() {
-    String ans = "";
-    if( widget.e.choice != null ) {
-      if( widget.e.choice!.first.choice != null ) {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.first.choice != null) {
         ans = widget.e.choice!.first.choice!.first.toString();
       }
     }
