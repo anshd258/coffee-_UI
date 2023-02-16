@@ -55,9 +55,9 @@ class AdminHomeRowContainer extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: orderId == null
-                  ? CircularProgressIndicator.adaptive()
+                  ? const CircularProgressIndicator.adaptive()
                   : Text(
-                      orderId!.substring(orderId!.length-10, orderId!.length),
+                      orderId!.substring(orderId!.length - 10, orderId!.length),
                       style: GoogleFonts.inter(
                           color: Colors.white70,
                           fontSize: 17.sp,

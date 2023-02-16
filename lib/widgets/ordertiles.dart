@@ -13,7 +13,12 @@ class OrderPgTiles extends StatelessWidget {
   final Items order;
   final String createdDate;
   final String orderNo;
-  const OrderPgTiles({ Key? key, required this.order, required this.createdDate, required this.orderNo }) : super(key: key);
+  const OrderPgTiles(
+      {Key? key,
+      required this.order,
+      required this.createdDate,
+      required this.orderNo})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

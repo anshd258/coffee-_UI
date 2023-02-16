@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/productsprovider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

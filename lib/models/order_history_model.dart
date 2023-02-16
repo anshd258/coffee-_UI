@@ -14,7 +14,7 @@ class OrderHistoryModel {
 
   OrderHistoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    orderNo = json['orderNo'] == null ? "1212" : json['orderNo'];
+    orderNo = json['orderNo'] ?? "1212";
 
     if (json['items'] != null) {
       items = <Items>[];
@@ -27,14 +27,14 @@ class OrderHistoryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['orderNo'] = this.orderNo;
-    if (this.items != null) {
-      data['items'] = this.items!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['orderNo'] = orderNo;
+    if (items != null) {
+      data['items'] = items!.map((v) => v.toJson()).toList();
     }
-    data['recipientName'] = this.recipientName;
-    data['createdDate'] = this.createdDate;
+    data['recipientName'] = recipientName;
+    data['createdDate'] = createdDate;
     return data;
   }
 }
@@ -60,12 +60,12 @@ class Items {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['productName'] = this.productName;
-    data['productImg'] = this.productImg;
-    data['quantity'] = this.quantity;
-    if (this.choice != null) {
-      data['choice'] = this.choice!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['productName'] = productName;
+    data['productImg'] = productImg;
+    data['quantity'] = quantity;
+    if (choice != null) {
+      data['choice'] = choice!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -85,10 +85,10 @@ class Choice {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['choice'] = this.choice;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['type'] = type;
+    data['choice'] = choice;
     return data;
   }
 }

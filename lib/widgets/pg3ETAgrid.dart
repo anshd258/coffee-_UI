@@ -28,9 +28,7 @@ class _ETAgridpg3State extends State<ETAgridpg3> {
           void initState() {
             super.initState();
             ctr.addListener(() {
-              setState(() {
-                
-              });
+              setState(() {});
             });
           }
 

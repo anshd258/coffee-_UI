@@ -9,7 +9,7 @@ UserDetails? currentUserDetails;
 
 Future<UserDetails> getUserDetails() async {
   final accessTokken = await getToken();
-  final url = "$baseurl/profile";
+  const url = "$baseurl/profile";
   final response = await http.get(Uri.parse(url), headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

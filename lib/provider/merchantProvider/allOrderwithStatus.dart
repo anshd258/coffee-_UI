@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class AllOrderProvider with ChangeNotifier {
 
   Future<void> getOrders() async {
     final accessTokken = await getToken();
-    final url = "$baseurl/getOrders/ORDER_PLACED";
+    const url = "$baseurl/getOrders/ORDER_PLACED";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -28,10 +27,10 @@ class AllOrderProvider with ChangeNotifier {
         final List<OrderDetails> loadedordersdetails = [];
         final loadData = responseData['data'] as List<dynamic>;
         orderJsonTableData = loadData;
-        loadData.forEach((element) {
+        for (var element in loadData) {
           final data = element as Map<String, dynamic>;
           loadedordersdetails.add(OrderDetails.fromJson(data));
-        });
+        }
         orders = loadedordersdetails;
         notifyListeners();
       }

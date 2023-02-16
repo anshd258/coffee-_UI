@@ -9,15 +9,14 @@ class AddProductToCart {
   String? eta;
   String? imgUrl;
 
-  AddProductToCart({
-    this.productId,
-    this.name,
-    this.quantityOfProduct,
-    this.choiceOfCupFilling,
-    this.choiceOfMilk,
-    this.choiceOfSyrup,
-    this.choiceOfSugar,
-    this.imgUrl,
-    this.eta
-  });
+  AddProductToCart(
+      {this.productId,
+      this.name,
+      this.quantityOfProduct,
+      this.choiceOfCupFilling,
+      this.choiceOfMilk,
+      this.choiceOfSyrup,
+      this.choiceOfSugar,
+      this.imgUrl,
+      this.eta});
 }

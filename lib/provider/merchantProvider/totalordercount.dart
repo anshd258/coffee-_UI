@@ -10,7 +10,7 @@ class TotalOrderCount with ChangeNotifier {
 
   Future<void> getCount() async {
     final accessTokken = await getToken();
-    final url = "$baseurl/getOrdersCount";
+    const url = "$baseurl/getOrdersCount";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

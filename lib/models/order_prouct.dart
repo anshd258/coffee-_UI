@@ -17,7 +17,7 @@ class CartModal {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['product_id'] = productId;
     data['quantity'] = quantity;
     if (choice != null) {
@@ -41,7 +41,7 @@ class Choice {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['type'] = type;
     data['choice'] = choice;

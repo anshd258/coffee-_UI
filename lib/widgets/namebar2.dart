@@ -5,7 +5,6 @@ import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../provider/router.dart';
 
 class name_bar2 extends StatelessWidget {
   const name_bar2({Key? key}) : super(key: key);

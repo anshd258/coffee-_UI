@@ -14,11 +14,11 @@ class CartProductsProvider with ChangeNotifier {
   Future<void> postData() async {
     final accessTokken = await getToken();
     List<Map<String, dynamic>> currentData = [];
-    cartData.forEach((element) {
+    for (var element in cartData) {
       currentData.add(element.toJson());
-    });
+    }
     print({"orderProducts": currentData});
-    final url = "$baseurl/placeOrder";
+    const url = "$baseurl/placeOrder";
     final data = json.encode({"orderProducts": currentData});
     final response = await http.post(Uri.parse(url),
         headers: {
@@ -39,7 +39,7 @@ class CartProductsProvider with ChangeNotifier {
   void submit() {
     cartData.add(currentproduct);
 
-    cartData.forEach((element) {});
+    for (var element in cartData) {}
   }
 
   void setCartData() {

@@ -253,7 +253,7 @@ class _PG2maincontState extends State<PG2maincont> {
                         width: 0,
                       ),
                 data.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator.adaptive(
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.white70)),
