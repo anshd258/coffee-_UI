@@ -19,6 +19,7 @@ class OrderPgTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(createdDate);
+    final optionSelected = order.choice!.isEmpty ? "" : order.choice!.first.choice!.first;
     return GestureDetector(
       onTap: () {
         OrderDetailsDialog(context);
@@ -103,7 +104,7 @@ class OrderPgTiles extends StatelessWidget {
                         height: 01.h,
                       ),
                       Text(
-                        order.choice!.first.choice!.first,
+                        optionSelected.toString(),
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
                           color: const Color.fromARGB(255, 205, 205, 205),
@@ -154,7 +155,7 @@ class OrderPgTiles extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${createddate.day}/${createddate.month}/${createddate.year} ",
+                    "${createddate.day} ${createddate.month} ${createddate.year} ",
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       color: const Color.fromARGB(255, 205, 205, 205),
