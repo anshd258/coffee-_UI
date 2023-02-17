@@ -24,11 +24,18 @@ class OrderHistory with ChangeNotifier {
     if (responseData['message'] == 'SUCCESS') {
       print("OrderHistoryProvider -> sucess");
       final loadedData = responseData['data'];
-        if( loadedData.first != null ) {
-          _orderList.add(
-            OrderHistoryModel.fromJson(loadedData.first)
-          );
-        }
+        loadedData.forEach((element){
+          if( element['items'] != null && _orderList.length <= 1 ) {
+            _orderList.add(
+              OrderHistoryModel.fromJson(element)
+            );
+          }
+        });
+        // if( loadedData.first != null ) {
+        //   _orderList.add(
+        //     OrderHistoryModel.fromJson(loadedData.first)
+        //   );
+        // }
         // int len = _orderList.length;
         // for( int i = 0; i < len; i++ ) {
         //   Items it = _orderList[i].items;

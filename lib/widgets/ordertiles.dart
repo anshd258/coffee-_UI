@@ -22,7 +22,7 @@ class OrderPgTiles extends StatelessWidget {
     final optionSelected = order.choice!.isEmpty ? "" : order.choice!.first.choice!.first;
     return GestureDetector(
       onTap: () {
-        OrderDetailsDialog(context);
+        Navigator.pushNamed(context, "/deliveryStatus");
       },
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),

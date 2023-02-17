@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/orderStautsProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/Admin/OrderDetailsDialog.dart';
 
@@ -21,9 +23,27 @@ class _OrderStatusState extends State<OrderStatus> {
   bool? _value4 = false;
   bool? _value5 = false;
   // bool visible = false;
+
+  @override
+  void initState() {
+    context.read<MyData>().fetchData("11a63c1a-eda8-4cd0-b66e-f8693d971a7b");
+    super.initState();
+  }
+  
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final orderid = ModalRoute.of(context)!.settings.arguments as String;
+    String orderid = "11a63c1a-eda8-4cd0-b66e-f8693d971a7b";
+    if( ModalRoute.of(context)!.settings.arguments != null ) {
+      orderid = ModalRoute.of(context)!.settings.arguments as String;
+    }
+
+    String stateOfOrder = context.watch<MyData>().orderState != null ? context.watch<MyData>().orderState! : "";
+
     return Container(
       height: 100.h,
       width: 100.w,
@@ -129,17 +149,17 @@ class _OrderStatusState extends State<OrderStatus> {
                                     width: 32,
                                     height: 32,
                                     decoration: BoxDecoration(
-                                        color: _value1 == true ? green : white,
+                                        color: stateOfOrder == "ORDER_PLACED" ? green : white,
                                         borderRadius:
                                             BorderRadius.circular(4.0)),
                                     child: Transform.scale(
                                       scale: 1.6,
                                       child: Checkbox(
-                                        value: _value1,
+                                        value: stateOfOrder == "ORDER_PLACED" ? true : false,
                                         onChanged: (value) {
-                                          setState(() {
-                                            _value1 = value;
-                                          });
+                                          // setState(() {
+                                          //   _value1 = value;
+                                          // });
                                         },
                                         side: BorderSide(
                                           color: white,
@@ -170,7 +190,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                     margin: const EdgeInsets.only(top: 0),
                                     height: 40,
                                     width: 4,
-                                    color: _value1 ?? true ? green : white,
+                                    color: stateOfOrder == "ORDER_PLACED" ? green : white,
                                   )
                                 ],
                               ),
@@ -183,7 +203,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
-                                        color: _value2 == true ? green : white,
+                                        color: stateOfOrder == "ORDER_CONFIRMED" ? green : white,
                                         borderRadius:
                                             BorderRadius.circular(4.0)),
                                     width: 32,
@@ -191,11 +211,11 @@ class _OrderStatusState extends State<OrderStatus> {
                                     child: Transform.scale(
                                       scale: 1.6,
                                       child: Checkbox(
-                                        value: _value2,
+                                        value: stateOfOrder == "ORDER_CONFIRMED",
                                         onChanged: (value) {
-                                          setState(() {
-                                            _value2 = value;
-                                          });
+                                          // setState(() {
+                                          //   _value2 = value;
+                                          // });
                                         },
                                         side: BorderSide(
                                           color: white,
@@ -226,7 +246,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                     margin: const EdgeInsets.only(top: 0),
                                     height: 40,
                                     width: 4,
-                                    color: _value2 ?? true ? green : white,
+                                    color: stateOfOrder == "ORDER_CONFIRMED" ? green : white,
                                   )
                                 ],
                               ),
@@ -239,7 +259,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
-                                        color: _value3 == true ? green : white,
+                                        color: stateOfOrder == "ORDER_IN_PROGRESS" ? green : white,
                                         borderRadius:
                                             BorderRadius.circular(4.0)),
                                     width: 32,
@@ -247,11 +267,11 @@ class _OrderStatusState extends State<OrderStatus> {
                                     child: Transform.scale(
                                       scale: 1.6,
                                       child: Checkbox(
-                                        value: _value3,
+                                        value: stateOfOrder == "ORDER_IN_PROGRESS",
                                         onChanged: (value) {
-                                          setState(() {
-                                            _value3 = value;
-                                          });
+                                          // setState(() {
+                                          //   _value3 = value;
+                                          // });
                                         },
                                         side: BorderSide(
                                           color: white,
@@ -282,7 +302,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                     margin: const EdgeInsets.only(top: 0),
                                     height: 40,
                                     width: 4,
-                                    color: _value3 ?? true ? green : white,
+                                    color: stateOfOrder == "ORDER_IN_PROGRESS" ? green : white,
                                   )
                                 ],
                               ),

@@ -5,6 +5,7 @@ import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
+import 'package:inter_coffee/provider/orderStautsProvider.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
@@ -75,6 +76,9 @@ class _mainAppState extends State<mainApp> {
           ),
           ChangeNotifierProvider<LoginAuthProvider>(
             create: (context) => LoginAuthProvider(),
+          ),
+          ChangeNotifierProvider<MyData>(
+            create: (context) => MyData(),
           )
         ],
         child: ResponsiveSizer(

@@ -110,7 +110,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             height: 3.h,
           ),
           Pinput(
-            length: 5,
+            length: 6,
             controller: otpcontroller,
             autofocus: true,
             defaultPinTheme: defaultPinTheme,
@@ -138,7 +138,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Didn’t receive the OTP?",
+                "Didn't receive the OTP?",
                 style: GoogleFonts.inter(
                   color: Colors.white54,
                   fontSize: 16.sp,

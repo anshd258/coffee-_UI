@@ -51,7 +51,7 @@ class Items {
     productName = json['productName'];
     productImg = json['productImg'];
     quantity = json['quantity'];
-    if (json['choice'] != null) {
+    if ( json['choice'] != null ) {
       choice = <Choice>[];
       json['choice'].forEach((v) {
         choice!.add(Choice.fromJson(v));
