@@ -5,6 +5,7 @@ import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +44,7 @@ class _AdminHomeState extends State<AdminHome> {
   ];
   @override
   void initState() {
+    context.read<userDetailsProvider>().getUserDetails();
     context.read<PriorityOrderCount>().getCount();
     context.read<TotalOrderCount>().getCount();
     context.read<AllOrderProvider>().getOrders();
@@ -235,7 +237,10 @@ class _AdminHomeState extends State<AdminHome> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                     children: listOfOrders == null
-                                        ? [const CircularProgressIndicator.adaptive()]
+                                        ? [
+                                            const CircularProgressIndicator
+                                                .adaptive()
+                                          ]
                                         : listOfOrders!.map((e) {
                                             return Padding(
                                               padding:

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 
@@ -11,11 +12,8 @@ class name_bar2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UserDetails>(
-        future: getUserDetails(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return GestureDetector(
+    final data =  context.watch<userDetailsProvider>().currentUserDetails;
+    return data != null? GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, "/profile");
               },
@@ -51,7 +49,7 @@ class name_bar2 extends StatelessWidget {
                                 height: 0.3.h,
                               ),
                               Text(
-                                snapshot.data!.name.toString(),
+                                data.name.toString(),
                                 style: GoogleFonts.inter(
                                     // color: Color.fromARGB(255, 182, 182, 182),
                                     color: nameAndDateInNameBar,
@@ -76,13 +74,12 @@ class name_bar2 extends StatelessWidget {
                   ],
                 ),
               ),
-            );
-          } else {
-            return const Center(
+            )
+          :const Center(
               child: CircularProgressIndicator.adaptive(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white70)),
             );
           }
-        });
-  }
-}
+        }
+  
+

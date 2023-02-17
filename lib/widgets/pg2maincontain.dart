@@ -18,15 +18,11 @@ class PG2maincont extends StatefulWidget {
 }
 
 class _PG2maincontState extends State<PG2maincont> {
-  void gettingCurrentUserDetails() async {
-    await getUserDetails();
-  }
-
   //data of the products offerd
   @override
   void initState() {
     context.read<ProductsProvider>().getproducts();
-    gettingCurrentUserDetails();
+    context.read<userDetailsProvider>().getUserDetails();
     super.initState();
   }
 

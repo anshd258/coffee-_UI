@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/profilepgmid.dart';
 import '../widgets/profilepgbottomcard.dart';
@@ -18,6 +19,7 @@ class Profilepg extends StatefulWidget {
 class _ProfilepgState extends State<Profilepg> {
   @override
   Widget build(BuildContext context) {
+    final data = context.watch<userDetailsProvider>().currentUserDetails;
     return Container(
       height: 100.h,
       width: 100.w,
@@ -69,18 +71,13 @@ class _ProfilepgState extends State<Profilepg> {
                 borderRadius: BorderRadius.circular(10),
                 margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
                 padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                child: FutureBuilder<UserDetails>(
-                    future: getUserDetails(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator.adaptive(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white70)),
-                        );
-                      }
-
-                      return Row(
+                child: data == null
+                    ? Center(
+                        child: CircularProgressIndicator.adaptive(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white70)),
+                      )
+                    : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
@@ -90,7 +87,7 @@ class _ProfilepgState extends State<Profilepg> {
                                 children: [
                                   SizedBox(height: 3.h),
                                   Text(
-                                    snapshot.data!.name.toString(),
+                                    data.name.toString(),
                                     style: GoogleFonts.inter(
                                       fontSize: 16.sp,
                                       letterSpacing: 1,
@@ -102,7 +99,7 @@ class _ProfilepgState extends State<Profilepg> {
                                     height: 0.5.h,
                                   ),
                                   Text(
-                                    snapshot.data!.emailId.toString(),
+                                    data.emailId.toString(),
                                     style: GoogleFonts.inter(
                                       fontSize: 14.sp,
                                       letterSpacing: 1,
@@ -125,8 +122,7 @@ class _ProfilepgState extends State<Profilepg> {
                                     image: AssetImage("assets/user.jpeg"))),
                           )
                         ],
-                      );
-                    }),
+                      ),
               ),
               const ProfilepgMid(),
               const Profilepgbottom()

@@ -20,17 +20,19 @@ class OtpGlassContain extends StatefulWidget {
 
 class _OtpGlassContainState extends State<OtpGlassContain> {
   final defaultPinTheme = PinTheme(height: 1.h, width: 1.h);
-
+  bool istapped = true;
   final otpcontroller = TextEditingController();
 
   @override
   void dispose() {
     otpcontroller.dispose();
+    istapped = true;
     super.dispose();
   }
 
   @override
   void initState() {
+    istapped = true;
     super.initState();
   }
 
@@ -168,12 +170,14 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
           GestureDetector(
             onTap: () {
               context.read<CartProductsProvider>().clearCart();
-              if (widget.phonenumber == "1234567890") {
+              if (widget.phonenumber == "1234567890" && istapped == true) {
+                istapped = false;
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);
                 isAdmin = true;
-              } else {
+              } else if (istapped == true) {
+                istapped = false;
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);

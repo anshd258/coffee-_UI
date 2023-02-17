@@ -5,6 +5,7 @@ import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
 import './provider/router.dart';
@@ -69,6 +70,9 @@ class _mainAppState extends State<mainApp> {
           ),
           ChangeNotifierProvider<CartProductsProvider>(
             create: (context) => CartProductsProvider(),
+          ),
+          ChangeNotifierProvider<userDetailsProvider>(
+            create: (context) => userDetailsProvider(),
           ),
           ChangeNotifierProvider<NotificationProvider>(
             create: (context) => NotificationProvider(),

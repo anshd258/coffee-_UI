@@ -38,14 +38,14 @@ class LoginAuthProvider with ChangeNotifier {
       accessToken = await getToken();
       role = await getRole();
       notifyListeners();
-      if (role == "admin") {
+      if (role == "merchant") {
         print(role);
         print(accessToken);
         isAdmin = true;
         notifyListeners();
         Navigator.pushNamedAndRemoveUntil(
           context,
-          "/page2",
+          "/switcher",
           (route) => false,
         );
       } else {
@@ -55,7 +55,7 @@ class LoginAuthProvider with ChangeNotifier {
         notifyListeners();
         Navigator.pushNamedAndRemoveUntil(
           context,
-          "/page2",
+          "/switcher",
           (route) => false,
         );
       }

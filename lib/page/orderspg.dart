@@ -17,8 +17,8 @@ class OrderPg extends StatefulWidget {
 class _OrderPgState extends State<OrderPg> {
   List test = [1, 2, 3];
   @override
-  void initState() async {
-    await context.read<OrderHistory>().fetchOrders();
+  void initState() {
+    context.read<OrderHistory>().fetchOrders();
     super.initState();
   }
 
@@ -82,8 +82,7 @@ class _OrderPgState extends State<OrderPg> {
                                 height: 100.h,
                                 width: 100.w,
                                 child: const Center(
-                                    child: CircularProgressIndicator
-                                        .adaptive(
+                                    child: CircularProgressIndicator.adaptive(
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                       Colors.white70),
                                 )))

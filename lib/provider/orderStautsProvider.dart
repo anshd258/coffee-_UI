@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:inter_coffee/provider/authconst.dart';
 
 import 'loginhandler/loginsharedpref.dart';
 
@@ -12,7 +13,7 @@ class MyData with ChangeNotifier {
   void fetchData(String orderid) async {
     final accessTokken = await getToken();
     final url =
-        "https://swift-cafe-dev.swifttrackmile.codes/orderStatus/$orderid";
+        "${baseurl}orderStatus/$orderid";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
