@@ -12,16 +12,16 @@ class ProductList {
     name = json['productName'];
     img = json['productImgLink'];
     description = json['desc'];
- 
+
     List<dynamic>? loadedChoice = json['choices'];
     if (loadedChoice != null) {
       List<Syrups> loadedchoicesdata = [];
       // print(choicedata);
-      loadedChoice.forEach((element) {
+      for (var element in loadedChoice) {
         final data = element as Map<String, dynamic>;
 
         loadedchoicesdata.add(Syrups.fromJson(data));
-      });
+      }
       choice = loadedchoicesdata;
     }
   }

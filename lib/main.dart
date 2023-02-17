@@ -5,6 +5,7 @@ import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
+import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/provider/orderStautsProvider.dart';
 import './provider/notificationprovider.dart';
 import 'package:provider/provider.dart';
@@ -53,12 +54,12 @@ class _mainAppState extends State<mainApp> {
           ChangeNotifierProvider<PriorityOrderProvider>(
             create: (context) => PriorityOrderProvider(),
           ),
-            ChangeNotifierProvider<PriorityOrderCount>(
-              create: (context) => PriorityOrderCount(),
-            ),
-            ChangeNotifierProvider<TotalOrderCount>(
-              create: (context) => TotalOrderCount(),
-            ),
+          ChangeNotifierProvider<PriorityOrderCount>(
+            create: (context) => PriorityOrderCount(),
+          ),
+          ChangeNotifierProvider<TotalOrderCount>(
+            create: (context) => TotalOrderCount(),
+          ),
           ChangeNotifierProvider<OrderHistory>(
             create: (context) => OrderHistory(),
           ),
@@ -70,6 +71,9 @@ class _mainAppState extends State<mainApp> {
           ),
           ChangeNotifierProvider<CartProductsProvider>(
             create: (context) => CartProductsProvider(),
+          ),
+          ChangeNotifierProvider<userDetailsProvider>(
+            create: (context) => userDetailsProvider(),
           ),
           ChangeNotifierProvider<NotificationProvider>(
             create: (context) => NotificationProvider(),

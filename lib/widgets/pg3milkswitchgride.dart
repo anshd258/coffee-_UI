@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/testswitch.dart';
 import 'package:provider/provider.dart';

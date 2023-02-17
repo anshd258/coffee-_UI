@@ -7,7 +7,7 @@ class SwitchTest extends StatefulWidget {
   final e;
   final Function setter;
 
-  SwitchTest({super.key, required this.e, required this.setter});
+  const SwitchTest({super.key, required this.e, required this.setter});
 
   @override
   State<SwitchTest> createState() => _SwitchTestState();
@@ -59,6 +59,5 @@ class _SwitchTestState extends State<SwitchTest> {
             ),
           ],
         ));
-    ;
   }
 }

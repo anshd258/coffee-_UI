@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'package:inter_coffee/models/order_prouct.dart';
-import 'package:inter_coffee/page/Admin/homepage.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:provider/provider.dart';
 
@@ -164,51 +161,54 @@ class _OrdersState extends State<Orders> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/OrderConfirmed");
-                              },
-                              child: SizedBox(
-                                width: 35.w,
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        const Color.fromRGBO(77, 68, 64, 0.36),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: (1.h) / 2, horizontal: 1.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                            width: 3.h,
-                                            height: 3.h,
-                                            child: Image.asset(
-                                              "assets/coffee_cup.png",
-                                              fit: BoxFit.fill,
-                                            )),
-                                        Text(
-                                          "Create Orders",
-                                          textAlign: TextAlign.start,
-                                          style: GoogleFonts.inter(
-                                              color: white,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
+                          if (role == 'merchant') ...[
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, "/OrderConfirmed");
+                                },
+                                child: SizedBox(
+                                  width: 35.w,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color.fromRGBO(
+                                          77, 68, 64, 0.36),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: (1.h) / 2, horizontal: 1.w),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                              width: 3.h,
+                                              height: 3.h,
+                                              child: Image.asset(
+                                                "assets/coffee_cup.png",
+                                                fit: BoxFit.fill,
+                                              )),
+                                          Text(
+                                            "Create Orders",
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.inter(
+                                                color: white,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                           SizedBox(
                             height: 2.h,
                           ),
@@ -521,7 +521,7 @@ class _OrdersState extends State<Orders> {
                           ] else if (tappedIndex > 2 && data != null) ...[
                             ReportsTable()
                           ] else ...[
-                            CircularProgressIndicator.adaptive()
+                            const CircularProgressIndicator.adaptive()
                           ]
                         ],
                       ),

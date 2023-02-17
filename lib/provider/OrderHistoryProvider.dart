@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:inter_coffee/provider/authconst.dart';
+
 import './loginhandler/loginsharedpref.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -12,8 +14,8 @@ class OrderHistory with ChangeNotifier {
   }
 
   Future<void> fetchOrders() async {
-   final accessTokken = await getToken();
-    const url = 'https://swift-cafe-dev.swifttrackmile.codes/orderHistory';
+    final accessTokken = await getToken();
+    const url = '$baseurl/orderHistory';
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

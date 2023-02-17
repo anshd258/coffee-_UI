@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/models/add_product_to_cart.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/productsprovider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -20,20 +19,41 @@ class OcpageList extends StatefulWidget {
 
 class _OcpageListState extends State<OcpageList> {
   int counter = 1;
+
   @override
   void initState() {
     counter = widget.e.quantity!;
     super.initState();
   }
 
-  String ans = "";
-  String printSomething() {
+  String firstChoice = "";
+  String secondChoice = "";
+  String thirdChoice = "";
+  String FirstChoice() {
     if (widget.e.choice!.isNotEmpty) {
       if (widget.e.choice!.first.choice != null) {
-        ans = widget.e.choice!.first.choice!.first.toString();
+        firstChoice = widget.e.choice!.first.choice!.first.toString();
       }
     }
-    return ans;
+    return firstChoice;
+  }
+
+  String SecondChoice() {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.length >= 2) {
+        secondChoice = widget.e.choice![1].choice!.first.toString();
+      }
+    }
+    return secondChoice;
+  }
+
+  String ThirdChoice() {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.length >= 3) {
+        thirdChoice = widget.e.choice![2].choice!.first.toString();
+      }
+    }
+    return thirdChoice;
   }
 
   @override
@@ -54,7 +74,7 @@ class _OcpageListState extends State<OcpageList> {
           // onTap: () =>
           //     Navigator.of(context).pushNamed('/page3', arguments: widget.e),
           child: GlassContainer.frostedGlass(
-            height: 16.h,
+            height: 17.h,
             width: 93.w,
             borderWidth: 0,
             blur: 17,
@@ -73,10 +93,10 @@ class _OcpageListState extends State<OcpageList> {
 
                 Center(
                   child: GlassContainer.frostedGlass(
-                    height: 13.h,
+                    height: 13.5.h,
                     width: 25.w,
                     borderColor: Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                     child: Image(
                       image: NetworkImage(product.first.img!),
                       fit: BoxFit.fill,
@@ -87,7 +107,7 @@ class _OcpageListState extends State<OcpageList> {
                 //main container with discription, rating etc.
                 Container(
                   alignment: Alignment.centerLeft,
-                  height: 14.h,
+                  height: 15.h,
                   width: 60.w,
                   margin: EdgeInsets.only(left: 3.w),
                   child: Column(
@@ -145,7 +165,7 @@ class _OcpageListState extends State<OcpageList> {
                           Row(
                             children: [
                               Text(
-                                printSomething()
+                                FirstChoice()
                                 // widget.e.choiceOfSugar!
                                 ,
                                 style: GoogleFonts.inter(
@@ -155,27 +175,34 @@ class _OcpageListState extends State<OcpageList> {
                                     fontWeight: FontWeight.w600),
                               ),
                               //for padding
-                              SizedBox(
-                                width: 1.w,
-                              ),
-                              //start icon with yellow color
+                            ],
+                          ),
 
-                              //more padding
-                              SizedBox(
-                                width: 1.w,
-                              ),
-                              //no of reviews text
+                          //for padding
+
+                          // veg symbol
+                        ],
+                      ),
+                      SizedBox(
+                        height: 0.5.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          //for showing ratings
+                          Row(
+                            children: [
                               Text(
-                                ""
+                                SecondChoice()
                                 // widget.e.choiceOfSugar!
                                 ,
                                 style: GoogleFonts.inter(
-                                  fontSize: 12.5.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color:
-                                      const Color.fromARGB(255, 205, 205, 205),
-                                ),
+                                    fontSize: 12.5.sp,
+                                    color: const Color.fromARGB(
+                                        255, 205, 205, 205),
+                                    fontWeight: FontWeight.w600),
                               ),
+                              //for padding
                             ],
                           ),
 
@@ -193,7 +220,7 @@ class _OcpageListState extends State<OcpageList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            ""
+                            ThirdChoice()
                             // widget.e.choiceOfSugar!
                             ,
                             style: GoogleFonts.inter(
@@ -207,7 +234,7 @@ class _OcpageListState extends State<OcpageList> {
                         ],
                       ),
                       SizedBox(
-                        height: 1.h,
+                        height: 0.5.h,
                       ),
 
                       Divider(

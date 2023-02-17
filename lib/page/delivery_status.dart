@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/orderStautsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../widgets/Admin/OrderDetailsDialog.dart';
 
 class OrderStatus extends StatefulWidget {
   const OrderStatus({super.key});
@@ -98,7 +97,7 @@ class _OrderStatusState extends State<OrderStatus> {
                       child: Column(
                         children: [
                           Container(
-                              margin: EdgeInsets.only(
+                              margin: const EdgeInsets.only(
                                 left: 35,
                                 top: 30,
                               ),

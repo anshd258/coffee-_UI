@@ -5,12 +5,7 @@ class UserDetails {
   String? role;
   String? userId;
 
-  UserDetails(
-      {this.name,
-      this.phoneNo,
-      this.emailId,
-      this.role,
-      this.userId});
+  UserDetails({this.name, this.phoneNo, this.emailId, this.role, this.userId});
 
   UserDetails.fromJson(Map<String, dynamic> json) {
     name = json['name'];

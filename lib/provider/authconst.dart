@@ -1,2 +1,1 @@
-
-final baseurl = "https://swift-cafe-dev.swifttrackmile.codes";
+const baseurl = "https://swift-cafe-dev.swifttrackmile.codes";

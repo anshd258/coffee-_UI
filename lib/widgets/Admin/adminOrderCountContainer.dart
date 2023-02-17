@@ -41,13 +41,15 @@ class AdminOrderCountContainer extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.center,
-              child: quantity == null? CircularProgressIndicator.adaptive(): Text(
-                quantity.toString(),
-                style: GoogleFonts.inter(
-                    color: const Color.fromRGBO(255, 255, 255, 0.702),
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.w700),
-              ),
+              child: quantity == null
+                  ? const CircularProgressIndicator.adaptive()
+                  : Text(
+                      quantity.toString(),
+                      style: GoogleFonts.inter(
+                          color: const Color.fromRGBO(255, 255, 255, 0.702),
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w700),
+                    ),
             ),
             Align(
               alignment: Alignment.bottomRight,
