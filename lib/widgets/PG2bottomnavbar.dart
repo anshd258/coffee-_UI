@@ -21,7 +21,7 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
 
   @override
   Widget build(BuildContext context) {
-    bool page1 = true;
+   
 
     final role = context.watch<LoginAuthProvider>().userRole;
     final val = context.watch<routing>().gettingroute;

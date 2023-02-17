@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:intl/intl.dart';
 import '../../widgets/Admin/reportstable.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -32,6 +33,7 @@ class _OrdersState extends State<Orders> {
   void initState() {
     getPlacedOrdersList();
     context.read<AllOrderProvider>().getOrders();
+
     super.initState();
   }
 
@@ -42,6 +44,7 @@ class _OrdersState extends State<Orders> {
 
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
+
   final String json1 =
       '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
 
@@ -62,7 +65,6 @@ class _OrdersState extends State<Orders> {
     "New Orders",
     "Orders Progress",
     "Completed Orders",
-    "Reports"
   ];
 
   @override
@@ -76,7 +78,7 @@ class _OrdersState extends State<Orders> {
     }
     String headerVal = "";
     var json = jsonDecode(json1);
-    List<dynamic> callRightJSON(tappedIndex) {
+    List<dynamic> callRightJSON(ta8ppedIndex) {
       switch (tappedIndex) {
         case 0:
           json = jsonDecode(json1);
@@ -271,8 +273,9 @@ class _OrdersState extends State<Orders> {
                                       context,
                                       onConfirm: ((time) {
                                         setState(() {
-                                          fromdate =
-                                              "${time.day.toString()}/${time.month.toString()}/${time.year.toString()}";
+                                          fromdate = DateFormat("yyyy-MM-dd")
+                                              .format(time);
+                                          // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
                                         });
                                       }),
                                       currentTime: DateTime.now(),
@@ -336,13 +339,19 @@ class _OrdersState extends State<Orders> {
                                       context,
                                       onConfirm: ((time) {
                                         setState(() {
-                                          todate =
-                                              "${time.day.toString()}/${time.month.toString()}/${time.year.toString()}";
+                                          todate = DateFormat("yyyy-MM-dd")
+                                              .format(time);
+                                          // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
+                                          context
+                                              .read<ReportsProvider>()
+                                              .fetchReports(fromdate.toString(),
+                                                  todate.toString());
                                         });
                                       }),
                                       currentTime: DateTime.now(),
                                       theme: DatePickerTheme(
-                                        backgroundColor: Colors.transparent,
+                                        backgroundColor:
+                                            Color.fromARGB(30, 0, 0, 0),
                                         cancelStyle: GoogleFonts.inter(
                                             color: Colors.redAccent.shade400,
                                             fontSize: 15.sp,
@@ -519,7 +528,9 @@ class _OrdersState extends State<Orders> {
                               },
                             )
                           ] else if (tappedIndex > 2 && data != null) ...[
-                            ReportsTable()
+                            Container(
+                                margin: EdgeInsets.only(bottom: 7.h),
+                                child: ReportsTable())
                           ] else ...[
                             const CircularProgressIndicator.adaptive()
                           ]

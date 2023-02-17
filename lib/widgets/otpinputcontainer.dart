@@ -112,7 +112,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             height: 3.h,
           ),
           Pinput(
-            length: 5,
+            length: 6,
             controller: otpcontroller,
             autofocus: true,
             defaultPinTheme: defaultPinTheme,

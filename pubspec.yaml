@@ -55,6 +55,7 @@ dependencies:
   line_icons: ^2.0.1
   shared_preferences: ^2.0.17
   flutter_switch: ^0.3.2
+  intl: ^0.18.0
 
 
 
