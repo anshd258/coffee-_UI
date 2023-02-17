@@ -16,20 +16,25 @@ class NotificationPg extends StatefulWidget {
 }
 
 class _NotificationPgState extends State<NotificationPg> {
-  bool allnotif = true;
-  bool archive = false;
   late int numberofnotification;
-  late List<NotificationModal> data;
+  List<NotificatonModal>? data;
   @override
   void initState() {
-    data = context.read<NotificationProvider>().notifications;
-    numberofnotification = data.length;
+    context.read<NotificationProvider>().fetchNotifications();
+
     super.initState();
   }
 
   @override
+  void dispose() {
+    context.read<NotificationProvider>().clearNotifications();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    data = context.watch<NotificationProvider>().notifications;
+    data = context.watch<NotificationProvider>().notificatins;
+    numberofnotification = data!.length;
     return Container(
       height: 100.h,
       width: 100.w,
@@ -93,59 +98,31 @@ class _NotificationPgState extends State<NotificationPg> {
                         Row(
                           children: [
                             TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  archive = false;
-                                  allnotif = true;
-                                });
-                              },
+                              onPressed: () {},
                               style: TextButton.styleFrom(),
                               child: Text(
                                 'All($numberofnotification)',
                                 style: GoogleFonts.inter(
                                     color: titleStatusBar,
-                                    decoration: allnotif
-                                        ? TextDecoration.underline
-                                        : TextDecoration.none,
+                                    decoration: TextDecoration.underline,
                                     fontSize: 17.sp,
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
                                     letterSpacing: 1),
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  archive = true;
-                                  allnotif = false;
-                                });
-                              },
-                              style: TextButton.styleFrom(),
-                              child: Text(
-                                'Archive',
-                                style: GoogleFonts.inter(
-                                    color: titleStatusBar,
-                                    decoration: archive
-                                        ? TextDecoration.underline
-                                        : TextDecoration.none,
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    letterSpacing: 1),
-                              ),
-                            )
                           ],
                         ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.settings_outlined,
-                                size: 22.sp,
-                                color: titleStatusBar,
-                              )),
-                        )
+                        // Align(
+                        //   alignment: Alignment.topCenter,
+                        //   child: IconButton(
+                        //       onPressed: () {},
+                        //       icon: Icon(
+                        //         Icons.settings_outlined,
+                        //         size: 22.sp,
+                        //         color: titleStatusBar,
+                        //       )),
+                        // )
                       ],
                     ),
                   ),
@@ -156,15 +133,30 @@ class _NotificationPgState extends State<NotificationPg> {
           body: Center(
             heightFactor: 95.h,
             widthFactor: 100.w,
-            child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                child: Column(
-                  children: data
-                      .map((e) => notificationContainer(
-                            notification: e,
-                          ))
-                      .toList(),
-                )),
+            child: data == null
+                ? CircularProgressIndicator.adaptive(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
+                : SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                    child: data!.isEmpty
+                        ? Container(
+                            width: 100.w,
+                            height: 90.h,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "No Notifications To Show 😓",
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white70),
+                            ))
+                        : Column(
+                            children: data!
+                                .map((e) => notificationContainer(
+                                      notification: e,
+                                    ))
+                                .toList(),
+                          )),
           ),
         ),
       ),

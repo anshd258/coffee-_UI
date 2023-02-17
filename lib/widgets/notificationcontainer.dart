@@ -6,7 +6,7 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class notificationContainer extends StatefulWidget {
-  final NotificationModal notification;
+  final NotificatonModal notification;
   const notificationContainer({super.key, required this.notification});
 
   @override
@@ -35,24 +35,21 @@ class _notificationContainerState extends State<notificationContainer> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(widget.notification.image!))),
+                  fit: BoxFit.fill, image: AssetImage("assets/coffee1.png"))),
         ),
         Container(
-          padding: EdgeInsets.only(
-            left: 5.w,
-            top: 1.8.h,
-            // bottom: 5.w,
-          ),
+          padding: EdgeInsets.only(left: 5.w, top: 1.h, bottom: 1.h
+              // bottom: 5.w,
+              ),
           alignment: Alignment.centerLeft,
           width: 62.w,
           // height: 15.h,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.notification.name!,
+                widget.notification.title!,
                 style: GoogleFonts.inter(
                   fontSize: 17.sp,
                   letterSpacing: 1,
@@ -64,53 +61,27 @@ class _notificationContainerState extends State<notificationContainer> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                        text: 'ORDER ${widget.notification.id!.toString()}',
-                        style: GoogleFonts.inter(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w600,
-                            color: widget.notification.orderstate!.completed
-                                ? Colors.green
-                                : widget.notification.orderstate!.inprocess
-                                    ? Colors.amber.shade300
-                                    : Colors.red),
-                        children: [
-                          if (widget.notification.orderstate!.completed) ...[
-                            TextSpan(
-                              text: " is Ready to Pick Up at Swiift Cafe",
-                              style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color.fromARGB(205, 205, 205, 205),
-                              ),
-                            ),
-                          ] else if (widget
-                              .notification.orderstate!.inprocess) ...[
-                            TextSpan(
-                              text: " Order will ready in 10 Mins.",
-                              style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color.fromARGB(205, 205, 205, 205),
-                              ),
-                            ),
-                          ] else ...[
-                            TextSpan(
-                              text: " is canceled. Please contact at cafe.",
-                              style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color.fromARGB(205, 205, 205, 205),
-                              ),
-                            ),
-                          ]
-                        ]),
+                      text:
+                          'ORDER ${widget.notification.id!.substring(widget.notification.id!.length - 10, widget.notification.id!.length)}',
+                      style: GoogleFonts.inter(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          color:
+                              //  widget.notification.orderstate!.completed
+                              //     ?
+                              Colors.green
+                          // : widget.notification.orderstate!.inprocess
+                          //     ? Colors.amber.shade300
+                          //     : Colors.red
+                          ),
+                    ),
                   ],
                 ),
               ),
               Text(
-                widget.notification.date!,
+                widget.notification.body!,
                 style: GoogleFonts.inter(
-                  fontSize: 13.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: const Color.fromARGB(205, 205, 205, 205),
                 ),
