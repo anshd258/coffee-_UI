@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablePriorityProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:provider/provider.dart';
@@ -18,14 +19,14 @@ import 'package:json_table/json_table.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class Orders extends StatefulWidget {
-  const Orders({super.key});
+class PriorityTable extends StatefulWidget {
+  const PriorityTable({super.key});
 
   @override
-  State<Orders> createState() => _OrdersState();
+  State<PriorityTable> createState() => _PriorityTableState();
 }
 
-class _OrdersState extends State<Orders> {
+class _PriorityTableState extends State<PriorityTable> {
   void getPlacedOrdersList() async {
     await getOrdersPlaced();
   }
@@ -33,7 +34,7 @@ class _OrdersState extends State<Orders> {
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<TableWithStatusProvider>().getOrders("ORDER_PLACED");
+    context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
 
     super.initState();
   }
@@ -73,7 +74,7 @@ class _OrdersState extends State<Orders> {
     final role = context.watch<LoginAuthProvider>().role;
 
     final List<dynamic>? data =
-        context.watch<TableWithStatusProvider>().orderJsonTableData;
+        context.watch<TablePriorityProvider>().orderJsonTableData;
     if (role == 'admin') {
       tappedIndex = 3;
     }
@@ -219,15 +220,15 @@ class _OrdersState extends State<Orders> {
                                       setState(() {
                                         if (index == 0) {
                                           context
-                                              .read<TableWithStatusProvider>()
+                                              .read<TablePriorityProvider>()
                                               .getOrders("ORDER_PLACED");
                                         } else if (index == 1) {
                                           context
-                                              .read<TableWithStatusProvider>()
+                                              .read<TablePriorityProvider>()
                                               .getOrders("ORDER_IN_PROGRESS");
                                         } else if (index == 2) {
                                           context
-                                              .read<TableWithStatusProvider>()
+                                              .read<TablePriorityProvider>()
                                               .getOrders("ORDER_COMPLETED");
                                         }
                                         tappedIndex = index;

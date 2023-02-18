@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inter_coffee/page/Admin/allOrders.dart';
 import 'package:inter_coffee/page/Admin/homepage.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
+import 'package:inter_coffee/page/Admin/priorityTable.dart';
 import 'package:inter_coffee/page/notificationpg.dart';
 import 'package:inter_coffee/page/profilepg.dart';
 import 'package:inter_coffee/provider/router.dart';
@@ -34,7 +35,7 @@ class _ToggleMerchantState extends State<ToggleMerchant> {
         ] else if (id == 4) ...[
           const NotificationPg()
         ] else if (id == 5) ...[
-          const Orders(),
+          const PriorityTable(),
         ],
         Positioned(
           bottom: -0.5.h,
