@@ -243,7 +243,7 @@ class _OcpageListState extends State<OcpageList> {
                         color: Colors.black45,
                       ),
                       SizedBox(
-                        height: 4.h,
+                        height: 3.4.h,
                         width: 60.w,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -253,8 +253,9 @@ class _OcpageListState extends State<OcpageList> {
                               onTap: () {},
                               child: SizedBox(
                                 width: 32.w,
-                                height: 4.h,
-                                child: Center(
+                                height: 3.4.h,
+                                child: Align(
+                                  alignment: Alignment.center,
                                   child: Text(
                                     "Instructions for Cafe",
                                     style: GoogleFonts.inter(
@@ -270,8 +271,9 @@ class _OcpageListState extends State<OcpageList> {
                               onTap: () {},
                               child: SizedBox(
                                 width: 28.w,
-                                height: 4.h,
-                                child: Center(
+                                height: 3.4.h,
+                                child: Align(
+                                  alignment: Alignment.center,
                                   child: Text(
                                     "Add More Items",
                                     style: GoogleFonts.inter(

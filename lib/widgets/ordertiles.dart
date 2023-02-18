@@ -8,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
 import '../provider/loginAuthProvider.dart';
+import 'package:intl/intl.dart';
 
 class OrderPgTiles extends StatelessWidget {
   final Items order;
@@ -22,9 +23,34 @@ class OrderPgTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String returnChoices() {
+      String ans = "";
+      int len = order.choice!.length;
+      int n;
+      if( len >= 3 ) {
+        n = 3;
+      } else { n = len; }
+
+      for( int i = 0; i < n; i++ ) {
+        if( ans == "" ) {
+          ans += order.choice![i].choice!.first;
+        } else if( i == 2 ) {
+          ans += '''
+
+${order.choice![i].choice!.first}''';
+        } else {
+          ans += "                        ${order.choice![i].choice!.first}";
+        }
+        
+      }
+      return ans;
+    }
+
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(createdDate);
-    final optionSelected = order.choice!.isEmpty ? "" : order.choice!.first.choice!.first;
+    final optionSelected = order.choice!.isEmpty ? "" : returnChoices();
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "/deliveryStatus");
@@ -77,42 +103,45 @@ class OrderPgTiles extends StatelessWidget {
                       //inner row
 
                       //for showing ratings
-                      Row(
-                        children: [
-                          if (role == 'admin') ...[
-                            Text(
-                              // "priority: ${order.priority.toString()}",
-                              "priority: No Data!!!",
-                              style: GoogleFonts.inter(
-                                fontSize: 13.sp,
-                                color: const Color.fromARGB(255, 205, 205, 205),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                          ],
-                          Text(
-                            "${createddate.hour}:${createddate.minute}",
-                            style: GoogleFonts.inter(
-                                color: const Color.fromARGB(255, 197, 197, 197),
-                                fontSize: 13.sp,
-                                textStyle: const TextStyle(
-                                  wordSpacing: 1,
-                                )),
-                          ),
-                          SizedBox(width: 10.w)
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     if (role == 'admin') ...[
+                      //       Text(
+                      //         // "priority: ${order.priority.toString()}",
+                      //         "priority: No Data!!!",
+                      //         style: GoogleFonts.inter(
+                      //           fontSize: 13.sp,
+                      //           color: const Color.fromARGB(255, 205, 205, 205),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         width: 20.w,
+                      //       ),
+                      //     ],
+                      //     Text(
+                      //       "${createddate.hour}:${createddate.minute}",
+                      //       style: GoogleFonts.inter(
+                      //           color: const Color.fromARGB(255, 197, 197, 197),
+                      //           fontSize: 13.sp,
+                      //           textStyle: const TextStyle(
+                      //             wordSpacing: 1,
+                      //           )),
+                      //     ),
+                      //     SizedBox(width: 10.w)
+                      //   ],
+                      // ),
                       //for padding
                       SizedBox(
                         height: 01.h,
                       ),
-                      Text(
-                        optionSelected.toString(),
-                        style: GoogleFonts.inter(
-                          fontSize: 13.sp,
-                          color: const Color.fromARGB(255, 205, 205, 205),
+                      Container(
+                        width: 60.w,
+                        child: Text(
+                          optionSelected.toString(),
+                          style: GoogleFonts.inter(
+                            fontSize: 13.sp,
+                            color: const Color.fromARGB(255, 205, 205, 205),
+                          ),
                         ),
                       ),
                       //for padding
@@ -160,7 +189,7 @@ class OrderPgTiles extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${createddate.day} ${createddate.month} ${createddate.year} ",
+                    "${createddate.day} ${DateFormat.MMM().format(createddate)} ${createddate.year} at ${createddate.hour}:${createddate.minute}",
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       color: const Color.fromARGB(255, 205, 205, 205),

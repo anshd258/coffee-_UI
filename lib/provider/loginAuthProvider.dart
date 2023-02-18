@@ -9,9 +9,14 @@ class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
   String? accessToken;
   String? role;
+  bool? isAdmin;
 
   get userRole {
     return role;
+  }
+
+  get getColor {
+    return isAdmin;
   }
 
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
@@ -25,11 +30,17 @@ class LoginAuthProvider with ChangeNotifier {
       // await setRole("merchant");
       // isAdmin = true;
       if (loadedData['role'] == 'MERCHANT') {
+        isAdmin = true;
         await setRole('merchant');
+        notifyListeners();
       } else if (loadedData['role'] == 'ADMIN') {
+        isAdmin = true;
         await setRole('admin');
+        notifyListeners();
       } else if (loadedData['role'] == 'USER') {
+        isAdmin = false;
         await setRole('user');
+        notifyListeners();
       }
       await setToken(loadedData['token']);
       // await setToken(
@@ -41,7 +52,6 @@ class LoginAuthProvider with ChangeNotifier {
       if (role == "merchant") {
         print(role);
         print(accessToken);
-        isAdmin = true;
         notifyListeners();
         Navigator.pushNamedAndRemoveUntil(
           context,
@@ -51,7 +61,6 @@ class LoginAuthProvider with ChangeNotifier {
       } else {
         print(role);
         print(accessToken);
-        isAdmin = false;
         notifyListeners();
         Navigator.pushNamedAndRemoveUntil(
           context,

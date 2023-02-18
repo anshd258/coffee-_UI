@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,15 +24,24 @@ class _OrderStatusState extends State<OrderStatus> {
   bool? _value4 = false;
   bool? _value5 = false;
   // bool visible = false;
+  Timer? timer;
+  String stateOfOrder = "";
+
 
   @override
   void initState() {
     context.read<MyData>().fetchData("11a63c1a-eda8-4cd0-b66e-f8693d971a7b");
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      setState(() {
+        stateOfOrder = context.read<MyData>().orderState != null ? context.read<MyData>().orderState! : "";
+      });
+    });
     super.initState();
   }
   
   @override
   void dispose() {
+    timer?.cancel();
     super.dispose();
   }
 
@@ -41,7 +52,7 @@ class _OrderStatusState extends State<OrderStatus> {
       orderid = ModalRoute.of(context)!.settings.arguments as String;
     }
 
-    String stateOfOrder = context.watch<MyData>().orderState != null ? context.watch<MyData>().orderState! : "";
+    stateOfOrder = context.read<MyData>().orderState != null ? context.read<MyData>().orderState! : "";
 
     return Container(
       height: 100.h,

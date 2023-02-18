@@ -87,11 +87,15 @@ class _OrderPgState extends State<OrderPg> {
                                       Colors.white70),
                                 )))
                             : Column(
-                                children: data.first.items!.map((e) {
-                                  return OrderPgTiles(
-                                    order: e,
-                                    orderNo: data.first.orderNo!,
-                                    createdDate: data.first.createdDate!,
+                                children: data.map((e) {
+                                  return Column(
+                                    children: e.items!.map((element){
+                                      return OrderPgTiles(
+                                        order: element,
+                                        orderNo: data.first.orderNo!,
+                                        createdDate: data.first.createdDate!,
+                                      );
+                                    }).toList(),
                                   );
                                 }).toList(),
                               )),

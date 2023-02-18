@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class OrderHistory with ChangeNotifier {
-  final List<OrderHistoryModel> _orderList = [];
+  List<OrderHistoryModel> _orderList = [];
 
   List<OrderHistoryModel> get History {
     return _orderList;
@@ -21,32 +21,25 @@ class OrderHistory with ChangeNotifier {
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessTokken',
     });
-    print("here too");
+
     final responseData = json.decode(response.body) as Map<String, dynamic>;
     if (responseData['message'] == 'SUCCESS') {
       print("OrderHistoryProvider -> sucess");
-      final loadedData = responseData['data'];
-        loadedData.forEach((element){
-          if( element['items'] != null && _orderList.length <= 1 ) {
-            _orderList.add(
-              OrderHistoryModel.fromJson(element)
-            );
-          }
+      final loadedData = responseData['data'] as List<dynamic>;
+      // print(loadedData.toString());
+      print("LoadedData length -> ${loadedData.length}");
+      _orderList = [];
+      loadedData.forEach((element){
+        if( element['items'] != null) {
+          _orderList.add(
+            OrderHistoryModel.fromJson(element)
+          );
+        }
+      });
+      _orderList.forEach((element) {
+          print(element.toJson());
         });
-        // if( loadedData.first != null ) {
-        //   _orderList.add(
-        //     OrderHistoryModel.fromJson(loadedData.first)
-        //   );
-        // }
-        // int len = _orderList.length;
-        // for( int i = 0; i < len; i++ ) {
-        //   Items it = _orderList[i].items;
-        //   if( _orderList[i].items == null || _orderList.first.items)
-        // }
-        _orderList.forEach((element) {
-           print(element.toJson());
-         });
-      // _orderList = loadedOrders;
+      print("OrderList length -> ${_orderList.length}");
       notifyListeners();
     }
   }

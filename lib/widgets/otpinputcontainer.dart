@@ -175,13 +175,13 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);
-                isAdmin = true;
+                
               } else if (istapped == true) {
                 istapped = false;
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);
-                isAdmin = false;
+                
               }
             },
             child: Container(

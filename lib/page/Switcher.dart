@@ -12,17 +12,16 @@ class Switcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final role = context.watch<LoginAuthProvider>().role;
-    print("this is switcherpage[$role");
+    isAdmin = context.watch<LoginAuthProvider>().getColor == null ? false : context.watch<LoginAuthProvider>().getColor! ;
+    print("this is switcherpage role -> $role");
+    print("this is switcherpage color -> $isAdmin");
 
     if (role == null) {
-      isAdmin = false;
       return const page_1();
     } else {
       if (role == "merchant") {
-        isAdmin = true;
         return const AdminHome();
       } else {
-        isAdmin = true;
         return const Toggle();
       }
     }

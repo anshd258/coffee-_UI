@@ -34,7 +34,7 @@ void main() {
   runApp(const mainApp());
 }
 
-bool isAdmin = true;
+bool isAdmin = false;
 
 class mainApp extends StatefulWidget {
   const mainApp({super.key});
@@ -46,6 +46,7 @@ class mainApp extends StatefulWidget {
 class _mainAppState extends State<mainApp> {
   @override
   Widget build(BuildContext context) {
+    
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<AllOrderProvider>(
