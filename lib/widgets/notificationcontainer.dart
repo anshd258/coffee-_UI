@@ -14,8 +14,15 @@ class notificationContainer extends StatefulWidget {
 }
 
 class _notificationContainerState extends State<notificationContainer> {
+  String orderid = '';
   @override
   Widget build(BuildContext context) {
+    if (widget.notification.orderId!.isNotEmpty) {
+      orderid = widget.notification.orderId!.substring(
+          widget.notification.orderId!.length - 10,
+          widget.notification.orderId!.length);
+      print(orderid);
+    }
     return GlassContainer.frostedGlass(
       borderWidth: 0.5,
       height: 13.h,
@@ -61,8 +68,7 @@ class _notificationContainerState extends State<notificationContainer> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text:
-                          'ORDER ${widget.notification.id!.substring(widget.notification.id!.length - 10, widget.notification.id!.length)}',
+                      text: orderid,
                       style: GoogleFonts.inter(
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w600,

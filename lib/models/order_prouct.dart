@@ -6,7 +6,7 @@ class CartModal {
   CartModal({this.productId, this.quantity, this.choice});
 
   CartModal.fromJson(Map<String, dynamic> json) {
-    productId = json['product_id'];
+    productId = json['productId'];
     quantity = json['quantity'];
     if (json['choice'] != null) {
       choice = <Choice>[];
