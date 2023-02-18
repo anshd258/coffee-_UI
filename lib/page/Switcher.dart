@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/main.dart';
+import 'package:inter_coffee/page/Merchent/toggle_merchant.dart';
 import 'package:inter_coffee/page/page-1.dart';
 import 'bottombartoggle.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class Switcher extends StatelessWidget {
       return const page_1();
     } else {
       if (role == "merchant") {
-        return const AdminHome();
+        return const ToggleMerchant();
       } else {
         return const Toggle();
       }

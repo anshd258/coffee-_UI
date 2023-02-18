@@ -42,7 +42,6 @@ ${order.choice![i].choice!.first}''';
         } else {
           ans += "                        ${order.choice![i].choice!.first}";
         }
-        
       }
       return ans;
     }
