@@ -14,6 +14,7 @@ class OrderHistory with ChangeNotifier {
   }
 
   Future<void> fetchOrders() async {
+    _orderList.clear();
     final accessTokken = await getToken();
     const url = '$baseurl/orderHistory';
     final response = await http.get(Uri.parse(url), headers: {

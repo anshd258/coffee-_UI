@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
 import 'package:inter_coffee/provider/orderStautsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderStatus extends StatefulWidget {
   const OrderStatus({super.key});
+
 
   @override
   State<OrderStatus> createState() => _OrderStatusState();
@@ -28,7 +30,7 @@ class _OrderStatusState extends State<OrderStatus> {
 
   @override
   void initState() {
-    context.read<MyData>().fetchData("d569d8a8-c31e-4ff1-80e8-dd4001e7aa01");
+    context.read<MyData>().fetchData(ModalRoute.of(context)!.settings.arguments!.toString());
     if( context.read<MyData>().orderState != null ) {
       stateOfOrder = ValueNotifier<String>(context.read<MyData>().orderState!);
     } else {
