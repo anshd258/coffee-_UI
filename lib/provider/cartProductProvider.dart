@@ -36,6 +36,11 @@ class CartProductsProvider with ChangeNotifier {
     // print("sending data$currentData");
   }
 
+  void orderAgain(List<CartModal> data) {
+    cartData.addAll(data);
+    notifyListeners();
+  }
+
   void submit() {
     cartData.add(currentproduct);
 

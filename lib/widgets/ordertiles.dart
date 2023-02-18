@@ -3,6 +3,9 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +15,14 @@ import 'package:intl/intl.dart';
 
 class OrderPgTiles extends StatelessWidget {
   final Items order;
+  final String id;
+  final List<CartModal> orderAgain;
   final String createdDate;
   final String orderNo;
   const OrderPgTiles(
       {Key? key,
+      required this.id,
+      required this.orderAgain,
       required this.order,
       required this.createdDate,
       required this.orderNo})
@@ -23,19 +30,20 @@ class OrderPgTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String returnChoices() {
       String ans = "";
       int len = order.choice!.length;
       int n;
-      if( len >= 3 ) {
+      if (len >= 3) {
         n = 3;
-      } else { n = len; }
+      } else {
+        n = len;
+      }
 
-      for( int i = 0; i < n; i++ ) {
-        if( ans == "" ) {
+      for (int i = 0; i < n; i++) {
+        if (ans == "") {
           ans += order.choice![i].choice!.first;
-        } else if( i == 2 ) {
+        } else if (i == 2) {
           ans += '''
 
 ${order.choice![i].choice!.first}''';
@@ -203,7 +211,7 @@ ${order.choice![i].choice!.first}''';
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, "/deliveryStatus",
-                                arguments: orderNo);
+                                arguments: id);
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
@@ -216,8 +224,11 @@ ${order.choice![i].choice!.first}''';
                         ),
                         OutlinedButton(
                           onPressed: () {
-                            // Navigator.pushNamed(context, "/deliveryStatus",
-                            //     arguments: order.orderNo);
+                            context
+                                .read<CartProductsProvider>()
+                                .orderAgain(orderAgain);
+                            context.read<routing>().settingRoute(4);
+                            Navigator.pop(context);
                           },
                           style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.green.shade400),

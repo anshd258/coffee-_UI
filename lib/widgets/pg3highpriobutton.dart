@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +21,7 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
 
   @override
   Widget build(BuildContext context) {
+    final currentcChoices = context.watch<CartProductsProvider>().currentChoie;
     void nullCheckerForList() {
       // if( context.read<CartProductsProvider>().currentproduct.quantityOfProduct == null ) {
       //   Provider.of<CartProductsProvider>(context, listen: false).updateQuantity(1);
@@ -113,8 +113,6 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
         //submit elevated button
         ElevatedButton(
           onPressed: () {
-            context.read<CartProductsProvider>().setCartData();
-            context.read<CartProductsProvider>().submit();
             // display();
             // Navigator.pop(context);
             // print(
@@ -129,7 +127,12 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
             //     .addingProductsToCart();
             // Provider.of<CartProductsProvider>(context, listen: false)
             //     .clearCurrentProduct();
-            Navigator.pop(context);
+            if (currentcChoices.isNotEmpty) {
+              context.read<CartProductsProvider>().setCartData();
+              context.read<CartProductsProvider>().submit();
+              Navigator.pop(context);
+            }
+            ;
           },
           style: ElevatedButton.styleFrom(
               fixedSize: Size(width, 5.h),

@@ -1,6 +1,9 @@
+import './order_prouct.dart';
+
 class OrderHistoryModel {
   String? id;
   String? orderNo;
+  List<CartModal>? orderagain;
   List<Items>? items;
   String? recipientName;
   String? createdDate;
@@ -17,9 +20,12 @@ class OrderHistoryModel {
     orderNo = json['orderNo'] ?? "1212";
 
     if (json['items'] != null) {
+      orderagain = <CartModal>[];
       items = <Items>[];
       json['items'].forEach((v) {
         items!.add(Items.fromJson(v));
+        orderagain!.add(CartModal.fromJson(v));
+        print(orderagain);
       });
     }
     recipientName = json['recipientName'];
@@ -51,7 +57,7 @@ class Items {
     productName = json['productName'];
     productImg = json['productImg'];
     quantity = json['quantity'];
-    if ( json['choice'].isNotEmpty ) {
+    if (json['choice'].isNotEmpty) {
       choice = <Choice>[];
       json['choice'].forEach((v) {
         choice!.add(Choice.fromJson(v));

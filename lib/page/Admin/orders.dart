@@ -124,14 +124,6 @@ class _OrdersState extends State<Orders> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: role == "admin"
-                ? null
-                : GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
-                  ),
             title: Text(
               role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,
