@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/reportsProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:json_table/json_table.dart';
 import '../../constants/colors.dart';
 
 class ReportsTable extends StatelessWidget {
-  final List<Map<String, dynamic>> json5 = [
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
+  List<dynamic> json5 = [
+    {},
   ];
   ReportsTable({super.key});
   String headerVal = "";
   @override
   Widget build(BuildContext context) {
+    final data = context.watch<ReportsProvider>().reportsData;
+    print("reports data" + data.toString());
+    if (data.isNotEmpty) {
+      json5 = data;
+    }
     return Center(
-      child: JsonTable(json5, tableHeaderBuilder: (header) {
+      child: JsonTable(json5, columns: [
+        JsonTableColumn('employee', defaultValue: null, label: "Name"),
+        JsonTableColumn('product', defaultValue: null, label: "Product"),
+        JsonTableColumn('quantity', defaultValue: null, label: "Quantity"),
+      ], tableHeaderBuilder: (header) {
         headerVal = header.toString();
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
