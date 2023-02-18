@@ -1,5 +1,6 @@
 import 'dart:convert';
 import './authconst.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
@@ -8,6 +9,7 @@ import 'loginhandler/loginsharedpref.dart';
 class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
   String? accessToken;
+
   String? role;
   bool? isAdmin;
 
@@ -20,10 +22,12 @@ class LoginAuthProvider with ChangeNotifier {
   }
 
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
+    final fcmToken = await FirebaseMessaging.instance.getToken();
+    print("fcm tokken ->" + fcmToken!);
     final response = await http.post(Uri.parse("$baseurl/login"),
         headers: {"Content-Type": "application/json"},
         body: json
-            .encode({"phoneNo": pnumber, "deviceToken": "65685", "otp": OTP}));
+            .encode({"phoneNo": pnumber, "deviceToken": fcmToken, "otp": OTP}));
     final loadedData = json.decode(response.body);
     print(loadedData);
     if (response.statusCode == 200) {

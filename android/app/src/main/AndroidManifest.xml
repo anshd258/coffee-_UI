@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.swift_cafe">
+    package="au.com.trackmile.swift.cafe">
    <application
    
         android:label="swift cafe"

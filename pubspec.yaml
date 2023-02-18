@@ -56,6 +56,8 @@ dependencies:
   shared_preferences: ^2.0.17
   flutter_switch: ^0.3.2
   intl: ^0.18.0
+  firebase_messaging: ^14.2.4
+  firebase_core: ^2.6.1
 
 
 
