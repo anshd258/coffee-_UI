@@ -109,7 +109,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               child: Image.asset(
                 "assets/table.png",
                 fit: BoxFit.scaleDown,
-                scale: 1.6,
+                scale: 1.5,
                 color: Colors.white,
               ),
             ),

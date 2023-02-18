@@ -138,7 +138,7 @@ class _NotificationPgState extends State<NotificationPg> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
                 : SingleChildScrollView(
                     padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                    child: data!.isEmpty
+                    child:  data!.isEmpty
                         ? Container(
                             width: 100.w,
                             height: 90.h,

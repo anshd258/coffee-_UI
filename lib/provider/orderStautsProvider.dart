@@ -13,7 +13,7 @@ class MyData with ChangeNotifier {
   void fetchData(String orderid) async {
     final accessTokken = await getToken();
     final url =
-        "${baseurl}orderStatus/$orderid";
+        "${baseurl}/orderStatus/$orderid";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -22,6 +22,7 @@ class MyData with ChangeNotifier {
     final decodedData = json.decode(response.body) as Map<String, dynamic>;
     if (decodedData['message'] == 'SUCCESS') {
       orderState = decodedData['data']['orderState'];
+      print(orderState);
       estTime = decodedData['data']['estTime'];
       notifyListeners();
     }
