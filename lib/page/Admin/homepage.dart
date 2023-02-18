@@ -194,7 +194,7 @@ class _AdminHomeState extends State<AdminHome> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 1.h),
+                          margin: EdgeInsets.only(top: 1.h, bottom: 8.h),
                           padding: EdgeInsets.symmetric(
                               horizontal: 3.w, vertical: 2.h),
                           color: Colors.white10,

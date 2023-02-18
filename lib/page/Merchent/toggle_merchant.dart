@@ -30,7 +30,7 @@ class _ToggleMerchantState extends State<ToggleMerchant> {
         ] else if (id == 2) ...[
           const Profilepg()
         ] else if (id == 3) ...[
-          const AllOrders(),
+          const Orders(),
         ] else if (id == 4) ...[
           const NotificationPg()
         ] else if (id == 5) ...[
