@@ -58,7 +58,7 @@ class _notificationContainerState extends State<notificationContainer> {
               Text(
                 widget.notification.title!,
                 style: GoogleFonts.inter(
-                  fontSize: 17.sp,
+                  fontSize: 16.sp,
                   letterSpacing: 1,
                   fontWeight: FontWeight.w600,
                   color: const Color.fromARGB(255, 205, 205, 205),

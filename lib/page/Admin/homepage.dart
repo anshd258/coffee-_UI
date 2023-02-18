@@ -168,6 +168,9 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                 ],
                               ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
                               SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -233,6 +236,9 @@ class _AdminHomeState extends State<AdminHome> {
                                   ),
                                 ],
                               ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -258,6 +264,9 @@ class _AdminHomeState extends State<AdminHome> {
                               ),
                             ],
                           ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
                         ),
                       ],
                     ),

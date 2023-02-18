@@ -4,6 +4,7 @@ import 'package:inter_coffee/page/Admin/orders.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
@@ -47,7 +48,6 @@ class mainApp extends StatefulWidget {
 class _mainAppState extends State<mainApp> {
   @override
   Widget build(BuildContext context) {
-    
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<AllOrderProvider>(
@@ -64,6 +64,9 @@ class _mainAppState extends State<mainApp> {
           ),
           ChangeNotifierProvider<OrderHistory>(
             create: (context) => OrderHistory(),
+          ),
+          ChangeNotifierProvider<TableWithStatusProvider>(
+            create: (context) => TableWithStatusProvider(),
           ),
           ChangeNotifierProvider<routing>(
             create: (context) => routing(),

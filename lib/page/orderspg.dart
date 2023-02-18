@@ -81,11 +81,18 @@ class _OrderPgState extends State<OrderPg> {
                             ? SizedBox(
                                 height: 100.h,
                                 width: 100.w,
-                                child: const Center(
-                                    child: CircularProgressIndicator.adaptive(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white70),
-                                )))
+                                child: Center(
+                                  child: Container(
+                                      width: 100.w,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "No Data Avilable 📪",
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 17.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white70),
+                                      )),
+                                ))
                             : Column(
                                 children: data.map((e) {
                                   return OrderPgTiles(

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +33,7 @@ class _OrdersState extends State<Orders> {
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<AllOrderProvider>().getOrders();
+    context.read<TableWithStatusProvider>().getOrders("ORDER_PLACED");
 
     super.initState();
   }
@@ -72,7 +73,7 @@ class _OrdersState extends State<Orders> {
     final role = context.watch<LoginAuthProvider>().role;
 
     final List<dynamic>? data =
-        context.watch<AllOrderProvider>().orderJsonTableData;
+        context.watch<TableWithStatusProvider>().orderJsonTableData;
     if (role == 'admin') {
       tappedIndex = 3;
     }
@@ -216,6 +217,15 @@ class _OrdersState extends State<Orders> {
                                   return GestureDetector(
                                     onTap: () {
                                       setState(() {
+                                        if (index == 1) {
+                                          context
+                                              .read<TableWithStatusProvider>()
+                                              .getOrders("ORDER_IN_PROGRESS");
+                                        } else if (index == 2) {
+                                          context
+                                              .read<TableWithStatusProvider>()
+                                              .getOrders("ORDER_COMPLETED");
+                                        }
                                         tappedIndex = index;
                                         // json = jsonDecode(json4);
                                       });
@@ -395,141 +405,173 @@ class _OrdersState extends State<Orders> {
                             height: 2.h,
                           ),
                           if (tappedIndex <= 2 && data != null) ...[
-                            JsonTable(
-                              // json = callRightJSON(tappedIndex),
-                              data,
-                              // onRowSelect: (index, map) {
-                              //   ConfirmDialog(context, map);
-                              // },
-                              columns: [
-                                JsonTableColumn('createdDate',
-                                    defaultValue: null, label: "Date"),
-                                JsonTableColumn('orderId',
-                                    defaultValue: null, label: "Order No"),
-                                JsonTableColumn('userId.name',
-                                    defaultValue: null, label: "Order By"),
-                                JsonTableColumn('currentState',
-                                    defaultValue: null, label: "Order Status"),
-                                JsonTableColumn('next_state_est_time',
-                                    defaultValue: null, valueBuilder: (value) {
-                                  final time = DateTime.parse(value);
-                                  return time.minute.toString();
-                                }, label: "Estimated Time"),
-                                JsonTableColumn('orderId',
-                                    defaultValue: null, label: "Order Details"),
-                              ],
-                              tableHeaderBuilder: (header) {
-                                headerVal = header.toString();
-                                return Container(
-                                  padding: EdgeInsets.all(2.w),
-                                  decoration: BoxDecoration(
-                                    color: tableBlack,
-                                    border: Border.all(color: borderWhite),
-                                  ),
-                                  child: Center(
+                            data.isEmpty
+                                ? Container(
+                                    width: 100.w,
+                                    alignment: Alignment.center,
                                     child: Text(
-                                      header.toString(),
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.inter(
-                                          color: white,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ),
-                                );
-                              },
-                              tableCellBuilder: (value) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    if (headerVal == "Order Status" &&
-                                        value == "Pending") {
-                                      OrderETA_Dialvog(context);
-                                    }
-                                    if (headerVal == "Order Status" &&
-                                        value == "Confirmed") {
-                                      ConfirmDialog(context, "READY TO PICK UP",
-                                          () {
-                                        Navigator.pushNamed(
-                                            context, "/OrderConfirmed");
-                                      });
-                                    }
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(2.w),
-                                    decoration: BoxDecoration(
-                                      color: tableBlack,
-                                      border: Border.all(color: borderWhite),
-                                    ),
-                                    child: Center(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            headerVal == "Order Details"
-                                                ? ""
-                                                : value,
+                                      "No Data Avilabe",
+                                      style: GoogleFonts.quicksand(
+                                          fontSize: 17.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white70),
+                                    ))
+                                : JsonTable(
+                                    // json = callRightJSON(tappedIndex),
+                                    data,
+                                    // onRowSelect: (index, map) {
+                                    //   ConfirmDialog(context, map);
+                                    // },
+                                    columns: [
+                                      JsonTableColumn('createdDate',
+                                          defaultValue: null, label: "Date"),
+                                      JsonTableColumn('orderId',
+                                          defaultValue: null,
+                                          label: "Order No"),
+                                      JsonTableColumn('userId.name',
+                                          defaultValue: null,
+                                          label: "Order By"),
+                                      JsonTableColumn('currentState',
+                                          defaultValue: null,
+                                          label: "Order Status"),
+                                      JsonTableColumn('next_state_est_time',
+                                          defaultValue: null,
+                                          valueBuilder: (value) {
+                                        final time = DateTime.parse(value);
+
+                                        return time.minute.toString();
+                                      }, label: "Estimated Time"),
+                                      JsonTableColumn('orderId',
+                                          defaultValue: null,
+                                          label: "Order Details"),
+                                    ],
+                                    tableHeaderBuilder: (header) {
+                                      headerVal = header.toString();
+                                      return Container(
+                                        padding: EdgeInsets.all(2.w),
+                                        decoration: BoxDecoration(
+                                          color: tableBlack,
+                                          border:
+                                              Border.all(color: borderWhite),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            header.toString(),
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.inter(
-                                                textStyle:
-                                                    headerVal == "Order Details"
-                                                        ? const TextStyle(
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                          )
-                                                        : null,
-                                                color: headerVal ==
-                                                        "Order Details"
-                                                    ? orderDetailsGreen
-                                                    : headerVal ==
-                                                            "Order Status"
-                                                        ? value != "Pending" &&
-                                                                value !=
-                                                                    "Cancelled"
-                                                            ? orderDetailsGreen
-                                                            : value == "Pending"
-                                                                ? pending
-                                                                : value ==
-                                                                        "Cancelled"
-                                                                    ? cancelled
-                                                                    : white
-                                                        : white,
+                                                color: white,
                                                 fontSize: 14.sp,
-                                                fontWeight: headerVal ==
-                                                        "Order Details"
-                                                    ? FontWeight.w500
-                                                    : headerVal ==
-                                                            "Order Status"
-                                                        ? value != "Confirmed"
-                                                            ? FontWeight.w500
-                                                            : FontWeight.w400
-                                                        : FontWeight.w400),
+                                                fontWeight: FontWeight.w400),
                                           ),
-                                          headerVal == "Order Details"
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    OrderDetailsDialog(context);
-                                                  },
-                                                  child: Center(
-                                                    child: Text("view More",
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            GoogleFonts.inter(
-                                                                fontSize:
-                                                                    15.5.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500)),
-                                                  ),
-                                                )
-                                              : const Text("")
-                                        ],
-                                      ),
-                                    ),
+                                        ),
+                                      );
+                                    },
+                                    tableCellBuilder: (value) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          if (headerVal == "Order Status" &&
+                                              value == "Pending") {
+                                            OrderETA_Dialvog(context);
+                                          }
+                                          if (headerVal == "Order Status" &&
+                                              value == "Confirmed") {
+                                            ConfirmDialog(
+                                                context, "READY TO PICK UP",
+                                                () {
+                                              Navigator.pushNamed(
+                                                  context, "/OrderConfirmed");
+                                            });
+                                          }
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.all(2.w),
+                                          decoration: BoxDecoration(
+                                            color: tableBlack,
+                                            border:
+                                                Border.all(color: borderWhite),
+                                          ),
+                                          child: Center(
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  headerVal == "Order Details"
+                                                      ? ""
+                                                      : value,
+                                                  textAlign: TextAlign.start,
+                                                  style: GoogleFonts.inter(
+                                                      textStyle: headerVal ==
+                                                              "Order Details"
+                                                          ? const TextStyle(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                            )
+                                                          : null,
+                                                      color: headerVal ==
+                                                              "Order Details"
+                                                          ? orderDetailsGreen
+                                                          : headerVal ==
+                                                                  "Order Status"
+                                                              ? value != "Pending" &&
+                                                                      value !=
+                                                                          "Cancelled"
+                                                                  ? orderDetailsGreen
+                                                                  : value ==
+                                                                          "Pending"
+                                                                      ? pending
+                                                                      : value ==
+                                                                              "Cancelled"
+                                                                          ? cancelled
+                                                                          : white
+                                                              : white,
+                                                      fontSize: 14.sp,
+                                                      fontWeight: headerVal ==
+                                                              "Order Details"
+                                                          ? FontWeight.w500
+                                                          : headerVal ==
+                                                                  "Order Status"
+                                                              ? value !=
+                                                                      "Confirmed"
+                                                                  ? FontWeight
+                                                                      .w500
+                                                                  : FontWeight
+                                                                      .w400
+                                                              : FontWeight
+                                                                  .w400),
+                                                ),
+                                                headerVal == "Order Details"
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          OrderDetailsDialog(
+                                                              context);
+                                                        },
+                                                        child: Center(
+                                                          child: Text(
+                                                              "view More",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize:
+                                                                      15.5.sp,
+                                                                  color:
+                                                                      borderWhite,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500)),
+                                                        ),
+                                                      )
+                                                    : const Text("")
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
                             SizedBox(
                               height: 8.h,
                             )
