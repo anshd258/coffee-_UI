@@ -30,24 +30,31 @@ import './page/notificationpg.dart';
 import './page/Admin/homepage.dart';
 import './page/Admin/allOrders.dart';
 import './page/Admin/account.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const mainApp());
+// ...
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MainApp());
 }
 
 bool isAdmin = false;
 
-class mainApp extends StatefulWidget {
-  const mainApp({super.key});
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
 
   @override
-  State<mainApp> createState() => _mainAppState();
+  State<MainApp> createState() => _MainAppState();
 }
 
-class _mainAppState extends State<mainApp> {
+class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<AllOrderProvider>(
