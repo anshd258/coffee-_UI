@@ -408,10 +408,15 @@ class _OrdersState extends State<Orders> {
                                     defaultValue: null, label: "Order No"),
                                 JsonTableColumn('userId.name',
                                     defaultValue: null, label: "Order By"),
+                                JsonTableColumn('currentState',
+                                    defaultValue: null, label: "Order Status"),
+                                JsonTableColumn('next_state_est_time',
+                                    defaultValue: null, valueBuilder: (value) {
+                                  final time = DateTime.parse(value);
+                                  return time.minute.toString();
+                                }, label: "Estimated Time"),
                                 JsonTableColumn('orderId',
                                     defaultValue: null, label: "Order Details"),
-                                JsonTableColumn('currentState',
-                                    defaultValue: null, label: "Order Status")
                               ],
                               tableHeaderBuilder: (header) {
                                 headerVal = header.toString();
@@ -459,7 +464,9 @@ class _OrdersState extends State<Orders> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            value,
+                                            headerVal == "Order Details"
+                                                ? ""
+                                                : value,
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.inter(
                                                 textStyle:
@@ -503,12 +510,16 @@ class _OrdersState extends State<Orders> {
                                                     OrderDetailsDialog(context);
                                                   },
                                                   child: Center(
-                                                    child: Icon(
-                                                      Icons
-                                                          .remove_red_eye_outlined,
-                                                      color: white,
-                                                      size: 19.5.sp,
-                                                    ),
+                                                    child: Text("view More",
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                                fontSize:
+                                                                    15.5.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
                                                   ),
                                                 )
                                               : const Text("")
@@ -518,6 +529,9 @@ class _OrdersState extends State<Orders> {
                                   ),
                                 );
                               },
+                            ),
+                            SizedBox(
+                              height: 8.h,
                             )
                           ] else if (tappedIndex > 2 && data != null) ...[
                             Container(

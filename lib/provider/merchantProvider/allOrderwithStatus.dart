@@ -15,7 +15,7 @@ class AllOrderProvider with ChangeNotifier {
 
   Future<void> getOrders() async {
     final accessTokken = await getToken();
-    const url = "$baseurl/getOrders/ORDER_PLACED";
+    const url = "$baseurl/getNotCompletedOrdersList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

@@ -10,7 +10,7 @@ class PriorityOrderProvider with ChangeNotifier {
 
   Future<void> getPriorityOrders() async {
     final accessTokken = await getToken();
-    const url = "$baseurl/getPriorityOrders/ORDER_IN_PROGRESS";
+    const url = "$baseurl/getNotCompletedPriorityOrdersList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
