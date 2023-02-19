@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
@@ -21,7 +21,12 @@ class _NotificationPgState extends State<NotificationPg> {
   @override
   void initState() {
     context.read<NotificationProvider>().fetchNotifications();
-
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        context.read<NotificationProvider>().markNotificationsRead();
+      },
+    );
     super.initState();
   }
 
@@ -138,7 +143,7 @@ class _NotificationPgState extends State<NotificationPg> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
                 : SingleChildScrollView(
                     padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                    child:  data!.isEmpty
+                    child: data!.isEmpty
                         ? Container(
                             width: 100.w,
                             height: 90.h,

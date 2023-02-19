@@ -34,6 +34,18 @@ class NotificationProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+  Future<void> markNotificationsRead ()async{
+     final accessTokken = await getToken();
+
+    const url = "$baseurl/markNotificationAsRead";
+
+    final response = await http.put(Uri.parse(url), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $accessTokken',
+    });
+  }
+
 
   void clearNotifications() {
     notificatins.clear();
