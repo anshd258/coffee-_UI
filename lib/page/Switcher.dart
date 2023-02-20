@@ -13,7 +13,9 @@ class Switcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final role = context.watch<LoginAuthProvider>().role;
-    isAdmin = context.watch<LoginAuthProvider>().getColor == null ? false : context.watch<LoginAuthProvider>().getColor! ;
+    isAdmin = context.watch<LoginAuthProvider>().getColor == null
+        ? false
+        : context.watch<LoginAuthProvider>().getColor!;
     print("this is switcherpage role -> $role");
     print("this is switcherpage color -> $isAdmin");
 

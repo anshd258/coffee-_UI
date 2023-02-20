@@ -34,8 +34,9 @@ class NotificationProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-  Future<void> markNotificationsRead ()async{
-     final accessTokken = await getToken();
+
+  Future<void> markNotificationsRead() async {
+    final accessTokken = await getToken();
 
     const url = "$baseurl/markNotificationAsRead";
 
@@ -45,7 +46,6 @@ class NotificationProvider with ChangeNotifier {
       'Authorization': 'Bearer $accessTokken',
     });
   }
-
 
   void clearNotifications() {
     notificatins.clear();

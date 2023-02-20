@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 class ProfilepgMid extends StatelessWidget {
   const ProfilepgMid({
     Key? key,
@@ -70,7 +69,6 @@ class ProfilepgMid extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              
               Navigator.pushNamed(context, "/orderspg");
             },
             child: Container(

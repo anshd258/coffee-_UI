@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/main.dart';
 
-
 Color arrowWhite = const Color(0xffe7e7e7);
 Color green = const Color(0xff4CAF50);
 Color white = const Color(0xffcdcdcd);

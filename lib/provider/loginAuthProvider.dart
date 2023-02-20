@@ -20,17 +20,17 @@ class LoginAuthProvider with ChangeNotifier {
   get getColor {
     return isAdmin;
   }
-  Future<void> getOtp (String pnumber,BuildContext context)async{
-     final response = await http.post(Uri.parse("$baseurl/generateOTP"),
+
+  Future<void> getOtp(String pnumber, BuildContext context) async {
+    final response = await http.post(Uri.parse("$baseurl/generateOTP"),
         headers: {"Content-Type": "application/json"},
-        body: json
-            .encode({"phoneNo": pnumber}));
-            if (response.statusCode == 200) {
-            Navigator.pushNamedAndRemoveUntil(
-                  context, "/otpinput", (route) => false,
-                  arguments: pnumber);
-            }
+        body: json.encode({"phoneNo": pnumber}));
+    if (response.statusCode == 200) {
+      Navigator.pushNamedAndRemoveUntil(context, "/otpinput", (route) => false,
+          arguments: pnumber);
+    }
   }
+
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     print("fcm tokken ->" + fcmToken!);

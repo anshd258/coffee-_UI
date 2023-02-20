@@ -575,7 +575,9 @@ class _OrdersState extends State<Orders> {
                                                               isSelected ==
                                                                   true) {
                                                             OrderETA_Dialvog(
-                                                                context, id,"normal");
+                                                                context,
+                                                                id,
+                                                                "normal");
                                                             isSelected = false;
                                                             id = '';
                                                           }
@@ -586,7 +588,8 @@ class _OrdersState extends State<Orders> {
                                                               "Put Order In Processing",
                                                               "ORDER_IN_PROGRESS",
                                                               id,
-                                                              "ORDER_CONFIRMED","normal");
+                                                              "ORDER_CONFIRMED",
+                                                              "normal");
                                                         } else if (tappedIndex ==
                                                             2) {
                                                           ConfirmDialog(
@@ -594,7 +597,8 @@ class _OrdersState extends State<Orders> {
                                                               "Put Order In Processing",
                                                               "ORDER_COMPLETED",
                                                               id,
-                                                              "ORDER_IN_PROGRESS","normal");
+                                                              "ORDER_IN_PROGRESS",
+                                                              "normal");
                                                         }
                                                       },
                                                       child: Center(

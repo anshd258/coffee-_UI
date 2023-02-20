@@ -20,8 +20,6 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
 
   @override
   Widget build(BuildContext context) {
-   
-
     final role = context.watch<LoginAuthProvider>().userRole;
     final val = context.watch<routing>().gettingroute;
     //switch case for bottom navigaton bar
@@ -148,22 +146,18 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 5
-                      ? bottomNavBarItem
-                      : Colors.transparent,
+                  color: val == 5 ? bottomNavBarItem : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
-                    color: val == 5
-                        ? Colors.white
-                        : Colors.transparent,
+                    color: val == 5 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
-                      "assets/Priority.png",
-                      fit: BoxFit.scaleDown,
-                      scale: 2.5,
-                      color: Colors.white,
-                    ),
+                "assets/Priority.png",
+                fit: BoxFit.scaleDown,
+                scale: 2.5,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
