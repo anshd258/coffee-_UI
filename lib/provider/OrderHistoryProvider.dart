@@ -30,14 +30,14 @@ class OrderHistory with ChangeNotifier {
       // print(loadedData.toString());
       print("LoadedData length -> ${loadedData.length}");
       _orderList = [];
-      loadedData.forEach((element) {
+      for (var element in loadedData) {
         if (element['items'] != null) {
           _orderList.add(OrderHistoryModel.fromJson(element));
         }
-      });
-      _orderList.forEach((element) {
+      }
+      for (var element in _orderList) {
         print(element.toJson());
-      });
+      }
       print("OrderList length -> ${_orderList.length}");
       notifyListeners();
     }

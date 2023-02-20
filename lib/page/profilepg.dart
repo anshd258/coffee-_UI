@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -72,7 +71,7 @@ class _ProfilepgState extends State<Profilepg> {
                 margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
                 padding: EdgeInsets.only(left: 5.w, right: 5.w),
                 child: data == null
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator.adaptive(
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.white70)),

@@ -24,10 +24,10 @@ class NotificationProvider with ChangeNotifier {
       final loadedData = json.decode(response.body);
       if (loadedData['message'] == 'SUCCESS') {
         final loadNotification = loadedData['data'] as List<dynamic>;
-        loadNotification.forEach((element) {
+        for (var element in loadNotification) {
           final data = element as Map<String, dynamic>;
           notificatins.add(NotificatonModal.fromJson(data));
-        });
+        }
       }
       print(notificatins.toString());
       print(notificatins.length);

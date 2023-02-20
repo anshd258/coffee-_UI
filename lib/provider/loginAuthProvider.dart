@@ -3,7 +3,6 @@ import './authconst.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../main.dart';
 import 'loginhandler/loginsharedpref.dart';
 
 class LoginAuthProvider with ChangeNotifier {
@@ -33,7 +32,7 @@ class LoginAuthProvider with ChangeNotifier {
 
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
-    print("fcm tokken ->" + fcmToken!);
+    print("fcm tokken ->${fcmToken!}");
     final response = await http.post(Uri.parse("$baseurl/login"),
         headers: {"Content-Type": "application/json"},
         body: json

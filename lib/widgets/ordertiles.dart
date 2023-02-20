@@ -6,7 +6,6 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/provider/router.dart';
-import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
@@ -137,7 +136,7 @@ ${order.choice![i].choice!.first}''';
                     SizedBox(
                       height: 01.h,
                     ),
-                    Container(
+                    SizedBox(
                       width: 60.w,
                       child: Text(
                         optionSelected.toString(),

@@ -139,7 +139,7 @@ class _NotificationPgState extends State<NotificationPg> {
             heightFactor: 95.h,
             widthFactor: 100.w,
             child: data == null
-                ? CircularProgressIndicator.adaptive(
+                ? const CircularProgressIndicator.adaptive(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
                 : SingleChildScrollView(
                     padding: EdgeInsets.symmetric(vertical: 1.5.h),

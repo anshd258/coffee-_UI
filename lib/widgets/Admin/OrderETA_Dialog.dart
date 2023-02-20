@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import '../../provider/merchantProvider/tablePriorityProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
-import 'package:inter_coffee/widgets/Admin/ConfirmationDialog.dart';
 import 'package:provider/provider.dart';
 import '../../constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';

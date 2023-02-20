@@ -1,4 +1,3 @@
-import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';

@@ -1,6 +1,4 @@
 import 'dart:math';
-import '../provider/OrderHistoryProvider.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
