@@ -41,9 +41,9 @@ import 'firebase_options.dart';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
 
-  print("Handling a background message: ${message.notification!.title}");
+  print(
+      "Handling a background message: ${message.notification!.android!.priority}");
 }
 
 void main() async {
@@ -67,12 +67,13 @@ void main() async {
   print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Got a message whilst in the foreground!');
-    print('Message data: ${message.notification!.title}');
+    print(
+        'Message data: ${message.notification!.android!.priority.toString()}');
 
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
-  });
+  }).onError((eror) => print("error on forground ${eror}"));
   runApp(const MainApp());
 }
 

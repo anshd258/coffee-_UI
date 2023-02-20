@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../provider/merchantProvider/tablePriorityProvider.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> ConfirmDialog(
-    BuildContext context, String title, void Function() onTapOk) async {
+Future<void> ConfirmDialog(BuildContext context, String title, String nextState,
+    String id, String previousState, String type) async {
   return await showDialog(
     barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
     barrierDismissible: true,
@@ -42,7 +45,19 @@ Future<void> ConfirmDialog(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: onTapOk,
+                            onPressed: () {
+                              if (type == "priority") {
+                                context
+                                    .read<TablePriorityProvider>()
+                                    .updateOrderStatusWithoutTime(
+                                        nextState, id, previousState);
+                              }
+                              context
+                                  .read<TableWithStatusProvider>()
+                                  .updateOrderStatusWithoutTime(
+                                      nextState, id, previousState);
+                              Navigator.pop(context);
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey.shade300,
                                 fixedSize: Size(3.h, 15.w),

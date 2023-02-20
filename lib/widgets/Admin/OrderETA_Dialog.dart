@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import '../../provider/merchantProvider/tablePriorityProvider.dart';
+import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/widgets/Admin/ConfirmationDialog.dart';
+import 'package:provider/provider.dart';
 import '../../constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-Future<void> OrderETA_Dialvog(BuildContext context) async {
-  var items = ["5", "10", "15"];
-  String Selecte = "5";
+Future<void> OrderETA_Dialvog(
+    BuildContext context, String id, String type) async {
+  print(id);
+  var items = ["5", "10", "15", "20", "30"];
+  String selecteditem = "5";
   return await showDialog(
     barrierColor: Colors.black87,
     barrierDismissible: true,
@@ -111,11 +117,11 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
                                     dropdownMaxHeight: 25.w,
                                     scrollbarAlwaysShow: true,
                                     buttonElevation: 2,
-                                    value: Selecte,
+                                    value: selecteditem,
                                     offset: const Offset(0, 0),
                                     onChanged: (value) {
                                       setState(() {
-                                        Selecte = value as String;
+                                        selecteditem = value as String;
                                       });
                                     },
                                   ),
@@ -128,7 +134,17 @@ Future<void> OrderETA_Dialvog(BuildContext context) async {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ConfirmDialog(context, "ARE YOU SURE TO CONFIRM", () {});
+                    if (type == "priority") {
+                      context
+                          .read<TablePriorityProvider>()
+                          .updateOrderStatus(selecteditem, id);
+                    } else {
+                      context
+                          .read<TableWithStatusProvider>()
+                          .updateOrderStatus(selecteditem, id);
+                    }
+
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                       fixedSize: Size(35.w, 3.h),
