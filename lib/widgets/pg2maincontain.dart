@@ -256,6 +256,7 @@ class _PG2maincontState extends State<PG2maincont> {
                       )
                     : Expanded(
                         child: SingleChildScrollView(
+                          padding: EdgeInsets.only(bottom: 10.h),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: data.map((e) {
