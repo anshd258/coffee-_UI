@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/ordertiles.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class OrderPg extends StatefulWidget {
 
 class _OrderPgState extends State<OrderPg> {
   List test = [1, 2, 3];
+  List<OrderHistoryModel>? data;
   @override
   void initState() {
     context.read<OrderHistory>().fetchOrders();
@@ -24,8 +26,9 @@ class _OrderPgState extends State<OrderPg> {
 
   @override
   Widget build(BuildContext context) {
-    final data = context.watch<OrderHistory>().History;
-    print(data.isEmpty);
+    data = context.watch<OrderHistory>().History;
+    final isloading = context.watch<OrderHistory>().isloading;
+
     return Container(
       height: 100.h,
       width: 100.w,
@@ -73,38 +76,44 @@ class _OrderPgState extends State<OrderPg> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  SizedBox(
-                    width: 100.w,
-                    height: 90.h,
-                    child: SingleChildScrollView(
-                        child: data.isEmpty
-                            ? SizedBox(
-                                height: 100.h,
-                                width: 100.w,
-                                child: Center(
-                                  child: Container(
+                  isloading
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white70)),
+                        )
+                      : SizedBox(
+                          width: 100.w,
+                          height: 90.h,
+                          child: SingleChildScrollView(
+                              child: data!.isEmpty && data != null
+                                  ? SizedBox(
+                                      height: 100.h,
                                       width: 100.w,
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "No Data Avilable 📪",
-                                        style: GoogleFonts.quicksand(
-                                            fontSize: 17.sp,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.white70),
-                                      )),
-                                ))
-                            : Column(
-                                children: data.map((e) {
-                                  return OrderPgTiles(
-                                    id: e.orderNo!,
-                                    orderAgain: e.orderagain!,
-                                    order: e.items!,
-                                    orderNo: e.orderNo!,
-                                    createdDate: e.createdDate!,
-                                  );
-                                }).toList(),
-                              )),
-                  ),
+                                      child: Center(
+                                        child: Container(
+                                            width: 100.w,
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "No Data Avilable 📪",
+                                              style: GoogleFonts.quicksand(
+                                                  fontSize: 17.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white70),
+                                            )),
+                                      ))
+                                  : Column(
+                                      children: data!.map((e) {
+                                        return OrderPgTiles(
+                                          id: e.orderNo!,
+                                          orderAgain: e.orderagain!,
+                                          order: e.items!,
+                                          orderNo: e.orderNo!,
+                                          createdDate: e.createdDate!,
+                                        );
+                                      }).toList(),
+                                    )),
+                        ),
                 ],
               ),
             ),

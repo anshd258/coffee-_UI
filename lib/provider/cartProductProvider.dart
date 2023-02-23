@@ -10,6 +10,7 @@ class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];
   CartModal currentproduct = CartModal();
   List<Choice> currentChoie = [];
+  int checkerLength = 0;
 
   Future<void> postData() async {
     final accessTokken = await getToken();
@@ -60,6 +61,7 @@ class CartProductsProvider with ChangeNotifier {
 
   void currentsession() {
     currentChoie = [];
+    checkerLength = 0;
     currentproduct = CartModal();
     notifyListeners();
   }

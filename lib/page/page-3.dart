@@ -39,6 +39,7 @@ class _Page3State extends State<Page3> {
     final ProductList args =
         ModalRoute.of(context)?.settings.arguments as ProductList;
     context.read<CartProductsProvider>().currentproduct.productId = args.id;
+    context.read<CartProductsProvider>().checkerLength = args.choice!.length;
     print(context.read<CartProductsProvider>().currentproduct.productId);
     // Provider.of<CartProductsProvider>(context, listen: false)
     //     .updateImgUrl(args.img!);

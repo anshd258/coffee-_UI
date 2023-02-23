@@ -21,24 +21,21 @@ class _NotificationPgState extends State<NotificationPg> {
   @override
   void initState() {
     context.read<NotificationProvider>().fetchNotifications();
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        context.read<NotificationProvider>().markNotificationsRead();
-      },
-    );
+    context.read<NotificationProvider>().markNotificationsRead();
     super.initState();
   }
 
   @override
   void dispose() {
     context.read<NotificationProvider>().clearNotifications();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     data = context.watch<NotificationProvider>().notificatins;
+    final isloading = context.watch<NotificationProvider>().isloading;
     numberofnotification = data!.length;
     return Container(
       height: 100.h,
@@ -67,23 +64,13 @@ class _NotificationPgState extends State<NotificationPg> {
             titleSpacing: 0,
             elevation: 0,
             leadingWidth: 6.w,
-            title: MediaQuery.removePadding(
-              context: context,
-              removeTop: true,
-              removeLeft: true,
-              removeBottom: true,
-              removeRight: true,
-              child: Container(
-                color: bgStatusBar,
-                child: Text("Notifications",
-                    textAlign: TextAlign.start,
-                    style: GoogleFonts.inter(
-                        color: titleStatusBar,
-                        letterSpacing: 0.5,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w600)),
-              ),
-            ),
+            title: Text("Notifications",
+                textAlign: TextAlign.start,
+                style: GoogleFonts.inter(
+                    color: titleStatusBar,
+                    letterSpacing: 0.5,
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600)),
             leading: SizedBox(
               width: 1.w,
             ),
@@ -135,34 +122,39 @@ class _NotificationPgState extends State<NotificationPg> {
               ),
             ),
           ),
-          body: Center(
-            heightFactor: 95.h,
-            widthFactor: 100.w,
-            child: data == null
-                ? const CircularProgressIndicator.adaptive(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
-                : SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                    child: data!.isEmpty
-                        ? Container(
-                            width: 100.w,
-                            height: 90.h,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "No Notifications To Show 😓",
-                              style: GoogleFonts.quicksand(
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white70),
-                            ))
-                        : Column(
+          body: isloading
+              ? const Center(
+                  child: CircularProgressIndicator.adaptive(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.white70)),
+                )
+              : SingleChildScrollView(
+                  padding: EdgeInsets.only(top: 1.5.h, bottom: 8.5.h),
+                  child: data!.isEmpty && isloading == false && data != null
+                      ? Container(
+                          width: 100.w,
+                          margin: EdgeInsets.only(bottom: 7.h),
+                          height: 90.h,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No Notifications To Show 😓",
+                            style: GoogleFonts.quicksand(
+                                fontSize: 17.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white70),
+                          ))
+                      : Container(
+                          width: 100.w,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: data!
                                 .map((e) => notificationContainer(
                                       notification: e,
                                     ))
                                 .toList(),
-                          )),
-          ),
+                          ),
+                        )),
         ),
       ),
     );

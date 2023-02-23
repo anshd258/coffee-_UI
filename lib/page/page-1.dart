@@ -1,5 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:provider/provider.dart';
 import '../widgets/glassContainer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -13,6 +15,7 @@ class page_1 extends StatefulWidget {
 class _page_1State extends State<page_1> {
   @override
   Widget build(BuildContext context) {
+    final isloading = context.watch<LoginAuthProvider>().isloading;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -43,16 +46,29 @@ class _page_1State extends State<page_1> {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Container(
-            height: 100.h,
-            width: 100.w,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(60, 31, 40, 50),
-            ),
-            child: Center(
-              child:
-                  glass_container(), //center glass container with inner widgets
-            ),
+          child: Stack(
+            children: [
+              Container(
+                height: 100.h,
+                width: 100.w,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(60, 31, 40, 50),
+                ),
+                child: Center(
+                  child:
+                      glass_container(), //center glass container with inner widgets
+                ),
+              ),
+              if (isloading) ...[
+                Container(
+                  color: Colors.black38,
+                  child: const Center(
+                      child: CircularProgressIndicator.adaptive(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white70))),
+                )
+              ]
+            ],
           ),
         ),
       ),
