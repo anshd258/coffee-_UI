@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:provider/provider.dart';
@@ -364,7 +362,7 @@ class _OrdersState extends State<Orders> {
                                       currentTime: DateTime.now(),
                                       theme: DatePickerTheme(
                                         backgroundColor:
-                                            Color.fromARGB(30, 0, 0, 0),
+                                            const Color.fromARGB(30, 0, 0, 0),
                                         cancelStyle: GoogleFonts.inter(
                                             color: Colors.redAccent.shade400,
                                             fontSize: 15.sp,
@@ -575,7 +573,9 @@ class _OrdersState extends State<Orders> {
                                                               isSelected ==
                                                                   true) {
                                                             OrderETA_Dialvog(
-                                                                context, id,"normal");
+                                                                context,
+                                                                id,
+                                                                "normal");
                                                             isSelected = false;
                                                             id = '';
                                                           }
@@ -586,7 +586,8 @@ class _OrdersState extends State<Orders> {
                                                               "Put Order In Processing",
                                                               "ORDER_IN_PROGRESS",
                                                               id,
-                                                              "ORDER_CONFIRMED","normal");
+                                                              "ORDER_CONFIRMED",
+                                                              "normal");
                                                         } else if (tappedIndex ==
                                                             2) {
                                                           ConfirmDialog(
@@ -594,7 +595,8 @@ class _OrdersState extends State<Orders> {
                                                               "Put Order In Processing",
                                                               "ORDER_COMPLETED",
                                                               id,
-                                                              "ORDER_IN_PROGRESS","normal");
+                                                              "ORDER_IN_PROGRESS",
+                                                              "normal");
                                                         }
                                                       },
                                                       child: Center(

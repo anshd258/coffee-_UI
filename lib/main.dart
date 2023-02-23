@@ -73,7 +73,7 @@ void main() async {
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
-  }).onError((eror) => print("error on forground ${eror}"));
+  }).onError((eror) => print("error on forground $eror"));
   runApp(const MainApp());
 }
 

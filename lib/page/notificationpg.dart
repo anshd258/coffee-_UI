@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
@@ -139,7 +139,7 @@ class _NotificationPgState extends State<NotificationPg> {
             heightFactor: 95.h,
             widthFactor: 100.w,
             child: data == null
-                ? CircularProgressIndicator.adaptive(
+                ? const CircularProgressIndicator.adaptive(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))
                 : SingleChildScrollView(
                     padding: EdgeInsets.symmetric(vertical: 1.5.h),

@@ -56,9 +56,9 @@ class TableWithStatusProvider with ChangeNotifier {
       getOrders("ORDER_PLACED");
     }
   }
-   Future<void> updateOrderStatusWithoutTime(String nextstate,String id,String previusState) async {
-  
 
+  Future<void> updateOrderStatusWithoutTime(
+      String nextstate, String id, String previusState) async {
     final accessTokken = await getToken();
     const url = "$baseurl/updateOrderStatus";
     final response = await http.put(Uri.parse(url),
@@ -70,7 +70,6 @@ class TableWithStatusProvider with ChangeNotifier {
         body: json.encode({
           "orderId": id,
           "orderState": nextstate,
-         
         }));
     print(response.statusCode);
     if (response.statusCode == 200) {

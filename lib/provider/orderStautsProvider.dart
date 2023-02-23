@@ -29,13 +29,13 @@ class MyData with ChangeNotifier {
 
   void clearPrevoiusStatus() {
     Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () {
         orderState = "";
         estTime = "";
       },
     );
-    print("this is orderstatus after dispose" + orderState.toString());
+    print("this is orderstatus after dispose$orderState");
     notifyListeners();
   }
 }

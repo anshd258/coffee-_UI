@@ -30,5 +30,4 @@ class PriorityOrderProvider with ChangeNotifier {
       }
     }
   }
-  
 }

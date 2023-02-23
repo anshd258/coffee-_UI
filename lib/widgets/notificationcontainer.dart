@@ -41,7 +41,7 @@ class _notificationContainerState extends State<notificationContainer> {
           width: 9.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
+              image: const DecorationImage(
                   fit: BoxFit.fill, image: AssetImage("assets/coffee1.png"))),
         ),
         Container(

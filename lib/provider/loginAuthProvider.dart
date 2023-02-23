@@ -3,7 +3,6 @@ import './authconst.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../main.dart';
 import 'loginhandler/loginsharedpref.dart';
 
 class LoginAuthProvider with ChangeNotifier {
@@ -20,20 +19,20 @@ class LoginAuthProvider with ChangeNotifier {
   get getColor {
     return isAdmin;
   }
-  Future<void> getOtp (String pnumber,BuildContext context)async{
-     final response = await http.post(Uri.parse("$baseurl/generateOTP"),
+
+  Future<void> getOtp(String pnumber, BuildContext context) async {
+    final response = await http.post(Uri.parse("$baseurl/generateOTP"),
         headers: {"Content-Type": "application/json"},
-        body: json
-            .encode({"phoneNo": pnumber}));
-            if (response.statusCode == 200) {
-            Navigator.pushNamedAndRemoveUntil(
-                  context, "/otpinput", (route) => false,
-                  arguments: pnumber);
-            }
+        body: json.encode({"phoneNo": pnumber}));
+    if (response.statusCode == 200) {
+      Navigator.pushNamedAndRemoveUntil(context, "/otpinput", (route) => false,
+          arguments: pnumber);
+    }
   }
+
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
-    print("fcm tokken ->" + fcmToken!);
+    print("fcm tokken ->${fcmToken!}");
     final response = await http.post(Uri.parse("$baseurl/login"),
         headers: {"Content-Type": "application/json"},
         body: json

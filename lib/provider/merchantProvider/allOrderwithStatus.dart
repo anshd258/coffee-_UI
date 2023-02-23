@@ -36,6 +36,4 @@ class AllOrderProvider with ChangeNotifier {
       }
     }
   }
-
- 
 }

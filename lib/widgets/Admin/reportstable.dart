@@ -15,7 +15,7 @@ class ReportsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = context.watch<ReportsProvider>().reportsData;
-    print("reports data" + data.toString());
+    print("reports data$data");
     if (data.isNotEmpty) {
       json5 = data;
     }

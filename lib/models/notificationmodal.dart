@@ -14,11 +14,11 @@ class NotificatonModal {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['orderId'] = this.orderId;
-    data['title'] = this.title;
-    data['body'] = this.body;
-    data['readReceipt'] = this.readReceipt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['orderId'] = orderId;
+    data['title'] = title;
+    data['body'] = body;
+    data['readReceipt'] = readReceipt;
     return data;
   }
 }

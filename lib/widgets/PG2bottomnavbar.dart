@@ -21,8 +21,6 @@ class _Pg2BottonavBarState extends State<Pg2BottonavBar> {
 
   @override
   Widget build(BuildContext context) {
-   
-
     final role = context.watch<LoginAuthProvider>().userRole;
     final val = context.watch<routing>().gettingroute;
     //switch case for bottom navigaton bar

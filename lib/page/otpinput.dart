@@ -1,10 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/main.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/widgets/otpinputcontainer.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Otpscreen extends StatefulWidget {

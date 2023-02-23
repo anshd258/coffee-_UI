@@ -6,7 +6,6 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/provider/router.dart';
-import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
@@ -130,6 +129,7 @@ class OrderPgTiles extends StatelessWidget {
                     SizedBox(
                       height: 0.3.h,
                     ),
+<<<<<<< HEAD
                     Column(
                       children: optionSelected
                           .map(
@@ -147,6 +147,21 @@ class OrderPgTiles extends StatelessWidget {
                             ),
                           )
                           .toList(),
+=======
+                    SizedBox(
+                      width: 60.w,
+                      child: Text(
+                        optionSelected.toString(),
+                        style: GoogleFonts.inter(
+                          fontSize: 13.sp,
+                          color: const Color.fromARGB(255, 205, 205, 205),
+                        ),
+                      ),
+                    ),
+                    //for padding
+                    SizedBox(
+                      width: 5.w,
+>>>>>>> f5ab470bd31b7abdd0dbf6330497a24074665878
                     ),
 
                     // veg symbol

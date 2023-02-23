@@ -132,7 +132,6 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
               context.read<CartProductsProvider>().submit();
               Navigator.pop(context);
             }
-            ;
           },
           style: ElevatedButton.styleFrom(
               fixedSize: Size(width, 5.h),

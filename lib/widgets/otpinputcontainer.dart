@@ -1,4 +1,3 @@
-import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
@@ -175,13 +174,11 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);
-                
               } else if (istapped == true) {
                 istapped = false;
                 context
                     .read<LoginAuthProvider>()
                     .login(widget.phonenumber, otpcontroller.text, context);
-                
               }
             },
             child: Container(
