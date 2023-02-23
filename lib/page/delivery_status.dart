@@ -18,6 +18,7 @@ class _OrderStatusState extends State<OrderStatus> {
   Color white = const Color(0xffcdcdcd);
   Color checkColor = const Color(0xfffafafa);
 
+  int? EStime;
   String stateOfOrder = "";
   String orderid = "no value";
   Timer? timer;
@@ -34,6 +35,12 @@ class _OrderStatusState extends State<OrderStatus> {
     );
     if (context.read<MyData>().orderState != null) {
       stateOfOrder = context.read<MyData>().orderState!;
+      // if (context.read<MyData>().estTime != null) {
+      //   final time = context.read<MyData>().estTime!;
+      //   var finalTime = DateTime.parse(time);
+      //   var timerTime = DateTime.now().minute - finalTime.minute;
+      //   EStime = timerTime.abs();
+      // }
     } else {
       stateOfOrder = "";
     }
@@ -80,6 +87,12 @@ class _OrderStatusState extends State<OrderStatus> {
 
     if (context.watch<MyData>().orderState != null) {
       stateOfOrder = context.watch<MyData>().orderState!;
+      if (context.read<MyData>().estTime != null) {
+        final time = context.watch<MyData>().estTime!;
+        var finalTime = DateTime.parse(time);
+        var timerTime = DateTime.now().minute - finalTime.minute;
+        EStime = timerTime.abs();
+      }
     }
 
     return Container(
@@ -136,7 +149,7 @@ class _OrderStatusState extends State<OrderStatus> {
                       borderColor: Colors.white38,
                       frostedOpacity: 0.04,
                       margin: EdgeInsets.only(top: 2.8.h),
-                      height: 85.h,
+                      height: 70.h,
                       width: 85.w,
                       child: Column(
                         children: [
@@ -474,7 +487,7 @@ class _OrderStatusState extends State<OrderStatus> {
                               ),
                               Center(
                                 child: Text(
-                                  "Expected Time Delivery: 10 mins",
+                                  "Expected Time Delivery: ${EStime == null ? "_" : EStime}",
                                   style: GoogleFonts.inter(
                                       color: Colors.white,
                                       fontSize: 15.sp,
@@ -485,32 +498,32 @@ class _OrderStatusState extends State<OrderStatus> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              Center(
-                                child: Container(
-                                  width: 85.w,
-                                  padding:
-                                      EdgeInsets.only(left: 9.w, right: 9.w),
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                        elevation: 5,
-                                        fixedSize: Size(50.w, 4.5.h),
-                                        backgroundColor:
-                                            Colors.greenAccent.shade700,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7))),
-                                    child: Text(
-                                      "Order Details",
-                                      style: GoogleFonts.inter(
-                                          color: Colors.white,
-                                          fontSize: 16.sp.sp,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 1),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // Center(
+                              //   child: Container(
+                              //     width: 85.w,
+                              //     padding:
+                              //         EdgeInsets.only(left: 9.w, right: 9.w),
+                              //     child: ElevatedButton(
+                              //       onPressed: () {},
+                              //       style: ElevatedButton.styleFrom(
+                              //           elevation: 5,
+                              //           fixedSize: Size(50.w, 4.5.h),
+                              //           backgroundColor:
+                              //               Colors.greenAccent.shade700,
+                              //           shape: RoundedRectangleBorder(
+                              //               borderRadius:
+                              //                   BorderRadius.circular(7))),
+                              //       child: Text(
+                              //         "Order Details",
+                              //         style: GoogleFonts.inter(
+                              //             color: Colors.white,
+                              //             fontSize: 16.sp.sp,
+                              //             fontWeight: FontWeight.w600,
+                              //             letterSpacing: 1),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ],

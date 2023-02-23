@@ -87,7 +87,9 @@ class _ProfilepgState extends State<Profilepg> {
                                 children: [
                                   SizedBox(height: 3.h),
                                   Text(
-                                    data.name.toString(),
+                                    data.name == null
+                                        ? "-"
+                                        : data.name.toString(),
                                     style: GoogleFonts.inter(
                                       fontSize: 16.sp,
                                       letterSpacing: 1,
@@ -99,7 +101,9 @@ class _ProfilepgState extends State<Profilepg> {
                                     height: 0.5.h,
                                   ),
                                   Text(
-                                    data.emailId.toString(),
+                                    data.emailId == null
+                                        ? "-"
+                                        : data.emailId.toString(),
                                     style: GoogleFonts.inter(
                                       fontSize: 14.sp,
                                       letterSpacing: 1,
@@ -115,11 +119,14 @@ class _ProfilepgState extends State<Profilepg> {
                             height: 12.h,
                             width: 22.w,
                             decoration: BoxDecoration(
-                                color: Colors.white30,
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.green),
-                                image: const DecorationImage(
-                                    image: AssetImage("assets/user.jpeg"))),
+                              color: Colors.white30,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.green),
+                              // image: const DecorationImage(
+                              //     image: AssetImage("assets/user.jpeg"))
+                            ),
+                            child: Icon(Icons.person,
+                                color: Colors.white70, size: 30.sp),
                           )
                         ],
                       ),

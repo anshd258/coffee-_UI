@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../provider/router.dart';
 
@@ -20,7 +21,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
   @override
   Widget build(BuildContext context) {
     return GlassContainer.frostedGlass(
-      height: 30.h,
+      height: 24.h,
       width: 90.w,
       borderWidth: 1,
       blur: 17,
@@ -105,7 +106,20 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () async {
+                    final urli = Uri(
+                      path: "/",
+                      scheme: "https",
+                      host: "privacy.swift-cafe-dev.swifttrackmile.codes",
+                    );
+                    if (await canLaunchUrl(urli)) {
+                      print(urli);
+                      await launchUrl(
+                        urli,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    }
+                  },
                   child: Transform.rotate(
                       angle: pi / 180 * 180,
                       child: Image.asset(
@@ -155,7 +169,7 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  // onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
                       angle: pi / 180 * 180,
                       child: Image.asset(
@@ -166,56 +180,56 @@ class _ProfilepgbottomState extends State<Profilepgbottom> {
               ],
             ),
           ),
-          Divider(
-            color: Colors.white70,
-            endIndent: 5.w,
-            indent: 5.w,
-            height: 2.5.h,
-          ),
-          SizedBox(
-            width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      borderColor: Colors.white12,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      shadowColor: Colors.white70,
-                      child: Image.asset("assets/ICONS/test2.png",
-                          color: Colors.white, scale: 0.22.h),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Report a safety emergency",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
-                ),
-              ],
-            ),
-          ),
+          // Divider(
+          //   color: Colors.white70,
+          //   endIndent: 5.w,
+          //   indent: 5.w,
+          //   height: 2.5.h,
+          // ),
+          // SizedBox(
+          //   width: 85.w,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Row(
+          //         children: [
+          //           GlassContainer.frostedGlass(
+          //             height: 4.h,
+          //             width: 4.h,
+          //             borderColor: Colors.white12,
+          //             shape: BoxShape.circle,
+          //             elevation: 3,
+          //             shadowColor: Colors.white70,
+          //             child: Image.asset("assets/ICONS/test2.png",
+          //                 color: Colors.white, scale: 0.22.h),
+          //           ),
+          //           SizedBox(
+          //             width: 3.w,
+          //           ),
+          //           Text(
+          //             "Report a safety emergency",
+          //             textAlign: TextAlign.end,
+          //             style: GoogleFonts.inter(
+          //               fontSize: 14.sp,
+          //               letterSpacing: 1,
+          //               fontWeight: FontWeight.w500,
+          //               color: Colors.white70,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //       GestureDetector(
+
+          //         child: Transform.rotate(
+          //             angle: pi / 180 * 180,
+          //             child: Image.asset(
+          //               "assets/ICONS/arrow3.png",
+          //               scale: 3,
+          //             )),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Divider(
             color: Colors.white70,
             endIndent: 5.w,

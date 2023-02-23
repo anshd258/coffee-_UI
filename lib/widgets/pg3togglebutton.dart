@@ -22,7 +22,6 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
   Choice tempChoice = Choice();
   @override
   void initState() {
-    isSelected = widget.list.first;
     tempChoice.name = widget.heading;
     tempChoice.type = "List";
     super.initState();
@@ -111,6 +110,11 @@ class _Pg3togglebuttonState extends State<Pg3togglebutton> {
       child: Row(
           children: mainList.map((e) {
         return GestureDetector(
+          onDoubleTap: () {
+            setState(() {
+              isSelected = "";
+            });
+          },
           onTap: () {
             setter(e);
 

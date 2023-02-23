@@ -96,11 +96,11 @@ class _OrderPgState extends State<OrderPg> {
                             : Column(
                                 children: data.map((e) {
                                   return OrderPgTiles(
-                                    id: e.id!,
+                                    id: e.orderNo!,
                                     orderAgain: e.orderagain!,
-                                    order: e.items!.first,
-                                    orderNo: data.first.orderNo!,
-                                    createdDate: data.first.createdDate!,
+                                    order: e.items!,
+                                    orderNo: e.orderNo!,
+                                    createdDate: e.createdDate!,
                                   );
                                 }).toList(),
                               )),

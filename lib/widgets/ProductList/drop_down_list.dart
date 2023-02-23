@@ -22,6 +22,7 @@ class _DropDownSelectionState extends State<DropDownSelection> {
   Choice tempChoice = Choice();
   @override
   void initState() {
+    widget.list.insert(0, "Not Selected");
     selecteditem = widget.list[0];
     tempChoice.name = widget.heading;
     tempChoice.type = "Drop_Down";
@@ -151,7 +152,7 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
-            if (value != null) setter(value);
+            if (value != null && value != "Not Selected") setter(value);
             // cartAssigner(widget.heading, value!);
             setState(() {
               selecteditem = value!;

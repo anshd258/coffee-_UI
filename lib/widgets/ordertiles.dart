@@ -14,7 +14,7 @@ import '../provider/loginAuthProvider.dart';
 import 'package:intl/intl.dart';
 
 class OrderPgTiles extends StatelessWidget {
-  final Items order;
+  final List<Items> order;
   final String id;
   final List<CartModal> orderAgain;
   final String createdDate;
@@ -30,9 +30,9 @@ class OrderPgTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String returnChoices() {
-      String ans = "";
-      int len = order.choice!.length;
+    List<String> returnChoices() {
+      List<String> ans = [];
+      int len = order.length;
       int n;
       if (len >= 3) {
         n = 3;
@@ -41,25 +41,20 @@ class OrderPgTiles extends StatelessWidget {
       }
 
       for (int i = 0; i < n; i++) {
-        if (ans == "") {
-          ans += order.choice![i].choice!.first;
-        } else if (i == 2) {
-          ans += '''
-
-${order.choice![i].choice!.first}''';
-        } else {
-          ans += "                        ${order.choice![i].choice!.first}";
-        }
+        ans.add(order[i].productName!);
+      }
+      if (len > 3) {
+        ans.add("...");
       }
       return ans;
     }
 
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(createdDate);
-    final optionSelected = order.choice!.isEmpty ? "" : returnChoices();
+    List<String> optionSelected = order.isEmpty ? [] : returnChoices();
 
     return GlassContainer.frostedGlass(
-      margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
+      margin: EdgeInsets.only(top: 12.sp, bottom: 10.sp),
       height: 19.h,
       width: 90.w,
       borderWidth: 0,
@@ -90,7 +85,7 @@ ${order.choice![i].choice!.first}''';
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      order.productName!,
+                      orderNo == null ? "no Number" : orderNo,
                       style: GoogleFonts.inter(
                         fontSize: 18.sp,
                         letterSpacing: 1,
@@ -100,9 +95,7 @@ ${order.choice![i].choice!.first}''';
                     ),
 
                     //pading
-                    SizedBox(
-                      height: 0.8.h,
-                    ),
+
                     //inner row
 
                     //for showing ratings
@@ -135,33 +128,36 @@ ${order.choice![i].choice!.first}''';
                     // ),
                     //for padding
                     SizedBox(
-                      height: 01.h,
+                      height: 0.3.h,
                     ),
-                    Container(
-                      width: 60.w,
-                      child: Text(
-                        optionSelected.toString(),
-                        style: GoogleFonts.inter(
-                          fontSize: 13.sp,
-                          color: const Color.fromARGB(255, 205, 205, 205),
-                        ),
-                      ),
+                    Column(
+                      children: optionSelected
+                          .map(
+                            (e) => Container(
+                              margin: EdgeInsets.all(0.5.w),
+                              width: 20.w,
+                              child: Text(
+                                e,
+                                style: GoogleFonts.inter(
+                                  fontSize: 13.sp,
+                                  color:
+                                      const Color.fromARGB(255, 205, 205, 205),
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
-                    //for padding
-                    SizedBox(
-                      width: 5.w,
-                    ),
+
                     // veg symbol
 
                     //padding between inner row and discription
-                    SizedBox(
-                      height: 0.5.h,
-                    ),
+
                     //discription text
                   ],
                 ),
 
-                // SizedBox(width: 30.w),
+                SizedBox(width: 30.w),
                 GlassContainer.frostedGlass(
                   color: Colors.white38,
                   height: 8.h,
@@ -170,8 +166,8 @@ ${order.choice![i].choice!.first}''';
                   // borderColor: Colors.white12,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      order.productImg!,
+                    child: Image.asset(
+                      "assets/coffee1.png",
                       fit: BoxFit.fill,
                     ),
                   ),

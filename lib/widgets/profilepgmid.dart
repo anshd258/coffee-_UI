@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 class ProfilepgMid extends StatelessWidget {
   const ProfilepgMid({
     Key? key,
@@ -17,7 +16,7 @@ class ProfilepgMid extends StatelessWidget {
   Widget build(BuildContext context) {
     // final token = context.watch<LoginAuthProvider>().accessToken;
     return GlassContainer.frostedGlass(
-      height: 24.h,
+      height: 17.h,
       width: 90.w,
       borderWidth: 1,
       blur: 17,
@@ -70,7 +69,6 @@ class ProfilepgMid extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              
               Navigator.pushNamed(context, "/orderspg");
             },
             child: Container(
@@ -120,60 +118,60 @@ class ProfilepgMid extends StatelessWidget {
               ),
             ),
           ),
-          Divider(
-            color: Colors.white70,
-            endIndent: 5.w,
-            indent: 5.w,
-            height: 2.5.h,
-          ),
-          SizedBox(
-            width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      child: Image.asset(
-                        "assets/cup2.png",
-                        fit: BoxFit.scaleDown,
-                        scale: 1.8,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Favorite Orders",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
-                ),
-              ],
-            ),
-          ),
+          // Divider(
+          //   color: Colors.white70,
+          //   endIndent: 5.w,
+          //   indent: 5.w,
+          //   height: 2.5.h,
+          // ),
+          // SizedBox(
+          //   width: 85.w,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Row(
+          //         children: [
+          //           GlassContainer.frostedGlass(
+          //             height: 4.h,
+          //             width: 4.h,
+          //             shape: BoxShape.circle,
+          //             elevation: 3,
+          //             borderColor: Colors.white12,
+          //             shadowColor: Colors.white70,
+          //             child: Image.asset(
+          //               "assets/cup2.png",
+          //               fit: BoxFit.scaleDown,
+          //               scale: 1.8,
+          //               color: Colors.white,
+          //             ),
+          //           ),
+          //           SizedBox(
+          //             width: 3.w,
+          //           ),
+          //           Text(
+          //             "Favorite Orders",
+          //             textAlign: TextAlign.end,
+          //             style: GoogleFonts.inter(
+          //               fontSize: 14.sp,
+          //               letterSpacing: 1,
+          //               fontWeight: FontWeight.w500,
+          //               color: Colors.white70,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //       GestureDetector(
+          //         onTap: () => Navigator.pop(context),
+          //         child: Transform.rotate(
+          //             angle: pi / 180 * 180,
+          //             child: Image.asset(
+          //               "assets/ICONS/arrow3.png",
+          //               scale: 3,
+          //             )),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Divider(
             color: Colors.white70,
             endIndent: 5.w,
@@ -217,7 +215,7 @@ class ProfilepgMid extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  //onTap: () => Navigator.pop(context),
                   child: Transform.rotate(
                       angle: pi / 180 * 180,
                       child: Image.asset(
