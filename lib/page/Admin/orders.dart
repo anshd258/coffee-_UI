@@ -543,9 +543,9 @@ class _OrdersState extends State<Orders> {
                                               headerVal == "Order Details"
                                                   ? GestureDetector(
                                                       onTap: () {
-                                                        OrderDetailsDialog(
-                                                          context,
-                                                        );
+                                                        // OrderDetailsDialog(
+                                                        //   context,
+                                                        // );
                                                       },
                                                       child: Center(
                                                         child: Text("view More",

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Future<void> OrderDetailsDialog(BuildContext context) async {
+Future<void> OrderDetailsDialog(
+    BuildContext context, OrderHistoryModel data) async {
+  final ceatedDate = DateTime.parse(data.createdDate!);
   return await showDialog(
     barrierColor: Colors.black87,
     barrierDismissible: true,
@@ -53,7 +57,7 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            "Order00001",
+                            data.orderNo == null ? "" : data.orderNo!,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.inter(
                                 color: Colors.white70,
@@ -81,7 +85,7 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                             height: 4.h,
                             width: 30.w,
                             child: Text(
-                              "Manisha Gupta (TM-001)",
+                              data.recipientName!,
                               textAlign: TextAlign.left,
                               style: GoogleFonts.inter(
                                   color: Colors.white70,
@@ -108,52 +112,60 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "1 Latte",
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                "Full",
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                "Full Cream Milk",
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                "Sugar X 1",
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
+                            children: data.items!
+                                .map((e) => Text(
+                                      "${e.productName} X ${e.quantity}",
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.inter(
+                                          color: Colors.white70,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400),
+                                    ))
+                                .toList(),
+                            // Text(
+                            //   "1 Latte",
+                            //   textAlign: TextAlign.left,
+                            //   style: GoogleFonts.inter(
+                            //       color: Colors.white70,
+                            //       fontSize: 14.sp,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
+                            // Text(
+                            //   "Full",
+                            //   textAlign: TextAlign.left,
+                            //   style: GoogleFonts.inter(
+                            //       color: Colors.white70,
+                            //       fontSize: 14.sp,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
+                            // Text(
+                            //   "Full Cream Milk",
+                            //   textAlign: TextAlign.left,
+                            //   style: GoogleFonts.inter(
+                            //       color: Colors.white70,
+                            //       fontSize: 14.sp,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
+                            // Text(
+                            //   "Sugar X 1",
+                            //   textAlign: TextAlign.left,
+                            //   style: GoogleFonts.inter(
+                            //       color: Colors.white70,
+                            //       fontSize: 14.sp,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
                           ),
                         ]),
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 1.5.h),
-                    width: 43.w,
+                    width: 65.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "ETA :",
+                            "Created Date :",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.inter(
                                 color: Colors.white70,
@@ -161,7 +173,7 @@ Future<void> OrderDetailsDialog(BuildContext context) async {
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            "15 mins",
+                            "${ceatedDate.day} ${DateFormat.MMM().format(ceatedDate)} ${ceatedDate.year} at ${ceatedDate.hour}:${ceatedDate.minute}",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.inter(
                                 color: Colors.white70,

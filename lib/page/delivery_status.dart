@@ -33,17 +33,7 @@ class _OrderStatusState extends State<OrderStatus> {
         });
       },
     );
-    if (context.read<MyData>().orderState != null) {
-      stateOfOrder = context.read<MyData>().orderState!;
-      // if (context.read<MyData>().estTime != null) {
-      //   final time = context.read<MyData>().estTime!;
-      //   var finalTime = DateTime.parse(time);
-      //   var timerTime = DateTime.now().minute - finalTime.minute;
-      //   EStime = timerTime.abs();
-      // }
-    } else {
-      stateOfOrder = "";
-    }
+
     super.initState();
   }
 

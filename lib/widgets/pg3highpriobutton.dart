@@ -18,8 +18,6 @@ class Pg3highPrioButton extends StatefulWidget {
 }
 
 class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
-  bool checknox = false;
-
   @override
   Widget build(BuildContext context) {
     final currentcChoices = context.watch<CartProductsProvider>().currentChoie;
@@ -68,48 +66,43 @@ class _Pg3highPrioButtonState extends State<Pg3highPrioButton> {
     // print(data.toJson());
     // }
 
-    double width = 32.5.w;
-    if (role != "admin") {
-      width = 80.w;
-    }
+    double width = 80.w;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: role == "admin"
-          ? MainAxisAlignment.spaceBetween
-          : MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //checkbox for selection of high priority
-        if (role == "admin") ...[
-          Row(children: [
-            Checkbox(
-                checkColor: Colors.white,
-                side: const BorderSide(color: Colors.white),
-                activeColor: Colors.greenAccent.shade700,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3)),
-                value: checknox,
-                onChanged: (onChanged) {
-                  setState(() {
-                    checknox = onChanged!;
-                  });
-                }),
-            //text of high prioriity
-            Text(
-              "High Priority",
-              style: GoogleFonts.inter(
-                color: const Color.fromRGBO(205, 205, 205, 1),
-                fontSize: 14,
-              ),
-            ),
-            //for padding
-            SizedBox(
-              width: 2.w,
-            ),
-            //for padding
-            Image.asset("assets/8.png"),
-          ]),
-        ],
+        // if (role == "admin") ...[
+        //   Row(children: [
+        //     Checkbox(
+        //         checkColor: Colors.white,
+        //         side: const BorderSide(color: Colors.white),
+        //         activeColor: Colors.greenAccent.shade700,
+        //         shape: RoundedRectangleBorder(
+        //             borderRadius: BorderRadius.circular(3)),
+        //         value: checknox,
+        //         onChanged: (onChanged) {
+        //           setState(() {
+        //             checknox = onChanged!;
+        //           });
+        //         }),
+        //     //text of high prioriity
+        //     Text(
+        //       "High Priority",
+        //       style: GoogleFonts.inter(
+        //         color: const Color.fromRGBO(205, 205, 205, 1),
+        //         fontSize: 14,
+        //       ),
+        //     ),
+        //     //for padding
+        //     SizedBox(
+        //       width: 2.w,
+        //     ),
+        //     //for padding
+        //     Image.asset("assets/8.png"),
+        //   ]),
+        // ],
         //image ofurgent symbol],),
 
         //submit elevated button

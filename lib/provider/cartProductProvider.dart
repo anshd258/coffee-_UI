@@ -10,17 +10,24 @@ class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];
   CartModal currentproduct = CartModal();
   List<Choice> currentChoie = [];
+  bool priority = true;
   int checkerLength = 0;
 
-  Future<void> postData() async {
+  Future<void> postData(bool isPriority) async {
     final accessTokken = await getToken();
     List<Map<String, dynamic>> currentData = [];
     for (var element in cartData) {
       currentData.add(element.toJson());
     }
-    print({"orderProducts": currentData});
+    if (isPriority) {
+      priority = isPriority;
+    }
     const url = "$baseurl/placeOrder";
-    final data = json.encode({"orderProducts": currentData});
+    final postingData = isPriority == false
+        ? {"orderProducts": currentData}
+        : {"is_priority": true, "orderProducts": currentData};
+    print(postingData);
+    final data = json.encode(postingData);
     final response = await http.post(Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',

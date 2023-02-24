@@ -65,7 +65,7 @@ class AdminHomeRowContainer extends StatelessWidget {
                     ),
             ),
             GestureDetector(
-              onTap: () => OrderDetailsDialog(context),
+              onTap: () {},
               child: Align(
                   alignment: Alignment.centerLeft,
                   child: SizedBox(
@@ -99,16 +99,16 @@ class AdminHomeRowContainer extends StatelessWidget {
             //         fontWeight: FontWeight.w400),
             //   ),
             // ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                "Confirm Order",
-                style: GoogleFonts.inter(
-                    color: Colors.green.shade400,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.bottomRight,
+            //   child: Text(
+            //     "Confirm Order",
+            //     style: GoogleFonts.inter(
+            //         color: Colors.green.shade400,
+            //         fontSize: 13.sp,
+            //         fontWeight: FontWeight.w700),
+            //   ),
+            // ),
           ],
         ),
       ),

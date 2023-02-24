@@ -19,10 +19,14 @@ class PG2maincont extends StatefulWidget {
 
 class _PG2maincontState extends State<PG2maincont> {
   //data of the products offerd
+  final TextEditingController ctr = TextEditingController();
   @override
   void initState() {
     context.read<ProductsProvider>().getproducts();
     context.read<userDetailsProvider>().getUserDetails();
+    ctr.addListener(() {
+      context.read<ProductsProvider>().searchData(ctr.text);
+    });
     super.initState();
   }
 
@@ -53,8 +57,10 @@ class _PG2maincontState extends State<PG2maincont> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    //textfield for searcching
+                    
+                 
                     TextField(
+                      controller: ctr,
                       cursorColor: const Color.fromARGB(255, 182, 182, 182),
                       decoration: InputDecoration(
                           hintText: "Search favorite Beverages",
@@ -100,6 +106,7 @@ class _PG2maincontState extends State<PG2maincont> {
                   children: [
                     //textfield for searcching
                     TextField(
+                      controller: ctr,
                       cursorColor: const Color.fromARGB(255, 182, 182, 182),
                       decoration: InputDecoration(
                           hintText: "Search favorite Beverages",

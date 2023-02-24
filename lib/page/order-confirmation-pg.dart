@@ -3,6 +3,7 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,11 +25,17 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
     super.initState();
   }
 
+  bool checknox = false;
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().role;
     final List<CartModal> productsInfo =
         context.watch<CartProductsProvider>().cartData;
     // productsInfo.add(CartProductsModal().toJson());
+    double width = 32.5.w;
+    if (role != "admin") {
+      width = 80.w;
+    }
     return Container(
       height: 100.h,
       width: 100.w,
@@ -93,30 +100,69 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                   left: 5.w,
                   right: 5.w,
                   bottom: 10.h,
-                  child: Container(
-                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (productsInfo.isNotEmpty) {
-                          context.read<CartProductsProvider>().postData();
-                          OrderConfirmatonDilog(context);
-                        }
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      //checkbox for selection of high priority
+                      if (role == "admin") ...[
+                        Row(children: [
+                          Checkbox(
+                              checkColor: Colors.white,
+                              side: const BorderSide(color: Colors.white),
+                              activeColor: Colors.greenAccent.shade700,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(3)),
+                              value: checknox,
+                              onChanged: (onChanged) {
+                                print(onChanged);
+                                
 
-                        // context.read<CartProductsProvider>().clearCart();
-                        // setState(() {});
-                      },
-                      style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          fixedSize: Size(50.w, 4.5.h),
-                          backgroundColor: Colors.greenAccent.shade700,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7))),
-                      child: Text(
-                        "Confirm and Place Order",
-                        style: GoogleFonts.inter(
-                            color: Colors.white, fontSize: 16.sp),
-                      ),
-                    ),
+                                setState(() {
+                                  checknox = onChanged!;
+                                });
+                              }),
+                          //text of high prioriity
+                          Text(
+                            "High Priority",
+                            style: GoogleFonts.inter(
+                              color: const Color.fromRGBO(205, 205, 205, 1),
+                              fontSize: 14,
+                            ),
+                          ),
+                          //for padding
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          //for padding
+                          Image.asset("assets/8.png"),
+                        ]),
+                      ],
+                      //image ofurgent symbol],),
+
+                      //submit elevated button
+                      ElevatedButton(
+                        onPressed: () {
+                          if (productsInfo.isNotEmpty) {
+                            context.read<CartProductsProvider>().postData(checknox);
+                            OrderConfirmatonDilog(context);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(width, 5.h),
+                            elevation: 5,
+                            backgroundColor: Colors.greenAccent.shade700,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7))),
+                        child: Text(
+                          "Submit",
+                          style: GoogleFonts.inter(
+                              color: Colors.white,
+                              fontSize: 16.5.sp,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 SizedBox(

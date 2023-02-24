@@ -105,7 +105,7 @@ class _OrderPgState extends State<OrderPg> {
                                   : Column(
                                       children: data!.map((e) {
                                         return OrderPgTiles(
-                                          id: e.orderNo!,
+                                          id: e.id!,
                                           orderAgain: e.orderagain!,
                                           order: e.items!,
                                           orderNo: e.orderNo!,

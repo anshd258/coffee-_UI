@@ -544,9 +544,9 @@ class _PriorityTableState extends State<PriorityTable> {
                                               headerVal == "Order Details"
                                                   ? GestureDetector(
                                                       onTap: () {
-                                                        OrderDetailsDialog(
-                                                          context,
-                                                        );
+                                                        // OrderDetailsDialog(
+                                                        //   context,
+                                                        // );
                                                       },
                                                       child: Center(
                                                         child: Text("view More",

@@ -67,6 +67,7 @@ class LoginAuthProvider with ChangeNotifier {
         await setRole('user');
         notifyListeners();
       }
+      await setPhoneNumber(pnumber);
       await setToken(loadedData['token']);
       // await setToken(
       //     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NjIwNjc4MTE0IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyNDM4NzI0LCJ1c2VySWQiOiI1NGI4YTg0OS02N2UyLTRmNjYtOTFkNi0zYTYxZjE0MTcxMGIiLCJpYXQiOjE2NzYzOTA3MjR9.i9D0FNaBQUUPA5pgbY2pjiIH0WM2Q9vlClETLdPUgVlJ1-jUOfL5uNuujHCeFcPLLcYd4z4ceo626Y-dbU_TDw");
@@ -96,9 +97,16 @@ class LoginAuthProvider with ChangeNotifier {
     }
   }
 
+  void autologin() async {
+    role = await getRole();
+    accessToken = await getToken();
+    phoneNumber = await getPhoneNumber();
+    notifyListeners();
+  }
+
   void logout() async {
-    await setRole("");
-    await setToken('');
+    await setRole("null");
+    await setToken('null');
     accessToken = await getToken();
     role = await getRole();
     print(role);

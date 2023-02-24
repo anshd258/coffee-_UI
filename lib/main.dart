@@ -145,7 +145,7 @@ class _MainAppState extends State<MainApp> {
               routes: {
                 "/": (context) => const page_1(),
                 "/page2": (context) => const Toggle(),
-                "/switcher": (context) => const Switcher(),
+                "/switcher": (context) => Switcher(),
                 "/page3": (context) => const Page3(),
                 "/orderconfirmPg": (context) => const Orderconfirmationpg(),
                 "/orderdetailsPg": (context) => const OrderDetailspg(),

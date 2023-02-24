@@ -25,7 +25,7 @@ class OrderHistory with ChangeNotifier {
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessTokken',
     });
-   isloading = false;
+    isloading = false;
     notifyListeners();
     final responseData = json.decode(response.body) as Map<String, dynamic>;
     if (responseData['message'] == 'SUCCESS') {
@@ -44,6 +44,27 @@ class OrderHistory with ChangeNotifier {
       }
       print("OrderList length -> ${_orderList!.length}");
       notifyListeners();
+    }
+  }
+
+  Future<OrderHistoryModel> getOrderhistory(String id) async {
+    final accessTokken = await getToken();
+    String url = '$baseurl/getOrderDetails/$id';
+    final responsep = await http.get(Uri.parse(url), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $accessTokken',
+    });
+    //print(responsep.body);
+    if (responsep.statusCode == 200) {
+      final responseData =
+          await json.decode(responsep.body) as Map<String, dynamic>;
+      final loadedData = responseData['data'];
+
+      // print(loadedData);
+      return OrderHistoryModel.fromJson(responseData['data']);
+    } else {
+      throw ("error connecting the network");
     }
   }
 }

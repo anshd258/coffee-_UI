@@ -12,6 +12,12 @@ Future<String?> getRole() async {
   return instence.getString("role");
 }
 
+Future<String?> getPhoneNumber() async {
+  final SharedPreferences instence = await SharedPreferences.getInstance();
+
+  return instence.getString("phonenumber");
+}
+
 Future<void> setToken(String tokken) async {
   final SharedPreferences instence = await SharedPreferences.getInstance();
   instence.setString("token", tokken);
@@ -21,4 +27,10 @@ Future<void> setRole(String role) async {
   final SharedPreferences instence = await SharedPreferences.getInstance();
   role == "admin" || role == "ADMIN" ? isAdmin = true : isAdmin = false;
   instence.setString("role", role);
+}
+
+Future<void> setPhoneNumber(String pnumber) async {
+  final SharedPreferences instence = await SharedPreferences.getInstance();
+
+  instence.setString("phonenumber", pnumber);
 }

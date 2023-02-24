@@ -8,8 +8,9 @@ import 'loginhandler/loginsharedpref.dart';
 
 class ProductsProvider with ChangeNotifier {
   List<ProductList> products = [];
+  List<ProductList> serchable = [];
   List<ProductList> get productslist {
-    return products;
+    return serchable;
   }
 
   Future<void> getproducts() async {
@@ -33,6 +34,14 @@ class ProductsProvider with ChangeNotifier {
     }
 
     products = loadedorders;
+    serchable = products;
+    notifyListeners();
+  }
+
+  void searchData(String info) {
+    print(info);
+    var data = products.where((element) => element.name!.toUpperCase().contains(info.toUpperCase()));
+    serchable = data.toList();
     notifyListeners();
   }
 }

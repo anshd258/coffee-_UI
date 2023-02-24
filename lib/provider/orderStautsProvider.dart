@@ -31,8 +31,8 @@ class MyData with ChangeNotifier {
     Future.delayed(
       const Duration(seconds: 1),
       () {
-        orderState = "";
-        estTime = "";
+        orderState = null;
+        estTime = null;
       },
     );
     print("this is orderstatus after dispose$orderState");
