@@ -35,13 +35,17 @@ import './page/Admin/allOrders.dart';
 import './page/Admin/account.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 // ...
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
-
+  if (message.notification != null) {
+    AwesomeNotifications().createNotificationFromJsonData(message.data);
+    print('Message also contained a notification: ${message.notification}');
+  }
   print(
       "Handling a background message: ${message.notification!.android!.priority}");
 }
@@ -53,7 +57,22 @@ void main() async {
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-
+  await AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+          channelKey: 'alerts',
+          channelName: 'Alerts',
+          channelDescription: 'Notification tests as alerts',
+          playSound: true,
+          onlyAlertOnce: true,
+          groupAlertBehavior: GroupAlertBehavior.Children,
+          importance: NotificationImportance.High,
+          defaultPrivacy: NotificationPrivacy.Private,
+          enableVibration: true,
+        )
+      ],
+      debug: true);
   NotificationSettings settings = await messaging.requestPermission(
     alert: true,
     announcement: false,
@@ -63,6 +82,14 @@ void main() async {
     provisional: false,
     sound: true,
   );
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+    if (!isAllowed) {
+      // This is just a basic example. For real apps, you must show some
+      // friendly dialog box before call the request method.
+      // This is very important to not harm the user experience
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+  });
 
   print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -71,6 +98,13 @@ void main() async {
         'Message data: ${message.notification!.android!.priority.toString()}');
 
     if (message.notification != null) {
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: int.parse(message.messageId!),
+        channelKey: 'alerts',
+        title: message.notification!.title,
+        body: message.notification!.body,
+      ));
       print('Message also contained a notification: ${message.notification}');
     }
   }).onError((eror) => print("error on forground $eror"));

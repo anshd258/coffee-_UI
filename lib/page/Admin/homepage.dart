@@ -185,7 +185,7 @@ class _AdminHomeState extends State<AdminHome> {
                                                     EdgeInsets.only(right: 4.w),
                                                 child: AdminHomeRowContainer(
                                                   orderId: e.orderId,
-                                                  products: products,
+
                                                   onTap: () {
                                                     Navigator.pushNamed(context,
                                                         "/OrdersAdmin");
@@ -253,7 +253,7 @@ class _AdminHomeState extends State<AdminHome> {
                                                   EdgeInsets.only(right: 4.w),
                                               child: AdminHomeRowContainer(
                                                 orderId: e.orderId,
-                                                products: products,
+
                                                 onTap: () {
                                                   Navigator.pushNamed(
                                                       context, "/OrdersAdmin");

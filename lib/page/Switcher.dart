@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/page/Merchent/toggle_merchant.dart';
 import 'package:inter_coffee/page/page-1.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'bottombartoggle.dart';
 import 'package:provider/provider.dart';
@@ -58,21 +60,9 @@ class _SwitcherState extends State<Switcher> {
                 now.difference(ctime) > const Duration(seconds: 2)) {
               //add duration of press gap
               ctime = now;
-              showTopSnackBar(
-                  dismissType: DismissType.onTap,
-                  animationDuration: const Duration(seconds: 1),
-                  displayDuration: const Duration(seconds: 1),
-                  Overlay.of(context),
-                  CustomSnackBar.error(
-                    message: "Press Back Button Again to Exit",
-                    iconPositionTop: -25,
-                    iconRotationAngle: 45,
-                    backgroundColor: Colors.black54,
-                    iconPositionLeft: -25,
-                    messagePadding: EdgeInsets.only(left: 5.w),
-                    icon: Icon(Icons.warning_amber_rounded,
-                        color: Colors.red.shade400, size: 45.sp),
-                  ));
+              // snackbarWarning(context, "Press Back Button Again to Exit");
+              snakbarmethod(context, "Please Double Tap To Exit");
+
               return Future.value(false);
             }
 

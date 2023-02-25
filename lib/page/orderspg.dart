@@ -28,6 +28,7 @@ class _OrderPgState extends State<OrderPg> {
   Widget build(BuildContext context) {
     data = context.watch<OrderHistory>().History;
     final isloading = context.watch<OrderHistory>().isloading;
+    final dataLoading = context.watch<OrderHistory>().dataLoading;
 
     return Container(
       height: 100.h,
@@ -71,52 +72,66 @@ class _OrderPgState extends State<OrderPg> {
             ),
             backgroundColor: bgStatusBar,
           ),
-          body: SizedBox(
-            child: Center(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  isloading
-                      ? const Center(
-                          child: CircularProgressIndicator.adaptive(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white70)),
-                        )
-                      : SizedBox(
-                          width: 100.w,
-                          height: 90.h,
-                          child: SingleChildScrollView(
-                              child: data!.isEmpty && data != null
-                                  ? SizedBox(
-                                      height: 100.h,
-                                      width: 100.w,
-                                      child: Center(
-                                        child: Container(
-                                            width: 100.w,
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "No Data Avilable 📪",
-                                              style: GoogleFonts.quicksand(
-                                                  fontSize: 17.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.white70),
-                                            )),
-                                      ))
-                                  : Column(
-                                      children: data!.map((e) {
-                                        return OrderPgTiles(
-                                          id: e.id!,
-                                          orderAgain: e.orderagain!,
-                                          order: e.items!,
-                                          orderNo: e.orderNo!,
-                                          createdDate: e.createdDate!,
-                                        );
-                                      }).toList(),
-                                    )),
-                        ),
-                ],
+          body: Stack(
+            children: [
+              SizedBox(
+                child: Center(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      isloading
+                          ? const Center(
+                              child: CircularProgressIndicator.adaptive(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white70)),
+                            )
+                          : SizedBox(
+                              width: 100.w,
+                              height: 90.h,
+                              child: SingleChildScrollView(
+                                  child: data!.isEmpty && data != null
+                                      ? SizedBox(
+                                          height: 100.h,
+                                          width: 100.w,
+                                          child: Center(
+                                            child: Container(
+                                                width: 100.w,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "No Data Avilable 📪",
+                                                  style: GoogleFonts.quicksand(
+                                                      fontSize: 17.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Colors.white70),
+                                                )),
+                                          ))
+                                      : Column(
+                                          children: data!.map((e) {
+                                            return OrderPgTiles(
+                                              id: e.id!,
+                                              orderAgain: e.orderagain!,
+                                              order: e.items!,
+                                              orderNo: e.orderNo!,
+                                              createdDate: e.createdDate!,
+                                            );
+                                          }).toList(),
+                                        )),
+                            ),
+                    ],
+                  ),
+                ),
               ),
-            ),
+              if (dataLoading == true) ...[
+                Container(
+                  color: Colors.black38,
+                  child: const Center(
+                      child: CircularProgressIndicator.adaptive(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white70))),
+                )
+              ]
+            ],
           ),
         ),
       ),

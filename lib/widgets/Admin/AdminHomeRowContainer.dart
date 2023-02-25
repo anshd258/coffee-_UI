@@ -1,25 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
 
 import './OrderDetailsDialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:provider/provider.dart';
+import '../../provider/OrderHistoryProvider.dart';
 
-class AdminHomeRowContainer extends StatelessWidget {
-  const AdminHomeRowContainer(
-      {super.key,
-      required this.orderId,
-      required this.products,
-      required this.onTap});
-
+class AdminHomeRowContainer extends StatefulWidget {
   final String? orderId;
-  final List products;
+
   final VoidCallback onTap;
+  AdminHomeRowContainer(
+      {super.key, required this.orderId, required this.onTap});
+
+  @override
+  State<AdminHomeRowContainer> createState() => _AdminHomeRowContainerState();
+}
+
+class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
+  OrderHistoryModel? data;
+  @override
+  void initState() {
+    dataGetter();
+
+    super.initState();
+  }
+
+  void dataGetter() async {
+    // context.read<OrderHistory>().getOrderhistory(widget.orderId!).then((value) {
+    //   data = value;
+    //   setState(() {});
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: GlassContainer.frostedGlass(
         // margin: EdgeInsets.only(right: 6.w),
         height: 28.h,
@@ -54,10 +73,11 @@ class AdminHomeRowContainer extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: orderId == null
+              child: widget.orderId == null
                   ? const CircularProgressIndicator.adaptive()
                   : Text(
-                      orderId!.substring(orderId!.length - 10, orderId!.length),
+                      widget.orderId!.substring(
+                          widget.orderId!.length - 10, widget.orderId!.length),
                       style: GoogleFonts.inter(
                           color: Colors.white70,
                           fontSize: 17.sp,
@@ -74,18 +94,21 @@ class AdminHomeRowContainer extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: products.map((e) {
-                            return Container(
-                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
-                              child: Text(
-                                "${e["name"]} x ${e["quantity"].toString()}",
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            );
-                          }).toList()),
+                          children: data == null
+                              ? [const CircularProgressIndicator.adaptive()]
+                              : data!.items!.map((e) {
+                                  return Container(
+                                    margin:
+                                        EdgeInsets.symmetric(vertical: 0.5.w),
+                                    child: Text(
+                                      "${e.productName} x ${e.quantity.toString()}",
+                                      style: GoogleFonts.inter(
+                                          color: Colors.white70,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  );
+                                }).toList()),
                     ),
                   )),
             ),

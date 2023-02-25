@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/models/order_details_model.dart';
+import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/AdminHomeRowContainer.dart';
 
@@ -94,9 +95,7 @@ class AllOrders extends StatelessWidget {
                     padding: EdgeInsets.only(top: 2.h),
                     itemCount: listofData.length,
                     itemBuilder: (context, index) => AdminHomeRowContainer(
-                        orderId: listofData[index].orderId,
-                        products: products,
-                        onTap: () {}))),
+                        orderId: listofData[index].orderId, onTap: () {}))),
       ),
     );
   }

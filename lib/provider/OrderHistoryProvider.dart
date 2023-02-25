@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? _orderList;
   bool isloading = false;
+  bool dataLoading = false;
   List<OrderHistoryModel>? get History {
     return _orderList;
   }
@@ -50,11 +51,15 @@ class OrderHistory with ChangeNotifier {
   Future<OrderHistoryModel> getOrderhistory(String id) async {
     final accessTokken = await getToken();
     String url = '$baseurl/getOrderDetails/$id';
+    dataLoading = true;
+    notifyListeners();
     final responsep = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessTokken',
     });
+    dataLoading = false;
+    notifyListeners();
     //print(responsep.body);
     if (responsep.statusCode == 200) {
       final responseData =
