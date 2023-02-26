@@ -100,7 +100,7 @@ void main() async {
     if (message.notification != null) {
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: int.parse(message.messageId!),
+        id: 1,
         channelKey: 'alerts',
         title: message.notification!.title,
         body: message.notification!.body,

@@ -30,7 +30,7 @@ class LoginAuthProvider with ChangeNotifier {
         .then((value) {
       isloading = false;
       notifyListeners();
-      if (value.statusCode == 200) {
+      if (value.statusCode == 500) {
         Navigator.pushNamedAndRemoveUntil(
             context, "/otpinput", (route) => false,
             arguments: pnumber);

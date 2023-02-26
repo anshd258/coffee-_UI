@@ -479,6 +479,31 @@ class _OrdersState extends State<Orders> {
                                     onRowSelect: (index, map) {
                                       id = map['orderId'];
                                       isSelected = true;
+                                      if (tappedIndex == 0) {
+                                        if (id.isNotEmpty &&
+                                            isSelected == true) {
+                                          OrderETA_Dialvog(
+                                              context, id, "normal");
+                                          isSelected = false;
+                                          id = '';
+                                        }
+                                      } else if (tappedIndex == 1) {
+                                        ConfirmDialog(
+                                            context,
+                                            "Put Order In Processing",
+                                            "ORDER_IN_PROGRESS",
+                                            id,
+                                            "ORDER_CONFIRMED",
+                                            "normal");
+                                      } else if (tappedIndex == 2) {
+                                        ConfirmDialog(
+                                            context,
+                                            "Put Order In Processing",
+                                            "ORDER_COMPLETED",
+                                            id,
+                                            "ORDER_IN_PROGRESS",
+                                            "normal");
+                                      }
                                     },
                                     rowHighlightColor:
                                         Colors.yellow[500]!.withOpacity(0.5),
@@ -566,63 +591,28 @@ class _OrdersState extends State<Orders> {
                                                     )
                                                   : const Text(""),
                                               headerVal == "Order Status"
-                                                  ? GestureDetector(
-                                                      onTap: () {
-                                                        if (tappedIndex == 0) {
-                                                          if (id.isNotEmpty &&
-                                                              isSelected ==
-                                                                  true) {
-                                                            OrderETA_Dialvog(
-                                                                context,
-                                                                id,
-                                                                "normal");
-                                                            isSelected = false;
-                                                            id = '';
-                                                          }
-                                                        } else if (tappedIndex ==
-                                                            1) {
-                                                          ConfirmDialog(
-                                                              context,
-                                                              "Put Order In Processing",
-                                                              "ORDER_IN_PROGRESS",
-                                                              id,
-                                                              "ORDER_CONFIRMED",
-                                                              "normal");
-                                                        } else if (tappedIndex ==
-                                                            2) {
-                                                          ConfirmDialog(
-                                                              context,
-                                                              "Put Order In Processing",
-                                                              "ORDER_COMPLETED",
-                                                              id,
-                                                              "ORDER_IN_PROGRESS",
-                                                              "normal");
-                                                        }
-                                                      },
-                                                      child: Center(
-                                                        child: Text(
-                                                            value
-                                                                .toString()
-                                                                .replaceAll(
-                                                                    RegExp(
-                                                                        r'_'),
-                                                                    ' '),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: GoogleFonts.inter(
-                                                                fontSize: 15.5.sp,
-                                                                color: headerVal == "Order Status"
-                                                                    ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
-                                                                        ? orderDetailsGreen
-                                                                        : value == "ORDER_IN_PROGRESS"
-                                                                            ? pending
-                                                                            : value == "ORDER_CANCELLED"
-                                                                                ? cancelled
-                                                                                : white
-                                                                    : white,
-                                                                decoration: TextDecoration.underline,
-                                                                fontWeight: FontWeight.w500)),
-                                                      ),
+                                                  ? Center(
+                                                      child: Text(
+                                                          value
+                                                              .toString()
+                                                              .replaceAll(
+                                                                  RegExp(r'_'),
+                                                                  ' '),
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: GoogleFonts.inter(
+                                                              fontSize: 15.5.sp,
+                                                              color: headerVal == "Order Status"
+                                                                  ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
+                                                                      ? orderDetailsGreen
+                                                                      : value == "ORDER_IN_PROGRESS"
+                                                                          ? pending
+                                                                          : value == "ORDER_CANCELLED"
+                                                                              ? cancelled
+                                                                              : white
+                                                                  : white,
+                                                              decoration: TextDecoration.underline,
+                                                              fontWeight: FontWeight.w500)),
                                                     )
                                                   : const Text("")
                                             ],
