@@ -458,19 +458,22 @@ class _OrdersState extends State<Orders> {
                                       headerVal = header.toString();
                                       return Container(
                                         padding: EdgeInsets.all(2.w),
+                                        height: 5.h,
                                         decoration: BoxDecoration(
                                           color: tableBlack,
                                           border:
                                               Border.all(color: borderWhite),
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            header.toString(),
-                                            textAlign: TextAlign.start,
-                                            style: GoogleFonts.inter(
-                                                color: white,
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w400),
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Center(
+                                            child: Text(
+                                              header.toString(),
+                                              textAlign: TextAlign.start,
+                                              style: GoogleFonts.inter(
+                                                  color: white,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
                                           ),
                                         ),
                                       );
