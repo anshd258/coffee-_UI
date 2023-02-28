@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/services.dart';
-
 import './authconst.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -13,6 +11,7 @@ import 'loginhandler/loginsharedpref.dart';
 class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
   String? accessToken;
+  String? userId;
   bool isloading = false;
   String? role;
   bool? isAdmin;
@@ -100,11 +99,13 @@ class LoginAuthProvider with ChangeNotifier {
         }
         await setPhoneNumber(pnumber);
         await setToken(loadedData['token']);
+        await setUserId(loadedData['userId']);
         // await setToken(
         //     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NjIwNjc4MTE0IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyNDM4NzI0LCJ1c2VySWQiOiI1NGI4YTg0OS02N2UyLTRmNjYtOTFkNi0zYTYxZjE0MTcxMGIiLCJpYXQiOjE2NzYzOTA3MjR9.i9D0FNaBQUUPA5pgbY2pjiIH0WM2Q9vlClETLdPUgVlJ1-jUOfL5uNuujHCeFcPLLcYd4z4ceo626Y-dbU_TDw");
-
+        userId = await getUserId();
         accessToken = await getToken();
         role = await getRole();
+        print(userId);
         notifyListeners();
         if (role == "merchant") {
           print(role);
@@ -149,6 +150,7 @@ class LoginAuthProvider with ChangeNotifier {
   void logout() async {
     await setRole("null");
     await setToken('null');
+    await setUserId('null');
     accessToken = await getToken();
     role = await getRole();
     print(role);

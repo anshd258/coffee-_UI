@@ -9,11 +9,14 @@ import 'package:provider/provider.dart';
 import '../../provider/OrderHistoryProvider.dart';
 
 class AdminHomeRowContainer extends StatefulWidget {
-  final String? orderId;
-
+  final String? orderNo;
+  final List<String>? items;
   final VoidCallback onTap;
   AdminHomeRowContainer(
-      {super.key, required this.orderId, required this.onTap});
+      {super.key,
+      required this.orderNo,
+      required this.onTap,
+      required this.items});
 
   @override
   State<AdminHomeRowContainer> createState() => _AdminHomeRowContainerState();
@@ -23,26 +26,18 @@ class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
   OrderHistoryModel? data;
   @override
   void initState() {
-    dataGetter();
-
     super.initState();
-  }
-
-  void dataGetter() async {
-    // context.read<OrderHistory>().getOrderhistory(widget.orderId!).then((value) {
-    //   data = value;
-    //   setState(() {});
-    // });
   }
 
   @override
   Widget build(BuildContext context) {
+    final length = widget.items!.length;
     return GestureDetector(
       onTap: widget.onTap,
       child: GlassContainer.frostedGlass(
         // margin: EdgeInsets.only(right: 6.w),
         height: 28.h,
-        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
+        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
         width: 43.w,
         borderRadius: BorderRadius.circular(6),
         frostedOpacity: 0.05,
@@ -73,45 +68,75 @@ class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: widget.orderId == null
-                  ? const CircularProgressIndicator.adaptive()
-                  : Text(
-                      widget.orderId!.substring(
-                          widget.orderId!.length - 10, widget.orderId!.length),
-                      style: GoogleFonts.inter(
-                          color: Colors.white70,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.w600),
-                    ),
+              child: Text(
+                widget.orderNo == null ? "" : widget.orderNo!,
+                style: GoogleFonts.inter(
+                    color: Colors.white70,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
             GestureDetector(
-              onTap: () {},
-              child: Align(
+                onTap: () {},
+                child: Align(
                   alignment: Alignment.centerLeft,
                   child: SizedBox(
-                    height: 6.h,
+                    height: 10.h,
                     width: 40.w,
-                    child: SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: data == null
-                              ? [const CircularProgressIndicator.adaptive()]
-                              : data!.items!.map((e) {
-                                  return Container(
-                                    margin:
-                                        EdgeInsets.symmetric(vertical: 0.5.w),
-                                    child: Text(
-                                      "${e.productName} x ${e.quantity.toString()}",
-                                      style: GoogleFonts.inter(
-                                          color: Colors.white70,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  );
-                                }).toList()),
-                    ),
-                  )),
-            ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (length >= 1) ...[
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                              child: Text(
+                                widget.items![0],
+                                style: GoogleFonts.inter(
+                                    color: Colors.white70,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                          if (length >= 2) ...[
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                              child: Text(
+                                widget.items![1],
+                                style: GoogleFonts.inter(
+                                    color: Colors.white70,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                          if (length >= 3) ...[
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                              child: Text(
+                                widget.items![2],
+                                style: GoogleFonts.inter(
+                                    color: Colors.white70,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            if (length >= 4)
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                                child: Text(
+                                  "...",
+                                  style: GoogleFonts.inter(
+                                      color: Colors.white70,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                          ]
+                        ]),
+                  ),
+                )),
+
             // Align(
             //   alignment: Alignment.topLeft,
             //   child: Text(

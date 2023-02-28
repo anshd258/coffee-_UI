@@ -95,7 +95,9 @@ class AllOrders extends StatelessWidget {
                     padding: EdgeInsets.only(top: 2.h),
                     itemCount: listofData.length,
                     itemBuilder: (context, index) => AdminHomeRowContainer(
-                        orderId: listofData[index].orderId, onTap: () {}))),
+                        items: listofData[index].items,
+                        orderNo: listofData[index].orderNo,
+                        onTap: () {}))),
       ),
     );
   }

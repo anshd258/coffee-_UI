@@ -1,6 +1,7 @@
 class OrderDetails {
   String? orderId;
   String? orderNo;
+  List<String>? items;
   UserId? userId;
   String? createdDate;
   String? currentState;
@@ -10,6 +11,7 @@ class OrderDetails {
   OrderDetails(
       {this.orderId,
       this.orderNo,
+      this.items,
       this.userId,
       this.createdDate,
       this.currentState,
@@ -18,12 +20,10 @@ class OrderDetails {
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
-    if (json['orderNo'] == null) {
-      orderNo = json['orderId'];
-    } else {
-      orderNo = json['orderNo'];
-    }
-    userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
+    orderNo = json['orderNo'];
+    items = json['items'].cast<String>();
+    userId =
+        json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
     createdDate = json['createdDate'];
     currentState = json['currentState'];
     nextStateEstTime = json['next_state_est_time'];
@@ -31,16 +31,17 @@ class OrderDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['orderId'] = orderId;
-    data['orderNo'] = orderNo;
-    if (userId != null) {
-      data['userId'] = userId!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['orderId'] = this.orderId;
+    data['orderNo'] = this.orderNo;
+    data['items'] = this.items;
+    if (this.userId != null) {
+      data['userId'] = this.userId!.toJson();
     }
-    data['createdDate'] = createdDate;
-    data['currentState'] = currentState;
-    data['next_state_est_time'] = nextStateEstTime;
-    data['priority'] = priority;
+    data['createdDate'] = this.createdDate;
+    data['currentState'] = this.currentState;
+    data['next_state_est_time'] = this.nextStateEstTime;
+    data['priority'] = this.priority;
     return data;
   }
 }
@@ -51,7 +52,7 @@ class UserId {
   String? name;
   String? email;
 
-  UserId({this.id, this.phoneNo, this.name});
+  UserId({this.id, this.phoneNo, this.name, this.email});
 
   UserId.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -61,10 +62,12 @@ class UserId {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['phoneNo'] = phoneNo;
-    data['name'] = name;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['phoneNo'] = this.phoneNo;
+    data['name'] = this.name;
+    data['email'] = this.email;
+
     return data;
   }
 }

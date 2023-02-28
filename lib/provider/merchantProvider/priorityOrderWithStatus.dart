@@ -6,7 +6,7 @@ import '../authconst.dart';
 import '../loginhandler/loginsharedpref.dart';
 
 class PriorityOrderProvider with ChangeNotifier {
-  List<OrderDetails> priorityOrders = [];
+  List<OrderDetails>? priorityOrders;
 
   Future<void> getPriorityOrders() async {
     final accessTokken = await getToken();

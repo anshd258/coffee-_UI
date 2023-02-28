@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilepgMid extends StatelessWidget {
@@ -12,9 +14,9 @@ class ProfilepgMid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final token = context.watch<LoginAuthProvider>().accessToken;
+    final role = context.watch<LoginAuthProvider>().role;
     return GlassContainer.frostedGlass(
-      height: 17.h,
+      height: role == 'merchant' ? 10.h : 17.h,
       width: 90.w,
       borderWidth: 1,
       blur: 17,
@@ -63,59 +65,68 @@ class ProfilepgMid extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 1.5.h,
+            height: 1.h,
           ),
-          GestureDetector(
-            onTap: () async {
-              Navigator.pushNamed(context, "/orderspg");
-            },
-            child: Container(
-              color: Colors.transparent,
-              width: 85.w,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      GlassContainer.frostedGlass(
-                        height: 4.h,
-                        width: 4.h,
-                        shape: BoxShape.circle,
-                        elevation: 3,
-                        borderColor: Colors.white12,
-                        shadowColor: Colors.white70,
+          if (role != 'merchant') ...[
+            GestureDetector(
+              onTap: () async {
+                Navigator.pushNamed(context, "/orderspg");
+              },
+              child: Container(
+                color: Colors.transparent,
+                width: 85.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        GlassContainer.frostedGlass(
+                          height: 4.h,
+                          width: 4.h,
+                          shape: BoxShape.circle,
+                          elevation: 3,
+                          borderColor: Colors.white12,
+                          shadowColor: Colors.white70,
+                          child: Image.asset(
+                            "assets/milk1.png",
+                            fit: BoxFit.scaleDown,
+                            scale: 1.8,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.w,
+                        ),
+                        Text(
+                          "Your Orders",
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Transform.rotate(
+                        angle: pi / 180 * 180,
                         child: Image.asset(
-                          "assets/milk1.png",
-                          fit: BoxFit.scaleDown,
-                          scale: 1.8,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 3.w,
-                      ),
-                      Text(
-                        "Your Orders",
-                        textAlign: TextAlign.end,
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
-                ],
+                          "assets/ICONS/arrow3.png",
+                          scale: 3,
+                        )),
+                  ],
+                ),
               ),
             ),
-          ),
+            Divider(
+              color: Colors.white70,
+              endIndent: 5.w,
+              indent: 5.w,
+              height: 2.5.h,
+            ),
+          ],
+
           // Divider(
           //   color: Colors.white70,
           //   endIndent: 5.w,
@@ -170,12 +181,7 @@ class ProfilepgMid extends StatelessWidget {
           //     ],
           //   ),
           // ),
-          Divider(
-            color: Colors.white70,
-            endIndent: 5.w,
-            indent: 5.w,
-            height: 2.5.h,
-          ),
+
           SizedBox(
             width: 85.w,
             child: Row(

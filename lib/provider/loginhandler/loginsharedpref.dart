@@ -17,6 +17,11 @@ Future<String?> getPhoneNumber() async {
 
   return instence.getString("phonenumber");
 }
+Future<String?> getUserId() async {
+  final SharedPreferences instence = await SharedPreferences.getInstance();
+
+  return instence.getString("userId");
+}
 
 Future<void> setToken(String tokken) async {
   final SharedPreferences instence = await SharedPreferences.getInstance();
@@ -33,4 +38,10 @@ Future<void> setPhoneNumber(String pnumber) async {
   final SharedPreferences instence = await SharedPreferences.getInstance();
 
   instence.setString("phonenumber", pnumber);
+}
+
+Future<void> setUserId(String userId) async {
+  final SharedPreferences instence = await SharedPreferences.getInstance();
+
+  instence.setString("userId", userId);
 }

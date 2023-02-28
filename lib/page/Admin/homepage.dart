@@ -7,12 +7,14 @@ import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/Admin/AdminHomeRowContainer.dart';
+import 'package:inter_coffee/widgets/Admin/loginExpiredDialog.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../provider/merchantProvider/priorityOrderWithStatus.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
 import '../../provider/merchantProvider/priorityordercount.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -44,12 +46,21 @@ class _AdminHomeState extends State<AdminHome> {
   ];
   @override
   void initState() {
+    getproducts();
     context.read<userDetailsProvider>().getUserDetails();
     context.read<PriorityOrderCount>().getCount();
     context.read<TotalOrderCount>().getCount();
-    context.read<AllOrderProvider>().getOrders();
+
     context.read<PriorityOrderProvider>().getPriorityOrders();
     super.initState();
+  }
+
+  void getproducts() async {
+    final response = await context.read<AllOrderProvider>().getOrders();
+
+    if (response == "token expired") {
+      tokkenExpiredDialog(context, "Login Has Expired Please login Again");
+    }
   }
 
   List<OrderDetails>? listOfOrders;
@@ -179,20 +190,38 @@ class _AdminHomeState extends State<AdminHome> {
                                               const CircularProgressIndicator
                                                   .adaptive(),
                                             ]
-                                          : priorityOrder!.map((e) {
-                                              return Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 4.w),
-                                                child: AdminHomeRowContainer(
-                                                  orderId: e.orderId,
-
-                                                  onTap: () {
-                                                    Navigator.pushNamed(context,
-                                                        "/OrdersAdmin");
-                                                  },
-                                                ),
-                                              );
-                                            }).toList())),
+                                          : priorityOrder!.isEmpty
+                                              ? [
+                                                  Center(
+                                                    child: Text(
+                                                      "No Priority Orders To Display 😓",
+                                                      style:
+                                                          GoogleFonts.quicksand(
+                                                              fontSize: 17.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: Colors
+                                                                  .white70),
+                                                    ),
+                                                  )
+                                                ]
+                                              : priorityOrder!.map((e) {
+                                                  return Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 4.w),
+                                                    child:
+                                                        AdminHomeRowContainer(
+                                                      orderNo: e.orderNo,
+                                                      items: e.items,
+                                                      onTap: () {
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            "/OrdersAdmin");
+                                                      },
+                                                    ),
+                                                  );
+                                                }).toList())),
                             ],
                           ),
                         ),
@@ -247,20 +276,36 @@ class _AdminHomeState extends State<AdminHome> {
                                             const CircularProgressIndicator
                                                 .adaptive()
                                           ]
-                                        : listOfOrders!.map((e) {
-                                            return Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 4.w),
-                                              child: AdminHomeRowContainer(
-                                                orderId: e.orderId,
-
-                                                onTap: () {
-                                                  Navigator.pushNamed(
-                                                      context, "/OrdersAdmin");
-                                                },
-                                              ),
-                                            );
-                                          }).toList()),
+                                        : listOfOrders!.isEmpty
+                                            ? [
+                                                Center(
+                                                  child: Text(
+                                                    "No Orders To Display 😓",
+                                                    style:
+                                                        GoogleFonts.quicksand(
+                                                            fontSize: 17.sp,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color:
+                                                                Colors.white70),
+                                                  ),
+                                                )
+                                              ]
+                                            : listOfOrders!.map((e) {
+                                                return Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 4.w),
+                                                  child: AdminHomeRowContainer(
+                                                    orderNo: e.orderNo,
+                                                    items: e.items,
+                                                    onTap: () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          "/OrdersAdmin");
+                                                    },
+                                                  ),
+                                                );
+                                              }).toList()),
                               ),
                             ],
                           ),

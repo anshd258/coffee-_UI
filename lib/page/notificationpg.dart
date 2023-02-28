@@ -26,13 +26,6 @@ class _NotificationPgState extends State<NotificationPg> {
   }
 
   @override
-  void dispose() {
-    context.read<NotificationProvider>().clearNotifications();
-
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     data = context.watch<NotificationProvider>().notificatins;
     final isloading = context.watch<NotificationProvider>().isloading;
