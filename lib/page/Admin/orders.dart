@@ -67,6 +67,7 @@ class _OrdersState extends State<Orders> {
     "Orders Progress",
     "Order Ready to Pick Up",
     "Completed Orders",
+    "Completed Orders",
     "Cancelled"
   ];
   bool isSelected = false;
@@ -128,6 +129,10 @@ class _OrdersState extends State<Orders> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            leading: SizedBox(
+              width: 1.w,
+            ),
+            leadingWidth: 0,
             title: Text(
               role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,
@@ -557,10 +562,18 @@ class _OrdersState extends State<Orders> {
                                       } else if (tappedIndex == 2) {
                                         ConfirmDialog(
                                             context,
-                                            "Put Order In Processing",
-                                            "ORDER_COMPLETED",
+                                            "Is The Order Brewed ",
+                                            "ORDER_READY_FOR_PICKUP",
                                             id,
                                             "ORDER_IN_PROGRESS",
+                                            "normal");
+                                      } else if (tappedIndex == 3) {
+                                        ConfirmDialog(
+                                            context,
+                                            "Is The Order Delivered? ",
+                                            "ORDER_COMPLETED",
+                                            id,
+                                            "ORDER_READY_FOR_PICKUP",
                                             "normal");
                                       }
                                     },
@@ -581,7 +594,8 @@ class _OrdersState extends State<Orders> {
                                             child: Row(
                                               children: [
                                                 Text(
-                                                  headerVal == "Order Details" ||
+                                                  headerVal ==
+                                                              "Order Details" ||
                                                           headerVal ==
                                                               "Order Status"
                                                       ? ""
@@ -624,7 +638,8 @@ class _OrdersState extends State<Orders> {
                                                                       .w500
                                                                   : FontWeight
                                                                       .w400
-                                                              : FontWeight.w400),
+                                                              : FontWeight
+                                                                  .w400),
                                                 ),
                                                 headerVal == "Order Details"
                                                     ? GestureDetector(
@@ -634,9 +649,11 @@ class _OrdersState extends State<Orders> {
                                                           // );
                                                         },
                                                         child: Center(
-                                                          child: Text("view More",
+                                                          child: Text(
+                                                              "view More",
                                                               textAlign:
-                                                                  TextAlign.start,
+                                                                  TextAlign
+                                                                      .start,
                                                               style: GoogleFonts.inter(
                                                                   color:
                                                                       borderWhite,
@@ -655,7 +672,8 @@ class _OrdersState extends State<Orders> {
                                                             value
                                                                 .toString()
                                                                 .replaceAll(
-                                                                    RegExp(r'_'),
+                                                                    RegExp(
+                                                                        r'_'),
                                                                     ' '),
                                                             textAlign:
                                                                 TextAlign.start,

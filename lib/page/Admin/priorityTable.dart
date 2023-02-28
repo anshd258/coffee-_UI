@@ -129,6 +129,10 @@ class _PriorityTableState extends State<PriorityTable> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            leading: SizedBox(
+              width: 1.w,
+            ),
+            leadingWidth: 0,
             title: Text(
               role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,
@@ -560,6 +564,14 @@ class _PriorityTableState extends State<PriorityTable> {
                                             id,
                                             "ORDER_IN_PROGRESS",
                                             'priority');
+                                      } else if (tappedIndex == 3) {
+                                        ConfirmDialog(
+                                            context,
+                                            "Put Order In Processing",
+                                            "ORDER_COMPLETED",
+                                            id,
+                                            "ORDER_READY_FOR_PICKUP",
+                                            "normal");
                                       }
                                     },
                                     rowHighlightColor:
