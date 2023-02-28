@@ -67,6 +67,8 @@ class _PriorityTableState extends State<PriorityTable> {
     "Order Confirmed",
     "Orders Progress",
     "Completed Orders",
+    "Order Ready for Pick Up",
+    "Cancelled"
   ];
   bool isSelected = false;
   String id = "";
@@ -77,7 +79,7 @@ class _PriorityTableState extends State<PriorityTable> {
     final List<dynamic>? data =
         context.watch<TablePriorityProvider>().orderJsonTableData;
     if (role == 'admin') {
-      tappedIndex = 4;
+      tappedIndex = 6;
     }
     String headerVal = "";
     var json = jsonDecode(json1);
@@ -239,6 +241,14 @@ class _PriorityTableState extends State<PriorityTable> {
                                           context
                                               .read<TablePriorityProvider>()
                                               .getOrders("ORDER_COMPLETED");
+                                        } else if (index == 4) {
+                                          context
+                                              .read<TablePriorityProvider>()
+                                              .getOrders("ORDER_READY_FOR_PICKUP");
+                                        } else if (index == 5) {
+                                          context
+                                              .read<TablePriorityProvider>()
+                                              .getOrders("ORDER_CANCELLED");
                                         }
                                         tappedIndex = index;
                                         // json = jsonDecode(json4);
@@ -271,7 +281,7 @@ class _PriorityTableState extends State<PriorityTable> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          if (tappedIndex == 4) ...[
+                          if (tappedIndex == 6) ...[
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -418,7 +428,7 @@ class _PriorityTableState extends State<PriorityTable> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          if (tappedIndex <= 3 && data != null) ...[
+                          if (tappedIndex <= 5 && data != null) ...[
                             data.isEmpty
                                 ? Container(
                                     width: 100.w,
@@ -629,7 +639,7 @@ class _PriorityTableState extends State<PriorityTable> {
                             SizedBox(
                               height: 8.h,
                             )
-                          ] else if (tappedIndex > 3 && data != null) ...[
+                          ] else if (tappedIndex > 5 && data != null) ...[
                             Container(
                                 margin: EdgeInsets.only(bottom: 7.h),
                                 child: ReportsTable())
