@@ -66,6 +66,8 @@ class _OrdersState extends State<Orders> {
     "Order Confirmed",
     "Orders Progress",
     "Completed Orders",
+    "Order Ready to Pick Up",
+    "Cancelled"
   ];
   bool isSelected = false;
   String id = "";
@@ -234,6 +236,14 @@ class _OrdersState extends State<Orders> {
                                           context
                                               .read<TableWithStatusProvider>()
                                               .getOrders("ORDER_COMPLETED");
+                                        } else if (index == 4) {
+                                          context
+                                              .read<TableWithStatusProvider>()
+                                              .getOrders("ORDER_READY_FOR_PICKUP");
+                                        } else if (index == 5) {
+                                          context
+                                              .read<TableWithStatusProvider>()
+                                              .getOrders("ORDER_CANCELLED");
                                         }
                                         tappedIndex = index;
                                         // json = jsonDecode(json4);
@@ -431,11 +441,25 @@ class _OrdersState extends State<Orders> {
                                     // onRowSelect: (index, map) {
                                     //   ConfirmDialog(context, map);
                                     // },
-                                    columns: [
+                                    columns: tappedIndex != 0 
+                                    ? [
                                       JsonTableColumn('createdDate',
-                                          defaultValue: null, label: "Date"),
-                                      JsonTableColumn('orderId',
+                                          defaultValue: null, label: "Date",
+                                          valueBuilder: (value) {
+                                            final createddate = DateTime.parse(value);
+                                            final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
+                                            final localTime = utcTime.toLocal();
+                                            return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                          },
+                                        ),
+                                      JsonTableColumn('orderNo',
                                           defaultValue: null,
+                                          valueBuilder: (value) {
+                                            if( value == null || value == "null" || value == "") {
+                                              return "No Data Available";
+                                            } 
+                                            return value.toString();
+                                          },
                                           label: "Order No"),
                                       JsonTableColumn('userId.name',
                                           defaultValue: null,
@@ -446,10 +470,42 @@ class _OrdersState extends State<Orders> {
                                       JsonTableColumn('next_state_est_time',
                                           defaultValue: null,
                                           valueBuilder: (value) {
-                                        final time = DateTime.parse(value);
-
-                                        return time.minute.toString();
-                                      }, label: "Estimated Time"),
+                                            if( value == "" || value == null || value == "null" ) {
+                                              return "No Data Available";
+                                            }
+                                            final time = DateTime.parse(value);
+                                            return time.minute.toString();
+                                          }, 
+                                          label: "Estimated Time"),
+                                      JsonTableColumn('orderId',
+                                          defaultValue: null,
+                                          label: "Order Details"),
+                                    ]
+                                    : [
+                                      JsonTableColumn('createdDate',
+                                          defaultValue: null, label: "Date",
+                                          valueBuilder: (value) {
+                                            final createddate = DateTime.parse(value);
+                                            final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
+                                            final localTime = utcTime.toLocal();
+                                            return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                          },
+                                        ),
+                                      JsonTableColumn('orderNo',
+                                          defaultValue: null,
+                                          valueBuilder: (value) {
+                                            if( value == null || value == "null" || value == "") {
+                                              return "No Data Available";
+                                            } 
+                                            return value.toString();
+                                          },
+                                          label: "Order No"),
+                                      JsonTableColumn('userId.name',
+                                          defaultValue: null,
+                                          label: "Order By"),
+                                      JsonTableColumn('currentState',
+                                          defaultValue: null,
+                                          label: "Order Status"),
                                       JsonTableColumn('orderId',
                                           defaultValue: null,
                                           label: "Order Details"),

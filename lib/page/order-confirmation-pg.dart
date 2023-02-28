@@ -155,7 +155,7 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7))),
                         child: Text(
-                          "Submit",
+                          "Confirm and Place Order",
                           style: GoogleFonts.inter(
                               color: Colors.white,
                               fontSize: 16.5.sp,

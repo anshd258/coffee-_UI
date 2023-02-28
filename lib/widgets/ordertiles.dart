@@ -52,8 +52,11 @@ class OrderPgTiles extends StatelessWidget {
 
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(createdDate);
+    final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
+    final localTime = utcTime.toLocal();
     List<String> optionSelected = order.isEmpty ? [] : returnChoices();
     bool isclicked = false;
+    
     return GestureDetector(
       onTap: () async {
         print(id);
@@ -68,7 +71,7 @@ class OrderPgTiles extends StatelessWidget {
       },
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 12.sp, bottom: 10.sp),
-        height: 19.h,
+        height: 22.h,
         width: 90.w,
         borderWidth: 0,
         blur: 17,
@@ -97,48 +100,18 @@ class OrderPgTiles extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        orderNo == null ? "no Number" : orderNo,
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                          color: const Color.fromARGB(255, 205, 205, 205),
+                      SizedBox(
+                        width: 60.w,
+                        child: Text(
+                          orderNo,
+                          style: GoogleFonts.inter(
+                            fontSize: 18.sp,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w500,
+                            color: const Color.fromARGB(255, 205, 205, 205),
+                          ),
                         ),
                       ),
-
-                      //pading
-
-                      //inner row
-
-                      //for showing ratings
-                      // Row(
-                      //   children: [
-                      //     if (role == 'admin') ...[
-                      //       Text(
-                      //         // "priority: ${order.priority.toString()}",
-                      //         "priority: No Data!!!",
-                      //         style: GoogleFonts.inter(
-                      //           fontSize: 13.sp,
-                      //           color: const Color.fromARGB(255, 205, 205, 205),
-                      //         ),
-                      //       ),
-                      //       SizedBox(
-                      //         width: 20.w,
-                      //       ),
-                      //     ],
-                      //     Text(
-                      //       "${createddate.hour}:${createddate.minute}",
-                      //       style: GoogleFonts.inter(
-                      //           color: const Color.fromARGB(255, 197, 197, 197),
-                      //           fontSize: 13.sp,
-                      //           textStyle: const TextStyle(
-                      //             wordSpacing: 1,
-                      //           )),
-                      //     ),
-                      //     SizedBox(width: 10.w)
-                      //   ],
-                      // ),
                       //for padding
                       SizedBox(
                         height: 0.3.h,
@@ -169,8 +142,6 @@ class OrderPgTiles extends StatelessWidget {
                       //discription text
                     ],
                   ),
-
-                  SizedBox(width: 30.w),
                   GlassContainer.frostedGlass(
                     color: Colors.white38,
                     height: 8.h,
@@ -194,14 +165,15 @@ class OrderPgTiles extends StatelessWidget {
               indent: 5.w,
               endIndent: 5.w,
             ),
-            SizedBox(
+            Container(
+              padding: EdgeInsets.only(bottom: 1.h),
               width: 80.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${createddate.day} ${DateFormat.MMM().format(createddate)} ${createddate.year} at ${createddate.hour}:${createddate.minute}",
+                    "${localTime.day} ${DateFormat.MMM().format(localTime)} ${localTime.year} at ${localTime.hour}:${localTime.minute}",
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       color: const Color.fromARGB(255, 205, 205, 205),
@@ -216,7 +188,7 @@ class OrderPgTiles extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, "/deliveryStatus",
-                                arguments: id);
+                                arguments: [id, orderNo]);
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
@@ -251,9 +223,6 @@ class OrderPgTiles extends StatelessWidget {
                   )
                 ],
               ),
-            ),
-            SizedBox(
-              height: 1.h,
             ),
           ],
         ),
