@@ -117,10 +117,7 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
             defaultPinTheme: defaultPinTheme,
             androidSmsAutofillMethod:
                 AndroidSmsAutofillMethod.smsUserConsentApi,
-            onSubmitted: ((value) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, "/page2", (route) => false);
-            }),
+            onSubmitted: ((value) {}),
             pinAnimationType: PinAnimationType.fade,
             animationDuration: const Duration(milliseconds: 15),
             animationCurve: Curves.bounceInOut,
@@ -173,12 +170,14 @@ class _OtpGlassContainState extends State<OtpGlassContain> {
                 istapped = false;
                 context
                     .read<LoginAuthProvider>()
-                    .login(widget.phonenumber, otpcontroller.text, context);
+                    .login(widget.phonenumber, otpcontroller.text, context)
+                    .whenComplete(() => istapped = true);
               } else if (istapped == true) {
                 istapped = false;
                 context
                     .read<LoginAuthProvider>()
-                    .login(widget.phonenumber, otpcontroller.text, context);
+                    .login(widget.phonenumber, otpcontroller.text, context)
+                    .whenComplete(() => istapped = true);
               }
             },
             child: Container(

@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'namebar2.dart';
 import '../widgets/Pg2-lower-list-cont.dart';
+import '../widgets/Admin/loginExpiredDialog.dart';
 
 class PG2maincont extends StatefulWidget {
   const PG2maincont({super.key});
@@ -22,12 +23,19 @@ class _PG2maincontState extends State<PG2maincont> {
   final TextEditingController ctr = TextEditingController();
   @override
   void initState() {
-    context.read<ProductsProvider>().getproducts();
+    getproducts();
     context.read<userDetailsProvider>().getUserDetails();
     ctr.addListener(() {
       context.read<ProductsProvider>().searchData(ctr.text);
     });
     super.initState();
+  }
+
+  void getproducts() async {
+    final response = await context.read<ProductsProvider>().getproducts();
+    if (response == "token expired") {
+      tokkenExpiredDialog(context, "Login Has Expired Please login Again");
+    }
   }
 
   @override
@@ -57,8 +65,6 @@ class _PG2maincontState extends State<PG2maincont> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
-                 
                     TextField(
                       controller: ctr,
                       cursorColor: const Color.fromARGB(255, 182, 182, 182),

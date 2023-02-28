@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/page/Merchent/toggle_merchant.dart';
 import 'package:inter_coffee/page/page-1.dart';
@@ -65,7 +68,7 @@ class _SwitcherState extends State<Switcher> {
 
               return Future.value(false);
             }
-
+            SystemChannels.platform.invokeMethod('SystemNavigator.pop');
             return Future.value(true);
           }),
     );

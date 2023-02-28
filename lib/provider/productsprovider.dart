@@ -13,7 +13,7 @@ class ProductsProvider with ChangeNotifier {
     return serchable;
   }
 
-  Future<void> getproducts() async {
+  Future<String> getproducts() async {
     final accessTokken = await getToken();
     print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";
@@ -22,6 +22,9 @@ class ProductsProvider with ChangeNotifier {
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessTokken',
     });
+    if (response.statusCode != 200) {
+      return "token expired";
+    }
     final responseData = json.decode(response.body);
 
     final List<ProductList> loadedorders = [];
@@ -36,11 +39,13 @@ class ProductsProvider with ChangeNotifier {
     products = loadedorders;
     serchable = products;
     notifyListeners();
+    return "working";
   }
 
   void searchData(String info) {
     print(info);
-    var data = products.where((element) => element.name!.toUpperCase().contains(info.toUpperCase()));
+    var data = products.where(
+        (element) => element.name!.toUpperCase().contains(info.toUpperCase()));
     serchable = data.toList();
     notifyListeners();
   }
