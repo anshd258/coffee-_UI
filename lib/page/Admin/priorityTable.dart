@@ -66,8 +66,8 @@ class _PriorityTableState extends State<PriorityTable> {
     "New Orders",
     "Order Confirmed",
     "Orders Progress",
-    "Completed Orders",
     "Order Ready for Pick Up",
+    "Completed Orders",
     "Cancelled"
   ];
   bool isSelected = false;
@@ -240,11 +240,12 @@ class _PriorityTableState extends State<PriorityTable> {
                                         } else if (index == 3) {
                                           context
                                               .read<TablePriorityProvider>()
-                                              .getOrders("ORDER_COMPLETED");
+                                              .getOrders(
+                                                  "ORDER_READY_FOR_PICKUP");
                                         } else if (index == 4) {
                                           context
                                               .read<TablePriorityProvider>()
-                                              .getOrders("ORDER_READY_FOR_PICKUP");
+                                              .getOrders("ORDER_COMPLETED");
                                         } else if (index == 5) {
                                           context
                                               .read<TablePriorityProvider>()
@@ -518,6 +519,14 @@ class _PriorityTableState extends State<PriorityTable> {
                                             id,
                                             "ORDER_IN_PROGRESS",
                                             'priority');
+                                      } else if (tappedIndex == 3) {
+                                        ConfirmDialog(
+                                            context,
+                                            "Put Order In Processing",
+                                            "ORDER_COMPLETED",
+                                            id,
+                                            "ORDER_READY_FOR_PICKUP",
+                                            "normal");
                                       }
                                     },
                                     rowHighlightColor:
