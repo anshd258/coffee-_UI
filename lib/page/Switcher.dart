@@ -3,10 +3,7 @@ import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/page/Merchent/toggle_merchant.dart';
 import 'package:inter_coffee/page/page-1.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'bottombartoggle.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';

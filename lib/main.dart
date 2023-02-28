@@ -20,7 +20,7 @@ import './page/bottombartoggle.dart';
 import './page/page-1.dart';
 import './provider/loginAuthProvider.dart';
 import './page/orderspg.dart';
-import './page/Switcher.dart';
+import 'page/switcher.dart';
 import './page/delivery_status.dart';
 import './page/page-3.dart';
 import './page/order-confirmation-pg.dart';
