@@ -78,7 +78,7 @@ class _OrdersState extends State<Orders> {
     final List<dynamic>? data =
         context.watch<TableWithStatusProvider>().orderJsonTableData;
     if (role == 'admin') {
-      tappedIndex = 4;
+      tappedIndex = 6;
     }
     String headerVal = "";
     var json = jsonDecode(json1);
@@ -276,7 +276,7 @@ class _OrdersState extends State<Orders> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          if (tappedIndex == 4) ...[
+                          if (tappedIndex == 6) ...[
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -423,7 +423,7 @@ class _OrdersState extends State<Orders> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          if (tappedIndex <= 3 && data != null) ...[
+                          if (tappedIndex <= 5 && data != null) ...[
                             data.isEmpty
                                 ? Container(
                                     width: 100.w,
@@ -683,7 +683,7 @@ class _OrdersState extends State<Orders> {
                             SizedBox(
                               height: 8.h,
                             )
-                          ] else if (tappedIndex > 3 && data != null) ...[
+                          ] else if (tappedIndex > 5 && data != null) ...[
                             Container(
                                 margin: EdgeInsets.only(bottom: 7.h),
                                 child: ReportsTable())
