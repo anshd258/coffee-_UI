@@ -59,12 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDBAa6nKa_YLBHIKyco7xHJ4Sj5Ny9HFTw',
-    appId: '1:955145349606:ios:01d46e835f790e8f0e8e27',
+    appId: '1:955145349606:ios:055eed5dc7608fc20e8e27',
     messagingSenderId: '955145349606',
     projectId: 'swift-cafe-4f5fa',
     storageBucket: 'swift-cafe-4f5fa.appspot.com',
-    iosClientId:
-        '955145349606-6ebsppaa348bg96cd4gqjufrjc4pn9pk.apps.googleusercontent.com',
-    iosBundleId: 'com.example.swiftCafe',
+    iosClientId: '955145349606-ftcn7ensuos9g72imvhvgji0shtpnli4.apps.googleusercontent.com',
+    iosBundleId: 'au.com.trackmile.swift.cafe',
   );
 }
