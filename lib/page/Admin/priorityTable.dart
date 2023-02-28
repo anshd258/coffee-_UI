@@ -127,6 +127,10 @@ class _PriorityTableState extends State<PriorityTable> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            leading: SizedBox(
+              width: 1.w,
+            ),
+            leadingWidth: 0,
             title: Text(
               role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,

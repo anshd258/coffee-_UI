@@ -128,6 +128,10 @@ class _OrdersState extends State<Orders> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            leading: SizedBox(
+              width: 1.w,
+            ),
+            leadingWidth: 0,
             title: Text(
               role == 'admin' ? "Reports" : "Orders",
               textAlign: TextAlign.start,
@@ -239,7 +243,8 @@ class _OrdersState extends State<Orders> {
                                         } else if (index == 4) {
                                           context
                                               .read<TableWithStatusProvider>()
-                                              .getOrders("ORDER_READY_FOR_PICKUP");
+                                              .getOrders(
+                                                  "ORDER_READY_FOR_PICKUP");
                                         } else if (index == 5) {
                                           context
                                               .read<TableWithStatusProvider>()
@@ -441,75 +446,100 @@ class _OrdersState extends State<Orders> {
                                     // onRowSelect: (index, map) {
                                     //   ConfirmDialog(context, map);
                                     // },
-                                    columns: tappedIndex != 0 
-                                    ? [
-                                      JsonTableColumn('createdDate',
-                                          defaultValue: null, label: "Date",
-                                          valueBuilder: (value) {
-                                            final createddate = DateTime.parse(value);
-                                            final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
-                                            final localTime = utcTime.toLocal();
-                                            return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                          },
-                                        ),
-                                      JsonTableColumn('orderNo',
-                                          defaultValue: null,
-                                          valueBuilder: (value) {
-                                            if( value == null || value == "null" || value == "") {
-                                              return "No Data Available";
-                                            } 
-                                            return value.toString();
-                                          },
-                                          label: "Order No"),
-                                      JsonTableColumn('userId.name',
-                                          defaultValue: null,
-                                          label: "Order By"),
-                                      JsonTableColumn('currentState',
-                                          defaultValue: null,
-                                          label: "Order Status"),
-                                      JsonTableColumn('next_state_est_time',
-                                          defaultValue: null,
-                                          valueBuilder: (value) {
-                                            if( value == "" || value == null || value == "null" ) {
-                                              return "No Data Available";
-                                            }
-                                            final time = DateTime.parse(value);
-                                            return time.minute.toString();
-                                          }, 
-                                          label: "Estimated Time"),
-                                      JsonTableColumn('orderId',
-                                          defaultValue: null,
-                                          label: "Order Details"),
-                                    ]
-                                    : [
-                                      JsonTableColumn('createdDate',
-                                          defaultValue: null, label: "Date",
-                                          valueBuilder: (value) {
-                                            final createddate = DateTime.parse(value);
-                                            final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
-                                            final localTime = utcTime.toLocal();
-                                            return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                          },
-                                        ),
-                                      JsonTableColumn('orderNo',
-                                          defaultValue: null,
-                                          valueBuilder: (value) {
-                                            if( value == null || value == "null" || value == "") {
-                                              return "No Data Available";
-                                            } 
-                                            return value.toString();
-                                          },
-                                          label: "Order No"),
-                                      JsonTableColumn('userId.name',
-                                          defaultValue: null,
-                                          label: "Order By"),
-                                      JsonTableColumn('currentState',
-                                          defaultValue: null,
-                                          label: "Order Status"),
-                                      JsonTableColumn('orderId',
-                                          defaultValue: null,
-                                          label: "Order Details"),
-                                    ],
+                                    columns: tappedIndex != 0
+                                        ? [
+                                            JsonTableColumn(
+                                              'createdDate',
+                                              defaultValue: null,
+                                              label: "Date",
+                                              valueBuilder: (value) {
+                                                final createddate =
+                                                    DateTime.parse(value);
+                                                final utcTime = DateTime.utc(
+                                                    createddate.year,
+                                                    createddate.month,
+                                                    createddate.day,
+                                                    createddate.hour,
+                                                    createddate.minute,
+                                                    createddate.second);
+                                                final localTime =
+                                                    utcTime.toLocal();
+                                                return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                              },
+                                            ),
+                                            JsonTableColumn('orderNo',
+                                                defaultValue: null,
+                                                valueBuilder: (value) {
+                                              if (value == null ||
+                                                  value == "null" ||
+                                                  value == "") {
+                                                return "No Data Available";
+                                              }
+                                              return value.toString();
+                                            }, label: "Order No"),
+                                            JsonTableColumn('userId.name',
+                                                defaultValue: null,
+                                                label: "Order By"),
+                                            JsonTableColumn('currentState',
+                                                defaultValue: null,
+                                                label: "Order Status"),
+                                            JsonTableColumn(
+                                                'next_state_est_time',
+                                                defaultValue: null,
+                                                valueBuilder: (value) {
+                                              if (value == "" ||
+                                                  value == null ||
+                                                  value == "null") {
+                                                return "No Data Available";
+                                              }
+                                              final time =
+                                                  DateTime.parse(value);
+                                              return time.minute.toString();
+                                            }, label: "Estimated Time"),
+                                            JsonTableColumn('orderId',
+                                                defaultValue: null,
+                                                label: "Order Details"),
+                                          ]
+                                        : [
+                                            JsonTableColumn(
+                                              'createdDate',
+                                              defaultValue: null,
+                                              label: "Date",
+                                              valueBuilder: (value) {
+                                                final createddate =
+                                                    DateTime.parse(value);
+                                                final utcTime = DateTime.utc(
+                                                    createddate.year,
+                                                    createddate.month,
+                                                    createddate.day,
+                                                    createddate.hour,
+                                                    createddate.minute,
+                                                    createddate.second);
+                                                final localTime =
+                                                    utcTime.toLocal();
+                                                return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                              },
+                                            ),
+                                            JsonTableColumn('orderNo',
+                                                defaultValue: null,
+                                                valueBuilder: (value) {
+                                              if (value == null ||
+                                                  value == "null" ||
+                                                  value == "") {
+                                                return "No Data Available";
+                                              }
+                                              return value.toString();
+                                            }, label: "Order No"),
+                                            JsonTableColumn('userId.name',
+                                                defaultValue: null,
+                                                label: "Order By"),
+                                            JsonTableColumn('currentState',
+                                                defaultValue: null,
+                                                label: "Order Status"),
+                                            JsonTableColumn('orderId',
+                                                defaultValue: null,
+                                                label: "Order Details"),
+                                          ],
                                     tableHeaderBuilder: (header) {
                                       headerVal = header.toString();
                                       return Container(
@@ -581,7 +611,8 @@ class _OrdersState extends State<Orders> {
                                             child: Row(
                                               children: [
                                                 Text(
-                                                  headerVal == "Order Details" ||
+                                                  headerVal ==
+                                                              "Order Details" ||
                                                           headerVal ==
                                                               "Order Status"
                                                       ? ""
@@ -624,7 +655,8 @@ class _OrdersState extends State<Orders> {
                                                                       .w500
                                                                   : FontWeight
                                                                       .w400
-                                                              : FontWeight.w400),
+                                                              : FontWeight
+                                                                  .w400),
                                                 ),
                                                 headerVal == "Order Details"
                                                     ? GestureDetector(
@@ -634,9 +666,11 @@ class _OrdersState extends State<Orders> {
                                                           // );
                                                         },
                                                         child: Center(
-                                                          child: Text("view More",
+                                                          child: Text(
+                                                              "view More",
                                                               textAlign:
-                                                                  TextAlign.start,
+                                                                  TextAlign
+                                                                      .start,
                                                               style: GoogleFonts.inter(
                                                                   color:
                                                                       borderWhite,
@@ -655,7 +689,8 @@ class _OrdersState extends State<Orders> {
                                                             value
                                                                 .toString()
                                                                 .replaceAll(
-                                                                    RegExp(r'_'),
+                                                                    RegExp(
+                                                                        r'_'),
                                                                     ' '),
                                                             textAlign:
                                                                 TextAlign.start,

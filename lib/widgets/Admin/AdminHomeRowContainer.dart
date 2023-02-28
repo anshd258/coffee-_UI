@@ -59,7 +59,7 @@ class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                "15 Mins",
+                "",
                 style: GoogleFonts.inter(
                     color: Colors.white70,
                     fontSize: 13.sp,
