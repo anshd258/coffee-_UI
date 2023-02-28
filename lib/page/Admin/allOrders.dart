@@ -3,6 +3,8 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../widgets/Admin/AdminHomeRowContainer.dart';
 
@@ -11,6 +13,7 @@ class AllOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataLoading = context.watch<OrderHistory>().dataLoading;
     final List products = [
       {
         "productid": 0123,
@@ -77,27 +80,42 @@ class AllOrders extends StatelessWidget {
               ),
               backgroundColor: Colors.white12,
             ),
-            body: listofData.isEmpty
-                ? Center(
-                    child: Text(
-                      "No $title To Display 😓",
-                      style: GoogleFonts.quicksand(
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white70),
-                    ),
+            body: Stack(
+              children: [
+                listofData.isEmpty
+                    ? Center(
+                        child: Text(
+                          "No $title To Display 😓",
+                          style: GoogleFonts.quicksand(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white70),
+                        ),
+                      )
+                    : GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 2.h,
+                            childAspectRatio: 20.h / 50.w),
+                        padding: EdgeInsets.only(top: 2.h),
+                        itemCount: listofData.length,
+                        itemBuilder: (context, index) => AdminHomeRowContainer(
+                          items: listofData[index].items,
+                          orderNo: listofData[index].orderNo,
+                          orderId: listofData[index].orderId,
+                        ),
+                      ),
+                if (dataLoading) ...[
+                  Container(
+                    color: Colors.black38,
+                    child: const Center(
+                        child: CircularProgressIndicator.adaptive(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white70))),
                   )
-                : GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 2.h,
-                        childAspectRatio: 20.h / 50.w),
-                    padding: EdgeInsets.only(top: 2.h),
-                    itemCount: listofData.length,
-                    itemBuilder: (context, index) => AdminHomeRowContainer(
-                        items: listofData[index].items,
-                        orderNo: listofData[index].orderNo,
-                        onTap: () {}))),
+                ]
+              ],
+            )),
       ),
     );
   }
