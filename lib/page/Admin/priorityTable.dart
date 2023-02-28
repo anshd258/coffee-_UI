@@ -519,6 +519,7 @@ class _PriorityTableState extends State<PriorityTable> {
                                       headerVal = header.toString();
                                       return Container(
                                         padding: EdgeInsets.all(2.w),
+                                        height: 5.h,
                                         decoration: BoxDecoration(
                                           color: tableBlack,
                                           border:
@@ -532,8 +533,7 @@ class _PriorityTableState extends State<PriorityTable> {
                                               textAlign: TextAlign.start,
                                               style: GoogleFonts.inter(
                                                   color: white,
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                         ),
@@ -582,6 +582,7 @@ class _PriorityTableState extends State<PriorityTable> {
                                     tableCellBuilder: (value) {
                                       return Container(
                                         padding: EdgeInsets.all(2.w),
+                                        height: 5.h,
                                         decoration: BoxDecoration(
                                           color: tableBlack,
                                           border:
@@ -593,7 +594,8 @@ class _PriorityTableState extends State<PriorityTable> {
                                             child: Row(
                                               children: [
                                                 Text(
-                                                  headerVal == "Order Details" ||
+                                                  headerVal ==
+                                                              "Order Details" ||
                                                           headerVal ==
                                                               "Order Status"
                                                       ? ""
@@ -625,7 +627,6 @@ class _PriorityTableState extends State<PriorityTable> {
                                                                           ? cancelled
                                                                           : white
                                                               : white,
-                                                      fontSize: 14.sp,
                                                       fontWeight: headerVal ==
                                                               "Order Details"
                                                           ? FontWeight.w500
@@ -637,7 +638,8 @@ class _PriorityTableState extends State<PriorityTable> {
                                                                       .w500
                                                                   : FontWeight
                                                                       .w400
-                                                              : FontWeight.w400),
+                                                              : FontWeight
+                                                                  .w400),
                                                 ),
                                                 headerVal == "Order Details"
                                                     ? GestureDetector(
@@ -647,12 +649,12 @@ class _PriorityTableState extends State<PriorityTable> {
                                                           // );
                                                         },
                                                         child: Center(
-                                                          child: Text("view More",
+                                                          child: Text(
+                                                              "view More",
                                                               textAlign:
-                                                                  TextAlign.start,
+                                                                  TextAlign
+                                                                      .start,
                                                               style: GoogleFonts.inter(
-                                                                  fontSize:
-                                                                      15.5.sp,
                                                                   color:
                                                                       borderWhite,
                                                                   decoration:
@@ -670,12 +672,12 @@ class _PriorityTableState extends State<PriorityTable> {
                                                             value
                                                                 .toString()
                                                                 .replaceAll(
-                                                                    RegExp(r'_'),
+                                                                    RegExp(
+                                                                        r'_'),
                                                                     ' '),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: GoogleFonts.inter(
-                                                                fontSize: 15.5.sp,
                                                                 color: headerVal == "Order Status"
                                                                     ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
                                                                         ? orderDetailsGreen
