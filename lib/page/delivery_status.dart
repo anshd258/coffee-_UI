@@ -15,10 +15,11 @@ class OrderStatus extends StatefulWidget {
 
 class _OrderStatusState extends State<OrderStatus> {
   Color green = const Color(0xff4CAF50);
+  Color red = const Color(0xffd50000);
   Color white = const Color(0xffcdcdcd);
   Color checkColor = const Color(0xfffafafa);
 
-  int? EStime;
+  String? EStime;
   String stateOfOrder = "";
   String orderid = "no value";
   String orderNo = "No Value";
@@ -61,6 +62,9 @@ class _OrderStatusState extends State<OrderStatus> {
       case "ORDER_CONFIRMED":
         ans = 2;
         break;
+      case "ORDER_CANCELLED":
+        ans = -2;
+        break;
       case "ORDER_PLACED":
         ans = 1;
         break;
@@ -71,7 +75,8 @@ class _OrderStatusState extends State<OrderStatus> {
   @override
   Widget build(BuildContext context) {
     print(ModalRoute.of(context)!.settings.arguments);
-    List<String> args = ModalRoute.of(context)!.settings.arguments as List<String>;
+    List<String> args =
+        ModalRoute.of(context)!.settings.arguments as List<String>;
     if (args != null) {
       orderid = args.first.toString();
       orderNo = args[1].toString();
@@ -83,8 +88,17 @@ class _OrderStatusState extends State<OrderStatus> {
       if (context.read<MyData>().estTime != null) {
         final time = context.watch<MyData>().estTime!;
         var finalTime = DateTime.parse(time);
-        var timerTime = DateTime.now().minute - finalTime.minute;
-        EStime = timerTime.abs();
+        var diff = finalTime.toLocal().difference(DateTime.now());
+        int days = diff.inDays.abs();
+        int hours = diff.inHours.abs().remainder(24);
+        int minutes = diff.inMinutes.abs().remainder(60);
+        int seconds = diff.inSeconds.abs().remainder(60);
+        var durationString = "${diff.isNegative ? "-" : ""}"
+            "${days > 0 ? '$days d ' : ''}"
+            "${hours > 0 ? '$hours h ' : ''}"
+            "${minutes > 0 ? '$minutes m ' : ''}"
+            "${seconds > 0 ? '$seconds s' : ''}";
+        EStime = durationString;
       }
     }
 
@@ -165,13 +179,13 @@ class _OrderStatusState extends State<OrderStatus> {
                                       children: [
                                         SizedBox(
                                           child: Center(
-                                            child: Text(
-                                                orderNo,
+                                            child: Text(orderNo,
                                                 textAlign: TextAlign.start,
                                                 style: GoogleFonts.inter(
                                                     color: white,
                                                     fontSize: 16.sp,
-                                                    fontWeight: FontWeight.w500)),
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                           ),
                                         ),
                                         // const SizedBox(
@@ -212,7 +226,9 @@ class _OrderStatusState extends State<OrderStatus> {
                                       child: Transform.scale(
                                         scale: 1.6,
                                         child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 1
+                                          value: checkState(stateOfOrder) >=
+                                                      1 ||
+                                                  checkState(stateOfOrder) == -2
                                               ? true
                                               : false,
                                           onChanged: (value) {
@@ -264,9 +280,11 @@ class _OrderStatusState extends State<OrderStatus> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) >= 2
-                                              ? green
-                                              : white,
+                                          color: checkState(stateOfOrder) == -2
+                                              ? red
+                                              : checkState(stateOfOrder) >= 2
+                                                  ? green
+                                                  : white,
                                           borderRadius:
                                               BorderRadius.circular(4.0)),
                                       width: 32,
@@ -283,7 +301,10 @@ class _OrderStatusState extends State<OrderStatus> {
                                           side: BorderSide(
                                             color: white,
                                           ),
-                                          activeColor: green,
+                                          activeColor:
+                                              checkState(stateOfOrder) == -2
+                                                  ? red
+                                                  : green,
                                           checkColor: checkColor,
                                         ),
                                       ),
@@ -291,7 +312,10 @@ class _OrderStatusState extends State<OrderStatus> {
                                     const SizedBox(
                                       width: 15,
                                     ),
-                                    Text("Order Confirmed",
+                                    Text(
+                                        checkState(stateOfOrder) == -2
+                                            ? "Order Cancelled"
+                                            : "Order Confirmed",
                                         textAlign: TextAlign.start,
                                         style: GoogleFonts.inter(
                                             color: white,
@@ -484,7 +508,13 @@ class _OrderStatusState extends State<OrderStatus> {
                                 ),
                                 Center(
                                   child: Text(
-                                    "Expected Time Delivery: ${EStime == null || stateOfOrder == "ORDER_PLACED" ? "_" : EStime}",
+                                    (EStime == null ||
+                                            (stateOfOrder !=
+                                                    "ORDER_CONFIRMED" &&
+                                                stateOfOrder !=
+                                                    "ORDER_IN_PROGRESS"))
+                                        ? ""
+                                        : "Expected Time Delivery: ${EStime ?? "_"}",
                                     style: GoogleFonts.inter(
                                         color: Colors.white,
                                         fontSize: 15.sp,

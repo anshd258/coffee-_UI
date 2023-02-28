@@ -11,11 +11,11 @@ import '../../provider/OrderHistoryProvider.dart';
 class AdminHomeRowContainer extends StatefulWidget {
   final String? orderNo;
   final List<String>? items;
-  final VoidCallback onTap;
+  final String? orderId;
   AdminHomeRowContainer(
       {super.key,
       required this.orderNo,
-      required this.onTap,
+      required this.orderId,
       required this.items});
 
   @override
@@ -29,11 +29,22 @@ class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
     super.initState();
   }
 
+  bool isclicked = false;
   @override
   Widget build(BuildContext context) {
     final length = widget.items!.length;
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: () {
+        print(widget.orderId);
+        if (isclicked == false) {
+          isclicked = true;
+          context
+              .read<OrderHistory>()
+              .getOrderhistory(widget.orderId!)
+              .then((value) => OrderDetailsDialog(context, value))
+              .whenComplete(() => isclicked = false);
+        }
+      },
       child: GlassContainer.frostedGlass(
         // margin: EdgeInsets.only(right: 6.w),
         height: 28.h,
