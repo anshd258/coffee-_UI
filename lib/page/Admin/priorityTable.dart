@@ -559,15 +559,15 @@ class _PriorityTableState extends State<PriorityTable> {
                                       } else if (tappedIndex == 2) {
                                         ConfirmDialog(
                                             context,
-                                            "Put Order In Processing",
-                                            "ORDER_COMPLETED",
+                                            "Is The Order Brewed ",
+                                            "ORDER_READY_FOR_PICKUP",
                                             id,
                                             "ORDER_IN_PROGRESS",
-                                            'priority');
+                                            "normal");
                                       } else if (tappedIndex == 3) {
                                         ConfirmDialog(
                                             context,
-                                            "Put Order In Processing",
+                                            "Is The Order Delivered? ",
                                             "ORDER_COMPLETED",
                                             id,
                                             "ORDER_READY_FOR_PICKUP",
