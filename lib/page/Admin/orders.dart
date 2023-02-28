@@ -67,7 +67,6 @@ class _OrdersState extends State<Orders> {
     "Orders Progress",
     "Order Ready to Pick Up",
     "Completed Orders",
-    "Completed Orders",
     "Cancelled"
   ];
   bool isSelected = false;

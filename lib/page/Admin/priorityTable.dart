@@ -524,14 +524,17 @@ class _PriorityTableState extends State<PriorityTable> {
                                           border:
                                               Border.all(color: borderWhite),
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            header.toString(),
-                                            textAlign: TextAlign.start,
-                                            style: GoogleFonts.inter(
-                                                color: white,
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w400),
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Center(
+                                            child: Text(
+                                              header.toString(),
+                                              textAlign: TextAlign.start,
+                                              style: GoogleFonts.inter(
+                                                  color: white,
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
                                           ),
                                         ),
                                       );
@@ -584,107 +587,110 @@ class _PriorityTableState extends State<PriorityTable> {
                                           border:
                                               Border.all(color: borderWhite),
                                         ),
-                                        child: Center(
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                headerVal == "Order Details" ||
-                                                        headerVal ==
-                                                            "Order Status"
-                                                    ? ""
-                                                    : value,
-                                                textAlign: TextAlign.start,
-                                                style: GoogleFonts.inter(
-                                                    textStyle: headerVal ==
-                                                            "Order Details"
-                                                        ? const TextStyle(
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                          )
-                                                        : null,
-                                                    color: headerVal ==
-                                                            "Order Details"
-                                                        ? orderDetailsGreen
-                                                        : headerVal ==
-                                                                "Order Status"
-                                                            ? value != "Pending" &&
-                                                                    value !=
-                                                                        "Cancelled"
-                                                                ? orderDetailsGreen
-                                                                : value ==
-                                                                        "Pending"
-                                                                    ? pending
-                                                                    : value ==
-                                                                            "Cancelled"
-                                                                        ? cancelled
-                                                                        : white
-                                                            : white,
-                                                    fontSize: 14.sp,
-                                                    fontWeight: headerVal ==
-                                                            "Order Details"
-                                                        ? FontWeight.w500
-                                                        : headerVal ==
-                                                                "Order Status"
-                                                            ? value !=
-                                                                    "Confirmed"
-                                                                ? FontWeight
-                                                                    .w500
-                                                                : FontWeight
-                                                                    .w400
-                                                            : FontWeight.w400),
-                                              ),
-                                              headerVal == "Order Details"
-                                                  ? GestureDetector(
-                                                      onTap: () {
-                                                        // OrderDetailsDialog(
-                                                        //   context,
-                                                        // );
-                                                      },
-                                                      child: Center(
-                                                        child: Text("view More",
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Center(
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  headerVal == "Order Details" ||
+                                                          headerVal ==
+                                                              "Order Status"
+                                                      ? ""
+                                                      : value,
+                                                  textAlign: TextAlign.start,
+                                                  style: GoogleFonts.inter(
+                                                      textStyle: headerVal ==
+                                                              "Order Details"
+                                                          ? const TextStyle(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                            )
+                                                          : null,
+                                                      color: headerVal ==
+                                                              "Order Details"
+                                                          ? orderDetailsGreen
+                                                          : headerVal ==
+                                                                  "Order Status"
+                                                              ? value != "Pending" &&
+                                                                      value !=
+                                                                          "Cancelled"
+                                                                  ? orderDetailsGreen
+                                                                  : value ==
+                                                                          "Pending"
+                                                                      ? pending
+                                                                      : value ==
+                                                                              "Cancelled"
+                                                                          ? cancelled
+                                                                          : white
+                                                              : white,
+                                                      fontSize: 14.sp,
+                                                      fontWeight: headerVal ==
+                                                              "Order Details"
+                                                          ? FontWeight.w500
+                                                          : headerVal ==
+                                                                  "Order Status"
+                                                              ? value !=
+                                                                      "Confirmed"
+                                                                  ? FontWeight
+                                                                      .w500
+                                                                  : FontWeight
+                                                                      .w400
+                                                              : FontWeight.w400),
+                                                ),
+                                                headerVal == "Order Details"
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          // OrderDetailsDialog(
+                                                          //   context,
+                                                          // );
+                                                        },
+                                                        child: Center(
+                                                          child: Text("view More",
+                                                              textAlign:
+                                                                  TextAlign.start,
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize:
+                                                                      15.5.sp,
+                                                                  color:
+                                                                      borderWhite,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500)),
+                                                        ),
+                                                      )
+                                                    : const Text(""),
+                                                headerVal == "Order Status"
+                                                    ? Center(
+                                                        child: Text(
+                                                            value
+                                                                .toString()
+                                                                .replaceAll(
+                                                                    RegExp(r'_'),
+                                                                    ' '),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: GoogleFonts.inter(
-                                                                fontSize:
-                                                                    15.5.sp,
-                                                                color:
-                                                                    borderWhite,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500)),
-                                                      ),
-                                                    )
-                                                  : const Text(""),
-                                              headerVal == "Order Status"
-                                                  ? Center(
-                                                      child: Text(
-                                                          value
-                                                              .toString()
-                                                              .replaceAll(
-                                                                  RegExp(r'_'),
-                                                                  ' '),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: GoogleFonts.inter(
-                                                              fontSize: 15.5.sp,
-                                                              color: headerVal == "Order Status"
-                                                                  ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
-                                                                      ? orderDetailsGreen
-                                                                      : value == "ORDER_IN_PROGRESS"
-                                                                          ? pending
-                                                                          : value == "ORDER_CANCELLED"
-                                                                              ? cancelled
-                                                                              : white
-                                                                  : white,
-                                                              decoration: TextDecoration.underline,
-                                                              fontWeight: FontWeight.w500)),
-                                                    )
-                                                  : const Text("")
-                                            ],
+                                                                fontSize: 15.5.sp,
+                                                                color: headerVal == "Order Status"
+                                                                    ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
+                                                                        ? orderDetailsGreen
+                                                                        : value == "ORDER_IN_PROGRESS"
+                                                                            ? pending
+                                                                            : value == "ORDER_CANCELLED"
+                                                                                ? cancelled
+                                                                                : white
+                                                                    : white,
+                                                                decoration: TextDecoration.underline,
+                                                                fontWeight: FontWeight.w500)),
+                                                      )
+                                                    : const Text("")
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       );
