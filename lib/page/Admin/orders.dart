@@ -65,8 +65,8 @@ class _OrdersState extends State<Orders> {
     "New Orders",
     "Order Confirmed",
     "Orders Progress",
-    "Completed Orders",
     "Order Ready to Pick Up",
+    "Completed Orders",
     "Cancelled"
   ];
   bool isSelected = false;
@@ -235,11 +235,11 @@ class _OrdersState extends State<Orders> {
                                         } else if (index == 3) {
                                           context
                                               .read<TableWithStatusProvider>()
-                                              .getOrders("ORDER_COMPLETED");
+                                              .getOrders("ORDER_READY_FOR_PICKUP");
                                         } else if (index == 4) {
                                           context
                                               .read<TableWithStatusProvider>()
-                                              .getOrders("ORDER_READY_FOR_PICKUP");
+                                              .getOrders("ORDER_COMPLETED");
                                         } else if (index == 5) {
                                           context
                                               .read<TableWithStatusProvider>()
@@ -441,7 +441,7 @@ class _OrdersState extends State<Orders> {
                                     // onRowSelect: (index, map) {
                                     //   ConfirmDialog(context, map);
                                     // },
-                                    columns: tappedIndex != 0 
+                                    columns: tappedIndex == 1 || tappedIndex == 2 
                                     ? [
                                       JsonTableColumn('createdDate',
                                           defaultValue: null, label: "Date",
