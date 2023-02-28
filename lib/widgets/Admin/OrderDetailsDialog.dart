@@ -21,7 +21,7 @@ Future<void> OrderDetailsDialog(
             color: Colors.white10,
             borderWidth: 0.5,
             frostedOpacity: 0.03,
-            height: 40.h,
+            height: 60.h,
             borderColor: Colors.white24,
             width: 80.w,
             padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.5.h),
@@ -97,7 +97,7 @@ Future<void> OrderDetailsDialog(
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 1.5.h),
-                    width: 55.w,
+                    width: 70.w,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,50 +110,85 @@ Future<void> OrderDetailsDialog(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: data.items!
-                                .map((e) => Text(
-                                      "${e.productName} X ${e.quantity}",
-                                      textAlign: TextAlign.left,
-                                      style: GoogleFonts.inter(
-                                          color: Colors.white70,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400),
-                                    ))
-                                .toList(),
-                            // Text(
-                            //   "1 Latte",
-                            //   textAlign: TextAlign.left,
-                            //   style: GoogleFonts.inter(
-                            //       color: Colors.white70,
-                            //       fontSize: 14.sp,
-                            //       fontWeight: FontWeight.w400),
-                            // ),
-                            // Text(
-                            //   "Full",
-                            //   textAlign: TextAlign.left,
-                            //   style: GoogleFonts.inter(
-                            //       color: Colors.white70,
-                            //       fontSize: 14.sp,
-                            //       fontWeight: FontWeight.w400),
-                            // ),
-                            // Text(
-                            //   "Full Cream Milk",
-                            //   textAlign: TextAlign.left,
-                            //   style: GoogleFonts.inter(
-                            //       color: Colors.white70,
-                            //       fontSize: 14.sp,
-                            //       fontWeight: FontWeight.w400),
-                            // ),
-                            // Text(
-                            //   "Sugar X 1",
-                            //   textAlign: TextAlign.left,
-                            //   style: GoogleFonts.inter(
-                            //       color: Colors.white70,
-                            //       fontSize: 14.sp,
-                            //       fontWeight: FontWeight.w400),
-                            // ),
+                          SizedBox(
+                            height: 30.h,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: data.items!
+                                    .map((e) => Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${e.productName} X ${e.quantity}",
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.inter(
+                                                  color: Colors.white,
+                                                  fontSize: 15.sp,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: e.choice!
+                                                  .map((em) => Text(
+                                                        "${em.name} - ${em.choice.toString()}",
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                                color: Colors
+                                                                    .white60,
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                      ))
+                                                  .toList(),
+                                            ),
+                                            Divider(
+                                              color: Colors.white70,
+                                              height: 5.h,
+                                              thickness: 30,
+                                            )
+                                          ],
+                                        ))
+                                    .toList(),
+                                // Text(
+                                //   "1 Latte",
+                                //   textAlign: TextAlign.left,
+                                //   style: GoogleFonts.inter(
+                                //       color: Colors.white70,
+                                //       fontSize: 14.sp,
+                                //       fontWeight: FontWeight.w400),
+                                // ),
+                                // Text(
+                                //   "Full",
+                                //   textAlign: TextAlign.left,
+                                //   style: GoogleFonts.inter(
+                                //       color: Colors.white70,
+                                //       fontSize: 14.sp,
+                                //       fontWeight: FontWeight.w400),
+                                // ),
+                                // Text(
+                                //   "Full Cream Milk",
+                                //   textAlign: TextAlign.left,
+                                //   style: GoogleFonts.inter(
+                                //       color: Colors.white70,
+                                //       fontSize: 14.sp,
+                                //       fontWeight: FontWeight.w400),
+                                // ),
+                                // Text(
+                                //   "Sugar X 1",
+                                //   textAlign: TextAlign.left,
+                                //   style: GoogleFonts.inter(
+                                //       color: Colors.white70,
+                                //       fontSize: 14.sp,
+                                //       fontWeight: FontWeight.w400),
+                                // ),
+                              ),
+                            ),
                           ),
                         ]),
                   ),

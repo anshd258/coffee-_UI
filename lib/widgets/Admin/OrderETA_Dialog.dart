@@ -130,32 +130,67 @@ Future<void> OrderETA_Dialvog(
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (type == "priority") {
-                      context
-                          .read<TablePriorityProvider>()
-                          .updateOrderStatus(selecteditem, id);
-                    } else {
-                      context
-                          .read<TableWithStatusProvider>()
-                          .updateOrderStatus(selecteditem, id);
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (type == "priority") {
+                          context
+                              .read<TablePriorityProvider>()
+                              .updateOrderStatus(selecteditem, id);
+                        } else {
+                          context
+                              .read<TableWithStatusProvider>()
+                              .updateOrderStatus(selecteditem, id);
+                        }
 
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(35.w, 3.h),
-                      backgroundColor: green,
-                      padding: const EdgeInsets.all(0),
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7))),
-                  child: Text(
-                    "Confirm Order",
-                    style: GoogleFonts.inter(
-                        fontSize: 15.sp, fontWeight: FontWeight.w600),
-                  ),
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(35.w, 3.h),
+                          backgroundColor: green,
+                          padding: const EdgeInsets.all(0),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7))),
+                      child: Text(
+                        "Confirm Order",
+                        style: GoogleFonts.inter(
+                            fontSize: 15.sp, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (type == "priority") {
+                          context
+                              .read<TablePriorityProvider>()
+                              .updateOrderStatusWithoutTime(
+                                  "ORDER_CANCELLED", id, "ORDER_PLACED");
+                        } else {
+                          context
+                              .read<TableWithStatusProvider>()
+                              .updateOrderStatusWithoutTime(
+                                  "ORDER_CANCELLED", id, "ORDER_PLACED");
+                        }
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(30.w, 3.h),
+                          backgroundColor: Colors.white,
+                          padding: const EdgeInsets.all(0),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7))),
+                      child: Text(
+                        "Cancle Order",
+                        style: GoogleFonts.inter(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.red),
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
