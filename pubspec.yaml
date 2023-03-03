@@ -55,11 +55,12 @@ dependencies:
   line_icons: ^2.0.1
   shared_preferences: ^2.0.17
   flutter_switch: ^0.3.2
-  intl: ^0.18.0
+  intl: ^0.17.0
   firebase_messaging: ^14.2.4
   firebase_core: ^2.6.1
   top_snackbar_flutter: ^3.0.0+1
-  awesome_notifications: ^0.6.19
+  awesome_notifications: ^0.7.4+1
+
 
 
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/main.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
 import '../provider/productsprovider.dart';
@@ -34,6 +35,8 @@ class _PG2maincontState extends State<PG2maincont> {
   void getproducts() async {
     final response = await context.read<ProductsProvider>().getproducts();
     if (response == "token expired") {
+      context.read<LoginAuthProvider>().logout();
+      Navigator.pushNamedAndRemoveUntil(context, "/switcher", (route) => false);
       tokkenExpiredDialog(context, "Login Has Expired Please login Again");
     }
   }

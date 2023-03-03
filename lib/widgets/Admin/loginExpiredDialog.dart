@@ -46,9 +46,7 @@ Future<void> tokkenExpiredDialog(BuildContext context, String title) async {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              context.read<LoginAuthProvider>().logout();
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/switcher', (route) => false);
+                              Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey.shade300,
