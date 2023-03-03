@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
+import 'package:inter_coffee/page/Merchent/choice_filling_merchant.dart';
+import 'package:inter_coffee/page/Merchent/create_order_merchant.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityOrderWithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/priorityordercount.dart';
@@ -36,7 +38,6 @@ import './page/Admin/account.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import './provider/loginhandler/loginsharedpref.dart';
 import './provider/notificatonhandler.dart';
 
 // ...
@@ -179,6 +180,8 @@ class _MainAppState extends State<MainApp> {
                 "/OrdersAdmin": (context) => const Orders(),
                 "/AdminAccount": (context) => const AccountAdmin(),
                 "/AllOrders": (context) => const AllOrders(),
+                "/CreateOrderMerchant": (context) => const CreateOrderMerchant(),
+                "/ChoiceFillingMerchant": (context) => const ChoiceFillingMerchant(),
                 "/OrderConfirmed": (context) => const OrderConfirmed()
               },
             );

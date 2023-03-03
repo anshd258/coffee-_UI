@@ -123,15 +123,15 @@ class _AllProductPropertiesRenderState
         //         txt.replaceRange(cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
         //   }
         //   heading = txt;
-
+      
         //   Map<String, dynamic> detailsOfSelection = e.value;
         //   List<String> list =
         //       detailsOfSelection.values.elementAt(1) as List<String>;
         //   ansList = list;
         //   selecteditem = list[0];
-
+      
         //   String type = detailsOfSelection.values.elementAt(0).toString();
-
+      
         //   return Column(
         //     crossAxisAlignment: CrossAxisAlignment.start,
         //     children: [
@@ -162,13 +162,13 @@ class _AllProductPropertiesRenderState
                 print("this is text -> $txt");
                 headingSelector(txt);
                 print("this is heading -> $heading");
-
+      
                 List<String> list = e.choice!.cast<String>();
                 ansList = list;
                 selecteditem = list[0];
-
+      
                 String type = e.type.toString();
-
+      
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

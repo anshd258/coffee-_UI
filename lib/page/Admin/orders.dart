@@ -11,7 +11,6 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/widgets/Admin/ConfirmationDialog.dart';
-import 'package:inter_coffee/widgets/Admin/OrderDetailsDialog.dart';
 import 'package:inter_coffee/widgets/Admin/OrderETA_Dialog.dart';
 import 'package:json_table/json_table.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -169,7 +168,7 @@ class _OrdersState extends State<Orders> {
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, "/OrderConfirmed");
+                                      context, "/CreateOrderMerchant");
                                 },
                                 child: SizedBox(
                                   width: 35.w,

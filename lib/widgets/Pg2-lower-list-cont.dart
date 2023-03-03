@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +37,11 @@ class _PgLowerListContState extends State<PgLowerListCont> {
         // for detecting clicks and directing them to next page-3
         GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed('/page3', arguments: widget.e);
+            if( context.read<LoginAuthProvider>().role == 'merchant' ) {
+              Navigator.of(context).pushNamed('/ChoiceFillingMerchant', arguments: widget.e);
+            } else {
+              Navigator.of(context).pushNamed('/page3', arguments: widget.e);
+            }
           },
           child: GlassContainer.frostedGlass(
             height: 17.h,
