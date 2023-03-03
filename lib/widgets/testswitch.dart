@@ -5,9 +5,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SwitchTest extends StatefulWidget {
   final e;
+  final String isSelected;
   final Function setter;
 
-  const SwitchTest({super.key, required this.e, required this.setter});
+  const SwitchTest({super.key, required this.e, required this.setter,  required this.isSelected});
 
   @override
   State<SwitchTest> createState() => _SwitchTestState();
@@ -26,7 +27,7 @@ class _SwitchTestState extends State<SwitchTest> {
           children: [
             FlutterSwitch(
               activeColor: Colors.green.shade500,
-              value: value,
+              value: widget.isSelected == widget.e ? true:false,
               onToggle: (val) {
                 if (val) {
                   widget.setter(widget.e);

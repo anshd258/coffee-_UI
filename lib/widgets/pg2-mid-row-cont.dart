@@ -1,10 +1,15 @@
+import 'package:cart_stepper/cart_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/models/order_prouct.dart';
+import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/productsprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Pg2MidRowCont extends StatefulWidget {
-  final e;
+  final CartModal e;
   const Pg2MidRowCont({super.key, required this.e});
 
   @override
@@ -12,8 +17,50 @@ class Pg2MidRowCont extends StatefulWidget {
 }
 
 class _Pg2MidRowContState extends State<Pg2MidRowCont> {
+  String firstChoice = "";
+  String secondChoice = "";
+  String thirdChoice = "";
+  String FirstChoice() {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.first.choice != null) {
+        firstChoice = widget.e.choice!.first.choice!.first.toString();
+      }
+    }
+    return firstChoice;
+  }
+
+  String SecondChoice() {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.length >= 2) {
+        secondChoice = widget.e.choice![1].choice!.first.toString();
+      }
+    }
+    return secondChoice;
+  }
+
+  String ThirdChoice() {
+    if (widget.e.choice!.isNotEmpty) {
+      if (widget.e.choice!.length >= 3) {
+        thirdChoice = widget.e.choice![2].choice!.first.toString();
+      }
+    }
+    return thirdChoice;
+  }
+
+  int counter = 1;
+
+  @override
+  void initState() {
+    counter = widget.e.quantity!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final product = context
+        .watch<ProductsProvider>()
+        .products
+        .where((element) => element.id == widget.e.productId);
     return Row(
       children: [
         SizedBox(
@@ -21,33 +68,29 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
         ),
         //to detect the clicking on the boxes
         GestureDetector(
-          onTap: () {
-            Navigator.of(context).pushNamed("/page3", arguments: widget.e);
-          },
+          onTap: () {},
           child:
               //main boxes in the row to display items
               GlassContainer.clearGlass(
             height: 25.h,
-            width: 45.w,
+            width: 40.w,
             borderColor: Colors.transparent,
             borderRadius: BorderRadius.circular(8),
+            padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 10.sp),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                //for padding
-                SizedBox(
-                  height: 2.h,
-                ),
                 //container with image of the product
                 Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.topLeft,
                   child: Container(
-                    height: 13.h,
-                    width: 40.w,
+                    height: 20.w,
+                    width: 30.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Image(
-                      image: AssetImage(widget.e["image"].toString()),
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(product.first.img!)),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),
@@ -55,88 +98,120 @@ class _Pg2MidRowContState extends State<Pg2MidRowCont> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    "  " + widget.e["name"],
+                    product.first.name!,
                     style: GoogleFonts.inter(
                       fontSize: 13,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
-                      color: const Color.fromARGB(255, 205, 205, 205),
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                //for padding
+                //pading
                 SizedBox(
-                  height: 0.6.h,
+                  height: 0.8.h,
                 ),
-                // type of the product TEXT
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "      " + widget.e["type"],
-                    style: GoogleFonts.inter(
-                        color: const Color.fromARGB(255, 197, 197, 197),
-                        fontSize: 8,
-                        textStyle: const TextStyle(
-                          wordSpacing: 1,
-                        )),
-                  ),
-                ),
-                //for padding
-                SizedBox(
-                  height: 0.7.h,
-                ),
-
+                //inner row
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    //padding
-                    SizedBox(
-                      width: 5.w,
+                    //for showing ratings
+                    Row(
+                      children: [
+                        Text(
+                          FirstChoice()
+                          // widget.e.choiceOfSugar!
+                          ,
+                          style: GoogleFonts.inter(
+                              fontSize: 12.5.sp,
+                              color: Colors.white60,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        //for padding
+                      ],
                     ),
-                    //rating of the product
+
+                    //for padding
+
+                    // veg symbol
+                  ],
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //for showing ratings
+                    Row(
+                      children: [
+                        Text(
+                          SecondChoice()
+                          // widget.e.choiceOfSugar!
+                          ,
+                          style: GoogleFonts.inter(
+                              fontSize: 12.5.sp,
+                              color: Colors.white60,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        //for padding
+                      ],
+                    ),
+
+                    //for padding
+
+                    // veg symbol
+                  ],
+                ),
+                //padding between inner row and discription
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                //discription text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Text(
-                      widget.e["rating"],
+                      ThirdChoice()
+                      // widget.e.choiceOfSugar!
+                      ,
                       style: GoogleFonts.inter(
-                        fontSize: 9,
-                        color: Colors.black,
-                      ),
-                    ),
-                    //for padding
-                    SizedBox(
-                      width: 1.5.w,
-                    ),
-                    //start icon
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber.shade300,
-                      size: 16,
-                    ),
-                    //for padding
-                    SizedBox(
-                      width: 1.w,
-                    ),
-                    //number of the reviews of the product
-                    Text(
-                      widget.e["noreviews"],
-                      style: GoogleFonts.inter(
-                        fontSize: 9,
-                        color: Colors.black,
-                      ),
-                    ),
-                    //for padding
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    // green add icon button
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.add_box_rounded,
-                        color: const Color.fromARGB(255, 102, 163, 92),
-                        size: 4.h,
-                      ),
+                          color: Colors.white60,
+                          fontSize: 12.5.sp,
+                          fontWeight: FontWeight.w600,
+                          textStyle: const TextStyle(
+                            wordSpacing: 1,
+                          )),
                     ),
                   ],
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    height: 4.h,
+                    child: CartStepperInt(
+                      value: counter,
+                      size: 3.h,
+                      numberSize: 0.8.w,
+                      elevation: 0,
+                      style: const CartStepperStyle(
+                          activeBackgroundColor: Colors.transparent),
+                      didChangeCount: (value) {
+                        if (value == 0) {
+                          context
+                              .read<CartProductsProvider>()
+                              .removeProduct(widget.e);
+                        }
+                        if (value <= 5) {
+                          setState(() {
+                            counter = value;
+                          });
+                        }
+                      },
+                    ),
+                  ),
                 )
+                //for padding
               ],
             ),
           ),

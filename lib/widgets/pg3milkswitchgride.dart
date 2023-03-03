@@ -14,12 +14,12 @@ class ChoiceSwitch extends StatefulWidget {
   State<ChoiceSwitch> createState() => _ChoiceSwitchState();
 }
 
-String isSelected = "";
-
 class _ChoiceSwitchState extends State<ChoiceSwitch> {
+  String isSelected = "";
   Choice tempChoice = Choice();
   void setter(String data) {
     context.read<CartProductsProvider>().currentChoie.remove(tempChoice);
+    isSelected = data;
     tempChoice.choice = [];
     tempChoice.choice!.add(data);
     context.read<CartProductsProvider>().choiceSetter(tempChoice);
@@ -35,7 +35,6 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    isSelected = widget.list[0];
     // void cartAssigner(String text, String value) {
     //   switch (text) {
     //     case "choiceOfCupFilling":
@@ -73,7 +72,11 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
         children: widget.list.map((e) {
-          return SwitchTest(e: e, setter: setter);
+          return SwitchTest(
+            e: e,
+            setter: setter,
+            isSelected: isSelected,
+          );
         }).toList());
   }
 }
