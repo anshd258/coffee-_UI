@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import '../../provider/merchantProvider/tablePriorityProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 

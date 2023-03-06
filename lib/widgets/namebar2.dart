@@ -72,7 +72,7 @@ class name_bar2 extends StatelessWidget {
 
                       //     )
                     ),
-                    child: Icon(Icons.person, color: Colors.white70),
+                    child: const Icon(Icons.person, color: Colors.white70),
                   ),
                 ],
               ),

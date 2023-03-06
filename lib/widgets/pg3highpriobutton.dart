@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../models/products_list_model.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';

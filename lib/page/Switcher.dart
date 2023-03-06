@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 
 class Switcher extends StatefulWidget {
-  Switcher({super.key});
+  const Switcher({super.key});
 
   @override
   State<Switcher> createState() => _SwitcherState();

@@ -77,7 +77,7 @@ class LoginAuthProvider with ChangeNotifier {
         notifyListeners();
         return http.Response(error.toString(), 403);
       }).timeout(
-        Duration(seconds: 10),
+        const Duration(seconds: 10),
       );
       isloading = false;
       notifyListeners();

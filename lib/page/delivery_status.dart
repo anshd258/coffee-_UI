@@ -77,11 +77,9 @@ class _OrderStatusState extends State<OrderStatus> {
     print(ModalRoute.of(context)!.settings.arguments);
     List<String> args =
         ModalRoute.of(context)!.settings.arguments as List<String>;
-    if (args != null) {
-      orderid = args.first.toString();
-      orderNo = args[1].toString();
-      print(orderid);
-    }
+    orderid = args.first.toString();
+    orderNo = args[1].toString();
+    print(orderid);
 
     if (context.watch<MyData>().orderState != null) {
       stateOfOrder = context.watch<MyData>().orderState!;

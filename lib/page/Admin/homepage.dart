@@ -15,7 +15,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../provider/merchantProvider/priorityOrderWithStatus.dart';
 import '../../widgets/Admin/adminOrderCountContainer.dart';
 import '../../provider/merchantProvider/priorityordercount.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
