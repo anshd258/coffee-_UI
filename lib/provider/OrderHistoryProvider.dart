@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
-import 'package:inter_coffee/provider/authconst.dart';
 
-import './loginhandler/loginsharedpref.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import 'authconst.dart';
+import 'loginhandler/loginmodel.dart';
 
 class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? _orderList;
@@ -17,7 +19,9 @@ class OrderHistory with ChangeNotifier {
   Future<void> fetchOrders() async {
     _orderList = [];
     _orderList!.clear();
-    final accessTokken = await getToken();
+      final box = Hive.box<loginStorage>("session");
+    final data = box.get("session");
+    final accessTokken = data!.token;
     const url = '$baseurl/orderHistory';
     isloading = true;
     notifyListeners();
@@ -49,7 +53,9 @@ class OrderHistory with ChangeNotifier {
   }
 
   Future<OrderHistoryModel> getOrderhistory(String id) async {
-    final accessTokken = await getToken();
+       final box = Hive.box<loginStorage>("session");
+    final data = box.get("session");
+    final accessTokken = data!.token;
     String url = '$baseurl/getOrderDetails/$id';
     dataLoading = true;
     notifyListeners();

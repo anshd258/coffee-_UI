@@ -20,7 +20,7 @@ class Switcher extends StatefulWidget {
 
 class _SwitcherState extends State<Switcher> {
   Widget selector(String? role, String? tokken) {
-    if (role == "null" && tokken == "null") {
+    if (role == null && tokken == null) {
       return const page_1();
     } else {
       if (role == "merchant") {

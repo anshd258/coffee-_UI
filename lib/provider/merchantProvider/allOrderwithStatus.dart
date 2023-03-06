@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../authconst.dart';
-import '../loginhandler/loginsharedpref.dart';
+import '../loginhandler/loginmodel.dart';
+
 
 List<dynamic> jsonToDecode = [];
 
@@ -13,7 +16,9 @@ class AllOrderProvider with ChangeNotifier {
   List<OrderDetails>? orders;
 
   Future<String> getOrders() async {
-    final accessTokken = await getToken();
+      final box = Hive.box<loginStorage>("session");
+    final data = box.get("session");
+    final accessTokken = data!.token;
     const url = "$baseurl/getNotCompletedOrdersList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',

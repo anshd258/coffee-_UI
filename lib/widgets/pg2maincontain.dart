@@ -35,9 +35,9 @@ class _PG2maincontState extends State<PG2maincont> {
   void getproducts() async {
     final response = await context.read<ProductsProvider>().getproducts();
     if (response == "token expired") {
-      context.read<LoginAuthProvider>().logout();
-      Navigator.pushNamedAndRemoveUntil(context, "/switcher", (route) => false);
-      tokkenExpiredDialog(context, "Login Has Expired Please login Again");
+      // context.read<LoginAuthProvider>().logout();
+      // Navigator.pushNamedAndRemoveUntil(context, "/switcher", (route) => false);
+      // tokkenExpiredDialog(context, "Login Has Expired Please login Again");
     }
   }
 

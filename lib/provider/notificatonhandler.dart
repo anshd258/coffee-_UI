@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:inter_coffee/provider/loginhandler/loginsharedpref.dart';
+import 'package:hive/hive.dart';
+import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+
 
 void createnotification(RemoteMessage message) async {
-  final userId = await getUserId();
-  final role = await getRole();
+  final box = Hive.box<loginStorage>("session");
+  final data = box.get('session');
+  final role = data!.role;
+  final userId = data.userId;
   if (role != "merchant" && role != null) {
     if (message.notification != null && message.data['userId'] == userId) {
       AwesomeNotifications().createNotification(

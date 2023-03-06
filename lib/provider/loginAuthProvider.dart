@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
+import './loginhandler/loginmodel.dart';
 import 'dart:io';
+import 'package:hive/hive.dart';
 import './authconst.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'loginhandler/loginsharedpref.dart';
 
 class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
   String? accessToken;
   String? userId;
+  final box = Hive.box<loginStorage>('session');
   bool isloading = false;
   String? role;
   bool? isAdmin;
@@ -82,29 +84,33 @@ class LoginAuthProvider with ChangeNotifier {
       final loadedData = json.decode(response.body);
       print(loadedData);
       if (response.statusCode == 200) {
+        final session = loginStorage();
         // await setRole("merchant");
         // isAdmin = true;
         if (loadedData['role'] == 'MERCHANT') {
           isAdmin = true;
-          await setRole('merchant');
+          session.role = "merchant";
           notifyListeners();
         } else if (loadedData['role'] == 'ADMIN') {
           isAdmin = true;
-          await setRole('admin');
+
+          session.role = "admin";
           notifyListeners();
         } else if (loadedData['role'] == 'USER') {
           isAdmin = false;
-          await setRole('user');
+
+          session.role = "user";
           notifyListeners();
         }
-        await setPhoneNumber(pnumber);
-        await setToken(loadedData['token']);
-        await setUserId(loadedData['userId']);
+        session.phonenumber = pnumber;
+        session.token = loadedData['token'];
+        session.userId = loadedData['userId'];
         // await setToken(
         //     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NjIwNjc4MTE0IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyNDM4NzI0LCJ1c2VySWQiOiI1NGI4YTg0OS02N2UyLTRmNjYtOTFkNi0zYTYxZjE0MTcxMGIiLCJpYXQiOjE2NzYzOTA3MjR9.i9D0FNaBQUUPA5pgbY2pjiIH0WM2Q9vlClETLdPUgVlJ1-jUOfL5uNuujHCeFcPLLcYd4z4ceo626Y-dbU_TDw");
-        userId = await getUserId();
-        accessToken = await getToken();
-        role = await getRole();
+        userId = session.userId;
+        accessToken = session.token;
+        role = session.role;
+        box.put("session", session);
         print(userId);
         notifyListeners();
         if (role == "merchant") {
@@ -141,20 +147,29 @@ class LoginAuthProvider with ChangeNotifier {
   }
 
   void autologin() async {
-    role = await getRole();
-    accessToken = await getToken();
-    phoneNumber = await getPhoneNumber();
-    notifyListeners();
+    final data = box.get("session");
+    if (data != null) {
+      role = data.role;
+      print(role);
+      accessToken = data.token;
+      print(accessToken);
+      phoneNumber = data.phonenumber;
+      print(phoneNumber);
+      userId = data.userId;
+      print(userId);
+      notifyListeners();
+    } else {
+      role = null;
+      accessToken = null;
+      userId = null;
+      phoneNumber = null;
+    }
   }
 
   void logout() async {
-    await setRole("null");
-    await setToken('null');
-    await setUserId('null');
-    accessToken = await getToken();
-    role = await getRole();
-    print(role);
-    print(accessToken);
+    final data = box.get("session");
+    data!.delete();
+
     isAdmin = false;
     phoneNumber = null;
     accessToken = null;
