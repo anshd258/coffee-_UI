@@ -136,7 +136,7 @@ class _NotificationPgState extends State<NotificationPg> {
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white70),
                           ))
-                      : Container(
+                      : SizedBox(
                           width: 100.w,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

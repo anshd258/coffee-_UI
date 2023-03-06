@@ -12,7 +12,7 @@ class AdminHomeRowContainer extends StatefulWidget {
   final String? orderNo;
   final List<String>? items;
   final String? orderId;
-  AdminHomeRowContainer(
+  const AdminHomeRowContainer(
       {super.key,
       required this.orderNo,
       required this.orderId,

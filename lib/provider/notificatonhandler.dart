@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 
@@ -12,7 +11,7 @@ void createnotification(RemoteMessage message) async {
   final data = box.get('session');
   final role = data!.role;
   final userId = data.userId;
-  if (role != "merchant" && role != null) {
+  if (role != "merchant") {
     if (message.notification != null && message.data['userId'] == userId) {
       AwesomeNotifications().createNotification(
           content: NotificationContent(
@@ -23,7 +22,7 @@ void createnotification(RemoteMessage message) async {
       ));
       print('Message also contained a notification: ${message.notification}');
     }
-  } else if (role == "merchant" && role != null) {
+  } else if (role == "merchant") {
     if (message.notification != null) {
       final merchantData =
           json.decode(message.data['merchantId']) as List<dynamic>;
