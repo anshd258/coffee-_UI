@@ -94,57 +94,59 @@ class _AdminHomeRowContainerState extends State<AdminHomeRowContainer> {
                   child: SizedBox(
                     height: 10.h,
                     width: 40.w,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (length >= 1) ...[
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
-                              child: Text(
-                                widget.items![0],
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                          if (length >= 2) ...[
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
-                              child: Text(
-                                widget.items![1],
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                          if (length >= 3) ...[
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 0.5.w),
-                              child: Text(
-                                widget.items![2],
-                                style: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            if (length >= 4)
+                    child: SingleChildScrollView(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (length >= 1) ...[
                               Container(
                                 margin: EdgeInsets.symmetric(vertical: 0.5.w),
                                 child: Text(
-                                  "...",
+                                  widget.items![0],
                                   style: GoogleFonts.inter(
                                       color: Colors.white70,
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w400),
                                 ),
                               )
-                          ]
-                        ]),
+                            ],
+                            if (length >= 2) ...[
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                                child: Text(
+                                  widget.items![1],
+                                  style: GoogleFonts.inter(
+                                      color: Colors.white70,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                            ],
+                            if (length >= 3) ...[
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                                child: Text(
+                                  widget.items![2],
+                                  style: GoogleFonts.inter(
+                                      color: Colors.white70,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                              if (length >= 4)
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 0.5.w),
+                                  child: Text(
+                                    "...",
+                                    style: GoogleFonts.inter(
+                                        color: Colors.white70,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                )
+                            ]
+                          ]),
+                    ),
                   ),
                 )),
 

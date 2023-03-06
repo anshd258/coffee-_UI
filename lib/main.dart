@@ -109,6 +109,26 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+
+  @override
+  void initState() {
+    getproducts();
+    super.initState();
+  }
+
+  void getproducts() async {
+    final response = await context.read<ProductsProvider>().getproducts();
+    if (response == "token expired") {
+      context.read<LoginAuthProvider>().logout();
+      Navigator.pushNamedAndRemoveUntil(context, "/switcher", (route) => false);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

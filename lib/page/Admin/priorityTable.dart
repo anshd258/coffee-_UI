@@ -441,290 +441,361 @@ class _PriorityTableState extends State<PriorityTable> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white70),
                                     ))
-                                : JsonTable(
-                                    // json = callRightJSON(tappedIndex),
-                                    data,
-                                    // onRowSelect: (index, map) {
-                                    //   ConfirmDialog(context, map);
-                                    // },
-                                    columns: tappedIndex == 1 ||
-                                            tappedIndex == 2
-                                        ? [
-                                            JsonTableColumn(
-                                              'createdDate',
-                                              defaultValue: null,
-                                              label: "Date",
-                                              valueBuilder: (value) {
-                                                final createddate =
-                                                    DateTime.parse(value);
-                                                final utcTime = DateTime.utc(
-                                                    createddate.year,
-                                                    createddate.month,
-                                                    createddate.day,
-                                                    createddate.hour,
-                                                    createddate.minute,
-                                                    createddate.second);
-                                                final localTime =
-                                                    utcTime.toLocal();
-                                                return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                              },
-                                            ),
-                                            JsonTableColumn('orderNo',
-                                                defaultValue: null,
-                                                valueBuilder: (value) {
-                                              if (value == null ||
-                                                  value == "null" ||
-                                                  value == "") {
-                                                return "No Data Available";
-                                              }
-                                              return value.toString();
-                                            }, label: "Order No"),
-                                            JsonTableColumn('userId.name',
-                                                defaultValue: null,
-                                                label: "Order By"),
-                                            JsonTableColumn('currentState',
-                                                defaultValue: null,
-                                                label: "Order Status"),
-                                            JsonTableColumn(
-                                                'next_state_est_time',
-                                                defaultValue: null,
-                                                valueBuilder: (value) {
-                                              if (value == "" ||
-                                                  value == null ||
-                                                  value == "null") {
-                                                return "No Data Available";
-                                              }
-                                              final time =
-                                                  DateTime.parse(value);
-                                              return time.minute.toString();
-                                            }, label: "Estimated Time"),
-                                            JsonTableColumn('orderId',
-                                                defaultValue: null,
-                                                label: "Order Details"),
-                                          ]
-                                        : [
-                                            JsonTableColumn(
-                                              'createdDate',
-                                              defaultValue: null,
-                                              label: "Date",
-                                              valueBuilder: (value) {
-                                                final createddate =
-                                                    DateTime.parse(value);
-                                                final utcTime = DateTime.utc(
-                                                    createddate.year,
-                                                    createddate.month,
-                                                    createddate.day,
-                                                    createddate.hour,
-                                                    createddate.minute,
-                                                    createddate.second);
-                                                final localTime =
-                                                    utcTime.toLocal();
-                                                return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                              },
-                                            ),
-                                            JsonTableColumn('orderNo',
-                                                defaultValue: null,
-                                                valueBuilder: (value) {
-                                              if (value == null ||
-                                                  value == "null" ||
-                                                  value == "") {
-                                                return "No Data Available";
-                                              }
-                                              return value.toString();
-                                            }, label: "Order No"),
-                                            JsonTableColumn('userId.name',
-                                                defaultValue: null,
-                                                label: "Order By"),
-                                            JsonTableColumn('currentState',
-                                                defaultValue: null,
-                                                label: "Order Status"),
-                                            JsonTableColumn('orderId',
-                                                defaultValue: null,
-                                                label: "Order Details"),
-                                          ],
-                                    tableHeaderBuilder: (header) {
-                                      headerVal = header.toString();
-                                      return Container(
-                                        padding: EdgeInsets.all(2.w),
-                                        height: 5.h,
-                                        decoration: BoxDecoration(
-                                          color: tableBlack,
-                                          border:
-                                              Border.all(color: borderWhite),
-                                        ),
-                                        child: FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Center(
-                                            child: Text(
-                                              header.toString(),
-                                              textAlign: TextAlign.start,
-                                              style: GoogleFonts.inter(
-                                                  color: white,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    allowRowHighlight: true,
-                                    onRowSelect: (index, map) {
-                                      id = map['orderId'];
-                                      isSelected = true;
-                                      if (tappedIndex == 0) {
-                                        if (id.isNotEmpty &&
-                                            isSelected == true) {
-                                          OrderETA_Dialvog(
-                                              context, id, 'priority');
-                                          isSelected = false;
-                                          id = '';
-                                        }
-                                      } else if (tappedIndex == 1) {
-                                        ConfirmDialog(
-                                            context,
-                                            "Put Order In Processing",
-                                            "ORDER_IN_PROGRESS",
-                                            id,
-                                            "ORDER_CONFIRMED",
-                                            'priority');
-                                      } else if (tappedIndex == 2) {
-                                        ConfirmDialog(
-                                            context,
-                                            "Is The Order Brewed ",
-                                            "ORDER_READY_FOR_PICKUP",
-                                            id,
-                                            "ORDER_IN_PROGRESS",
-                                            "normal");
-                                      } else if (tappedIndex == 3) {
-                                        ConfirmDialog(
-                                            context,
-                                            "Is The Order Delivered? ",
-                                            "ORDER_COMPLETED",
-                                            id,
-                                            "ORDER_READY_FOR_PICKUP",
-                                            "normal");
-                                      }
-                                    },
-                                    rowHighlightColor:
-                                        Colors.yellow[500]!.withOpacity(0.5),
-                                    tableCellBuilder: (value) {
-                                      return Container(
-                                        padding: EdgeInsets.all(2.w),
-                                        height: 5.h,
-                                        decoration: BoxDecoration(
-                                          color: tableBlack,
-                                          border:
-                                              Border.all(color: borderWhite),
-                                        ),
-                                        child: FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Center(
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  headerVal ==
-                                                              "Order Details" ||
-                                                          headerVal ==
-                                                              "Order Status"
-                                                      ? ""
-                                                      : value,
-                                                  textAlign: TextAlign.start,
-                                                  style: GoogleFonts.inter(
-                                                      textStyle: headerVal ==
-                                                              "Order Details"
-                                                          ? const TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline,
-                                                            )
-                                                          : null,
-                                                      color: headerVal ==
-                                                              "Order Details"
-                                                          ? orderDetailsGreen
-                                                          : headerVal ==
-                                                                  "Order Status"
-                                                              ? value != "Pending" &&
-                                                                      value !=
-                                                                          "Cancelled"
-                                                                  ? orderDetailsGreen
-                                                                  : value ==
-                                                                          "Pending"
-                                                                      ? pending
-                                                                      : value ==
-                                                                              "Cancelled"
-                                                                          ? cancelled
-                                                                          : white
-                                                              : white,
-                                                      fontWeight: headerVal ==
-                                                              "Order Details"
-                                                          ? FontWeight.w500
-                                                          : headerVal ==
-                                                                  "Order Status"
-                                                              ? value !=
-                                                                      "Confirmed"
-                                                                  ? FontWeight
-                                                                      .w500
-                                                                  : FontWeight
-                                                                      .w400
-                                                              : FontWeight
-                                                                  .w400),
+                                : SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      JsonTable(
+                                          // json = callRightJSON(tappedIndex),
+                                          data,
+                                          // onRowSelect: (index, map) {
+                                          //   ConfirmDialog(context, map);
+                                          // },
+                                          columns: tappedIndex == 1 ||
+                                                  tappedIndex == 2
+                                              ? [
+                                                  JsonTableColumn(
+                                                    'createdDate',
+                                                    defaultValue: null,
+                                                    label: "Date",
+                                                    valueBuilder: (value) {
+                                                      final createddate =
+                                                          DateTime.parse(value);
+                                                      final utcTime = DateTime.utc(
+                                                          createddate.year,
+                                                          createddate.month,
+                                                          createddate.day,
+                                                          createddate.hour,
+                                                          createddate.minute,
+                                                          createddate.second);
+                                                      final localTime =
+                                                          utcTime.toLocal();
+                                                      return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                                    },
+                                                  ),
+                                                  JsonTableColumn('orderNo',
+                                                      defaultValue: null,
+                                                      valueBuilder: (value) {
+                                                    if (value == null ||
+                                                        value == "null" ||
+                                                        value == "") {
+                                                      return "No Data Available";
+                                                    }
+                                                    return value.toString();
+                                                  }, label: "Order No"),
+                                                  JsonTableColumn('userId.name',
+                                                      defaultValue: null,
+                                                      label: "Order By"),
+                                                  JsonTableColumn('currentState',
+                                                      defaultValue: null,
+                                                      label: "Order Status"),
+                                                  JsonTableColumn(
+                                                      'next_state_est_time',
+                                                      defaultValue: null,
+                                                      valueBuilder: (value) {
+                                                    if (value == "" ||
+                                                        value == null ||
+                                                        value == "null") {
+                                                      return "No Data Available";
+                                                    }
+                                                    final time =
+                                                        DateTime.parse(value);
+                                                    return time.minute.toString();
+                                                  }, label: "Estimated Time"),
+                                                  // JsonTableColumn('orderId',
+                                                  //     defaultValue: null,
+                                                  //     label: "Order Details"),
+                                                ]
+                                              : [
+                                                  JsonTableColumn(
+                                                    'createdDate',
+                                                    defaultValue: null,
+                                                    label: "Date",
+                                                    valueBuilder: (value) {
+                                                      final createddate =
+                                                          DateTime.parse(value);
+                                                      final utcTime = DateTime.utc(
+                                                          createddate.year,
+                                                          createddate.month,
+                                                          createddate.day,
+                                                          createddate.hour,
+                                                          createddate.minute,
+                                                          createddate.second);
+                                                      final localTime =
+                                                          utcTime.toLocal();
+                                                      return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                                    },
+                                                  ),
+                                                  JsonTableColumn('orderNo',
+                                                      defaultValue: null,
+                                                      valueBuilder: (value) {
+                                                    if (value == null ||
+                                                        value == "null" ||
+                                                        value == "") {
+                                                      return "No Data Available";
+                                                    }
+                                                    return value.toString();
+                                                  }, label: "Order No"),
+                                                  JsonTableColumn('userId.name',
+                                                      defaultValue: null,
+                                                      label: "Order By"),
+                                                  JsonTableColumn('currentState',
+                                                      defaultValue: null,
+                                                      label: "Order Status"),
+                                                  // JsonTableColumn('orderId',
+                                                  //     defaultValue: null,
+                                                  //     label: "Order Details"),
+                                                ],
+                                          tableHeaderBuilder: (header) {
+                                            headerVal = header.toString();
+                                            return Container(
+                                              padding: EdgeInsets.all(2.w),
+                                              height: 5.h,
+                                              decoration: BoxDecoration(
+                                                color: tableBlack,
+                                                border:
+                                                    Border.all(color: borderWhite),
+                                              ),
+                                              child: FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: Center(
+                                                  child: Text(
+                                                    header.toString(),
+                                                    textAlign: TextAlign.start,
+                                                    style: GoogleFonts.inter(
+                                                        color: white,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
                                                 ),
-                                                headerVal == "Order Details"
-                                                    ? GestureDetector(
-                                                        onTap: () {
-                                                          // OrderDetailsDialog(
-                                                          //   context,
-                                                          // );
-                                                        },
-                                                        child: Center(
-                                                          child: Text(
-                                                              "view More",
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: GoogleFonts.inter(
-                                                                  color:
-                                                                      borderWhite,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500)),
-                                                        ),
-                                                      )
-                                                    : const Text(""),
-                                                headerVal == "Order Status"
-                                                    ? Center(
-                                                        child: Text(
-                                                            value
-                                                                .toString()
-                                                                .replaceAll(
-                                                                    RegExp(
-                                                                        r'_'),
-                                                                    ' '),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: GoogleFonts.inter(
-                                                                color: headerVal == "Order Status"
-                                                                    ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
+                                              ),
+                                            );
+                                          },
+                                          allowRowHighlight: true,
+                                          onRowSelect: (index, map) {
+                                            id = map['orderId'];
+                                            isSelected = true;
+                                            if (tappedIndex == 0) {
+                                              if (id.isNotEmpty &&
+                                                  isSelected == true) {
+                                                OrderETA_Dialvog(
+                                                    context, id, 'priority');
+                                                isSelected = false;
+                                                id = '';
+                                              }
+                                            } else if (tappedIndex == 1) {
+                                              ConfirmDialog(
+                                                  context,
+                                                  "Put Order In Processing",
+                                                  "ORDER_IN_PROGRESS",
+                                                  id,
+                                                  "ORDER_CONFIRMED",
+                                                  'priority');
+                                            } else if (tappedIndex == 2) {
+                                              ConfirmDialog(
+                                                  context,
+                                                  "Is The Order Brewed ",
+                                                  "ORDER_READY_FOR_PICKUP",
+                                                  id,
+                                                  "ORDER_IN_PROGRESS",
+                                                  "normal");
+                                            } else if (tappedIndex == 3) {
+                                              ConfirmDialog(
+                                                  context,
+                                                  "Is The Order Delivered? ",
+                                                  "ORDER_COMPLETED",
+                                                  id,
+                                                  "ORDER_READY_FOR_PICKUP",
+                                                  "normal");
+                                            }
+                                          },
+                                          rowHighlightColor:
+                                              Colors.yellow[500]!.withOpacity(0.5),
+                                          tableCellBuilder: (value) {
+                                            return Container(
+                                              padding: EdgeInsets.all(2.w),
+                                              height: 5.h,
+                                              decoration: BoxDecoration(
+                                                color: tableBlack,
+                                                border:
+                                                    Border.all(color: borderWhite),
+                                              ),
+                                              child: FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: Center(
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        headerVal ==
+                                                                    "Order Details" ||
+                                                                headerVal ==
+                                                                    "Order Status"
+                                                            ? ""
+                                                            : value,
+                                                        textAlign: TextAlign.start,
+                                                        style: GoogleFonts.inter(
+                                                            textStyle: headerVal ==
+                                                                    "Order Details"
+                                                                ? const TextStyle(
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  )
+                                                                : null,
+                                                            color: headerVal ==
+                                                                    "Order Details"
+                                                                ? orderDetailsGreen
+                                                                : headerVal ==
+                                                                        "Order Status"
+                                                                    ? value != "Pending" &&
+                                                                            value !=
+                                                                                "Cancelled"
                                                                         ? orderDetailsGreen
-                                                                        : value == "ORDER_IN_PROGRESS"
+                                                                        : value ==
+                                                                                "Pending"
                                                                             ? pending
-                                                                            : value == "ORDER_CANCELLED"
+                                                                            : value ==
+                                                                                    "Cancelled"
                                                                                 ? cancelled
                                                                                 : white
                                                                     : white,
-                                                                decoration: TextDecoration.underline,
-                                                                fontWeight: FontWeight.w500)),
-                                                      )
-                                                    : const Text("")
-                                              ],
-                                            ),
-                                          ),
+                                                            fontWeight: headerVal ==
+                                                                    "Order Details"
+                                                                ? FontWeight.w500
+                                                                : headerVal ==
+                                                                        "Order Status"
+                                                                    ? value !=
+                                                                            "Confirmed"
+                                                                        ? FontWeight
+                                                                            .w500
+                                                                        : FontWeight
+                                                                            .w400
+                                                                    : FontWeight
+                                                                        .w400),
+                                                      ),
+                                                      headerVal == "Order Details"
+                                                          ? GestureDetector(
+                                                              onTap: () {
+                                                                // OrderDetailsDialog(
+                                                                //   context,
+                                                                // );
+                                                              },
+                                                              child: Center(
+                                                                child: Text(
+                                                                    "view More",
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: GoogleFonts.inter(
+                                                                        color:
+                                                                            borderWhite,
+                                                                        decoration:
+                                                                            TextDecoration
+                                                                                .underline,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w500)),
+                                                              ),
+                                                            )
+                                                          : const Text(""),
+                                                      headerVal == "Order Status"
+                                                          ? Center(
+                                                              child: Text(
+                                                                  value
+                                                                      .toString()
+                                                                      .replaceAll(
+                                                                          RegExp(
+                                                                              r'_'),
+                                                                          ' '),
+                                                                  textAlign:
+                                                                      TextAlign.start,
+                                                                  style: GoogleFonts.inter(
+                                                                      color: headerVal == "Order Status"
+                                                                          ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
+                                                                              ? orderDetailsGreen
+                                                                              : value == "ORDER_IN_PROGRESS"
+                                                                                  ? pending
+                                                                                  : value == "ORDER_CANCELLED"
+                                                                                      ? cancelled
+                                                                                      : white
+                                                                          : white,
+                                                                      decoration: TextDecoration.underline,
+                                                                      fontWeight: FontWeight.w500)),
+                                                            )
+                                                          : const Text("")
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
-                                      );
-                                    },
+                                        JsonTable(
+                                          data,
+                                          columns:[ 
+                                            JsonTableColumn(
+                                              'orderId',
+                                              defaultValue: null,
+                                              label: "Order Details"
+                                            ),
+                                          ],
+                                          tableHeaderBuilder: (header) {
+                                            headerVal = header.toString();
+                                            return Container(
+                                              padding: EdgeInsets.all(2.w),
+                                              height: 5.h,
+                                              decoration: BoxDecoration(
+                                                color: tableBlack,
+                                                border:
+                                                    Border.all(color: borderWhite),
+                                              ),
+                                              child: FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: Center(
+                                                  child: Text(
+                                                    header.toString(),
+                                                    textAlign: TextAlign.start,
+                                                    style: GoogleFonts.inter(
+                                                        color: white,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          allowRowHighlight: true,
+                                          onRowSelect: (index, map) {
+                                            id = map['orderId'];
+                                            isSelected = true;
+                                          },
+                                          rowHighlightColor:
+                                              Colors.yellow[500]!.withOpacity(0.5),
+                                          tableCellBuilder: (value) {
+                                            return Container(
+                                              padding: EdgeInsets.all(2.w),
+                                              height: 5.h,
+                                              decoration: BoxDecoration(
+                                                color: tableBlack,
+                                                border:
+                                                    Border.all(color: borderWhite),
+                                              ),
+                                              child: FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: Center(
+                                                  child: Text(
+                                                    "View More",
+                                                    style: GoogleFonts.inter(
+                                                      color: Colors.white,
+                                                      decoration: TextDecoration.underline
+                                                    ),
+                                                  ),
+                                                  ),
+                                                ),
+                                            );
+                                          },
+                                        ),
+                                    ],
                                   ),
+                                ),
                             SizedBox(
                               height: 8.h,
                             )
