@@ -73,6 +73,7 @@ class _PriorityTableState extends State<PriorityTable> {
     "Cancelled"
   ];
   bool isSelected = false;
+  bool isSelect = false;
   String id = "";
   @override
   Widget build(BuildContext context) {
@@ -806,10 +807,10 @@ class _PriorityTableState extends State<PriorityTable> {
                                                 id = map['orderId'];
 
                                                 setState(() {
-                                                  isSelected = true;
+                                                  isSelect = true;
                                                 });
                                                 print(id);
-                                                if (isSelected == true) {
+                                                if (isSelect == true) {
                                                   context
                                                       .read<OrderHistory>()
                                                       .getOrderhistory(id)
@@ -818,7 +819,7 @@ class _PriorityTableState extends State<PriorityTable> {
                                                               context, value))
                                                       .whenComplete(() {
                                                     setState(() {
-                                                      isSelected = false;
+                                                      isSelect = false;
                                                     });
                                                   });
                                                 }
@@ -872,7 +873,7 @@ class _PriorityTableState extends State<PriorityTable> {
                   ),
                 ],
               ),
-              if (isSelected) ...[
+              if (isSelect) ...[
                 Container(
                   color: Colors.black38,
                   child: const Center(

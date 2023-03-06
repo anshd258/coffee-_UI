@@ -71,6 +71,7 @@ class _OrdersState extends State<Orders> {
     "Cancelled"
   ];
   bool isSelected = false;
+  bool isSelect = false;
   String id = "";
   @override
   Widget build(BuildContext context) {
@@ -809,11 +810,10 @@ class _OrdersState extends State<Orders> {
                                               onRowSelect: (index, map) {
                                                 id = map['orderId'];
                                                 setState(() {
-                                                  isSelected = true;
+                                                  isSelect = true;
                                                 });
                                                 print(id);
-                                                if (isSelected == true) {
-                                                  isSelected = false;
+                                                if (isSelect == true) {
                                                   context
                                                       .read<OrderHistory>()
                                                       .getOrderhistory(id)
@@ -822,7 +822,7 @@ class _OrdersState extends State<Orders> {
                                                               context, value))
                                                       .whenComplete(() {
                                                     setState(() {
-                                                      isSelected = false;
+                                                      isSelect = false;
                                                     });
                                                   });
                                                 }
@@ -876,7 +876,7 @@ class _OrdersState extends State<Orders> {
                   ),
                 ],
               ),
-              if (isSelected) ...[
+              if (isSelect) ...[
                 Container(
                   color: Colors.black38,
                   child: const Center(
