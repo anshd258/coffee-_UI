@@ -5,7 +5,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hive/hive.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 
-
 void createnotification(RemoteMessage message) async {
   final box = Hive.box<loginStorage>("session");
   final data = box.get('session');
@@ -16,7 +15,7 @@ void createnotification(RemoteMessage message) async {
       AwesomeNotifications().createNotification(
           content: NotificationContent(
         id: message.notification.hashCode,
-        channelKey: 'basic_channel',
+        channelKey: 'alerts',
         title: message.notification!.title,
         body: message.notification!.body,
       ));

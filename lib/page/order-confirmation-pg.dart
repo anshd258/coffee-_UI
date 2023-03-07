@@ -116,7 +116,6 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                               value: checknox,
                               onChanged: (onChanged) {
                                 print(onChanged);
-                                
 
                                 setState(() {
                                   checknox = onChanged!;
@@ -144,7 +143,9 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                       ElevatedButton(
                         onPressed: () {
                           if (productsInfo.isNotEmpty) {
-                            context.read<CartProductsProvider>().postData(checknox);
+                            context
+                                .read<CartProductsProvider>()
+                                .postData(checknox);
                             OrderConfirmatonDilog(context);
                           }
                         },
@@ -155,7 +156,7 @@ class _OrderconfirmationpgState extends State<Orderconfirmationpg> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7))),
                         child: Text(
-                          "Confirm and Place Order",
+                          "Confirm",
                           style: GoogleFonts.inter(
                               color: Colors.white,
                               fontSize: 16.5.sp,

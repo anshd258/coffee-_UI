@@ -67,7 +67,6 @@ class _AdminHomeState extends State<AdminHome> {
   List<OrderDetails>? priorityOrder;
   @override
   Widget build(BuildContext context) {
-    final dataLoading = context.watch<OrderHistory>().dataLoading;
     final priorityCount = context.watch<PriorityOrderCount>().count;
     final totalCount = context.watch<TotalOrderCount>().count;
     listOfOrders = context.watch<AllOrderProvider>().orders;
@@ -327,15 +326,6 @@ class _AdminHomeState extends State<AdminHome> {
               ),
             ),
           ),
-          if (dataLoading) ...[
-            Container(
-              color: Colors.black38,
-              child: const Center(
-                  child: CircularProgressIndicator.adaptive(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.white70))),
-            )
-          ]
         ],
       ),
 
