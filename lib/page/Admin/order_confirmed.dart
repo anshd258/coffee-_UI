@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/constants/route_constants.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class OrderConfirmed extends StatefulWidget {
-  const OrderConfirmed({super.key});
+class MerchantOrderConfirmed extends StatefulWidget {
+  const MerchantOrderConfirmed({super.key});
 
   @override
-  State<OrderConfirmed> createState() => _OrderConfirmedState();
+  State<MerchantOrderConfirmed> createState() => _MerchantOrderConfirmedState();
 }
 
-class _OrderConfirmedState extends State<OrderConfirmed> {
+class _MerchantOrderConfirmedState extends State<MerchantOrderConfirmed> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -92,7 +93,7 @@ class _OrderConfirmedState extends State<OrderConfirmed> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, "/OrdersAdmin");
+                          Navigator.pushNamed(context, allOrdersTable);
                         },
                         child: Text(
                           "Go back to Orders",

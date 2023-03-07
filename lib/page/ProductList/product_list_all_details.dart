@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/models/products_list_model.dart';
 import 'package:inter_coffee/widgets/ProductList/drop_down_list.dart';
-import 'package:inter_coffee/widgets/pg3milkswitchgride.dart';
-import 'package:inter_coffee/widgets/pg3togglebutton.dart';
+import 'package:inter_coffee/widgets/choice_switch.dart';
+import 'package:inter_coffee/widgets/toggle_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllProductPropertiesRender extends StatefulWidget {
@@ -47,7 +47,7 @@ class _AllProductPropertiesRenderState
       case "List":
         return Container(
             padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
-            child: Pg3togglebutton(list: ansList, heading: heading));
+            child: ToggleButton(list: ansList, heading: heading));
     }
 
     return const SizedBox();

@@ -3,7 +3,8 @@ import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
+import 'package:inter_coffee/provider/merchantProvider/tablePriorityProvider.dart';
+
 import 'package:inter_coffee/provider/reportsProvider.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:provider/provider.dart';
@@ -14,19 +15,20 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/widgets/Admin/confirmation_dialog.dart';
+
 import 'package:inter_coffee/widgets/Admin/order_eta_dialog.dart';
 import 'package:json_table/json_table.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class AllOrdersTable extends StatefulWidget {
-  const AllOrdersTable({super.key});
+class PriorityTable extends StatefulWidget {
+  const PriorityTable({super.key});
 
   @override
-  State<AllOrdersTable> createState() => _AllOrdersTableState();
+  State<PriorityTable> createState() => _PriorityTableState();
 }
 
-class _AllOrdersTableState extends State<AllOrdersTable> {
+class _PriorityTableState extends State<PriorityTable> {
   void getPlacedOrdersList() async {
     await getOrdersPlaced();
   }
@@ -34,7 +36,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<TableWithStatusProvider>().getOrders("ORDER_PLACED");
+    context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
 
     super.initState();
   }
@@ -67,7 +69,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
     "New Orders",
     "Order Confirmed",
     "Orders Progress",
-    "Order Ready to Pick Up",
+    "Order Ready for Pick Up",
     "Completed Orders",
     "Cancelled"
   ];
@@ -79,7 +81,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
     final role = context.watch<LoginAuthProvider>().role;
 
     final List<dynamic>? data =
-        context.watch<TableWithStatusProvider>().orderJsonTableData;
+        context.watch<TablePriorityProvider>().orderJsonTableData;
     if (role == 'admin') {
       tappedIndex = 6;
     }
@@ -235,35 +237,29 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                           setState(() {
                                             if (index == 0) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_PLACED");
                                             } else if (index == 1) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_CONFIRMED");
                                             } else if (index == 2) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders(
                                                       "ORDER_IN_PROGRESS");
                                             } else if (index == 3) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders(
                                                       "ORDER_READY_FOR_PICKUP");
                                             } else if (index == 4) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_COMPLETED");
                                             } else if (index == 5) {
                                               context
-                                                  .read<
-                                                      TableWithStatusProvider>()
+                                                  .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_CANCELLED");
                                             }
                                             tappedIndex = index;
@@ -634,8 +630,8 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                 if (tappedIndex == 0) {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
-                                                    orderETADialog(
-                                                        context, id, "normal");
+                                                    orderETADialog(context,
+                                                        id, 'priority');
                                                     isSelected = false;
                                                     id = '';
                                                   }
@@ -646,7 +642,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                       "ORDER_IN_PROGRESS",
                                                       id,
                                                       "ORDER_CONFIRMED",
-                                                      "normal");
+                                                      'priority');
                                                 } else if (tappedIndex == 2) {
                                                   confirmationDialog(
                                                       context,
@@ -810,6 +806,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               allowRowHighlight: true,
                                               onRowSelect: (index, map) {
                                                 id = map['orderId'];
+
                                                 setState(() {
                                                   isSelect = true;
                                                 });

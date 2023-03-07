@@ -6,14 +6,14 @@ import 'package:inter_coffee/provider/orderStautsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class OrderStatus extends StatefulWidget {
-  const OrderStatus({super.key});
+class DeliveryStatus extends StatefulWidget {
+  const DeliveryStatus({super.key});
 
   @override
-  State<OrderStatus> createState() => _OrderStatusState();
+  State<DeliveryStatus> createState() => _DeliveryStatusState();
 }
 
-class _OrderStatusState extends State<OrderStatus> {
+class _DeliveryStatusState extends State<DeliveryStatus> {
   Color green = const Color(0xff4CAF50);
   Color red = const Color(0xffd50000);
   Color white = const Color(0xffcdcdcd);
