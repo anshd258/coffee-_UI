@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+
 import 'package:inter_coffee/provider/authconst.dart';
-import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+
 
 import '../models/notificationmodal.dart';
 import 'package:http/http.dart' as http;
@@ -14,9 +15,8 @@ class NotificationProvider with ChangeNotifier {
   Future<void> fetchNotifications() async {
     notificatins = [];
     notificatins!.clear();
-       final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
-    final accessTokken = data!.token;
+       final data = loginhandler().getData();
+  final accessTokken = data!.token;
 
     const url = "$baseurl/getNotifications";
     isloading = true;
@@ -45,9 +45,8 @@ class NotificationProvider with ChangeNotifier {
   }
 
   Future<void> markNotificationsRead() async {
-      final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
-    final accessTokken = data!.token;
+     final data = loginhandler().getData();
+  final accessTokken = data!.token;
 
     const url = "$baseurl/markNotificationAsRead";
 

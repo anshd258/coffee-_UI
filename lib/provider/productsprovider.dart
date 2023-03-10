@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+
+
+import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import 'authconst.dart';
 import '../models/products_list_model.dart';
@@ -17,9 +18,8 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<String> getproducts() async {
-    final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
-    final accessTokken = data!.token;
+    final data = loginhandler().getData();
+  final accessTokken = data!.token;
 
     print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";

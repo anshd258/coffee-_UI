@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 
-import 'loginhandler/loginmodel.dart';
+
 
 class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];
@@ -17,9 +18,8 @@ class CartProductsProvider with ChangeNotifier {
   int checkerLength = 0;
 
   Future<void> postData(bool isPriority) async {
-       final box = Hive.box<loginStorage>("session");
-    final datal = box.get("session");
-    final accessTokken = datal!.token;
+      final dataa = loginhandler().getData();
+  final accessTokken = dataa!.token;
     List<Map<String, dynamic>> currentData = [];
     for (var element in cartData) {
       currentData.add(element.toJson());

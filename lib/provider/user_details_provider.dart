@@ -1,20 +1,15 @@
 import 'dart:convert';
-
 import 'package:flutter/widgets.dart';
-import 'package:hive/hive.dart';
 import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/provider/authconst.dart';
-
 import 'package:http/http.dart' as http;
-
-import 'loginhandler/loginmodel.dart';
+import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 class userDetailsProvider with ChangeNotifier {
   UserDetails? currentUserDetails;
 
   Future<void> getUserDetails() async {
-      final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
+    final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/profile";
     final response = await http.get(Uri.parse(url), headers: {

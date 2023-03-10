@@ -1,18 +1,16 @@
 import 'dart:convert';
-import 'package:hive/hive.dart';
+import '../loginhandler/loginfunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../authconst.dart';
-import '../loginhandler/loginmodel.dart';
+
 
 class TotalOrderCount with ChangeNotifier {
   int? count;
 
   Future<void> getCount() async {
-    final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
-    final accessTokken = data!.token;
+    final accessTokken = loginhandler().gettokken();
     const url = "$baseurl/getOrdersCount";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
