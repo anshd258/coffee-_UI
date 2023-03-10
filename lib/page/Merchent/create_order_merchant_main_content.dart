@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/productsprovider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
-import 'package:inter_coffee/widgets/Admin/loginExpiredDialog.dart';
-import 'package:inter_coffee/widgets/Pg2-lower-list-cont.dart';
-import 'package:inter_coffee/widgets/orderconfirmationDialog.dart';
-import 'package:inter_coffee/widgets/pg2-mid-row-cont.dart';
+import 'package:inter_coffee/widgets/Admin/login_expired_dialog.dart';
+import 'package:inter_coffee/widgets/product_list_lower_list_container.dart';
+import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
+import 'package:inter_coffee/widgets/horizontal_product_container.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -41,8 +42,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
     final response = await context.read<ProductsProvider>().getproducts();
     if (response == "token expired") {
       context.read<LoginAuthProvider>().logout();
-      Navigator.pushNamedAndRemoveUntil(context, "/switcher", (route) => false);
-      tokkenExpiredDialog(context, "Login Has Expired Please login Again");
+      Navigator.pushNamedAndRemoveUntil(context, switcher, (route) => false);
     }
   }
 
@@ -251,7 +251,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                         child: productsInfo.isNotEmpty
                             ? Row(
                                 children: productsInfo
-                                    .map((e) => Pg2MidRowCont(
+                                    .map((e) => HorizontalProductContainer(
                                           e: e,
                                         ))
                                     .toList())
@@ -276,7 +276,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                 context
                                     .read<CartProductsProvider>()
                                     .postData(checknox);
-                                OrderConfirmatonDilog(context);
+                                orderConfirmationDialog(context);
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -362,7 +362,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: data.map((e) {
-                                  return PgLowerListCont(
+                                  return ProductListScreenLowerListContainer(
                                     e: e,
                                   );
                                 }).toList(),

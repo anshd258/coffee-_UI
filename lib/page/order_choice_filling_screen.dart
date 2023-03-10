@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:inter_coffee/models/products_list_model.dart';
-import 'package:inter_coffee/page/Merchent/choice_filling_bottom_sheet.dart';
 import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/widgets/choice_filling_high_priority_button.dart';
+import 'package:inter_coffee/widgets/choice_filling_choice_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class ChoiceFillingMerchant extends StatefulWidget {
-  const ChoiceFillingMerchant({super.key});
+class OrderChoiceFillingScreen extends StatefulWidget {
+  const OrderChoiceFillingScreen({super.key});
 
   @override
-  State<ChoiceFillingMerchant> createState() => _ChoiceFillingMerchantState();
+  State<OrderChoiceFillingScreen> createState() => _OrderChoiceFillingScreenState();
 }
 
-class _ChoiceFillingMerchantState extends State<ChoiceFillingMerchant> {
+class _OrderChoiceFillingScreenState extends State<OrderChoiceFillingScreen> {
   ValueNotifier<double> size = ValueNotifier<double>(0.00);
   ScrollController ctr = ScrollController();
   double offset = 40;
@@ -58,10 +58,43 @@ class _ChoiceFillingMerchantState extends State<ChoiceFillingMerchant> {
               fit: BoxFit.fill,
             )),
           ),
+          //BROWN gradient above the image
+
+          //product image in stack
+          Positioned(
+            child: SizedBox(
+              height: 50.h,
+              width: 100.w,
+              child: Image(
+                image: NetworkImage(args.img!),
+                // image: AssetImage(args.img!),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
           //main content of tthe page
-          Expanded(
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 200),
+            top: offset.h,
+            child: Container(
+              height: 100.h,
+              width: 100.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: SingleChildScrollView(
-                  child: ChoiceFillingMerchantBottomSheet(data: args))),
+                controller: ctr,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ChoiceFillingChoiceSheet(data: args),
+                  ],
+                ),
+              ),
+            ),
+          ),
           //bottom floating bar with high prioritycheckbox and submit button
           Positioned(
             bottom: 5.h,
@@ -81,14 +114,9 @@ class _ChoiceFillingMerchantState extends State<ChoiceFillingMerchant> {
                 )),
           ),
           // back button
-          Container(
-            alignment: Alignment.bottomLeft,
-            width: 100.w,
-            height: 10.h,
-            decoration:const  BoxDecoration(
-              color: Colors.black54
-            ),
-            padding: EdgeInsets.only( left: 5.w, bottom: 2.h ),
+          Positioned(
+            top: 5.h,
+            left: 5.w,
             child: GestureDetector(
               onTap: (() => Navigator.pop(context)),
               child: Image.asset("assets/ICONS/arrow1.png"),

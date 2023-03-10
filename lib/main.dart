@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:inter_coffee/mainapp.dart';
+import 'package:inter_coffee/main_app.dart';
 import 'package:inter_coffee/notificationn%20handler.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

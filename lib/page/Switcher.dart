@@ -2,11 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:inter_coffee/main.dart';
-import 'package:inter_coffee/page/Merchent/toggle_merchant.dart';
-import 'package:inter_coffee/page/page-1.dart';
+import 'package:inter_coffee/page/Merchent/bottom_navbar_merchant.dart';
+import 'package:inter_coffee/page/login_screen.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
-
-import 'bottombartoggle.dart';
+import 'bottom_navbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/loginAuthProvider.dart';
 
@@ -20,12 +19,12 @@ class Switcher extends StatefulWidget {
 class _SwitcherState extends State<Switcher> {
   Widget selector(String? role, String? tokken) {
     if (role == null && tokken == null) {
-      return const page_1();
+      return const LoginScreen();
     } else {
       if (role == "merchant") {
-        return const ToggleMerchant();
+        return const BottomNavBarMerchant();
       } else {
-        return const Toggle();
+        return const BottomNavBar();
       }
     }
   }

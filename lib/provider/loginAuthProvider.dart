@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
+import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 
 import './loginhandler/loginfunctions.dart';
@@ -31,6 +32,7 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> getOtp(String pnumber, BuildContext context) async {
     isloading = true;
     notifyListeners();
+    print(pnumber);
     try {
       final response = await http
           .post(Uri.parse("$baseurl/generateOTP"),
@@ -39,9 +41,11 @@ class LoginAuthProvider with ChangeNotifier {
           .then((value) {
         isloading = false;
         notifyListeners();
+        print(value.body);
+        print(value.statusCode);
         if (value.statusCode == 200) {
           Navigator.pushNamedAndRemoveUntil(
-              context, "/otpinput", (route) => false,
+              context, otpInputScreen, (route) => false,
               arguments: pnumber);
         } else if (value.statusCode != 200) {
           snakbarmethod(context, "value inputed  is not correct");
@@ -121,7 +125,7 @@ class LoginAuthProvider with ChangeNotifier {
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
-            "/switcher",
+            switcher,
             (route) => false,
           );
         } else {
@@ -130,7 +134,7 @@ class LoginAuthProvider with ChangeNotifier {
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
-            "/switcher",
+            switcher,
             (route) => false,
           );
         }
