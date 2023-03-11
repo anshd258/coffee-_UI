@@ -10,13 +10,16 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChoiceFillingHighPriorityButton extends StatefulWidget {
   final ProductList selectedproduct;
-  const ChoiceFillingHighPriorityButton({super.key, required this.selectedproduct});
+  const ChoiceFillingHighPriorityButton(
+      {super.key, required this.selectedproduct});
 
   @override
-  State<ChoiceFillingHighPriorityButton> createState() => _ChoiceFillingHighPriorityButtonState();
+  State<ChoiceFillingHighPriorityButton> createState() =>
+      _ChoiceFillingHighPriorityButtonState();
 }
 
-class _ChoiceFillingHighPriorityButtonState extends State<ChoiceFillingHighPriorityButton> {
+class _ChoiceFillingHighPriorityButtonState
+    extends State<ChoiceFillingHighPriorityButton> {
   @override
   Widget build(BuildContext context) {
     final currentcChoices = context.watch<CartProductsProvider>().currentChoie;

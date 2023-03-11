@@ -22,8 +22,7 @@ class OrderDetails {
     orderId = json['orderId'];
     orderNo = json['orderNo'];
     items = json['items'].cast<String>();
-    userId =
-        json['userId'] != null ? UserId.fromJson(json['userId']) : null;
+    userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
     createdDate = json['createdDate'];
     currentState = json['currentState'];
     nextStateEstTime = json['next_state_est_time'];

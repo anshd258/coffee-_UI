@@ -98,7 +98,8 @@ class AllOrders extends StatelessWidget {
                             childAspectRatio: 20.h / 50.w),
                         padding: EdgeInsets.only(top: 2.h),
                         itemCount: listofData.length,
-                        itemBuilder: (context, index) => MerchantHomeScreenRowContainer(
+                        itemBuilder: (context, index) =>
+                            MerchantHomeScreenRowContainer(
                           items: listofData[index].items,
                           orderNo: listofData[index].orderNo,
                           orderId: listofData[index].orderId,

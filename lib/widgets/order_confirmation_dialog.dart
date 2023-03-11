@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> orderConfirmationDialog (BuildContext context) async {
+Future<void> orderConfirmationDialog(BuildContext context) async {
   Future.delayed(
     const Duration(seconds: 3),
     () {

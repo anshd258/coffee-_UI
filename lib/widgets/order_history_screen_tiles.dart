@@ -53,11 +53,17 @@ class OrderHistoryScreenTiles extends StatelessWidget {
 
     final role = context.watch<LoginAuthProvider>().role;
     final createddate = DateTime.parse(createdDate);
-    final utcTime = DateTime.utc(createddate.year, createddate.month, createddate.day, createddate.hour, createddate.minute, createddate.second);
+    final utcTime = DateTime.utc(
+        createddate.year,
+        createddate.month,
+        createddate.day,
+        createddate.hour,
+        createddate.minute,
+        createddate.second);
     final localTime = utcTime.toLocal();
     List<String> optionSelected = order.isEmpty ? [] : returnChoices();
     bool isclicked = false;
-    
+
     return GestureDetector(
       onTap: () async {
         print(id);

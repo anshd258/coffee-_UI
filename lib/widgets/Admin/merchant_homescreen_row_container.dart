@@ -19,30 +19,30 @@ class MerchantHomeScreenRowContainer extends StatefulWidget {
       required this.items});
 
   @override
-  State<MerchantHomeScreenRowContainer> createState() => _MerchantHomeScreenRowContainerState();
+  State<MerchantHomeScreenRowContainer> createState() =>
+      _MerchantHomeScreenRowContainerState();
 }
 
-class _MerchantHomeScreenRowContainerState extends State<MerchantHomeScreenRowContainer> {
+class _MerchantHomeScreenRowContainerState
+    extends State<MerchantHomeScreenRowContainer> {
   OrderHistoryModel? data;
   @override
   void initState() {
     super.initState();
   }
 
-  bool isclicked = false;
   @override
   Widget build(BuildContext context) {
     final length = widget.items!.length;
+    final isloading = context.watch<OrderHistory>().dataLoading;
     return GestureDetector(
       onTap: () {
         print(widget.orderId);
-        if (isclicked == false) {
-          isclicked = true;
+        if (isloading == false) {
           context
               .read<OrderHistory>()
               .getOrderhistory(widget.orderId!)
-              .then((value) => orderDetailsDialog(context, value))
-              .whenComplete(() => isclicked = false);
+              .then((value) => orderDetailsDialog(context, value));
         }
       },
       child: GlassContainer.frostedGlass(

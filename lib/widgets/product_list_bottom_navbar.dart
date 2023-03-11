@@ -11,10 +11,12 @@ class ProductListScreenBottomNavBar extends StatefulWidget {
   const ProductListScreenBottomNavBar({super.key});
 
   @override
-  State<ProductListScreenBottomNavBar> createState() => _ProductListScreenBottomNavBarState();
+  State<ProductListScreenBottomNavBar> createState() =>
+      _ProductListScreenBottomNavBarState();
 }
 
-class _ProductListScreenBottomNavBarState extends State<ProductListScreenBottomNavBar> {
+class _ProductListScreenBottomNavBarState
+    extends State<ProductListScreenBottomNavBar> {
   //for managing the state
 
   //bool value for indicating is that pagee on scree

@@ -1,5 +1,4 @@
 const String frontPage = '/';
-const String loginScreen = '/';
 const String profileScreen = '/profile';
 const String bottomNavBar = '/bottomNavBar';
 const String switcher = '/switcher';

@@ -64,8 +64,7 @@ class _ChoiceFillingMerchantBottomSheetState
               ),
 
               Expanded(
-                child: AllProductPropertiesRender(
-                    choices: productsList.choice),
+                child: AllProductPropertiesRender(choices: productsList.choice),
               ),
             ],
           ),

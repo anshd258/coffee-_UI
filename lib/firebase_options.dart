@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '955145349606',
     projectId: 'swift-cafe-4f5fa',
     storageBucket: 'swift-cafe-4f5fa.appspot.com',
-    iosClientId: '955145349606-ftcn7ensuos9g72imvhvgji0shtpnli4.apps.googleusercontent.com',
+    iosClientId:
+        '955145349606-ftcn7ensuos9g72imvhvgji0shtpnli4.apps.googleusercontent.com',
     iosBundleId: 'au.com.trackmile.swift.cafe',
   );
 }

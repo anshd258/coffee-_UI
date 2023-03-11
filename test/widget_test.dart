@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/main_app.dart';
 
 void main() {

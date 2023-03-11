@@ -13,10 +13,12 @@ class HorizontalProductContainer extends StatefulWidget {
   const HorizontalProductContainer({super.key, required this.e});
 
   @override
-  State<HorizontalProductContainer> createState() => _HorizontalProductContainerState();
+  State<HorizontalProductContainer> createState() =>
+      _HorizontalProductContainerState();
 }
 
-class _HorizontalProductContainerState extends State<HorizontalProductContainer> {
+class _HorizontalProductContainerState
+    extends State<HorizontalProductContainer> {
   String firstChoice = "";
   String secondChoice = "";
   String thirdChoice = "";
@@ -131,9 +133,9 @@ class _HorizontalProductContainerState extends State<HorizontalProductContainer>
                           //for padding
                         ],
                       ),
-            
+
                       //for padding
-            
+
                       // veg symbol
                     ],
                   ),
@@ -158,9 +160,9 @@ class _HorizontalProductContainerState extends State<HorizontalProductContainer>
                           //for padding
                         ],
                       ),
-            
+
                       //for padding
-            
+
                       // veg symbol
                     ],
                   ),

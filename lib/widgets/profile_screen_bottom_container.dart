@@ -15,10 +15,12 @@ class ProfileScreenBottomContainer extends StatefulWidget {
   const ProfileScreenBottomContainer({super.key});
 
   @override
-  State<ProfileScreenBottomContainer> createState() => _ProfileScreenBottomContainerState();
+  State<ProfileScreenBottomContainer> createState() =>
+      _ProfileScreenBottomContainerState();
 }
 
-class _ProfileScreenBottomContainerState extends State<ProfileScreenBottomContainer> {
+class _ProfileScreenBottomContainerState
+    extends State<ProfileScreenBottomContainer> {
   @override
   Widget build(BuildContext context) {
     return GlassContainer.frostedGlass(
@@ -240,7 +242,8 @@ class _ProfileScreenBottomContainerState extends State<ProfileScreenBottomContai
             onTap: () {
               context.read<LoginAuthProvider>().logout();
               context.read<routing>().settingRoute(1);
-              Navigator.pushNamedAndRemoveUntil(context, loginScreen, (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, frontPage, (route) => false);
             },
             child: Container(
               color: Colors.transparent,

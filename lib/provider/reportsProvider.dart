@@ -1,14 +1,12 @@
 // ignore: file_names
 import 'dart:convert';
-import 'package:hive/hive.dart';
 
-import 'authconst.dart';
+import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+
+import '../constants/authconst.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import 'loginhandler/loginmodel.dart';
-
 
 class ReportsProvider with ChangeNotifier {
   List<dynamic> reportsData = [];
@@ -16,8 +14,7 @@ class ReportsProvider with ChangeNotifier {
   Future<void> fetchReports(String startDate, String endDate) async {
     print(startDate);
     print(endDate);
-      final box = Hive.box<loginStorage>("session");
-    final data = box.get("session");
+    final data = loginhandler().getData();
     final accessTokken = data!.token;
     var headers = {
       'Authorization': 'Bearer $accessTokken',

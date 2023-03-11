@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/notificationmodal.dart';
 import 'package:inter_coffee/provider/notificationprovider.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../widgets/notification_container.dart';
@@ -20,10 +21,21 @@ class _NotificationScreenState extends State<NotificationScreen> {
   List<NotificatonModal>? data;
   @override
   void initState() {
-    context.read<NotificationProvider>().fetchNotifications();
+    fetchdata();
     context.read<NotificationProvider>().markNotificationsRead();
     super.initState();
   }
+
+  Future<void> fetchdata() async {
+    final value =
+        await context.read<NotificationProvider>().fetchNotifications();
+    if (value != 200) {
+      snackbar();
+    }
+    print(value);
+  }
+
+  void snackbar() => snakbarmethod(context, "unable to connect to backend");
 
   @override
   Widget build(BuildContext context) {

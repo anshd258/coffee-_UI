@@ -8,7 +8,6 @@ import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
 import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
-import 'package:inter_coffee/widgets/Admin/login_expired_dialog.dart';
 import 'package:inter_coffee/widgets/Admin/merchant_homescreen_row_container.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:provider/provider.dart';
@@ -58,9 +57,10 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
 
   void getproducts() async {
     final response = await context.read<AllOrderProvider>().getOrders();
+    print(response);
 
     if (response == "token expired") {
-      Navigator.pushNamed(context, loginScreen);
+      Navigator.pushNamed(context, frontPage);
     }
   }
 
@@ -68,6 +68,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   List<OrderDetails>? priorityOrder;
   @override
   Widget build(BuildContext context) {
+    final isloading = context.watch<OrderHistory>().dataLoading;
     final priorityCount = context.watch<PriorityOrderCount>().count;
     final totalCount = context.watch<TotalOrderCount>().count;
     listOfOrders = context.watch<AllOrderProvider>().orders;
@@ -169,11 +170,10 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
                                       GestureDetector(
                                         onTap: () {
                                           Navigator.pushNamed(
-                                              context, allOrders,
-                                              arguments: [
-                                                "priority Orders",
-                                                priorityOrder
-                                              ]);
+                                              context, allOrders, arguments: [
+                                            "priority Orders",
+                                            priorityOrder
+                                          ]);
                                         },
                                         child: Text(
                                           "View All",
@@ -255,11 +255,10 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
                                       GestureDetector(
                                         onTap: () {
                                           Navigator.pushNamed(
-                                              context, allOrders,
-                                              arguments: [
-                                                "Total Orders",
-                                                listOfOrders
-                                              ]);
+                                              context, allOrders, arguments: [
+                                            "Total Orders",
+                                            listOfOrders
+                                          ]);
                                         },
                                         child: Text(
                                           "View All",
@@ -327,6 +326,15 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
               ),
             ),
           ),
+          if (isloading) ...[
+            Container(
+              color: Colors.black38,
+              child: const Center(
+                  child: CircularProgressIndicator.adaptive(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.white70))),
+            )
+          ]
         ],
       ),
 

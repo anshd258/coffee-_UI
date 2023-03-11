@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import './loginhandler/loginmodel.dart';
+
 import 'dart:io';
-import 'package:hive/hive.dart';
-import './authconst.dart';
+import 'package:inter_coffee/constants/route_constants.dart';
+import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+
+import './loginhandler/loginfunctions.dart';
+import '../constants/authconst.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +16,7 @@ class LoginAuthProvider with ChangeNotifier {
   String? phoneNumber;
   String? accessToken;
   String? userId;
-  final box = Hive.box<loginStorage>('session');
+
   bool isloading = false;
   String? role;
   bool? isAdmin;
@@ -29,6 +32,7 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> getOtp(String pnumber, BuildContext context) async {
     isloading = true;
     notifyListeners();
+    print(pnumber);
     try {
       final response = await http
           .post(Uri.parse("$baseurl/generateOTP"),
@@ -37,9 +41,11 @@ class LoginAuthProvider with ChangeNotifier {
           .then((value) {
         isloading = false;
         notifyListeners();
+        print(value.body);
+        print(value.statusCode);
         if (value.statusCode == 200) {
           Navigator.pushNamedAndRemoveUntil(
-              context, "/otpinput", (route) => false,
+              context, otpInputScreen, (route) => false,
               arguments: pnumber);
         } else if (value.statusCode != 200) {
           snakbarmethod(context, "value inputed  is not correct");
@@ -110,7 +116,7 @@ class LoginAuthProvider with ChangeNotifier {
         userId = session.userId;
         accessToken = session.token;
         role = session.role;
-        box.put("session", session);
+        loginhandler().storeData(session); // stroing data to local storage
         print(userId);
         notifyListeners();
         if (role == "merchant") {
@@ -119,7 +125,7 @@ class LoginAuthProvider with ChangeNotifier {
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
-            "/switcher",
+            switcher,
             (route) => false,
           );
         } else {
@@ -128,7 +134,7 @@ class LoginAuthProvider with ChangeNotifier {
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
-            "/switcher",
+            switcher,
             (route) => false,
           );
         }
@@ -147,7 +153,7 @@ class LoginAuthProvider with ChangeNotifier {
   }
 
   void autologin() async {
-    final data = box.get("session");
+    final data = loginhandler().getData();
     if (data != null) {
       role = data.role;
       print(role);
@@ -167,8 +173,7 @@ class LoginAuthProvider with ChangeNotifier {
   }
 
   void logout() async {
-    final data = box.get("session");
-    data!.delete();
+    loginhandler().deleteData();
 
     isAdmin = false;
     phoneNumber = null;

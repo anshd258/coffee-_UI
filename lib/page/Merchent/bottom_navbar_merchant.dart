@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inter_coffee/page/Admin/merchant_home_screen.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
 import 'package:inter_coffee/page/Admin/priority_table.dart';
+import 'package:inter_coffee/page/Merchent/create_order_merchant.dart';
 import 'package:inter_coffee/page/notification_screen.dart';
 import 'package:inter_coffee/page/profile_screen.dart';
 import 'package:inter_coffee/provider/router.dart';
@@ -34,6 +35,8 @@ class _BottomNavBarMerchantState extends State<BottomNavBarMerchant> {
           const NotificationScreen()
         ] else if (id == 5) ...[
           const PriorityTable(),
+        ] else if (id == 6) ...[
+          const CreateOrderMerchant(),
         ],
         Positioned(
           bottom: -0.5.h,

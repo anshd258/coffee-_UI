@@ -8,7 +8,6 @@ import 'package:inter_coffee/provider/cartProductProvider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/productsprovider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
-import 'package:inter_coffee/widgets/Admin/login_expired_dialog.dart';
 import 'package:inter_coffee/widgets/product_list_lower_list_container.dart';
 import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import 'package:inter_coffee/widgets/horizontal_product_container.dart';

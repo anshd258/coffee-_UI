@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
           builder: (p0, p1, p2) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute:initialroute,
+              initialRoute: initialroute,
               routes: routes,
             );
           },

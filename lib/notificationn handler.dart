@@ -1,6 +1,3 @@
-
-
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:inter_coffee/provider/notificatonhandler.dart';
@@ -14,8 +11,8 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       "Handling a background message: ${message.notification!.android!.priority}");
 }
 
-Future<void> initializeNotification(FirebaseMessaging messaging)async{
-     await AwesomeNotifications().initialize(
+Future<void> initializeNotification(FirebaseMessaging messaging) async {
+  await AwesomeNotifications().initialize(
       null,
       [
         NotificationChannel(

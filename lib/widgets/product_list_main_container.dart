@@ -17,7 +17,8 @@ class ProductListMainContainer extends StatefulWidget {
   const ProductListMainContainer({super.key});
 
   @override
-  State<ProductListMainContainer> createState() => _ProductListMainContainerState();
+  State<ProductListMainContainer> createState() =>
+      _ProductListMainContainerState();
 }
 
 class _ProductListMainContainerState extends State<ProductListMainContainer> {

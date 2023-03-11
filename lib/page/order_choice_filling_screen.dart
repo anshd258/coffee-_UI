@@ -11,7 +11,8 @@ class OrderChoiceFillingScreen extends StatefulWidget {
   const OrderChoiceFillingScreen({super.key});
 
   @override
-  State<OrderChoiceFillingScreen> createState() => _OrderChoiceFillingScreenState();
+  State<OrderChoiceFillingScreen> createState() =>
+      _OrderChoiceFillingScreenState();
 }
 
 class _OrderChoiceFillingScreenState extends State<OrderChoiceFillingScreen> {
