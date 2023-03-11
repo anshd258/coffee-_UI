@@ -38,7 +38,6 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
     if (response == "token expired") {
       context.read<LoginAuthProvider>().logout();
       Navigator.pushNamedAndRemoveUntil(context, switcher, (route) => false);
-      tokenExpiredDialog(context, "Login Has Expired Please login Again");
     }
   }
 
