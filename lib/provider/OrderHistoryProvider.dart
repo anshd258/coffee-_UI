@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
-import 'authconst.dart';
+import '../constants/authconst.dart';
 
 class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? _orderList;

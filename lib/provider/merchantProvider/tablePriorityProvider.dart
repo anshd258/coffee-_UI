@@ -1,23 +1,19 @@
 import 'dart:convert';
 
-
-
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../authconst.dart';
-
-
+import '../../constants/authconst.dart';
 
 class TablePriorityProvider with ChangeNotifier {
   List<dynamic>? orderJsonTableData;
 
   Future<void> getOrders(String route) async {
-        final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     final url = "$baseurl/getPriorityOrders/$route";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
@@ -44,8 +40,8 @@ class TablePriorityProvider with ChangeNotifier {
     DateTime time = DateTime.now();
     time.add(Duration(minutes: int.parse(timeGiven)));
 
-       final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
     final response = await http.put(Uri.parse(url),
         headers: {
@@ -66,8 +62,8 @@ class TablePriorityProvider with ChangeNotifier {
 
   Future<void> updateOrderStatusWithoutTime(
       String nextstate, String id, String previusState) async {
-        final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
     final response = await http.put(Uri.parse(url),
         headers: {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
+import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -12,6 +13,7 @@ class name_bar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = context.watch<userDetailsProvider>().currentUserDetails;
+    final role = context.watch<LoginAuthProvider>().role;
     return data != null
         ? GestureDetector(
             onTap: () {
@@ -73,7 +75,8 @@ class name_bar2 extends StatelessWidget {
 
                       //     )
                     ),
-                    child: const Icon(Icons.person, color: Colors.white70),
+                    child: Icon(Icons.person,
+                        color: role == 'admin' ? Colors.black : Colors.white70),
                   ),
                 ],
               ),

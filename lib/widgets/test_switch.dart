@@ -8,7 +8,11 @@ class SwitchTest extends StatefulWidget {
   final String isSelected;
   final Function setter;
 
-  const SwitchTest({super.key, required this.e, required this.setter,  required this.isSelected});
+  const SwitchTest(
+      {super.key,
+      required this.e,
+      required this.setter,
+      required this.isSelected});
 
   @override
   State<SwitchTest> createState() => _SwitchTestState();
@@ -27,7 +31,7 @@ class _SwitchTestState extends State<SwitchTest> {
           children: [
             FlutterSwitch(
               activeColor: Colors.green.shade500,
-              value: widget.isSelected == widget.e ? true:false,
+              value: widget.isSelected == widget.e ? true : false,
               onToggle: (val) {
                 if (val) {
                   widget.setter(widget.e);

@@ -3,19 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/constants/authconst.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
-
-
-
 
 class MyData with ChangeNotifier {
   String? orderState;
   String? estTime;
 
   void fetchData(String orderid) async {
-       final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     final url = "$baseurl/orderStatus/$orderid";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',

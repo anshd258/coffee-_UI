@@ -12,7 +12,8 @@ class ChoiceFillingChoiceSheet extends StatefulWidget {
   const ChoiceFillingChoiceSheet({super.key, required this.data});
 
   @override
-  State<ChoiceFillingChoiceSheet> createState() => _ChoiceFillingChoiceSheetState();
+  State<ChoiceFillingChoiceSheet> createState() =>
+      _ChoiceFillingChoiceSheetState();
 }
 
 class _ChoiceFillingChoiceSheetState extends State<ChoiceFillingChoiceSheet> {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
@@ -630,8 +629,8 @@ class _PriorityTableState extends State<PriorityTable> {
                                                 if (tappedIndex == 0) {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
-                                                    orderETADialog(context,
-                                                        id, 'priority');
+                                                    orderETADialog(context, id,
+                                                        'priority');
                                                     isSelected = false;
                                                     id = '';
                                                   }

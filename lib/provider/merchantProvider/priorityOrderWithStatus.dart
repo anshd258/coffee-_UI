@@ -6,16 +6,14 @@ import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 import '../../models/order_details_model.dart';
 
 import 'package:http/http.dart' as http;
-import '../authconst.dart';
-
-
+import '../../constants/authconst.dart';
 
 class PriorityOrderProvider with ChangeNotifier {
   List<OrderDetails>? priorityOrders;
 
   Future<void> getPriorityOrders() async {
-      final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     const url = "$baseurl/getNotCompletedPriorityOrdersList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',

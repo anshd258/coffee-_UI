@@ -3,8 +3,7 @@ import '../loginhandler/loginfunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-import '../authconst.dart';
-
+import '../../constants/authconst.dart';
 
 class TotalOrderCount with ChangeNotifier {
   int? count;

@@ -11,10 +11,12 @@ class ProductListScreenLowerListContainer extends StatefulWidget {
   const ProductListScreenLowerListContainer({super.key, required this.e});
 
   @override
-  State<ProductListScreenLowerListContainer> createState() => _ProductListScreenLowerListContainerState();
+  State<ProductListScreenLowerListContainer> createState() =>
+      _ProductListScreenLowerListContainerState();
 }
 
-class _ProductListScreenLowerListContainerState extends State<ProductListScreenLowerListContainer> {
+class _ProductListScreenLowerListContainerState
+    extends State<ProductListScreenLowerListContainer> {
   @override
   Widget build(BuildContext context) {
     ImageProvider<Object> imageChecker() {
@@ -36,7 +38,8 @@ class _ProductListScreenLowerListContainerState extends State<ProductListScreenL
         // for detecting clicks and directing them to next page-3
         GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(orderChoiceFillingScreen, arguments: widget.e);
+            Navigator.of(context)
+                .pushNamed(orderChoiceFillingScreen, arguments: widget.e);
           },
           child: GlassContainer.frostedGlass(
             height: 17.h,

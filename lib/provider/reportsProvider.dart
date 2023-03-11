@@ -1,16 +1,12 @@
 // ignore: file_names
 import 'dart:convert';
 
-
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
-import 'authconst.dart';
+import '../constants/authconst.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-
-
 
 class ReportsProvider with ChangeNotifier {
   List<dynamic> reportsData = [];
@@ -18,8 +14,8 @@ class ReportsProvider with ChangeNotifier {
   Future<void> fetchReports(String startDate, String endDate) async {
     print(startDate);
     print(endDate);
-      final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     var headers = {
       'Authorization': 'Bearer $accessTokken',
       'Content-Type': 'application/json'

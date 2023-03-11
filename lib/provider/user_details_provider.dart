@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:inter_coffee/models/user_details_model.dart';
-import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/constants/authconst.dart';
 import 'package:http/http.dart' as http;
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 

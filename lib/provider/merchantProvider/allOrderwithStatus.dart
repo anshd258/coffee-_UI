@@ -1,25 +1,22 @@
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
-import '../../client/allOrderWithStatusClient.dart';
 import 'dart:convert';
 
-
 import 'package:inter_coffee/models/order_details_model.dart';
-import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/constants/authconst.dart';
 
 import 'package:http/http.dart' as http;
 
-import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
 
 List<dynamic> jsonToDecode = [];
 
 class AllOrderProvider with ChangeNotifier {
   List<OrderDetails>? orders;
- Future<String> getOrders() async {
-      final data = loginhandler().getData();
-  final accessTokken = data!.token;
-   
+  Future<String> getOrders() async {
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
+
     const url = "$baseurl/getNotCompletedOrdersList";
     final response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',

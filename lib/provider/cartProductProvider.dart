@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:inter_coffee/models/order_prouct.dart';
-import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/constants/authconst.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
-
-
-
 
 class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];
@@ -18,8 +15,8 @@ class CartProductsProvider with ChangeNotifier {
   int checkerLength = 0;
 
   Future<void> postData(bool isPriority) async {
-      final dataa = loginhandler().getData();
-  final accessTokken = dataa!.token;
+    final dataa = loginhandler().getData();
+    final accessTokken = dataa!.token;
     List<Map<String, dynamic>> currentData = [];
     for (var element in cartData) {
       currentData.add(element.toJson());

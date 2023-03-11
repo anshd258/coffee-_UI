@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> confirmationDialog(BuildContext context, String title, String nextState,
-    String id, String previousState, String type) async {
+Future<void> confirmationDialog(BuildContext context, String title,
+    String nextState, String id, String previousState, String type) async {
   return await showDialog(
     barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
     barrierDismissible: true,

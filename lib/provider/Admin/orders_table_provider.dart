@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../loginhandler/loginfunctions.dart';
 import 'package:http/http.dart' as http;
-import 'package:inter_coffee/provider/authconst.dart';
+import 'package:inter_coffee/constants/authconst.dart';
 
 String placedOrders = '';
 Future<String> getOrdersPlaced() async {

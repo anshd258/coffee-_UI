@@ -1,14 +1,11 @@
 import 'dart:convert';
 
-
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
-import 'authconst.dart';
+import '../constants/authconst.dart';
 import '../models/products_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-
 
 class ProductsProvider with ChangeNotifier {
   List<ProductList> products = [];
@@ -19,7 +16,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<String> getproducts() async {
     final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final accessTokken = data!.token;
 
     print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";

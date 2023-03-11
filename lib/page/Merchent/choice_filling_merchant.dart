@@ -85,10 +85,8 @@ class _ChoiceFillingMerchantState extends State<ChoiceFillingMerchant> {
             alignment: Alignment.bottomLeft,
             width: 100.w,
             height: 10.h,
-            decoration:const  BoxDecoration(
-              color: Colors.black54
-            ),
-            padding: EdgeInsets.only( left: 5.w, bottom: 2.h ),
+            decoration: const BoxDecoration(color: Colors.black54),
+            padding: EdgeInsets.only(left: 5.w, bottom: 2.h),
             child: GestureDetector(
               onTap: (() => Navigator.pop(context)),
               child: Image.asset("assets/ICONS/arrow1.png"),

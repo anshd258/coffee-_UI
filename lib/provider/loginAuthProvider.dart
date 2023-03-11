@@ -6,7 +6,7 @@ import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 
 import './loginhandler/loginfunctions.dart';
-import './authconst.dart';
+import '../constants/authconst.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
