@@ -8,7 +8,6 @@ import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import 'authconst.dart';
 
-
 class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? _orderList;
   bool isloading = false;
@@ -20,8 +19,8 @@ class OrderHistory with ChangeNotifier {
   Future<void> fetchOrders() async {
     _orderList = [];
     _orderList!.clear();
-     final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     const url = '$baseurl/orderHistory';
     isloading = true;
     notifyListeners();
@@ -31,7 +30,7 @@ class OrderHistory with ChangeNotifier {
       'Authorization': 'Bearer $accessTokken',
     });
     isloading = false;
-    notifyListeners();
+
     final responseData = json.decode(response.body) as Map<String, dynamic>;
     if (responseData['message'] == 'SUCCESS') {
       print("OrderHistoryProvider -> sucess");
@@ -53,8 +52,8 @@ class OrderHistory with ChangeNotifier {
   }
 
   Future<OrderHistoryModel> getOrderhistory(String id) async {
-      final data = loginhandler().getData();
-  final accessTokken = data!.token;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
     String url = '$baseurl/getOrderDetails/$id';
     dataLoading = true;
     notifyListeners();

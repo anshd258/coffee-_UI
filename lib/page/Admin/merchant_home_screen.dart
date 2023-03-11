@@ -69,6 +69,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   List<OrderDetails>? priorityOrder;
   @override
   Widget build(BuildContext context) {
+    final isloading = context.watch<OrderHistory>().dataLoading;
     final priorityCount = context.watch<PriorityOrderCount>().count;
     final totalCount = context.watch<TotalOrderCount>().count;
     listOfOrders = context.watch<AllOrderProvider>().orders;
@@ -326,6 +327,15 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
               ),
             ),
           ),
+          if (isloading) ...[
+            Container(
+              color: Colors.black38,
+              child: const Center(
+                  child: CircularProgressIndicator.adaptive(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.white70))),
+            )
+          ]
         ],
       ),
 

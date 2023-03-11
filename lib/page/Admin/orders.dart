@@ -5,6 +5,7 @@ import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
 import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
 import 'package:inter_coffee/provider/reportsProvider.dart';
+import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -173,8 +174,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, createOrderMerchant);
+                                      context.read<routing>().settingRoute(6);
                                     },
                                     child: SizedBox(
                                       width: 35.w,
