@@ -6,7 +6,7 @@ import 'package:inter_coffee/page/login_screen.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'bottom_navbar.dart';
 import 'package:provider/provider.dart';
-import '../provider/loginAuthProvider.dart';
+import '../provider/login_auth_provider.dart';
 
 class Switcher extends StatefulWidget {
   const Switcher({super.key});

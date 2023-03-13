@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part 'loginmodel.g.dart';
+part 'login_model.g.dart';
 
 @HiveType(typeId: 0)
 class loginStorage extends HiveObject {

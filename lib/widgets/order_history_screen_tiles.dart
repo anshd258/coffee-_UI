@@ -5,14 +5,14 @@ import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
-import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
-import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
-import '../provider/loginAuthProvider.dart';
+import '../provider/login_auth_provider.dart';
 import 'package:intl/intl.dart';
 
 class OrderHistoryScreenTiles extends StatelessWidget {

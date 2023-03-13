@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+import 'package:inter_coffee/provider/loginhandler/login_model.dart';
 
 class loginhandler {
   final box = Hive.box<loginStorage>('session');

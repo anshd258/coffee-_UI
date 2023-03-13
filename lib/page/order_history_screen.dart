@@ -6,7 +6,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/order_history_screen_tiles.dart';
 import 'package:provider/provider.dart';
-import '../provider/OrderHistoryProvider.dart';
+import '../provider/OrderHistory_provider.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});

@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/models/order_details_model.dart';
-import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/allOrderwithStatus.dart';
-import 'package:inter_coffee/provider/merchantProvider/totalordercount.dart';
+import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/all_orderwith_status.dart';
+import 'package:inter_coffee/provider/merchantProvider/total_order_count.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/Admin/merchant_homescreen_row_container.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../provider/merchantProvider/priorityOrderWithStatus.dart';
+import '../../provider/merchantProvider/priority_order_with_status.dart';
 import '../../widgets/Admin/admin_order_count_container.dart';
-import '../../provider/merchantProvider/priorityordercount.dart';
+import '../../provider/merchantProvider/priority_order_count.dart';
 
 class MerchantHomeScreen extends StatefulWidget {
   const MerchantHomeScreen({super.key});

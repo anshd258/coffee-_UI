@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/widgets/otp_input_container.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

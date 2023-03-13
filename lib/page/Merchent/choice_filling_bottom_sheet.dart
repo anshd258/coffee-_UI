@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/models/products_list_model.dart';
 import 'package:inter_coffee/page/ProductList/product_list_all_details.dart';
-import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 

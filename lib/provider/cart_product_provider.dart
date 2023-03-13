@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:inter_coffee/models/merchant_create_order_modal.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/constants/authconst.dart';
-import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];

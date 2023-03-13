@@ -6,7 +6,7 @@ import 'package:inter_coffee/client/getapicall.dart';
 import 'package:inter_coffee/client/putApiCall.dart';
 
 import 'package:inter_coffee/constants/authconst.dart';
-import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../models/notificationmodal.dart';
 

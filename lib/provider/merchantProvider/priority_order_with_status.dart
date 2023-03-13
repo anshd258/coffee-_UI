@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../../models/order_details_model.dart';
 

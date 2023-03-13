@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
 
-import '../provider/loginAuthProvider.dart';
+import '../provider/login_auth_provider.dart';
 
 class ProductListScreenBottomNavBar extends StatefulWidget {
   const ProductListScreenBottomNavBar({super.key});

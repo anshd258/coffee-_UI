@@ -3,7 +3,7 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/notificationmodal.dart';
-import 'package:inter_coffee/provider/notificationprovider.dart';
+import 'package:inter_coffee/provider/notification_provider.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
