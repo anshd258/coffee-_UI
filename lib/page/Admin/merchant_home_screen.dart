@@ -57,11 +57,11 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
 
   void getproducts() async {
     final response = await context.read<AllOrderProvider>().getOrders();
-    print(response);
+    // print(response);
 
-    if (response == "token expired") {
-      Navigator.pushNamed(context, frontPage);
-    }
+    // if (response == "token expired") {
+    //   Navigator.pushNamed(context, frontPage);
+    //  }
   }
 
   List<OrderDetails>? listOfOrders;
