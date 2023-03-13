@@ -11,6 +11,7 @@ import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/product_list_lower_list_container.dart';
 import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import 'package:inter_coffee/widgets/horizontal_product_container.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -39,10 +40,6 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
 
   void getproducts() async {
     final response = await context.read<ProductsProvider>().getproducts();
-    if (response == "token expired") {
-      context.read<LoginAuthProvider>().logout();
-      Navigator.pushNamedAndRemoveUntil(context, switcher, (route) => false);
-    }
   }
 
   double widthButton = 38.w;
@@ -271,11 +268,21 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                           width: widthButton,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (productsInfo.isNotEmpty) {
+                              if (productsInfo.isNotEmpty &&
+                                  name.text.isNotEmpty &&
+                                  contactNo.text.isNotEmpty) {
                                 context
                                     .read<CartProductsProvider>()
-                                    .postData(checknox);
+                                    .merchantPostData(
+                                        name.text, contactNo.text);
                                 orderConfirmationDialog(context);
+                              } else if (name.text.isEmpty ||
+                                  contactNo.text.isEmpty) {
+                                snakbarmethod(
+                                    context, 'please fill the name & contact');
+                              }else{
+                                snakbarmethod(
+                                    context, 'please add products to cart');
                               }
                             },
                             style: ElevatedButton.styleFrom(
