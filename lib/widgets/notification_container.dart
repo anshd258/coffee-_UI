@@ -64,26 +64,26 @@ class _NotificationContainerState extends State<NotificationContainer> {
                   color: const Color.fromARGB(255, 205, 205, 205),
                 ),
               ),
-              // RichText(
-              //   text: TextSpan(
-              //     children: [
-              //       TextSpan(
-              //         text: orderid,
-              //         style: GoogleFonts.inter(
-              //             fontSize: 15.sp,
-              //             fontWeight: FontWeight.w600,
-              //             color:
-              //                 //  widget.notification.orderstate!.completed
-              //                 //     ?
-              //                 Colors.green
-              //             // : widget.notification.orderstate!.inprocess
-              //             //     ? Colors.amber.shade300
-              //             //     : Colors.red
-              //             ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: orderid,
+                      style: GoogleFonts.inter(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          color:
+                              //  widget.notification.orderstate!.completed
+                              //     ?
+                              Colors.green
+                          // : widget.notification.orderstate!.inprocess
+                          //     ? Colors.amber.shade300
+                          //     : Colors.red
+                          ),
+                    ),
+                  ],
+                ),
+              ),
               Text(
                 widget.notification.body!,
                 style: GoogleFonts.inter(

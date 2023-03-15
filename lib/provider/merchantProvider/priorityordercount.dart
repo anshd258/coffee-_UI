@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/client/merchantApiHandler.dart';
 
 import 'package:inter_coffee/constants/authconst.dart';
 import 'package:http/http.dart' as http;
@@ -13,11 +14,7 @@ class PriorityOrderCount with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/getPriorityOrdersCount";
-    final response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessTokken',
-    });
+    final response = await  MerchantApiHandler(). getApiCall(url, accessTokken);
     if (response.statusCode == 200) {
       final loadedResponse = json.decode(response.body);
       print(loadedResponse);

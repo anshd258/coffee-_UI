@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:inter_coffee/client/userApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import '../constants/authconst.dart';
@@ -20,29 +21,32 @@ class ProductsProvider with ChangeNotifier {
 
     print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";
-    final response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessTokken',
-    });
+    
+    final response = await UserApiHandler().getApiCall(url, accessTokken);
     if (response.statusCode != 200) {
       return "token expired";
+    }else if(response.statusCode == 200){
+       converter(response);
     }
-    final responseData = json.decode(response.body);
-
-    final List<ProductList> loadedorders = [];
-    final loadData = responseData['data'] as List<dynamic>;
-
-    for (var element in loadData) {
-      final data = element as Map<String, dynamic>;
-
-      loadedorders.add(ProductList.fromJson(data));
-    }
-
-    products = loadedorders;
-    serchable = products;
-    notifyListeners();
+   
     return "working";
+  }
+
+  void converter(http.Response response) {
+     final responseData = json.decode(response.body);
+    
+        final List<ProductList> loadedorders = [];
+        final loadData = responseData['data'] as List<dynamic>;
+    
+        for (var element in loadData) {
+          final data = element as Map<String, dynamic>;
+    
+          loadedorders.add(ProductList.fromJson(data));
+        }
+    
+        products = loadedorders;
+        serchable = products;
+        notifyListeners();
   }
 
   void searchData(String info) {

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:inter_coffee/client/getapicall.dart';
-import 'package:inter_coffee/client/putApiCall.dart';
+
+import 'package:inter_coffee/client/userApiHandler.dart';
 
 import 'package:inter_coffee/constants/authconst.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
@@ -26,7 +26,7 @@ class NotificationProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final response = await getApiCall(url, accessTokken);
+      final response = await UserApiHandler().getApiCall(url, accessTokken);
       isloading = false;
       notifyListeners();
       if (response.statusCode != 200) {
@@ -64,7 +64,7 @@ class NotificationProvider with ChangeNotifier {
 
     const url = "$baseurl/markNotificationAsRead";
 
-    final response = await putApiCall(url, accessTokken);
+    final response = await UserApiHandler().putApiCall(url, accessTokken);
   }
 
   void clearNotifications() {

@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'dart:convert';
 
+import 'package:inter_coffee/client/adminApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import '../constants/authconst.dart';
@@ -16,22 +17,12 @@ class ReportsProvider with ChangeNotifier {
     print(endDate);
     final data = loginhandler().getData();
     final accessTokken = data!.token;
-    var headers = {
-      'Authorization': 'Bearer $accessTokken',
-      'Content-Type': 'application/json'
-    };
-    var request = http.Request('GET', Uri.parse('$baseurl/report'));
-    request.body = json.encode({"startDate": startDate, "endDate": endDate});
-    request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+    http.StreamedResponse response =
+        await AdminApiHandler().repoortsApiHandler(accessTokken, startDate, endDate);
 
     if (response.statusCode == 200) {
-      final data = await response.stream.bytesToString();
-      final decodedData = json.decode(data);
-      print(decodedData['data']);
-      reportsData = decodedData['data'] as List<dynamic>;
-      notifyListeners();
+      await converter(response);
     } else {
       print(response.reasonPhrase);
     }
@@ -62,5 +53,13 @@ class ReportsProvider with ChangeNotifier {
     //       notifyListeners();
     //     }
     //   }
+  }
+
+  Future<void> converter(http.StreamedResponse response) async {
+     final data = await response.stream.bytesToString();
+    final decodedData = json.decode(data);
+    print(decodedData['data']);
+    reportsData = decodedData['data'] as List<dynamic>;
+    notifyListeners();
   }
 }

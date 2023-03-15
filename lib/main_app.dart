@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/constants/routes.dart';
-import 'package:inter_coffee/provider/listOfProviders.dart';
+import 'package:inter_coffee/constants/listOfProviders.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

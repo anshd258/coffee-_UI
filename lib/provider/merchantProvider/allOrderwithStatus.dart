@@ -1,3 +1,4 @@
+import 'package:inter_coffee/client/merchantApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import 'dart:convert';
@@ -18,11 +19,7 @@ class AllOrderProvider with ChangeNotifier {
     final accessTokken = data!.token;
 
     const url = "$baseurl/getNotCompletedOrdersList";
-    final response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessTokken',
-    });
+    final response = await MerchantApiHandler(). getApiCall(url, accessTokken);
     print(response.body);
     if (response.statusCode != 200) {
       return "token expired";
@@ -43,4 +40,6 @@ class AllOrderProvider with ChangeNotifier {
     }
     return "working";
   }
+
+ 
 }

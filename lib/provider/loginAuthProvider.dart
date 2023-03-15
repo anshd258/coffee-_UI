@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
+import 'package:inter_coffee/client/authApiHandler.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
 
@@ -32,17 +33,15 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> getOtp(String pnumber, BuildContext context) async {
     isloading = true;
     notifyListeners();
-    print(pnumber);
+   // print(pnumber);
     try {
-      final response = await http
-          .post(Uri.parse("$baseurl/generateOTP"),
-              headers: {"Content-Type": "application/json"},
-              body: json.encode({"phoneNo": pnumber}))
+      final body = json.encode({"phoneNo": pnumber});
+      AuthApiHandler().otpApiCall(body)
           .then((value) {
         isloading = false;
         notifyListeners();
-        print(value.body);
-        print(value.statusCode);
+        // print(value.body);
+        // print(value.statusCode);
         if (value.statusCode == 200) {
           Navigator.pushNamedAndRemoveUntil(
               context, otpInputScreen, (route) => false,
@@ -66,17 +65,15 @@ class LoginAuthProvider with ChangeNotifier {
     }
   }
 
+ 
+
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     try {
       final fcmToken = await FirebaseMessaging.instance.getToken();
-      print("fcm tokken ->${fcmToken!}");
+     // print("fcm tokken ->${fcmToken!}");
       isloading = true;
       notifyListeners();
-      final response = await http
-          .post(Uri.parse("$baseurl/login"),
-              headers: {"Content-Type": "application/json"},
-              body: json.encode(
-                  {"phoneNo": pnumber, "deviceToken": fcmToken, "otp": OTP}))
+      final response = await  AuthApiHandler().loginApiCall(pnumber, fcmToken, OTP)
           .onError((error, stackTrace) {
         snakbarmethod(context, "error connecting the backend");
         isloading = false;
@@ -88,7 +85,7 @@ class LoginAuthProvider with ChangeNotifier {
       isloading = false;
       notifyListeners();
       final loadedData = json.decode(response.body);
-      print(loadedData);
+     // print(loadedData);
       if (response.statusCode == 200) {
         final session = loginStorage();
         // await setRole("merchant");
@@ -117,11 +114,11 @@ class LoginAuthProvider with ChangeNotifier {
         accessToken = session.token;
         role = session.role;
         loginhandler().storeData(session); // stroing data to local storage
-        print(userId);
+        //print(userId);
         notifyListeners();
         if (role == "merchant") {
-          print(role);
-          print(accessToken);
+          // print(role);
+          // print(accessToken);
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -129,8 +126,8 @@ class LoginAuthProvider with ChangeNotifier {
             (route) => false,
           );
         } else {
-          print(role);
-          print(accessToken);
+          // print(role);
+          // print(accessToken);
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -152,17 +149,18 @@ class LoginAuthProvider with ChangeNotifier {
     }
   }
 
+ 
   void autologin() async {
     final data = loginhandler().getData();
     if (data != null) {
       role = data.role;
-      print(role);
+      //print(role);
       accessToken = data.token;
-      print(accessToken);
+    //  print(accessToken);
       phoneNumber = data.phonenumber;
-      print(phoneNumber);
+     // print(phoneNumber);
       userId = data.userId;
-      print(userId);
+    //  print(userId);
       notifyListeners();
     } else {
       role = null;

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:inter_coffee/client/merchantApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
 import '../../models/order_details_model.dart';
@@ -15,11 +16,7 @@ class TableWithStatusProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     final url = "$baseurl/getOrders/$route";
-    final response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessTokken',
-    });
+    final response = await MerchantApiHandler().getApiCall(url, accessTokken);
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
       if (responseData['message'] == 'SUCCESS') {
@@ -43,17 +40,12 @@ class TableWithStatusProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
-    final response = await http.put(Uri.parse(url),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $accessTokken',
-        },
-        body: json.encode({
+    final body =  json.encode({
           "orderId": id,
           "orderState": "ORDER_CONFIRMED",
           "estTime": time.toIso8601String()
-        }));
+        });
+    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders("ORDER_PLACED");
@@ -65,16 +57,11 @@ class TableWithStatusProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
-    final response = await http.put(Uri.parse(url),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $accessTokken',
-        },
-        body: json.encode({
+    final body = json.encode({
           "orderId": id,
           "orderState": nextstate,
-        }));
+        });
+    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders(previusState);

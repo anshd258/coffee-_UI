@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/cartProductProvider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -147,6 +148,9 @@ class _CartScreenState extends State<CartScreen> {
                                 .read<CartProductsProvider>()
                                 .postData(checknox);
                             orderConfirmationDialog(context);
+                          } else {
+                            snakbarmethod(
+                                context, 'please add products to cart');
                           }
                         },
                         style: ElevatedButton.styleFrom(

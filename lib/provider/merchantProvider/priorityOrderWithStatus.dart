@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/client/merchantApiHandler.dart';
 
 import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
 
@@ -15,11 +16,7 @@ class PriorityOrderProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/getNotCompletedPriorityOrdersList";
-    final response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessTokken',
-    });
+    final response = await  MerchantApiHandler(). getApiCall(url, accessTokken);
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
       if (responseData['message'] == 'SUCCESS') {
