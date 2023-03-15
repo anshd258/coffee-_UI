@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:inter_coffee/constants/authconst.dart';
+import 'package:inter_coffee/constants/auth_const.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 class MyData with ChangeNotifier {

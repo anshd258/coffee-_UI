@@ -50,10 +50,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: Text("My Account ",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
-                    color: titleStatusBar,
+                    color: Theme.of(context).navigationBarTheme.backgroundColor,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w500)),
-            backgroundColor: bgStatusBar,
+            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Center(
               child: Column(

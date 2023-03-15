@@ -6,7 +6,7 @@ import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../constants/authconst.dart';
+import '../../constants/auth_const.dart';
 
 class TableWithStatusProvider with ChangeNotifier {
   List<dynamic>? orderJsonTableData;
@@ -37,8 +37,7 @@ class TableWithStatusProvider with ChangeNotifier {
   }
 
   Future<void> updateOrderStatus(String timeGiven, String id) async {
-    DateTime time = DateTime.now();
-    time.add(Duration(minutes: int.parse(timeGiven)));
+    DateTime time = DateTime.now().add(Duration(minutes: int.parse(timeGiven)));
 
     final data = loginhandler().getData();
     final accessTokken = data!.token;

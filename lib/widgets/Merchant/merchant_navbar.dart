@@ -30,7 +30,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
       width: 90.w,
       blur: 15,
       alignment: Alignment.center,
-      color: bottomNavBarBG,
+      color: Theme.of(context).bottomAppBarTheme.color,
       // color: Colors.black38,
       borderColor: Colors.transparent,
       borderRadius: const BorderRadius.all(
@@ -50,7 +50,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 1 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 1 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -74,7 +74,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 2 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 2 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -98,7 +98,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 3 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 3 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -122,7 +122,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 4 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 4 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -146,7 +146,7 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 5 ? bottomNavBarItem : Colors.transparent,
+                  color: val == 5 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,

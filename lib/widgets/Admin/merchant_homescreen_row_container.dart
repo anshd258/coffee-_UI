@@ -6,7 +6,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'order_details_dialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
-import '../../provider/OrderHistory_provider.dart';
+import '../../provider/order_history_provider.dart';
 
 class MerchantHomeScreenRowContainer extends StatefulWidget {
   final String? orderNo;

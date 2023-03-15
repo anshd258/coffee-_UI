@@ -46,7 +46,7 @@ class _ProductListScreenLowerListContainerState
             width: 90.w,
             blur: 17,
             frostedOpacity: 0.04,
-            color: productTileUserSide,
+            color: Theme.of(context).cardColor,
             // color: Color.fromARGB(70, 255, 255, 255),
             elevation: 10,
             borderColor: Colors.white10,
@@ -102,7 +102,7 @@ class _ProductListScreenLowerListContainerState
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.inter(
-                              color: userTileDesc,
+                              color: Theme.of(context).hintColor,
                               // color: Color.fromARGB(160, 255, 255, 255),
                               fontSize: 13.sp,
                               textStyle: const TextStyle(

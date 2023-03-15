@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 
@@ -49,26 +49,26 @@ class _PriorityTableState extends State<PriorityTable> {
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
 
-  final String json1 =
-      '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
+  // final String json1 =
+  //     '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
 
-  final String json2 =
-      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
+  // final String json2 =
+  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
 
-  final String json3 =
-      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
+  // final String json3 =
+  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
 
-  final List<Map<String, dynamic>> json5 = [
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
-  ];
+  // final List<Map<String, dynamic>> json5 = [
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
+  // ];
   int tappedIndex = 0;
 
   List<String> filterList = [
     "New Orders",
     "Order Confirmed",
-    "Orders Progress",
+    // "Orders Progress",
     "Order Ready for Pick Up",
     "Completed Orders",
     "Cancelled"
@@ -86,25 +86,25 @@ class _PriorityTableState extends State<PriorityTable> {
       tappedIndex = 6;
     }
     String headerVal = "";
-    var json = jsonDecode(json1);
-    List<dynamic> callRightJSON(ta8ppedIndex) {
-      switch (tappedIndex) {
-        case 0:
-          json = jsonDecode(json1);
-          break;
-        case 1:
-          json = jsonDecode(json2);
-          break;
-        case 2:
-          json = jsonDecode(json3);
-          break;
+    // var json = jsonDecode(json1);
+    // List<dynamic> callRightJSON(ta8ppedIndex) {
+    //   switch (tappedIndex) {
+    //     case 0:
+    //       json = jsonDecode(json1);
+    //       break;
+    //     case 1:
+    //       json = jsonDecode(json2);
+    //       break;
+    //     case 2:
+    //       json = jsonDecode(json3);
+    //       break;
 
-        default:
-          json = jsonDecode(json1);
-          break;
-      }
-      return json;
-    }
+    //     default:
+    //       json = jsonDecode(json1);
+    //       break;
+    //   }
+    //   return json;
+    // }
 
     return Container(
       height: 100.h,
@@ -242,21 +242,23 @@ class _PriorityTableState extends State<PriorityTable> {
                                               context
                                                   .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_CONFIRMED");
-                                            } else if (index == 2) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders(
-                                                      "ORDER_IN_PROGRESS");
-                                            } else if (index == 3) {
+                                            } 
+                                            // else if (index == 2) {
+                                            //   context
+                                            //       .read<TablePriorityProvider>()
+                                            //       .getOrders(
+                                            //           "ORDER_IN_PROGRESS");
+                                            // } 
+                                            else if (index == 2) {
                                               context
                                                   .read<TablePriorityProvider>()
                                                   .getOrders(
                                                       "ORDER_READY_FOR_PICKUP");
-                                            } else if (index == 4) {
+                                            } else if (index == 3) {
                                               context
                                                   .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_COMPLETED");
-                                            } else if (index == 5) {
+                                            } else if (index == 4) {
                                               context
                                                   .read<TablePriorityProvider>()
                                                   .getOrders("ORDER_CANCELLED");
@@ -470,8 +472,8 @@ class _PriorityTableState extends State<PriorityTable> {
                                               // onRowSelect: (index, map) {
                                               //   ConfirmDialog(context, map);
                                               // },
-                                              columns: tappedIndex == 1 ||
-                                                      tappedIndex == 2
+                                              columns: tappedIndex == 1 
+                                              // || tappedIndex == 2
                                                   ? [
                                                       JsonTableColumn(
                                                         'createdDate',
@@ -530,21 +532,23 @@ class _PriorityTableState extends State<PriorityTable> {
                                                             value == "null") {
                                                           return "No Data Available";
                                                         }
-                                                        final createdDate = DateTime.parse(value);
-                                                        final utcTime = DateTime.utc(
-                                                            createdDate.year,
-                                                            createdDate.month,
-                                                            createdDate.day,
-                                                            createdDate.hour,
-                                                            createdDate.minute,
-                                                            createdDate.second);
-                                                        final localTime = utcTime.toLocal();
-                                                        final currentTime = DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, DateTime.now().second);
-                                                        final leftTime = currentTime.difference(localTime);
-                                                        if( leftTime.inMinutes > 15 ) {
+                                                        final time = DateTime.parse(value);
+                                                        final deliveryTime = DateTime.utc(
+                                                          time.year, time.month, time.day, time.hour, time.minute, time.second
+                                                        );
+                                                        final currentTime = DateTime.utc(
+                                                          DateTime.now().year,
+                                                          DateTime.now().month,
+                                                          DateTime.now().day,
+                                                          DateTime.now().hour,
+                                                          DateTime.now().minute,
+                                                          DateTime.now().second
+                                                        );
+                                                        final leftTime = deliveryTime.difference(currentTime).inMinutes;
+                                                        if( leftTime < 0 || leftTime > 30 ) {
                                                           return "Over Due";
                                                         } else {
-                                                          return (15-leftTime.inMinutes).toString();
+                                                          return (leftTime).toString();
                                                         }
                                                       },
                                                           label:
@@ -642,23 +646,26 @@ class _PriorityTableState extends State<PriorityTable> {
                                                     isSelected = false;
                                                     id = '';
                                                   }
-                                                } else if (tappedIndex == 1) {
+                                                } 
+                                                // else if (tappedIndex == 1) {
+                                                //   confirmationDialog(
+                                                //       context,
+                                                //       "Put Order In Processing",
+                                                //       "ORDER_IN_PROGRESS",
+                                                //       id,
+                                                //       "ORDER_CONFIRMED",
+                                                //       'priority');
+                                                // } 
+                                                else if (tappedIndex == 1) {
                                                   confirmationDialog(
                                                       context,
-                                                      "Put Order In Processing",
-                                                      "ORDER_IN_PROGRESS",
-                                                      id,
-                                                      "ORDER_CONFIRMED",
-                                                      'priority');
-                                                } else if (tappedIndex == 2) {
-                                                  confirmationDialog(
-                                                      context,
-                                                      "Is The Order Brewed ",
+                                                      "Is The Order Brewed",
                                                       "ORDER_READY_FOR_PICKUP",
                                                       id,
-                                                      "ORDER_IN_PROGRESS",
+                                                      "ORDER_CONFIRMED",
                                                       "normal");
-                                                } else if (tappedIndex == 3) {
+                                                } 
+                                                else if (tappedIndex == 2) {
                                                   confirmationDialog(
                                                       context,
                                                       "Is The Order Delivered? ",

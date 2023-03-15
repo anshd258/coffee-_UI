@@ -1,14 +1,14 @@
-import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
-import 'package:inter_coffee/provider/merchantProvider/all_orderwith_status.dart';
+import 'package:inter_coffee/provider/merchantProvider/all_order_with_status.dart';
 import 'package:inter_coffee/provider/merchantProvider/priority_order_with_status.dart';
 import 'package:inter_coffee/provider/merchantProvider/priority_order_count.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/total_order_count.dart';
 import 'package:inter_coffee/provider/notification_provider.dart';
-import 'package:inter_coffee/provider/orderStauts_provider.dart';
+import 'package:inter_coffee/provider/order_stauts_provider.dart';
 import 'package:inter_coffee/provider/products_provider.dart';
 import 'package:inter_coffee/provider/reports_provider.dart';
 import 'package:inter_coffee/provider/router.dart';

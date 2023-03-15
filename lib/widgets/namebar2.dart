@@ -44,7 +44,7 @@ class name_bar2 extends StatelessWidget {
                             Text(
                               "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
                               style: GoogleFonts.inter(
-                                  color: nameAndDateInNameBar, fontSize: 14.sp),
+                                  color: Theme.of(context).dividerColor, fontSize: 14.sp),
                             ),
                             SizedBox(
                               height: 0.3.h,
@@ -53,7 +53,7 @@ class name_bar2 extends StatelessWidget {
                               data.name == null ? "_" : data.name.toString(),
                               style: GoogleFonts.inter(
                                   // color: Color.fromARGB(255, 182, 182, 182),
-                                  color: nameAndDateInNameBar,
+                                  color: Theme.of(context).dividerColor,
                                   fontSize: 17.sp),
                             )
                           ],

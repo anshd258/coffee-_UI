@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:inter_coffee/provider/reports_provider.dart';
@@ -66,7 +66,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
   List<String> filterList = [
     "New Orders",
     "Order Confirmed",
-    "Orders Progress",
+    // "Orders Progress",
     "Order Ready to Pick Up",
     "Completed Orders",
     "Cancelled"
@@ -223,24 +223,26 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                   .read<
                                                       TableWithStatusProvider>()
                                                   .getOrders("ORDER_CONFIRMED");
-                                            } else if (index == 2) {
-                                              context
-                                                  .read<
-                                                      TableWithStatusProvider>()
-                                                  .getOrders(
-                                                      "ORDER_IN_PROGRESS");
-                                            } else if (index == 3) {
+                                            } 
+                                            // else if (index == 2) {
+                                            //   context
+                                            //       .read<
+                                            //           TableWithStatusProvider>()
+                                            //       .getOrders(
+                                            //           "ORDER_IN_PROGRESS");
+                                            // } 
+                                            else if (index == 2) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
                                                   .getOrders(
                                                       "ORDER_READY_FOR_PICKUP");
-                                            } else if (index == 4) {
+                                            } else if (index == 3) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
                                                   .getOrders("ORDER_COMPLETED");
-                                            } else if (index == 5) {
+                                            } else if (index == 4) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
@@ -455,8 +457,8 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               // onRowSelect: (index, map) {
                                               //   ConfirmDialog(context, map);
                                               // },
-                                              columns: tappedIndex == 1 ||
-                                                      tappedIndex == 2
+                                              columns: tappedIndex == 1 
+                                                        // || tappedIndex == 2
                                                   ? [
                                                       JsonTableColumn(
                                                         'createdDate',
@@ -515,21 +517,23 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                             value == "null") {
                                                           return "No Data Available";
                                                         }
-                                                        final createdDate = DateTime.parse(value);
-                                                        final utcTime = DateTime.utc(
-                                                            createdDate.year,
-                                                            createdDate.month,
-                                                            createdDate.day,
-                                                            createdDate.hour,
-                                                            createdDate.minute,
-                                                            createdDate.second);
-                                                        final localTime = utcTime.toLocal();
-                                                        final currentTime = DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, DateTime.now().second);
-                                                        final leftTime = currentTime.difference(localTime);
-                                                        if( leftTime.inMinutes > 15 ) {
+                                                        final time = DateTime.parse(value);
+                                                        final deliveryTime = DateTime.utc(
+                                                          time.year, time.month, time.day, time.hour, time.minute, time.second
+                                                        );
+                                                        final currentTime = DateTime.utc(
+                                                          DateTime.now().year,
+                                                          DateTime.now().month,
+                                                          DateTime.now().day,
+                                                          DateTime.now().hour,
+                                                          DateTime.now().minute,
+                                                          DateTime.now().second
+                                                        );
+                                                        final leftTime = deliveryTime.difference(currentTime).inMinutes;
+                                                        if( leftTime < 0 || leftTime > 30 ) {
                                                           return "Over Due";
                                                         } else {
-                                                          return (15-leftTime.inMinutes).toString();
+                                                          return (leftTime).toString();
                                                         }
                                                       },
                                                           label:
@@ -627,23 +631,26 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                     isSelected = false;
                                                     id = '';
                                                   }
-                                                } else if (tappedIndex == 1) {
+                                                } 
+                                                // else if (tappedIndex == 1) {
+                                                //   confirmationDialog(
+                                                //       context,
+                                                //       "Put Order In Processing",
+                                                //       "ORDER_IN_PROGRESS",
+                                                //       id,
+                                                //       "ORDER_CONFIRMED",
+                                                //       "normal");
+                                                // } 
+                                                else if (tappedIndex == 1) {
                                                   confirmationDialog(
                                                       context,
-                                                      "Put Order In Processing",
-                                                      "ORDER_IN_PROGRESS",
+                                                      "Is The Order Brewed",
+                                                      "ORDER_READY_FOR_PICKUP",
                                                       id,
                                                       "ORDER_CONFIRMED",
                                                       "normal");
-                                                } else if (tappedIndex == 2) {
-                                                  confirmationDialog(
-                                                      context,
-                                                      "Is The Order Brewed ",
-                                                      "ORDER_READY_FOR_PICKUP",
-                                                      id,
-                                                      "ORDER_IN_PROGRESS",
-                                                      "normal");
-                                                } else if (tappedIndex == 3) {
+                                                } 
+                                                else if (tappedIndex == 2) {
                                                   confirmationDialog(
                                                       context,
                                                       "Is The Order Delivered? ",

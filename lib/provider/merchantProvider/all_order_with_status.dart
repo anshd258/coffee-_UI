@@ -3,7 +3,7 @@ import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 import 'dart:convert';
 
 import 'package:inter_coffee/models/order_details_model.dart';
-import 'package:inter_coffee/constants/authconst.dart';
+import 'package:inter_coffee/constants/auth_const.dart';
 
 import 'package:http/http.dart' as http;
 
