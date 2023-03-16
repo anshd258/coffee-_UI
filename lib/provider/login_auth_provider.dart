@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:inter_coffee/client/authApiHandler.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
-import 'package:inter_coffee/provider/loginhandler/loginmodel.dart';
+import 'package:inter_coffee/provider/loginhandler/login_model.dart';
 
-import './loginhandler/loginfunctions.dart';
+import 'loginhandler/login_functions.dart';
 import '../constants/authconst.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

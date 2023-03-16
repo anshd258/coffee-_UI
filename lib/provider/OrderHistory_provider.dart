@@ -5,7 +5,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../constants/authconst.dart';
 

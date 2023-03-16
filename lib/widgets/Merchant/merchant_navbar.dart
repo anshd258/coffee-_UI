@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';

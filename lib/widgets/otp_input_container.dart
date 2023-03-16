@@ -1,6 +1,6 @@
-import 'package:inter_coffee/provider/cartProductProvider.dart';
+import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:provider/provider.dart';
-import '../provider/loginAuthProvider.dart';
+import '../provider/login_auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glass_kit/glass_kit.dart';

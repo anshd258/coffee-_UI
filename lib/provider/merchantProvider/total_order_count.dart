@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:inter_coffee/client/merchantApiHandler.dart';
 
-import '../loginhandler/loginfunctions.dart';
+import '../loginhandler/login_functions.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 

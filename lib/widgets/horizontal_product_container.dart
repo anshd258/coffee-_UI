@@ -1,8 +1,8 @@
 import 'package:cart_stepper/cart_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
-import 'package:inter_coffee/provider/cartProductProvider.dart';
-import 'package:inter_coffee/provider/productsprovider.dart';
+import 'package:inter_coffee/provider/cart_product_provider.dart';
+import 'package:inter_coffee/provider/products_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';

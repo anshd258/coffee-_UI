@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/tablewithstatusprovider.dart';
-import 'package:inter_coffee/provider/reportsProvider.dart';
+import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
+import 'package:inter_coffee/provider/reports_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:provider/provider.dart';
@@ -84,25 +84,6 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
       tappedIndex = 6;
     }
     String headerVal = "";
-    var json = jsonDecode(json1);
-    List<dynamic> callRightJSON(ta8ppedIndex) {
-      switch (tappedIndex) {
-        case 0:
-          json = jsonDecode(json1);
-          break;
-        case 1:
-          json = jsonDecode(json2);
-          break;
-        case 2:
-          json = jsonDecode(json3);
-          break;
-
-        default:
-          json = jsonDecode(json1);
-          break;
-      }
-      return json;
-    }
 
     return Container(
       height: 100.h,
@@ -482,22 +463,22 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                         defaultValue: null,
                                                         label: "Date",
                                                         valueBuilder: (value) {
-                                                          final createddate =
+                                                          final createdDate =
                                                               DateTime.parse(
                                                                   value);
                                                           final utcTime =
                                                               DateTime.utc(
-                                                                  createddate
+                                                                  createdDate
                                                                       .year,
-                                                                  createddate
+                                                                  createdDate
                                                                       .month,
-                                                                  createddate
+                                                                  createdDate
                                                                       .day,
-                                                                  createddate
+                                                                  createdDate
                                                                       .hour,
-                                                                  createddate
+                                                                  createdDate
                                                                       .minute,
-                                                                  createddate
+                                                                  createdDate
                                                                       .second);
                                                           final localTime =
                                                               utcTime.toLocal();
@@ -534,17 +515,25 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                             value == "null") {
                                                           return "No Data Available";
                                                         }
-                                                        final time =
-                                                            DateTime.parse(
-                                                                value);
-                                                        return time.minute
-                                                            .toString();
+                                                        final createdDate = DateTime.parse(value);
+                                                        final utcTime = DateTime.utc(
+                                                            createdDate.year,
+                                                            createdDate.month,
+                                                            createdDate.day,
+                                                            createdDate.hour,
+                                                            createdDate.minute,
+                                                            createdDate.second);
+                                                        final localTime = utcTime.toLocal();
+                                                        final currentTime = DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, DateTime.now().second);
+                                                        final leftTime = currentTime.difference(localTime);
+                                                        if( leftTime.inMinutes > 15 ) {
+                                                          return "Over Due";
+                                                        } else {
+                                                          return (15-leftTime.inMinutes).toString();
+                                                        }
                                                       },
                                                           label:
                                                               "Estimated Time"),
-                                                      // JsonTableColumn('orderId',
-                                                      //     defaultValue: null,
-                                                      //     label: "Order Details"),
                                                     ]
                                                   : [
                                                       JsonTableColumn(
@@ -552,22 +541,22 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                         defaultValue: null,
                                                         label: "Date",
                                                         valueBuilder: (value) {
-                                                          final createddate =
+                                                          final createdDate =
                                                               DateTime.parse(
                                                                   value);
                                                           final utcTime =
                                                               DateTime.utc(
-                                                                  createddate
+                                                                  createdDate
                                                                       .year,
-                                                                  createddate
+                                                                  createdDate
                                                                       .month,
-                                                                  createddate
+                                                                  createdDate
                                                                       .day,
-                                                                  createddate
+                                                                  createdDate
                                                                       .hour,
-                                                                  createddate
+                                                                  createdDate
                                                                       .minute,
-                                                                  createddate
+                                                                  createdDate
                                                                       .second);
                                                           final localTime =
                                                               utcTime.toLocal();

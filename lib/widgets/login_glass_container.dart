@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'swift_cafe_text.dart';

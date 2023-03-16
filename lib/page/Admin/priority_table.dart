@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/OrderHistoryProvider.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
-import 'package:inter_coffee/provider/merchantProvider/tablePriorityProvider.dart';
+import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 
-import 'package:inter_coffee/provider/reportsProvider.dart';
+import 'package:inter_coffee/provider/reports_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:provider/provider.dart';
@@ -530,17 +530,25 @@ class _PriorityTableState extends State<PriorityTable> {
                                                             value == "null") {
                                                           return "No Data Available";
                                                         }
-                                                        final time =
-                                                            DateTime.parse(
-                                                                value);
-                                                        return time.minute
-                                                            .toString();
+                                                        final createdDate = DateTime.parse(value);
+                                                        final utcTime = DateTime.utc(
+                                                            createdDate.year,
+                                                            createdDate.month,
+                                                            createdDate.day,
+                                                            createdDate.hour,
+                                                            createdDate.minute,
+                                                            createdDate.second);
+                                                        final localTime = utcTime.toLocal();
+                                                        final currentTime = DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, DateTime.now().second);
+                                                        final leftTime = currentTime.difference(localTime);
+                                                        if( leftTime.inMinutes > 15 ) {
+                                                          return "Over Due";
+                                                        } else {
+                                                          return (15-leftTime.inMinutes).toString();
+                                                        }
                                                       },
                                                           label:
                                                               "Estimated Time"),
-                                                      // JsonTableColumn('orderId',
-                                                      //     defaultValue: null,
-                                                      //     label: "Order Details"),
                                                     ]
                                                   : [
                                                       JsonTableColumn(

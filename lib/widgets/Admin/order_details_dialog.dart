@@ -7,7 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 Future<void> orderDetailsDialog(
     BuildContext context, OrderHistoryModel data) async {
-  final ceatedDate = DateTime.parse(data.createdDate!);
+  final createdDate = DateTime.parse(data.createdDate!);
+  final utcTime = DateTime.utc(
+      createdDate.year,
+      createdDate.month,
+      createdDate.day,
+      createdDate.hour,
+      createdDate.minute,
+      createdDate.second);
+  final localTime = utcTime.toLocal();
   return await showDialog(
     barrierColor: Colors.black87,
     barrierDismissible: true,
@@ -155,38 +163,6 @@ Future<void> orderDetailsDialog(
                                           ],
                                         ))
                                     .toList(),
-                                // Text(
-                                //   "1 Latte",
-                                //   textAlign: TextAlign.left,
-                                //   style: GoogleFonts.inter(
-                                //       color: Colors.white70,
-                                //       fontSize: 14.sp,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
-                                // Text(
-                                //   "Full",
-                                //   textAlign: TextAlign.left,
-                                //   style: GoogleFonts.inter(
-                                //       color: Colors.white70,
-                                //       fontSize: 14.sp,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
-                                // Text(
-                                //   "Full Cream Milk",
-                                //   textAlign: TextAlign.left,
-                                //   style: GoogleFonts.inter(
-                                //       color: Colors.white70,
-                                //       fontSize: 14.sp,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
-                                // Text(
-                                //   "Sugar X 1",
-                                //   textAlign: TextAlign.left,
-                                //   style: GoogleFonts.inter(
-                                //       color: Colors.white70,
-                                //       fontSize: 14.sp,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
                               ),
                             ),
                           ),
@@ -208,7 +184,7 @@ Future<void> orderDetailsDialog(
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            "${ceatedDate.day} ${DateFormat.MMM().format(ceatedDate)} ${ceatedDate.year} at ${ceatedDate.hour}:${ceatedDate.minute}",
+                            "${localTime.day} ${DateFormat.MMM().format(localTime)} ${localTime.year} at ${localTime.hour}:${localTime.minute}",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.inter(
                                 color: Colors.white70,

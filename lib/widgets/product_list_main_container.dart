@@ -3,10 +3,10 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/main.dart';
-import 'package:inter_coffee/provider/loginAuthProvider.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
-import '../provider/productsprovider.dart';
+import '../provider/products_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'namebar2.dart';
@@ -39,7 +39,6 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
     if (response == "token expired") {
       context.read<LoginAuthProvider>().logout();
       Navigator.pushNamedAndRemoveUntil(context, switcher, (route) => false);
-      tokenExpiredDialog(context, "Login Has Expired Please login Again");
     }
   }
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:inter_coffee/client/userApiHandler.dart';
-import 'package:inter_coffee/provider/loginhandler/loginfunctions.dart';
+import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../constants/authconst.dart';
 import '../models/products_list_model.dart';
