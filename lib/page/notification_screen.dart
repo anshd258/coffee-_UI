@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/models/notificationmodal.dart';
+import 'package:inter_coffee/models/notification_modal.dart';
 import 'package:inter_coffee/provider/notification_provider.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -72,14 +72,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
             title: Text("Notifications",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
-                    color: titleStatusBar,
+                    color: Theme.of(context).navigationBarTheme.backgroundColor,
                     letterSpacing: 0.5,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: SizedBox(
               width: 1.w,
             ),
-            backgroundColor: bgStatusBar,
+            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
             bottom: PreferredSize(
               preferredSize: Size(100.w, 6.h),
               child: Center(
@@ -100,7 +100,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               child: Text(
                                 'All($numberofnotification)',
                                 style: GoogleFonts.inter(
-                                    color: titleStatusBar,
+                                    color: Theme.of(context).navigationBarTheme.backgroundColor,
                                     decoration: TextDecoration.underline,
                                     fontSize: 17.sp,
                                     fontWeight: FontWeight.w500,

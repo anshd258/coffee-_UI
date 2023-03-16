@@ -6,7 +6,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/order_history_screen_tiles.dart';
 import 'package:provider/provider.dart';
-import '../provider/OrderHistory_provider.dart';
+import '../provider/order_history_provider.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});
@@ -58,7 +58,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
             title: Text("Order List",
                 textAlign: TextAlign.start,
                 style:
-                    GoogleFonts.inter(color: titleStatusBar, fontSize: 17.sp)),
+                    GoogleFonts.inter(color: Theme.of(context).navigationBarTheme.backgroundColor, fontSize: 17.sp)),
             leading: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
@@ -66,10 +66,10 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               child: Image.asset(
                 "assets/ICONS/arrow3.png",
                 scale: 3,
-                color: titleStatusBar,
+                color: Theme.of(context).navigationBarTheme.backgroundColor,
               ),
             ),
-            backgroundColor: bgStatusBar,
+            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Stack(
             children: [

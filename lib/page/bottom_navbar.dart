@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inter_coffee/page/Admin/orders.dart';
+
+import 'package:inter_coffee/page/Admin/priority_table.dart';
 import 'package:inter_coffee/page/cart_screen.dart';
 import 'package:inter_coffee/page/product_screen.dart';
 import 'package:inter_coffee/page/profile_screen.dart';
@@ -36,7 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ] else if (id == 5) ...[
           const MerchantHomeScreen(),
         ] else if (id == 6) ...[
-          const AllOrdersTable()
+          const PriorityTable()
         ],
         Positioned(
           bottom: -0.5.h,

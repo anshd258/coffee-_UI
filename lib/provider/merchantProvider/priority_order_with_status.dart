@@ -7,7 +7,7 @@ import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 import '../../models/order_details_model.dart';
 
 import 'package:http/http.dart' as http;
-import '../../constants/authconst.dart';
+import '../../constants/auth_const.dart';
 
 class PriorityOrderProvider with ChangeNotifier {
   List<OrderDetails>? priorityOrders;

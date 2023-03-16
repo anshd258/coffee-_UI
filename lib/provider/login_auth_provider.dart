@@ -7,7 +7,7 @@ import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/login_model.dart';
 
 import 'loginhandler/login_functions.dart';
-import '../constants/authconst.dart';
+import '../constants/auth_const.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -88,20 +88,17 @@ class LoginAuthProvider with ChangeNotifier {
      // print(loadedData);
       if (response.statusCode == 200) {
         final session = loginStorage();
-        // await setRole("merchant");
-        // isAdmin = true;
+
         if (loadedData['role'] == 'MERCHANT') {
           isAdmin = true;
           session.role = "merchant";
           notifyListeners();
         } else if (loadedData['role'] == 'ADMIN') {
           isAdmin = true;
-
           session.role = "admin";
           notifyListeners();
         } else if (loadedData['role'] == 'USER') {
           isAdmin = false;
-
           session.role = "user";
           notifyListeners();
         }
@@ -154,7 +151,10 @@ class LoginAuthProvider with ChangeNotifier {
     final data = loginhandler().getData();
     if (data != null) {
       role = data.role;
-      //print(role);
+      if( role == 'merchant' || role == 'admin' ) {
+        isAdmin = true;
+      }
+      print(role);
       accessToken = data.token;
     //  print(accessToken);
       phoneNumber = data.phonenumber;

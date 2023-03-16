@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/models/notificationmodal.dart';
+import 'package:inter_coffee/models/notification_modal.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

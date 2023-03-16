@@ -1,12 +1,28 @@
 import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/OrderHistory_provider.dart';
+import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 
 import 'package:inter_coffee/provider/reports_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
+import 'package:inter_coffee/widgets/Admin/admin_report_datetime_widgte.dart';
+import 'package:inter_coffee/widgets/Admin/date_time_picker_method.dart';
+import 'package:inter_coffee/widgets/Admin/jsontable-column_builder_without_time.dart';
+import 'package:inter_coffee/widgets/Admin/jsontable_column_builder_with_timme.dart';
+import 'package:inter_coffee/widgets/Admin/no_data_container.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
+import 'package:inter_coffee/widgets/Admin/to_datetime_setter_method.dart';
+import 'package:inter_coffee/widgets/Merchant/Table_cell_builder.dart';
+import 'package:inter_coffee/widgets/Merchant/header_container.dart';
+import 'package:inter_coffee/widgets/Merchant/merchant_create_order_widget.dart';
+import 'package:inter_coffee/widgets/Merchant/on_row_select_viewmore_method.dart';
+import 'package:inter_coffee/widgets/Merchant/order_Table_row_select.dart';
+import 'package:inter_coffee/widgets/Merchant/order_state_setter-method.dart';
+import 'package:inter_coffee/widgets/Merchant/order_table_row_selection.dart';
+import 'package:inter_coffee/widgets/Merchant/viewMoreContainer.dart';
+import 'package:inter_coffee/widgets/Merchant/view_more_widget.dart';
+import 'package:inter_coffee/widgets/loaderWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/Admin/reports_table.dart';
@@ -29,46 +45,57 @@ class PriorityTable extends StatefulWidget {
 }
 
 class _PriorityTableState extends State<PriorityTable> {
-  void getPlacedOrdersList() async {
-    await getOrdersPlaced();
-  }
-
   @override
   void initState() {
-    getPlacedOrdersList();
     context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
 
     super.initState();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void setTappedIndex(int index) {
+    setState(() {
+      tappedIndex = index;
+    });
+  }
+
+  void setLoader() {
+    setState(() {
+      isSelect = true;
+    });
+  }
+
+  void setloaderfalse() {
+    setState(() {
+      isSelect = false;
+    });
   }
 
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
 
-  final String json1 =
-      '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
+  // final String json1 =
+  //     '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
 
-  final String json2 =
-      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
+  // final String json2 =
+  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
 
-  final String json3 =
-      '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
+  // final String json3 =
+  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
 
-  final List<Map<String, dynamic>> json5 = [
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-    {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
-  ];
+  // final List<Map<String, dynamic>> json5 = [
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
+  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
+  // ];
   int tappedIndex = 0;
+  void setid(String Id) {
+    id = Id;
+  }
 
   List<String> filterList = [
     "New Orders",
     "Order Confirmed",
-    "Orders Progress",
+    // "Orders Progress",
     "Order Ready for Pick Up",
     "Completed Orders",
     "Cancelled"
@@ -76,35 +103,54 @@ class _PriorityTableState extends State<PriorityTable> {
   bool isSelected = false;
   bool isSelect = false;
   String id = "";
+  void setIdNull() {
+    id = "";
+  }
+
+  void toDateSetter(DateTime time  ) {
+    setState(() {
+      todate = DateFormat("yyyy-MM-dd").format(time);
+      // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
+      context
+          .read<ReportsProvider>()
+          .fetchReports(fromdate.toString(), todate.toString());
+    });
+  }
+
+  void fromDateSetter(DateTime time) {
+    setState(() {
+      fromdate = DateFormat("yyyy-MM-dd").format(time);
+      // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final role = context.watch<LoginAuthProvider>().role;
 
     final List<dynamic>? data =
         context.watch<TablePriorityProvider>().orderJsonTableData;
-    if (role == 'admin') {
-      tappedIndex = 6;
-    }
-    String headerVal = "";
-    var json = jsonDecode(json1);
-    List<dynamic> callRightJSON(ta8ppedIndex) {
-      switch (tappedIndex) {
-        case 0:
-          json = jsonDecode(json1);
-          break;
-        case 1:
-          json = jsonDecode(json2);
-          break;
-        case 2:
-          json = jsonDecode(json3);
-          break;
 
-        default:
-          json = jsonDecode(json1);
-          break;
-      }
-      return json;
-    }
+    String headerVal = "";
+    // var json = jsonDecode(json1);
+    // List<dynamic> callRightJSON(ta8ppedIndex) {
+    //   switch (tappedIndex) {
+    //     case 0:
+    //       json = jsonDecode(json1);
+    //       break;
+    //     case 1:
+    //       json = jsonDecode(json2);
+    //       break;
+    //     case 2:
+    //       json = jsonDecode(json3);
+    //       break;
+
+    //     default:
+    //       json = jsonDecode(json1);
+    //       break;
+    //   }
+    //   return json;
+    // }
 
     return Container(
       height: 100.h,
@@ -171,54 +217,7 @@ class _PriorityTableState extends State<PriorityTable> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (role == 'merchant') ...[
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      context.read<routing>().settingRoute(6);
-                                    },
-                                    child: SizedBox(
-                                      width: 35.w,
-                                      child: DecoratedBox(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: const Color.fromRGBO(
-                                              77, 68, 64, 0.36),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: (1.h) / 2,
-                                              horizontal: 1.w),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              SizedBox(
-                                                  width: 3.h,
-                                                  height: 3.h,
-                                                  child: Image.asset(
-                                                    "assets/coffee_cup.png",
-                                                    fit: BoxFit.fill,
-                                                  )),
-                                              Text(
-                                                "Create Orders",
-                                                textAlign: TextAlign.start,
-                                                style: GoogleFonts.inter(
-                                                    color: white,
-                                                    fontSize: 14.sp,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                const merchant_create_order_widget(),
                               ],
                               SizedBox(
                                 height: 2.h,
@@ -233,57 +232,13 @@ class _PriorityTableState extends State<PriorityTable> {
                                         (BuildContext context, int index) {
                                       return GestureDetector(
                                         onTap: () {
-                                          setState(() {
-                                            if (index == 0) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders("ORDER_PLACED");
-                                            } else if (index == 1) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders("ORDER_CONFIRMED");
-                                            } else if (index == 2) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders(
-                                                      "ORDER_IN_PROGRESS");
-                                            } else if (index == 3) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders(
-                                                      "ORDER_READY_FOR_PICKUP");
-                                            } else if (index == 4) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders("ORDER_COMPLETED");
-                                            } else if (index == 5) {
-                                              context
-                                                  .read<TablePriorityProvider>()
-                                                  .getOrders("ORDER_CANCELLED");
-                                            }
-                                            tappedIndex = index;
-                                            // json = jsonDecode(json4);
-                                          });
+                                          orderTableRowSelection(
+                                              index, context, setTappedIndex);
+                                          // setTappedIndex(index);
+                                          // json = jsonDecode(json4);
                                         },
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          height: 4.h,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 2.w),
-                                          margin: EdgeInsets.only(right: 2.w),
-                                          color: tappedIndex == index
-                                              ? const Color.fromRGBO(
-                                                  36, 36, 36, 0.7)
-                                              : Colors.transparent,
-                                          child: Text(
-                                            filterList[index].toString(),
-                                            textAlign: TextAlign.start,
-                                            style: GoogleFonts.inter(
-                                                color: white,
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
+                                        child: rowContainer(
+                                            index, tappedIndex, filterList),
                                       );
                                     },
                                   ),
@@ -292,7 +247,7 @@ class _PriorityTableState extends State<PriorityTable> {
                               SizedBox(
                                 height: 2.h,
                               ),
-                              if (tappedIndex == 6) ...[
+                              if (role == 'admin') ...[
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -306,65 +261,10 @@ class _PriorityTableState extends State<PriorityTable> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        DatePicker.showDatePicker(
-                                          context,
-                                          onConfirm: ((time) {
-                                            setState(() {
-                                              fromdate =
-                                                  DateFormat("yyyy-MM-dd")
-                                                      .format(time);
-                                              // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
-                                            });
-                                          }),
-                                          currentTime: DateTime.now(),
-                                          theme: DatePickerTheme(
-                                            backgroundColor: Colors.transparent,
-                                            cancelStyle: GoogleFonts.inter(
-                                                color:
-                                                    Colors.redAccent.shade400,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                            doneStyle: GoogleFonts.inter(
-                                                color:
-                                                    Colors.greenAccent.shade700,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                            itemStyle: GoogleFonts.inter(
-                                                color: Colors.white,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        );
+                                        dateTimeMethod(context, fromDateSetter);
                                       },
-                                      child: Container(
-                                        height: 3.h,
-                                        width: 30.w,
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 3.w),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              fromdate,
-                                              textAlign: TextAlign.start,
-                                              style: GoogleFonts.inter(
-                                                  color: Colors.grey.shade600,
-                                                  fontSize: 13.5.sp,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            Icon(
-                                              Icons.calendar_month_outlined,
-                                              color: Colors.grey.shade600,
-                                              size: 19.sp,
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                      child: DateDisplayAdminReports(
+                                          fromdate: fromdate),
                                     ),
                                     Text(
                                       'To',
@@ -376,71 +276,11 @@ class _PriorityTableState extends State<PriorityTable> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        DatePicker.showDatePicker(
-                                          context,
-                                          onConfirm: ((time) {
-                                            setState(() {
-                                              todate = DateFormat("yyyy-MM-dd")
-                                                  .format(time);
-                                              // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
-                                              context
-                                                  .read<ReportsProvider>()
-                                                  .fetchReports(
-                                                      fromdate.toString(),
-                                                      todate.toString());
-                                            });
-                                          }),
-                                          currentTime: DateTime.now(),
-                                          theme: DatePickerTheme(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    30, 0, 0, 0),
-                                            cancelStyle: GoogleFonts.inter(
-                                                color:
-                                                    Colors.redAccent.shade400,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                            doneStyle: GoogleFonts.inter(
-                                                color:
-                                                    Colors.greenAccent.shade700,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                            itemStyle: GoogleFonts.inter(
-                                                color: Colors.white,
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        );
+                                        dateTimeMethod(context, toDateSetter);
+                                        // dateTimeSetterTo(context, toDateSetter);
                                       },
-                                      child: Container(
-                                        height: 3.h,
-                                        width: 30.w,
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 3.w),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              todate,
-                                              textAlign: TextAlign.start,
-                                              style: GoogleFonts.inter(
-                                                  color: Colors.grey.shade600,
-                                                  fontSize: 13.5.sp,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            Icon(
-                                              Icons.calendar_month_outlined,
-                                              color: Colors.grey.shade600,
-                                              size: 19.sp,
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                      child: DateDisplayAdminReports(
+                                          fromdate: todate),
                                     )
                                   ],
                                 )
@@ -448,425 +288,81 @@ class _PriorityTableState extends State<PriorityTable> {
                               SizedBox(
                                 height: 2.h,
                               ),
-                              if (tappedIndex <= 5 && data != null) ...[
-                                data.isEmpty
-                                    ? Container(
-                                        width: 100.w,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "No Data Avilabe",
-                                          style: GoogleFonts.quicksand(
-                                              fontSize: 17.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.white70),
-                                        ))
-                                    : SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          children: [
-                                            JsonTable(
-                                              // json = callRightJSON(tappedIndex),
-                                              data,
-                                              // onRowSelect: (index, map) {
-                                              //   ConfirmDialog(context, map);
-                                              // },
-                                              columns: tappedIndex == 1 ||
-                                                      tappedIndex == 2
-                                                  ? [
-                                                      JsonTableColumn(
-                                                        'createdDate',
-                                                        defaultValue: null,
-                                                        label: "Date",
-                                                        valueBuilder: (value) {
-                                                          final createddate =
-                                                              DateTime.parse(
-                                                                  value);
-                                                          final utcTime =
-                                                              DateTime.utc(
-                                                                  createddate
-                                                                      .year,
-                                                                  createddate
-                                                                      .month,
-                                                                  createddate
-                                                                      .day,
-                                                                  createddate
-                                                                      .hour,
-                                                                  createddate
-                                                                      .minute,
-                                                                  createddate
-                                                                      .second);
-                                                          final localTime =
-                                                              utcTime.toLocal();
-                                                          return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                                        },
-                                                      ),
-                                                      JsonTableColumn('orderNo',
-                                                          defaultValue: null,
-                                                          valueBuilder:
-                                                              (value) {
-                                                        if (value == null ||
-                                                            value == "null" ||
-                                                            value == "") {
-                                                          return "No Data Available";
-                                                        }
-                                                        return value.toString();
-                                                      }, label: "Order No"),
-                                                      JsonTableColumn(
-                                                          'userId.name',
-                                                          defaultValue: null,
-                                                          label: "Order By"),
-                                                      JsonTableColumn(
-                                                          'currentState',
-                                                          defaultValue: null,
-                                                          label:
-                                                              "Order Status"),
-                                                      JsonTableColumn(
-                                                          'next_state_est_time',
-                                                          defaultValue: null,
-                                                          valueBuilder:
-                                                              (value) {
-                                                        if (value == "" ||
-                                                            value == null ||
-                                                            value == "null") {
-                                                          return "No Data Available";
-                                                        }
-                                                        final createdDate = DateTime.parse(value);
-                                                        final utcTime = DateTime.utc(
-                                                            createdDate.year,
-                                                            createdDate.month,
-                                                            createdDate.day,
-                                                            createdDate.hour,
-                                                            createdDate.minute,
-                                                            createdDate.second);
-                                                        final localTime = utcTime.toLocal();
-                                                        final currentTime = DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, DateTime.now().second);
-                                                        final leftTime = currentTime.difference(localTime);
-                                                        if( leftTime.inMinutes > 15 ) {
-                                                          return "Over Due";
-                                                        } else {
-                                                          return (15-leftTime.inMinutes).toString();
-                                                        }
-                                                      },
-                                                          label:
-                                                              "Estimated Time"),
-                                                    ]
-                                                  : [
-                                                      JsonTableColumn(
-                                                        'createdDate',
-                                                        defaultValue: null,
-                                                        label: "Date",
-                                                        valueBuilder: (value) {
-                                                          final createddate =
-                                                              DateTime.parse(
-                                                                  value);
-                                                          final utcTime =
-                                                              DateTime.utc(
-                                                                  createddate
-                                                                      .year,
-                                                                  createddate
-                                                                      .month,
-                                                                  createddate
-                                                                      .day,
-                                                                  createddate
-                                                                      .hour,
-                                                                  createddate
-                                                                      .minute,
-                                                                  createddate
-                                                                      .second);
-                                                          final localTime =
-                                                              utcTime.toLocal();
-                                                          return "${localTime.month}/${localTime.year.toString().substring(2)}";
-                                                        },
-                                                      ),
-                                                      JsonTableColumn('orderNo',
-                                                          defaultValue: null,
-                                                          valueBuilder:
-                                                              (value) {
-                                                        if (value == null ||
-                                                            value == "null" ||
-                                                            value == "") {
-                                                          return "No Data Available";
-                                                        }
-                                                        return value.toString();
-                                                      }, label: "Order No"),
-                                                      JsonTableColumn(
-                                                          'userId.name',
-                                                          defaultValue: null,
-                                                          label: "Order By"),
-                                                      JsonTableColumn(
-                                                          'currentState',
-                                                          defaultValue: null,
-                                                          label:
-                                                              "Order Status"),
-                                                      // JsonTableColumn('orderId',
-                                                      //     defaultValue: null,
-                                                      //     label: "Order Details"),
-                                                    ],
-                                              tableHeaderBuilder: (header) {
-                                                headerVal = header.toString();
-                                                return Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
-                                                  decoration: BoxDecoration(
-                                                    color: tableBlack,
-                                                    border: Border.all(
-                                                        color: borderWhite),
-                                                  ),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Center(
-                                                      child: Text(
-                                                        header.toString(),
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            GoogleFonts.inter(
-                                                                color: white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              allowRowHighlight: true,
-                                              onRowSelect: (index, map) {
-                                                id = map['orderId'];
-                                                isSelected = true;
-                                                if (tappedIndex == 0) {
-                                                  if (id.isNotEmpty &&
-                                                      isSelected == true) {
-                                                    orderETADialog(context, id,
-                                                        'priority');
-                                                    isSelected = false;
-                                                    id = '';
-                                                  }
-                                                } else if (tappedIndex == 1) {
-                                                  confirmationDialog(
-                                                      context,
-                                                      "Put Order In Processing",
-                                                      "ORDER_IN_PROGRESS",
-                                                      id,
-                                                      "ORDER_CONFIRMED",
-                                                      'priority');
-                                                } else if (tappedIndex == 2) {
-                                                  confirmationDialog(
-                                                      context,
-                                                      "Is The Order Brewed ",
-                                                      "ORDER_READY_FOR_PICKUP",
-                                                      id,
-                                                      "ORDER_IN_PROGRESS",
-                                                      "normal");
-                                                } else if (tappedIndex == 3) {
-                                                  confirmationDialog(
-                                                      context,
-                                                      "Is The Order Delivered? ",
-                                                      "ORDER_COMPLETED",
-                                                      id,
-                                                      "ORDER_READY_FOR_PICKUP",
-                                                      "normal");
-                                                }
-                                              },
-                                              rowHighlightColor: Colors
-                                                  .yellow[500]!
-                                                  .withOpacity(0.5),
-                                              tableCellBuilder: (value) {
-                                                return Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
-                                                  decoration: BoxDecoration(
-                                                    color: tableBlack,
-                                                    border: Border.all(
-                                                        color: borderWhite),
-                                                  ),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Center(
-                                                      child: Row(
-                                                        children: [
-                                                          Text(
-                                                            headerVal ==
-                                                                        "Order Details" ||
-                                                                    headerVal ==
-                                                                        "Order Status"
-                                                                ? ""
-                                                                : value,
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: GoogleFonts.inter(
-                                                                textStyle: headerVal == "Order Details"
-                                                                    ? const TextStyle(
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                      )
-                                                                    : null,
-                                                                color: headerVal == "Order Details"
-                                                                    ? orderDetailsGreen
-                                                                    : headerVal == "Order Status"
-                                                                        ? value != "Pending" && value != "Cancelled"
-                                                                            ? orderDetailsGreen
-                                                                            : value == "Pending"
-                                                                                ? pending
-                                                                                : value == "Cancelled"
-                                                                                    ? cancelled
-                                                                                    : white
-                                                                        : white,
-                                                                fontWeight: headerVal == "Order Details"
-                                                                    ? FontWeight.w500
-                                                                    : headerVal == "Order Status"
-                                                                        ? value != "Confirmed"
-                                                                            ? FontWeight.w500
-                                                                            : FontWeight.w400
-                                                                        : FontWeight.w400),
-                                                          ),
-                                                          headerVal ==
-                                                                  "Order Details"
-                                                              ? GestureDetector(
-                                                                  onTap: () {
-                                                                    // OrderDetailsDialog(
-                                                                    //   context,
-                                                                    // );
-                                                                  },
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                        "view More",
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .start,
-                                                                        style: GoogleFonts.inter(
-                                                                            color:
-                                                                                borderWhite,
-                                                                            decoration:
-                                                                                TextDecoration.underline,
-                                                                            fontWeight: FontWeight.w500)),
-                                                                  ),
-                                                                )
-                                                              : const Text(""),
-                                                          headerVal ==
-                                                                  "Order Status"
-                                                              ? Center(
-                                                                  child: Text(
-                                                                      value.toString().replaceAll(
-                                                                          RegExp(
-                                                                              r'_'),
-                                                                          ' '),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .start,
-                                                                      style: GoogleFonts.inter(
-                                                                          color: headerVal == "Order Status"
-                                                                              ? value != "ORDER_IN_PROGRESS" && value != "ORDER_CANCELLED"
-                                                                                  ? orderDetailsGreen
-                                                                                  : value == "ORDER_IN_PROGRESS"
-                                                                                      ? pending
-                                                                                      : value == "ORDER_CANCELLED"
-                                                                                          ? cancelled
-                                                                                          : white
-                                                                              : white,
-                                                                          decoration: TextDecoration.underline,
-                                                                          fontWeight: FontWeight.w500)),
-                                                                )
-                                                              : const Text("")
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                            JsonTable(
-                                              data,
-                                              columns: [
-                                                JsonTableColumn('orderId',
-                                                    defaultValue: null,
-                                                    label: "Order Details"),
-                                              ],
-                                              tableHeaderBuilder: (header) {
-                                                headerVal = header.toString();
-                                                return Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
-                                                  decoration: BoxDecoration(
-                                                    color: tableBlack,
-                                                    border: Border.all(
-                                                        color: borderWhite),
-                                                  ),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Center(
-                                                      child: Text(
-                                                        header.toString(),
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            GoogleFonts.inter(
-                                                                color: white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              allowRowHighlight: true,
-                                              onRowSelect: (index, map) {
-                                                id = map['orderId'];
-
-                                                setState(() {
-                                                  isSelect = true;
-                                                });
-                                                print(id);
-                                                if (isSelect == true) {
-                                                  context
-                                                      .read<OrderHistory>()
-                                                      .getOrderhistory(id)
-                                                      .then((value) =>
-                                                          orderDetailsDialog(
-                                                              context, value))
-                                                      .whenComplete(() {
-                                                    setState(() {
-                                                      isSelect = false;
-                                                    });
-                                                  });
-                                                }
-                                              },
-                                              rowHighlightColor: Colors
-                                                  .yellow[500]!
-                                                  .withOpacity(0.5),
-                                              tableCellBuilder: (value) {
-                                                return Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
-                                                  decoration: BoxDecoration(
-                                                    color: tableBlack,
-                                                    border: Border.all(
-                                                        color: borderWhite),
-                                                  ),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Center(
-                                                      child: Text(
-                                                        "View More",
-                                                        style: GoogleFonts.inter(
-                                                            color: Colors.white,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ],
+                              if (role == 'merchant' && data != null) ...[
+                                if (data.isEmpty)
+                                  const NoDataContainer()
+                                else
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        JsonTable(
+                                          // json = callRightJSON(tappedIndex),
+                                          data,
+                                          // onRowSelect: (index, map) {
+                                          //   ConfirmDialog(context, map);
+                                          // },
+                                          columns: tappedIndex == 1
+                                              // || tappedIndex == 2
+                                              ? JsonTableColumnBuilder
+                                              : jsonTableColumnBuilderWithtime,
+                                          tableHeaderBuilder: (header) {
+                                            headerVal = header.toString();
+                                            return headerContainer(header);
+                                          },
+                                          allowRowHighlight: true,
+                                          onRowSelect: (index, map) {
+                                            orderStateMethod(
+                                                map,
+                                                context,
+                                                setLoader,
+                                                setloaderfalse,
+                                                isSelected,
+                                                id,
+                                                setid,
+                                                tappedIndex,
+                                                setIdNull);
+                                          },
+                                          rowHighlightColor: Colors.yellow[500]!
+                                              .withOpacity(0.5),
+                                          tableCellBuilder: (value) {
+                                            return tableCellBuilder(
+                                                headerVal, value);
+                                          },
                                         ),
-                                      ),
+                                        JsonTable(
+                                          data,
+                                          columns: [
+                                            JsonTableColumn('orderId',
+                                                defaultValue: null,
+                                                label: "Order Details"),
+                                          ],
+                                          tableHeaderBuilder: (header) {
+                                            headerVal = header.toString();
+                                            return viewMoreContainer(header);
+                                          },
+                                          allowRowHighlight: true,
+                                          onRowSelect: (index, map) {
+                                            onRowSelectViewMore(
+                                                map,
+                                                context,
+                                                setLoader,
+                                                setloaderfalse,
+                                                isSelect);
+                                          },
+                                          rowHighlightColor: Colors.yellow[500]!
+                                              .withOpacity(0.5),
+                                          tableCellBuilder: (value) {
+                                            return const ViewMoreWidget();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 SizedBox(
                                   height: 8.h,
                                 )
-                              ] else if (tappedIndex > 5 && data != null) ...[
+                              ] else if (role == 'admin' && data != null) ...[
                                 Container(
                                     margin: EdgeInsets.only(bottom: 7.h),
                                     child: ReportsTable())
@@ -881,15 +377,7 @@ class _PriorityTableState extends State<PriorityTable> {
                   ),
                 ],
               ),
-              if (isSelect) ...[
-                Container(
-                  color: Colors.black38,
-                  child: const Center(
-                      child: CircularProgressIndicator.adaptive(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white70))),
-                )
-              ]
+              if (isSelect) ...[const loaderWidget()]
             ],
           ),
         ),

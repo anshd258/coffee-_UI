@@ -57,7 +57,7 @@ class _OrderCompletedScreenState extends State<OrderCompletedScreen> {
             title: Text("Order Status",
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inter(
-                    color: titleStatusBar,
+                    color: Theme.of(context).navigationBarTheme.backgroundColor,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w600)),
             leading: GestureDetector(
@@ -68,10 +68,10 @@ class _OrderCompletedScreenState extends State<OrderCompletedScreen> {
               child: Image.asset(
                 "assets/ICONS/arrow3.png",
                 scale: 3,
-                color: titleStatusBar,
+                color: Theme.of(context).navigationBarTheme.backgroundColor,
               ),
             ),
-            backgroundColor: bgStatusBar,
+            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Center(
             child: Stack(

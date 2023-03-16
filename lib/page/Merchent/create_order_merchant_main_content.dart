@@ -226,7 +226,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                   decoration: BoxDecoration(
                     // change the color here to change it to white
                     // color: Color.fromARGB(60, 0, 0, 0),
-                    color: userListBG,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                   ),
                   child: Column(
@@ -333,7 +333,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                   decoration: BoxDecoration(
                     // change the color here to change it to white
                     // color: Color.fromARGB(60, 0, 0, 0),
-                    color: userListBG,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(20)),
                   ),

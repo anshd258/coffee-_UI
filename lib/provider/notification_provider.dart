@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:inter_coffee/client/userApiHandler.dart';
 
-import 'package:inter_coffee/constants/authconst.dart';
+import 'package:inter_coffee/constants/auth_const.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
-import '../models/notificationmodal.dart';
+import '../models/notification_modal.dart';
 
 class NotificationProvider with ChangeNotifier {
   List<NotificatonModal>? notificatins;

@@ -52,7 +52,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
         Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.symmetric(vertical: 1.h),
-            color: nameBar,
+            color: Theme.of(context).secondaryHeaderColor,
             child: const Center(child: name_bar2())),
         //for padding
         isAdmin
@@ -179,7 +179,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
           child: Container(
             width: 100.w,
             decoration: BoxDecoration(
-              color: userListBG,
+              color: Theme.of(context).primaryColorLight,
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(20)),
             ),
