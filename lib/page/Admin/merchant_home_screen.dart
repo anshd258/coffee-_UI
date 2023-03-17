@@ -7,6 +7,7 @@ import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/all_order_with_status.dart';
 import 'package:inter_coffee/provider/merchantProvider/total_order_count.dart';
+import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/Admin/merchant_homescreen_row_container.dart';
 import 'package:inter_coffee/widgets/namebar2.dart';
@@ -130,16 +131,14 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
                                     title: "Priority Orders",
                                     quantity: priorityCount,
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, allOrdersTable);
+                                      context.read<routing>().settingRoute(5);
                                     },
                                   ),
                                   AdminOrderCountContainer(
                                     title: "Total Orders",
                                     quantity: totalCount,
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, allOrdersTable);
+                                      context.read<routing>().settingRoute(3);
                                     },
                                   ),
                                 ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/constants/route_constants.dart';
+import 'package:inter_coffee/provider/router.dart';
+import '';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class name_bar2 extends StatelessWidget {
     return data != null
         ? GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, profileScreen);
+             context.read<routing>().settingRoute(2);
             },
             child: SizedBox(
               width: 90.w,
