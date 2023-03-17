@@ -8,11 +8,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'provider/notificaton_handler.dart';
+import 'package:flutter/services.dart';
 
 // ...
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Hive.initFlutter();
   Hive.registerAdapter(loginStorageAdapter());
   await Hive.openBox<loginStorage>("session");
