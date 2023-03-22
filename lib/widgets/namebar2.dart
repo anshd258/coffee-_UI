@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/router.dart';
-import '';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +16,7 @@ class name_bar2 extends StatelessWidget {
     return data != null
         ? GestureDetector(
             onTap: () {
-             context.read<routing>().settingRoute(2);
+              context.read<routing>().settingRoute(2);
             },
             child: SizedBox(
               width: 90.w,
@@ -44,7 +43,8 @@ class name_bar2 extends StatelessWidget {
                             Text(
                               "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
                               style: GoogleFonts.inter(
-                                  color: Theme.of(context).dividerColor, fontSize: 14.sp),
+                                  color: Theme.of(context).dividerColor,
+                                  fontSize: 14.sp),
                             ),
                             SizedBox(
                               height: 0.3.h,

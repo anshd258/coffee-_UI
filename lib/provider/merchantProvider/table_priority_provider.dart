@@ -3,7 +3,6 @@ import 'package:inter_coffee/client/merchantApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import '../../constants/auth_const.dart';
 
 class TablePriorityProvider with ChangeNotifier {
@@ -31,17 +30,19 @@ class TablePriorityProvider with ChangeNotifier {
   }
 
   Future<void> updateOrderStatus(String timeGiven, String id) async {
-    DateTime time = DateTime.now().toUtc().add(Duration(minutes: int.parse(timeGiven)));
+    DateTime time =
+        DateTime.now().toUtc().add(Duration(minutes: int.parse(timeGiven)));
 
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
     final body = json.encode({
-          "orderId": id,
-          "orderState": "ORDER_CONFIRMED",
-          "estTime": time.toIso8601String()
-        });
-    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
+      "orderId": id,
+      "orderState": "ORDER_CONFIRMED",
+      "estTime": time.toIso8601String()
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders("ORDER_PLACED");
@@ -53,16 +54,15 @@ class TablePriorityProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
-    final body =  json.encode({
-          "orderId": id,
-          "orderState": nextstate,
-        });
-    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
+    final body = json.encode({
+      "orderId": id,
+      "orderState": nextstate,
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders(previusState);
     }
   }
-
-  
 }

@@ -6,7 +6,6 @@ import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../../models/order_details_model.dart';
 
-import 'package:http/http.dart' as http;
 import '../../constants/auth_const.dart';
 
 class PriorityOrderProvider with ChangeNotifier {
@@ -16,7 +15,7 @@ class PriorityOrderProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/getNotCompletedPriorityOrdersList";
-    final response = await  MerchantApiHandler(). getApiCall(url, accessTokken);
+    final response = await MerchantApiHandler().getApiCall(url, accessTokken);
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
       if (responseData['message'] == 'SUCCESS') {

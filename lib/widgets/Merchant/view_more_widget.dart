@@ -15,8 +15,7 @@ class ViewMoreWidget extends StatelessWidget {
       height: 5.h,
       decoration: BoxDecoration(
         color: tableBlack,
-        border: Border.all(
-            color: borderWhite),
+        border: Border.all(color: borderWhite),
       ),
       child: FittedBox(
         fit: BoxFit.contain,
@@ -24,10 +23,7 @@ class ViewMoreWidget extends StatelessWidget {
           child: Text(
             "View More",
             style: GoogleFonts.inter(
-                color: Colors.white,
-                decoration:
-                    TextDecoration
-                        .underline),
+                color: Colors.white, decoration: TextDecoration.underline),
           ),
         ),
       ),

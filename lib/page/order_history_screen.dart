@@ -57,8 +57,9 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
             leadingWidth: 14.w,
             title: Text("Order List",
                 textAlign: TextAlign.start,
-                style:
-                    GoogleFonts.inter(color: Theme.of(context).navigationBarTheme.backgroundColor, fontSize: 17.sp)),
+                style: GoogleFonts.inter(
+                    color: Theme.of(context).navigationBarTheme.backgroundColor,
+                    fontSize: 17.sp)),
             leading: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
@@ -69,7 +70,8 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                 color: Theme.of(context).navigationBarTheme.backgroundColor,
               ),
             ),
-            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
+            backgroundColor:
+                Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Stack(
             children: [

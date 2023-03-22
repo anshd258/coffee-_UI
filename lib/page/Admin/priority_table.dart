@@ -1,18 +1,12 @@
-import 'dart:convert';
-import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
-import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 
 import 'package:inter_coffee/provider/reports_provider.dart';
-import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/admin_report_datetime_widgte.dart';
 import 'package:inter_coffee/widgets/Admin/date_time_picker_method.dart';
 import 'package:inter_coffee/widgets/Admin/jsontable-column_builder_without_time.dart';
 import 'package:inter_coffee/widgets/Admin/jsontable_column_builder_with_timme.dart';
 import 'package:inter_coffee/widgets/Admin/no_data_container.dart';
-import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
-import 'package:inter_coffee/widgets/Admin/to_datetime_setter_method.dart';
 import 'package:inter_coffee/widgets/Merchant/Table_cell_builder.dart';
 import 'package:inter_coffee/widgets/Merchant/header_container.dart';
 import 'package:inter_coffee/widgets/Merchant/merchant_create_order_widget.dart';
@@ -30,11 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/widgets/Admin/confirmation_dialog.dart';
 
-import 'package:inter_coffee/widgets/Admin/order_eta_dialog.dart';
 import 'package:json_table/json_table.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PriorityTable extends StatefulWidget {
@@ -107,7 +98,7 @@ class _PriorityTableState extends State<PriorityTable> {
     id = "";
   }
 
-  void toDateSetter(DateTime time  ) {
+  void toDateSetter(DateTime time) {
     setState(() {
       todate = DateFormat("yyyy-MM-dd").format(time);
       // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";

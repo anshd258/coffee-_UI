@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:inter_coffee/client/merchantApiHandler.dart';
 import 'package:inter_coffee/client/userApiHandler.dart';
 import 'package:inter_coffee/models/merchant_create_order_modal.dart';
@@ -28,10 +27,12 @@ class CartProductsProvider with ChangeNotifier {
       priority = isPriority;
     }
     const url = "$baseurl/placeOrder";
-    Map<String, Object> postingData = priorityConverter(isPriority, currentData);
+    Map<String, Object> postingData =
+        priorityConverter(isPriority, currentData);
     print(postingData);
     final data = json.encode(postingData);
-    final response = await UserApiHandler() .postApiCall(url, accessTokken, data);
+    final response =
+        await UserApiHandler().postApiCall(url, accessTokken, data);
     print(response.statusCode);
     if (response.statusCode == 200) {
       cartData.clear();
@@ -41,14 +42,13 @@ class CartProductsProvider with ChangeNotifier {
     // print("sending data$currentData");
   }
 
-  Map<String, Object> priorityConverter(bool isPriority, List<Map<String, dynamic>> currentData) {
-      final postingData = isPriority == false
+  Map<String, Object> priorityConverter(
+      bool isPriority, List<Map<String, dynamic>> currentData) {
+    final postingData = isPriority == false
         ? {"orderProducts": currentData}
         : {"is_priority": true, "orderProducts": currentData};
     return postingData;
   }
-
-
 
   void orderAgain(List<CartModal> data) {
     cartData.addAll(data);
@@ -65,7 +65,8 @@ class CartProductsProvider with ChangeNotifier {
 
     print(postingData.toJson());
     final data = json.encode(postingData.toJson());
-    final response = await MerchantApiHandler().postApiCall(url, accessTokken, data);
+    final response =
+        await MerchantApiHandler().postApiCall(url, accessTokken, data);
     print(response.statusCode);
     if (response.statusCode == 200) {
       cartData.clear();
@@ -74,8 +75,6 @@ class CartProductsProvider with ChangeNotifier {
 
     print("sending data${postingData.toJson()}");
   }
-
-
 
   void submit() {
     cartData.add(currentproduct);

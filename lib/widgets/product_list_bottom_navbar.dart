@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:inter_coffee/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
@@ -53,7 +52,9 @@ class _ProductListScreenBottomNavBarState
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 1 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
+                  color: val == 1
+                      ? Theme.of(context).bottomAppBarTheme.surfaceTintColor
+                      : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -77,7 +78,9 @@ class _ProductListScreenBottomNavBarState
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 2 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
+                  color: val == 2
+                      ? Theme.of(context).bottomAppBarTheme.surfaceTintColor
+                      : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -101,7 +104,9 @@ class _ProductListScreenBottomNavBarState
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 3 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
+                  color: val == 3
+                      ? Theme.of(context).bottomAppBarTheme.surfaceTintColor
+                      : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,
@@ -125,7 +130,9 @@ class _ProductListScreenBottomNavBarState
               width: 10.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: val == 4 ? Theme.of(context).bottomAppBarTheme.surfaceTintColor : Colors.transparent,
+                  color: val == 4
+                      ? Theme.of(context).bottomAppBarTheme.surfaceTintColor
+                      : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 0.4,

@@ -7,7 +7,6 @@ import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/login_model.dart';
 
 import 'loginhandler/login_functions.dart';
-import '../constants/auth_const.dart';
 import '../widgets/snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +32,10 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> getOtp(String pnumber, BuildContext context) async {
     isloading = true;
     notifyListeners();
-   // print(pnumber);
+    // print(pnumber);
     try {
       final body = json.encode({"phoneNo": pnumber});
-      AuthApiHandler().otpApiCall(body)
-          .then((value) {
+      AuthApiHandler().otpApiCall(body).then((value) {
         isloading = false;
         notifyListeners();
         // print(value.body);
@@ -65,15 +63,14 @@ class LoginAuthProvider with ChangeNotifier {
     }
   }
 
- 
-
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     try {
       final fcmToken = await FirebaseMessaging.instance.getToken();
-     // print("fcm tokken ->${fcmToken!}");
+      // print("fcm tokken ->${fcmToken!}");
       isloading = true;
       notifyListeners();
-      final response = await  AuthApiHandler().loginApiCall(pnumber, fcmToken, OTP)
+      final response = await AuthApiHandler()
+          .loginApiCall(pnumber, fcmToken, OTP)
           .onError((error, stackTrace) {
         snakbarmethod(context, "error connecting the backend");
         isloading = false;
@@ -85,7 +82,7 @@ class LoginAuthProvider with ChangeNotifier {
       isloading = false;
       notifyListeners();
       final loadedData = json.decode(response.body);
-     // print(loadedData);
+      // print(loadedData);
       if (response.statusCode == 200) {
         final session = loginStorage();
 
@@ -146,21 +143,20 @@ class LoginAuthProvider with ChangeNotifier {
     }
   }
 
- 
   void autologin() async {
     final data = loginhandler().getData();
     if (data != null) {
       role = data.role;
-      if( role == 'merchant' || role == 'admin' ) {
+      if (role == 'merchant' || role == 'admin') {
         isAdmin = true;
       }
       print(role);
       accessToken = data.token;
-    //  print(accessToken);
+      //  print(accessToken);
       phoneNumber = data.phonenumber;
-     // print(phoneNumber);
+      // print(phoneNumber);
       userId = data.userId;
-    //  print(userId);
+      //  print(userId);
       notifyListeners();
     } else {
       role = null;

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
-import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
-import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/products_provider.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/product_list_lower_list_container.dart';
@@ -280,7 +278,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                   contactNo.text.isEmpty) {
                                 snakbarmethod(
                                     context, 'please fill the name & contact');
-                              }else{
+                              } else {
                                 snakbarmethod(
                                     context, 'please add products to cart');
                               }

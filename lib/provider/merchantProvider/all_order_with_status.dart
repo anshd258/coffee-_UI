@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 
-import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,7 @@ class AllOrderProvider with ChangeNotifier {
     final accessTokken = data!.token;
 
     const url = "$baseurl/getNotCompletedOrdersList";
-    final response = await MerchantApiHandler(). getApiCall(url, accessTokken);
+    final response = await MerchantApiHandler().getApiCall(url, accessTokken);
     print(response.body);
     if (response.statusCode != 200) {
       return "token expired";
@@ -40,6 +39,4 @@ class AllOrderProvider with ChangeNotifier {
     }
     return "working";
   }
-
- 
 }

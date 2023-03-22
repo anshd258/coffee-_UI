@@ -1,5 +1,3 @@
-
-
 import 'package:inter_coffee/models/order_prouct.dart';
 
 class MerchantCreateOrder {
@@ -15,20 +13,19 @@ class MerchantCreateOrder {
     if (json['orderProducts'] != null) {
       orderProducts = <CartModal>[];
       json['orderProducts'].forEach((v) {
-        orderProducts!.add(new CartModal.fromJson(v));
+        orderProducts!.add(CartModal.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phoneNumber'] = this.phoneNumber;
-    data['name'] = this.name;
-    if (this.orderProducts != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['phoneNumber'] = phoneNumber;
+    data['name'] = name;
+    if (orderProducts != null) {
       data['orderProducts'] =
-          this.orderProducts!.map((v) => v.toJson()).toList();
+          orderProducts!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
-

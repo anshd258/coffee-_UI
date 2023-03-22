@@ -21,32 +21,32 @@ class ProductsProvider with ChangeNotifier {
 
     print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";
-    
+
     final response = await UserApiHandler().getApiCall(url, accessTokken);
     if (response.statusCode != 200) {
       return "token expired";
-    }else if(response.statusCode == 200){
-       converter(response);
+    } else if (response.statusCode == 200) {
+      converter(response);
     }
-   
+
     return "working";
   }
 
   void converter(http.Response response) {
-     final responseData = json.decode(response.body);
-    
-        final List<ProductList> loadedorders = [];
-        final loadData = responseData['data'] as List<dynamic>;
-    
-        for (var element in loadData) {
-          final data = element as Map<String, dynamic>;
-    
-          loadedorders.add(ProductList.fromJson(data));
-        }
-    
-        products = loadedorders;
-        serchable = products;
-        notifyListeners();
+    final responseData = json.decode(response.body);
+
+    final List<ProductList> loadedorders = [];
+    final loadData = responseData['data'] as List<dynamic>;
+
+    for (var element in loadData) {
+      final data = element as Map<String, dynamic>;
+
+      loadedorders.add(ProductList.fromJson(data));
+    }
+
+    products = loadedorders;
+    serchable = products;
+    notifyListeners();
   }
 
   void searchData(String info) {

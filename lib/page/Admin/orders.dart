@@ -1,13 +1,10 @@
-import 'dart:convert';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
-import 'package:inter_coffee/provider/reports_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import '../../widgets/Admin/reports_table.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -16,7 +13,6 @@ import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/widgets/Admin/confirmation_dialog.dart';
 import 'package:inter_coffee/widgets/Admin/order_eta_dialog.dart';
 import 'package:json_table/json_table.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllOrdersTable extends StatefulWidget {
@@ -276,7 +272,6 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                   ),
                                 ),
                               ],
-                                
                               SizedBox(
                                 height: 2.h,
                               ),

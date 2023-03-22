@@ -53,7 +53,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Theme.of(context).navigationBarTheme.backgroundColor,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w500)),
-            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
+            backgroundColor:
+                Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Center(
               child: Column(

@@ -79,7 +79,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
             leading: SizedBox(
               width: 1.w,
             ),
-            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
+            backgroundColor:
+                Theme.of(context).navigationBarTheme.surfaceTintColor,
             bottom: PreferredSize(
               preferredSize: Size(100.w, 6.h),
               child: Center(
@@ -100,7 +101,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               child: Text(
                                 'All($numberofnotification)',
                                 style: GoogleFonts.inter(
-                                    color: Theme.of(context).navigationBarTheme.backgroundColor,
+                                    color: Theme.of(context)
+                                        .navigationBarTheme
+                                        .backgroundColor,
                                     decoration: TextDecoration.underline,
                                     fontSize: 17.sp,
                                     fontWeight: FontWeight.w500,

@@ -71,7 +71,8 @@ class _OrderCompletedScreenState extends State<OrderCompletedScreen> {
                 color: Theme.of(context).navigationBarTheme.backgroundColor,
               ),
             ),
-            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
+            backgroundColor:
+                Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Center(
             child: Stack(

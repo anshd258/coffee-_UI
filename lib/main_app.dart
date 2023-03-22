@@ -3,7 +3,6 @@ import 'package:inter_coffee/constants/listOfProviders.dart';
 import 'package:inter_coffee/constants/routes.dart';
 import 'package:inter_coffee/main.dart';
 
-
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -25,9 +24,9 @@ class MainApp extends StatelessWidget {
                 dividerColor: const Color.fromARGB(255, 182, 182, 182),
                 hintColor: const Color.fromARGB(160, 255, 255, 255),
                 bottomAppBarTheme: const BottomAppBarTheme(
-                  color:  Colors.black38,
+                  color: Colors.black38,
                   surfaceTintColor: Colors.black38,
-                ), 
+                ),
                 cardColor: const Color.fromARGB(70, 255, 255, 255),
                 navigationBarTheme: const NavigationBarThemeData(
                   backgroundColor: Colors.white,
@@ -40,9 +39,8 @@ class MainApp extends StatelessWidget {
                 dividerColor: const Color.fromRGBO(58, 23, 23, 1),
                 hintColor: const Color.fromRGBO(58, 23, 23, 1),
                 bottomAppBarTheme: const BottomAppBarTheme(
-                  color:  Color.fromRGBO(62, 36, 21, 0.5),
-                  surfaceTintColor: Color.fromRGBO(62, 36, 21, 1)
-                ), 
+                    color: Color.fromRGBO(62, 36, 21, 0.5),
+                    surfaceTintColor: Color.fromRGBO(62, 36, 21, 1)),
                 cardColor: Colors.white,
                 navigationBarTheme: const NavigationBarThemeData(
                   backgroundColor: Color.fromRGBO(58, 23, 23, 1),

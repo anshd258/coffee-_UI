@@ -65,9 +65,11 @@ class _CartScreenState extends State<CartScreen> {
             leading: SizedBox(width: 1.w),
             title: Text("Swift Café ",
                 textAlign: TextAlign.start,
-                style:
-                    GoogleFonts.inter(color: Theme.of(context).navigationBarTheme.backgroundColor, fontSize: 18.sp)),
-            backgroundColor: Theme.of(context).navigationBarTheme.surfaceTintColor,
+                style: GoogleFonts.inter(
+                    color: Theme.of(context).navigationBarTheme.backgroundColor,
+                    fontSize: 18.sp)),
+            backgroundColor:
+                Theme.of(context).navigationBarTheme.surfaceTintColor,
           ),
           body: Center(
             child: Stack(

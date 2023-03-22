@@ -5,7 +5,6 @@ import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../../models/order_details_model.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import '../../constants/auth_const.dart';
 
@@ -39,12 +38,13 @@ class TableWithStatusProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
-    final body =  json.encode({
-          "orderId": id,
-          "orderState": "ORDER_CONFIRMED",
-          "estTime": time.toIso8601String()
-        });
-    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
+    final body = json.encode({
+      "orderId": id,
+      "orderState": "ORDER_CONFIRMED",
+      "estTime": time.toIso8601String()
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders("ORDER_PLACED");
@@ -57,10 +57,11 @@ class TableWithStatusProvider with ChangeNotifier {
     final accessTokken = data!.token;
     const url = "$baseurl/updateOrderStatus";
     final body = json.encode({
-          "orderId": id,
-          "orderState": nextstate,
-        });
-    final response = await MerchantApiHandler().putApiCall(url, accessTokken, body);
+      "orderId": id,
+      "orderState": nextstate,
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       getOrders(previusState);

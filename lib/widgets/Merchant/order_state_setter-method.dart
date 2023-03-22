@@ -14,8 +14,6 @@ void orderStateMethod(
     Function setid,
     int tappedIndex,
     Function setIdNull) {
-  
-
   if (tappedIndex == 0) {
     setLoader();
     orderETADialog(context, map['orderId'], 'priority').then((value) {

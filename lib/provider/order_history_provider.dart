@@ -4,7 +4,6 @@ import 'package:inter_coffee/client/userApiHandler.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 import '../constants/auth_const.dart';
@@ -25,8 +24,8 @@ class OrderHistory with ChangeNotifier {
     const url = '$baseurl/orderHistory';
     isloading = true;
     notifyListeners();
-       
-    final response = await  UserApiHandler().getApiCall(url, accessTokken);
+
+    final response = await UserApiHandler().getApiCall(url, accessTokken);
     isloading = false;
 
     final responseData = json.decode(response.body) as Map<String, dynamic>;
@@ -37,7 +36,7 @@ class OrderHistory with ChangeNotifier {
   }
 
   void converter(Map<String, dynamic> responseData) {
-       print("OrderHistoryProvider -> sucess");
+    print("OrderHistoryProvider -> sucess");
     final loadedData = responseData['data'] as List<dynamic>;
     // print(loadedData.toString());
     print("LoadedData length -> ${loadedData.length}");
@@ -52,7 +51,6 @@ class OrderHistory with ChangeNotifier {
     }
     print("OrderList length -> ${_orderList!.length}");
   }
-
 
   Future<OrderHistoryModel> getOrderhistory(String id) async {
     final data = loginhandler().getData();
@@ -75,6 +73,4 @@ class OrderHistory with ChangeNotifier {
       throw ("error connecting the network");
     }
   }
-
- 
 }

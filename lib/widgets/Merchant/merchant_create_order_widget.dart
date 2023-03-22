@@ -22,20 +22,15 @@ class merchant_create_order_widget extends StatelessWidget {
           width: 35.w,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.circular(5),
-              color: const Color.fromRGBO(
-                  77, 68, 64, 0.36),
+              borderRadius: BorderRadius.circular(5),
+              color: const Color.fromRGBO(77, 68, 64, 0.36),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: (1.h) / 2,
-                  horizontal: 1.w),
+              padding:
+                  EdgeInsets.symmetric(vertical: (1.h) / 2, horizontal: 1.w),
               child: Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                crossAxisAlignment:
-                    CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                       width: 3.h,
@@ -50,8 +45,7 @@ class merchant_create_order_widget extends StatelessWidget {
                     style: GoogleFonts.inter(
                         color: white,
                         fontSize: 14.sp,
-                        fontWeight:
-                            FontWeight.w500),
+                        fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

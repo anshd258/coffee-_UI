@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:inter_coffee/client/adminApiHandler.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
-import '../constants/auth_const.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,8 +17,8 @@ class ReportsProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
 
-    http.StreamedResponse response =
-        await AdminApiHandler().repoortsApiHandler(accessTokken, startDate, endDate);
+    http.StreamedResponse response = await AdminApiHandler()
+        .repoortsApiHandler(accessTokken, startDate, endDate);
 
     if (response.statusCode == 200) {
       await converter(response);
@@ -56,7 +55,7 @@ class ReportsProvider with ChangeNotifier {
   }
 
   Future<void> converter(http.StreamedResponse response) async {
-     final data = await response.stream.bytesToString();
+    final data = await response.stream.bytesToString();
     final decodedData = json.decode(data);
     print(decodedData['data']);
     reportsData = decodedData['data'] as List<dynamic>;

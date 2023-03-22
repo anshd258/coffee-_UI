@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:inter_coffee/client/userApiHandler.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
@@ -25,12 +24,10 @@ class MyData with ChangeNotifier {
   }
 
   void convverter(Map<String, dynamic> decodedData) {
-      orderState = decodedData['data']['orderState'];
+    orderState = decodedData['data']['orderState'];
     print("this is state -> $orderState");
     estTime = decodedData['data']['estTime'];
   }
-
-
 
   void clearPrevoiusStatus() {
     Future.delayed(

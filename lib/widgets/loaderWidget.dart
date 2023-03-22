@@ -11,9 +11,7 @@ class loaderWidget extends StatelessWidget {
       color: Colors.black38,
       child: const Center(
           child: CircularProgressIndicator.adaptive(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Colors.white70))),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white70))),
     );
   }
 }
-
