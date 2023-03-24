@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
-import 'package:inter_coffee/client/userApiHandler.dart';
+import 'package:inter_coffee/client/user_api_handler.dart';
 import 'package:inter_coffee/models/user_details_model.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';

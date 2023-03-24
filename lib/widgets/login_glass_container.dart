@@ -3,6 +3,7 @@ import 'package:flutter_glow/flutter_glow.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'swift_cafe_text.dart';
@@ -16,6 +17,7 @@ class LoginGlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GlassContainer.frostedGlass(
       //inner glass container
       height: 88.h,
@@ -69,6 +71,7 @@ class LoginGlassContainer extends StatelessWidget {
             controller: ctr,
             style: const TextStyle(color: Colors.white),
             cursorColor: Colors.white,
+            keyboardType: TextInputType.phone,
             decoration: InputDecoration(
               enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -92,7 +95,9 @@ class LoginGlassContainer extends StatelessWidget {
           // login button
           GestureDetector(
             onTap: () {
-              context.read<LoginAuthProvider>().getOtp(ctr.text, context);
+              if( context.read<LoginAuthProvider>().verifyPhoneNumber(ctr.text, context) ) {
+                context.read<LoginAuthProvider>().getOtp(ctr.text, context);
+              }
             },
             child: Container(
               height: 7.7.h,

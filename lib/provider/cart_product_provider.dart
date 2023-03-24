@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:inter_coffee/client/merchantApiHandler.dart';
-import 'package:inter_coffee/client/userApiHandler.dart';
+import 'package:inter_coffee/client/merchant_api_handler.dart';
+import 'package:inter_coffee/client/user_api_handler.dart';
 import 'package:inter_coffee/models/merchant_create_order_modal.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/constants/auth_const.dart';

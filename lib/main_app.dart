@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inter_coffee/constants/listOfProviders.dart';
+import 'package:inter_coffee/constants/list_of_providers.dart';
 import 'package:inter_coffee/constants/routes.dart';
 import 'package:inter_coffee/main.dart';
 

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
-import 'package:inter_coffee/client/authApiHandler.dart';
+import 'package:inter_coffee/client/auth_api_handler.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/loginhandler/login_model.dart';
 
@@ -27,6 +27,22 @@ class LoginAuthProvider with ChangeNotifier {
 
   get getColor {
     return isAdmin;
+  }
+
+  bool verifyPhoneNumber( String phoneNumber, BuildContext context ) {
+    bool ans = false;
+
+    if( phoneNumber.length > 10 ) {
+      snakbarmethod(context, "Enter a Phone Number not greater than 10 digits");
+    }
+    else if( phoneNumber.length < 10 ) {
+      snakbarmethod(context, "Enter a Phone Number not smaller than 10 digits");
+    }
+    else if( phoneNumber.length == 10 ) {
+      ans = true;
+    }
+
+    return ans;
   }
 
   Future<void> getOtp(String pnumber, BuildContext context) async {

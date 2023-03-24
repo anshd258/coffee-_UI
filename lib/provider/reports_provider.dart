@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'dart:convert';
 
-import 'package:inter_coffee/client/adminApiHandler.dart';
+import 'package:inter_coffee/client/admin_api_handler.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
 
 

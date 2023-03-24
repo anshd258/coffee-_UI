@@ -6,7 +6,7 @@ import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
 import 'package:inter_coffee/page/Merchent/choice_filling_merchant.dart';
 import 'package:inter_coffee/page/Merchent/create_order_merchant.dart';
-import 'package:inter_coffee/page/Switcher.dart';
+import 'package:inter_coffee/page/switcher.dart';
 import 'package:inter_coffee/page/bottom_navbar.dart';
 import 'package:inter_coffee/page/delivery_status.dart';
 import 'package:inter_coffee/page/notification_screen.dart';
