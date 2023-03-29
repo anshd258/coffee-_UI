@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/page/Merchent/bottom_navbar_merchant.dart';
+import 'package:inter_coffee/page/bottom_navbar.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> orderConfirmationDialog(BuildContext context) async {
+Future<void> orderConfirmationDialog( BuildContext context, String message, int route ) async {
+  final role = Provider.of<LoginAuthProvider>(context, listen: false).role;
   Future.delayed(
     const Duration(seconds: 3),
     () {
+      // context.read<routing>().settingRoute(1);
       Navigator.pop(context);
-      context.read<routing>().settingRoute(1);
+      context.read<routing>().settingRoute(route);
+      if( role == "merchant" ) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: ( BuildContext context ) => const BottomNavBarMerchant()));
+      } else {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: ( BuildContext context ) => const BottomNavBar()));
+      }
     },
   );
   return await showDialog(
@@ -72,7 +82,7 @@ Future<void> orderConfirmationDialog(BuildContext context) async {
                           Column(
                             children: [
                               Text(
-                                "Order Completed Successfully !",
+                                message,
                                 style: GoogleFonts.inter(
                                     fontSize: 17.sp,
                                     fontWeight: FontWeight.w500,

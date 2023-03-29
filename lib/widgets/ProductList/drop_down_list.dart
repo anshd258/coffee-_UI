@@ -22,7 +22,9 @@ class _DropDownSelectionState extends State<DropDownSelection> {
   Choice tempChoice = Choice();
   @override
   void initState() {
-    widget.list.insert(0, "Not Selected");
+    if( widget.list[0] != "Not Selected" ) {
+      widget.list.insert(0, "Not Selected");
+    }
     selecteditem = widget.list[0];
     tempChoice.name = widget.heading;
     tempChoice.type = "Drop_Down";
@@ -48,34 +50,6 @@ class _DropDownSelectionState extends State<DropDownSelection> {
   @override
   Widget build(BuildContext context) {
     List<String> mainList = widget.list;
-    // void cartAssigner(String text, String value) {
-    //   switch (text) {
-    //     case "choiceOfCupFilling":
-    //       Provider.of<CartProductsProvider>(context, listen: false)
-    //           .updateChoiceOfCupFilling(value);
-    //       break;
-
-    //     case "choiceOfMilk":
-    //       Provider.of<CartProductsProvider>(context, listen: false)
-    //           .updateChoiceOfMilk(value);
-    //       break;
-
-    //     case "choiceOfSugar":
-    //       Provider.of<CartProductsProvider>(context, listen: false)
-    //           .updateChoiceOfSugar(value);
-    //       break;
-
-    //     case "choiceOfSyrup":
-    //       Provider.of<CartProductsProvider>(context, listen: false)
-    //           .updateChoiceOfSyrup(value);
-    //       break;
-
-    //     case "eta":
-    //       Provider.of<CartProductsProvider>(context, listen: false)
-    //           .updateETA(value);
-    //       break;
-    //   }
-    // }
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
@@ -152,11 +126,13 @@ class _DropDownSelectionState extends State<DropDownSelection> {
           scrollbarAlwaysShow: true,
           offset: const Offset(0, 0),
           onChanged: (value) {
-            if (value != null && value != "Not Selected") setter(value);
-            // cartAssigner(widget.heading, value!);
-            setState(() {
-              selecteditem = value!;
-            });
+            if (value != null && value != "Not Selected") {
+              setter(value);
+              // cartAssigner(widget.heading, value!);
+              setState(() {
+                selecteditem = value;
+              });
+            }
           },
         ),
       ),

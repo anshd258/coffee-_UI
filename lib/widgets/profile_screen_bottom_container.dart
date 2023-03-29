@@ -141,45 +141,55 @@ class _ProfileScreenBottomContainerState
           ),
           SizedBox(
             width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      borderColor: Colors.white12,
-                      elevation: 3,
-                      shadowColor: Colors.white70,
-                      child: Image.asset("assets/ICONS/feedb2.png",
-                          color: Colors.white, scale: 0.25.h),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Send Feedback",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
+            child: GestureDetector(
+              onTap: () {
+                final Uri emailLaunchUri = Uri(
+                  scheme: 'mailto',
+                  path: 'support@trackmile.com.au',
+                );
+
+                launchUrl(emailLaunchUri);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        borderColor: Colors.white12,
+                        elevation: 3,
+                        shadowColor: Colors.white70,
+                        child: Image.asset("assets/ICONS/feedb2.png",
+                            color: Colors.white, scale: 0.25.h),
                       ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  child: Transform.rotate(
-                      angle: pi / 180 * 180,
-                      child: Image.asset(
-                        "assets/ICONS/arrow3.png",
-                        scale: 3,
-                      )),
-                ),
-              ],
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "Send Feedback",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    child: Transform.rotate(
+                        angle: pi / 180 * 180,
+                        child: Image.asset(
+                          "assets/ICONS/arrow3.png",
+                          scale: 3,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
           // Divider(

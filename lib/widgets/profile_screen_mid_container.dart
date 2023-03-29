@@ -7,6 +7,7 @@ import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreenMidContainer extends StatelessWidget {
   const ProfileScreenMidContainer({
@@ -129,49 +130,57 @@ class ProfileScreenMidContainer extends StatelessWidget {
           ],
           SizedBox(
             width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      borderColor: Colors.white12,
-                      shadowColor: Colors.white70,
-                      child: Image.asset(
-                        "assets/cup1.png",
-                        fit: BoxFit.scaleDown,
-                        scale: 1.8,
-                        color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                final Uri emailLaunchUri = Uri(
+                  scheme: 'mailto',
+                  path: 'support@trackmile.com.au',
+                );
+
+                launchUrl(emailLaunchUri);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        borderColor: Colors.white12,
+                        shadowColor: Colors.white70,
+                        child: Image.asset(
+                          "assets/cup1.png",
+                          fit: BoxFit.scaleDown,
+                          scale: 1.8,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "Help",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
+                      SizedBox(
+                        width: 3.w,
                       ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  child: Transform.rotate(
+                      Text(
+                        "Help",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Transform.rotate(
                       angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
                       )),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

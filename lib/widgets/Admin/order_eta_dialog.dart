@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:inter_coffee/widgets/Admin/confirmation_dialog.dart';
+import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import '../../provider/merchantProvider/table_priority_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:provider/provider.dart';
@@ -139,13 +141,15 @@ Future<void> orderETADialog(
                           context
                               .read<TablePriorityProvider>()
                               .updateOrderStatus(selecteditem, id);
+                              orderConfirmationDialog(context,"Order Confirmed !", 3);
                         } else {
                           context
                               .read<TableWithStatusProvider>()
                               .updateOrderStatus(selecteditem, id);
+                              orderConfirmationDialog(context,"Order Confirmed !", 3);
                         }
 
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(35.w, 3.h),
@@ -183,7 +187,7 @@ Future<void> orderETADialog(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),
                       child: Text(
-                        "Cancle Order",
+                        "Cancel Order",
                         style: GoogleFonts.inter(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w600,
