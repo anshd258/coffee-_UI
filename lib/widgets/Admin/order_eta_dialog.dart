@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:inter_coffee/widgets/Admin/confirmation_dialog.dart';
 import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import '../../provider/merchantProvider/table_priority_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
