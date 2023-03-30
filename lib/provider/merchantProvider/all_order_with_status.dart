@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 
-
 import 'package:flutter/material.dart';
 
 List<dynamic> jsonToDecode = [];

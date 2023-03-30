@@ -39,9 +39,11 @@ class _ChoiceFillingHighPriorityButtonState
           onPressed: () {
             if (currentcChoices.isNotEmpty &&
                 currentcChoices.length == checkerlength) {
-              Provider.of<CartProductsProvider>(context, listen: false).setCartData();
-              Provider.of<CartProductsProvider>(context, listen: false).submit();
-              orderConfirmationDialog(context,"Order Added to Cart !",1);
+              Provider.of<CartProductsProvider>(context, listen: false)
+                  .setCartData();
+              Provider.of<CartProductsProvider>(context, listen: false)
+                  .submit();
+              orderConfirmationDialog(context, "Order Added to Cart !", 1);
               // Navigator.pop(context);
             } else {
               snakbarmethod(context, "Please Select All The Choices");

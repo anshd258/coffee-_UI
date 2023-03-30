@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 
-Future<void> orderConfirmationDialog( BuildContext context, String message, int route ) async {
+Future<void> orderConfirmationDialog(
+    BuildContext context, String message, int route) async {
   final role = Provider.of<LoginAuthProvider>(context, listen: false).role;
   Future.delayed(
     const Duration(seconds: 3),
@@ -17,10 +18,17 @@ Future<void> orderConfirmationDialog( BuildContext context, String message, int 
       // context.read<routing>().settingRoute(1);
       Navigator.pop(context);
       context.read<routing>().settingRoute(route);
-      if( role == "merchant" ) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: ( BuildContext context ) => const BottomNavBarMerchant()));
+      if (role == "merchant") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    const BottomNavBarMerchant()));
       } else {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: ( BuildContext context ) => const BottomNavBar()));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => const BottomNavBar()));
       }
     },
   );

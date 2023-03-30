@@ -141,12 +141,14 @@ Future<void> orderETADialog(
                           context
                               .read<TablePriorityProvider>()
                               .updateOrderStatus(selecteditem, id);
-                              orderConfirmationDialog(context,"Order Confirmed !", 3);
+                          orderConfirmationDialog(
+                              context, "Order Confirmed !", 3);
                         } else {
                           context
                               .read<TableWithStatusProvider>()
                               .updateOrderStatus(selecteditem, id);
-                              orderConfirmationDialog(context,"Order Confirmed !", 3);
+                          orderConfirmationDialog(
+                              context, "Order Confirmed !", 3);
                         }
 
                         // Navigator.pop(context);

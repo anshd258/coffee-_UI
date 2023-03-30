@@ -149,7 +149,8 @@ class _CartScreenState extends State<CartScreen> {
                             context
                                 .read<CartProductsProvider>()
                                 .postData(checknox);
-                            orderConfirmationDialog(context,"Order Completed Successfully !", 1);
+                            orderConfirmationDialog(
+                                context, "Order Completed Successfully !", 1);
                           } else {
                             snakbarmethod(
                                 context, 'please add products to cart');

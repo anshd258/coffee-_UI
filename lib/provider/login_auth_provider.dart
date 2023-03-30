@@ -29,16 +29,14 @@ class LoginAuthProvider with ChangeNotifier {
     return isAdmin;
   }
 
-  bool verifyPhoneNumber( String phoneNumber, BuildContext context ) {
+  bool verifyPhoneNumber(String phoneNumber, BuildContext context) {
     bool ans = false;
 
-    if( phoneNumber.length > 10 ) {
+    if (phoneNumber.length > 10) {
       snakbarmethod(context, "Enter a Phone Number not greater than 10 digits");
-    }
-    else if( phoneNumber.length < 10 ) {
+    } else if (phoneNumber.length < 10) {
       snakbarmethod(context, "Enter a Phone Number not smaller than 10 digits");
-    }
-    else if( phoneNumber.length == 10 ) {
+    } else if (phoneNumber.length == 10) {
       ans = true;
     }
 

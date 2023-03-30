@@ -17,7 +17,6 @@ class LoginGlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GlassContainer.frostedGlass(
       //inner glass container
       height: 88.h,
@@ -95,7 +94,9 @@ class LoginGlassContainer extends StatelessWidget {
           // login button
           GestureDetector(
             onTap: () {
-              if( context.read<LoginAuthProvider>().verifyPhoneNumber(ctr.text, context) ) {
+              if (context
+                  .read<LoginAuthProvider>()
+                  .verifyPhoneNumber(ctr.text, context)) {
                 context.read<LoginAuthProvider>().getOtp(ctr.text, context);
               }
             },

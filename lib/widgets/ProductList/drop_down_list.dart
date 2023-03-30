@@ -22,7 +22,7 @@ class _DropDownSelectionState extends State<DropDownSelection> {
   Choice tempChoice = Choice();
   @override
   void initState() {
-    if( widget.list[0] != "Not Selected" ) {
+    if (widget.list[0] != "Not Selected") {
       widget.list.insert(0, "Not Selected");
     }
     selecteditem = widget.list[0];

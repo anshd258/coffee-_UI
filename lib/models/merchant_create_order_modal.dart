@@ -23,8 +23,7 @@ class MerchantCreateOrder {
     data['phoneNumber'] = phoneNumber;
     data['name'] = name;
     if (orderProducts != null) {
-      data['orderProducts'] =
-          orderProducts!.map((v) => v.toJson()).toList();
+      data['orderProducts'] = orderProducts!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -273,7 +273,8 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                     .read<CartProductsProvider>()
                                     .merchantPostData(
                                         name.text, contactNo.text);
-                                orderConfirmationDialog(context,"Order Completed Successfully !",1);
+                                orderConfirmationDialog(context,
+                                    "Order Completed Successfully !", 1);
                               } else if (name.text.isEmpty ||
                                   contactNo.text.isEmpty) {
                                 snakbarmethod(
