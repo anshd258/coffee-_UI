@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/products_list_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductListScreenLowerListContainer extends StatefulWidget {
   final ProductList e;
@@ -20,11 +21,8 @@ class _ProductListScreenLowerListContainerState
   @override
   Widget build(BuildContext context) {
     ImageProvider<Object> imageChecker() {
-      // print(widget.e.img);
-      // if (widget.e.img == "coffee-1.jpeg") widget.e.img = "assets/7.jpg";
-      // print(widget.e.img);
       if (widget.e.img != null) {
-        return NetworkImage(widget.e.img!);
+        return CachedNetworkImageProvider(widget.e.img!);
       }
       return const AssetImage('assets/7.jpg');
     }

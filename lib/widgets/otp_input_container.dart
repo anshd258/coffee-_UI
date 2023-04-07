@@ -124,8 +124,8 @@ class _OtpGlassContainerState extends State<OtpGlassContainer> {
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
             ],
-            obscureText: true,
-            obscuringCharacter: "*",
+            // obscureText: true,
+            // obscuringCharacter: "*",
             keyboardType: TextInputType.number,
             useNativeKeyboard: true,
           ),

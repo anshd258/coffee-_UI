@@ -79,7 +79,7 @@ class LoginGlassContainer extends StatelessWidget {
                   borderSide: BorderSide(
                 color: Colors.white,
               )),
-              hintText: "Phone Number",
+              hintText: "Enter 10 digit Phone Number",
               hintStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
               fillColor: Colors.transparent,
               filled: true,
@@ -137,7 +137,7 @@ class LoginGlassContainer extends StatelessWidget {
                 final urli = Uri(
                   path: "/",
                   scheme: "https",
-                  host: "privacy.swift-cafe-dev.swifttrackmile.codes",
+                  host: "privacy.swift-cafe.trackmile.com.au",
                 );
                 if (await canLaunchUrl(urli)) {
                   print(urli);
