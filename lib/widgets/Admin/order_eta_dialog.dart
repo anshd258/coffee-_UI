@@ -141,7 +141,7 @@ Future<void> orderETADialog(
                               .read<TablePriorityProvider>()
                               .updateOrderStatus(selecteditem, id);
                           orderConfirmationDialog(
-                              context, "Order Confirmed !", 3);
+                              context, "Order Confirmed !", 5);
                         } else {
                           context
                               .read<TableWithStatusProvider>()
