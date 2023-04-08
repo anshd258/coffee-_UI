@@ -146,6 +146,7 @@ class _CartProductListState extends State<CartProductList> {
                               if (value <= 5) {
                                 setState(() {
                                   counter = value;
+                                  context.read<CartProductsProvider>().currentproduct.quantity = counter;
                                 });
                               }
                             },
