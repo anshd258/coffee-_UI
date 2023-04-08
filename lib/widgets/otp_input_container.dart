@@ -146,9 +146,9 @@ class _OtpGlassContainerState extends State<OtpGlassContainer> {
               ),
               TextButton(
                 onPressed: () {
-                  // context
-                  //     .read<LoginAuthProvider>()
-                  //     .getOtp(widget.phonenumber, context);
+                  context
+                      .read<LoginAuthProvider>()
+                      .getOtp(widget.phonenumber, context);
                 },
                 style: TextButton.styleFrom(),
                 child: Text(

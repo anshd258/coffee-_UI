@@ -43,8 +43,9 @@ class _ChoiceFillingHighPriorityButtonState
                   .setCartData();
               Provider.of<CartProductsProvider>(context, listen: false)
                   .submit();
-              orderConfirmationDialog(context, "Order Added to Cart !", 1);
-              // Navigator.pop(context);
+              // orderConfirmationDialog(context, "Order Added to Cart !", 1);
+              snakbarmethod(context, "Order Added to Cart !");
+              Navigator.pop(context);
             } else {
               snakbarmethod(context, "Please Select All The Choices");
             }

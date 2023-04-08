@@ -70,6 +70,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     style: const TextStyle(color: Colors.white),
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
+                      hintText: "Enter your name",
+                      hintStyle: const TextStyle(
+                        color: Colors.white
+                      ),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -100,6 +104,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     style: const TextStyle(color: Colors.white),
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
+                      hintText: "Enter 10 digit Contact Number",
+                      hintStyle: const TextStyle(
+                        color: Colors.white
+                      ),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -169,12 +177,19 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                               if (productsInfo.isNotEmpty &&
                                   name.text.isNotEmpty &&
                                   contactNo.text.isNotEmpty) {
-                                context
+                                    if (contactNo.text.length > 10) {
+                                      snakbarmethod(context, "Enter a Phone Number not greater than 10 digits");
+                                    } else if (contactNo.text.length < 10) {
+                                      snakbarmethod(context, "Enter a Phone Number not smaller than 10 digits");
+                                    } else {
+                                      context
                                     .read<CartProductsProvider>()
                                     .merchantPostData(
                                         name.text, contactNo.text);
                                 orderConfirmationDialog(context,
                                     "Order Completed Successfully !", 1);
+                                    }
+                                
                               } else if (name.text.isEmpty ||
                                   contactNo.text.isEmpty) {
                                 snakbarmethod(
