@@ -53,12 +53,14 @@ Future<void> confirmationDialog(BuildContext context, String title,
                                     .updateOrderStatusWithoutTime(
                                         nextState, id, previousState);
                                 orderConfirmationDialog(context, nextState.replaceAll("_", " "),5 );
-                              }
-                              context
+                              } else {
+                                context
                                   .read<TableWithStatusProvider>()
                                   .updateOrderStatusWithoutTime(
                                       nextState, id, previousState);
                                 orderConfirmationDialog(context, nextState.replaceAll("_", " "), 3);
+                              }
+                              
                               // Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(

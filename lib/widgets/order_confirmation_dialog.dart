@@ -18,14 +18,18 @@ Future<void> orderConfirmationDialog(
       // context.read<routing>().settingRoute(1);
       Navigator.pop(context);
       context.read<routing>().settingRoute(route);
-      if (role == "merchant") {
-        Navigator.pop(context);
-      } else {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const BottomNavBar()));
-      }
+      // if (role == "merchant") {
+      //   Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (BuildContext context) =>
+      //               const BottomNavBarMerchant()));
+      // } else {
+      //   Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (BuildContext context) => const BottomNavBar()));
+      // }
     },
   );
   return await showDialog(
