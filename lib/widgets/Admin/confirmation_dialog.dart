@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import '../../provider/merchantProvider/table_priority_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:provider/provider.dart';
@@ -51,12 +52,14 @@ Future<void> confirmationDialog(BuildContext context, String title,
                                     .read<TablePriorityProvider>()
                                     .updateOrderStatusWithoutTime(
                                         nextState, id, previousState);
+                                orderConfirmationDialog(context, nextState.replaceAll("_", " "),5 );
                               }
                               context
                                   .read<TableWithStatusProvider>()
                                   .updateOrderStatusWithoutTime(
                                       nextState, id, previousState);
-                              Navigator.pop(context);
+                                orderConfirmationDialog(context, nextState.replaceAll("_", " "), 3);
+                              // Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey.shade300,

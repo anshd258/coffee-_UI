@@ -171,11 +171,13 @@ Future<void> orderETADialog(
                               .read<TablePriorityProvider>()
                               .updateOrderStatusWithoutTime(
                                   "ORDER_CANCELLED", id, "ORDER_PLACED");
+                          orderConfirmationDialog(context, "Order Cancelled", 5);
                         } else {
                           context
                               .read<TableWithStatusProvider>()
                               .updateOrderStatusWithoutTime(
                                   "ORDER_CANCELLED", id, "ORDER_PLACED");
+                          orderConfirmationDialog(context, "Order Cancelled", 3);
                         }
                         Navigator.pop(context);
                       },
