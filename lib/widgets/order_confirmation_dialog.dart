@@ -16,15 +16,13 @@ Future<void> orderConfirmationDialog(
     const Duration(seconds: 3),
     () {
       // context.read<routing>().settingRoute(1);
-      Navigator.pop(context);
+      // Navigator.pop(context);
       context.read<routing>().settingRoute(route);
+    
       if (role == "merchant") {
         Navigator.pop(context);
       } else {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const BottomNavBar()));
+        Navigator.pop(context);
       }
     },
   );
