@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/main.dart';

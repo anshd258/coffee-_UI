@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import '../models/products_list_model.dart';

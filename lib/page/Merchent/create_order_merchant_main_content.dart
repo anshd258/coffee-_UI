@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
@@ -71,9 +70,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: "Enter your name",
-                      hintStyle: const TextStyle(
-                        color: Colors.white
-                      ),
+                      hintStyle: const TextStyle(color: Colors.white),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -105,9 +102,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: "Enter 10 digit Contact Number",
-                      hintStyle: const TextStyle(
-                        color: Colors.white
-                      ),
+                      hintStyle: const TextStyle(color: Colors.white),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -177,19 +172,20 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                               if (productsInfo.isNotEmpty &&
                                   name.text.isNotEmpty &&
                                   contactNo.text.isNotEmpty) {
-                                    if (contactNo.text.length > 10) {
-                                      snakbarmethod(context, "Enter a Phone Number not greater than 10 digits");
-                                    } else if (contactNo.text.length < 10) {
-                                      snakbarmethod(context, "Enter a Phone Number not smaller than 10 digits");
-                                    } else {
-                                      context
-                                    .read<CartProductsProvider>()
-                                    .merchantPostData(
-                                        name.text, contactNo.text);
-                                orderConfirmationDialog(context,
-                                    "Order Completed Successfully !", 1);
-                                    }
-                                
+                                if (contactNo.text.length > 10) {
+                                  snakbarmethod(context,
+                                      "Enter a Phone Number not greater than 10 digits");
+                                } else if (contactNo.text.length < 10) {
+                                  snakbarmethod(context,
+                                      "Enter a Phone Number not smaller than 10 digits");
+                                } else {
+                                  context
+                                      .read<CartProductsProvider>()
+                                      .merchantPostData(
+                                          name.text, contactNo.text);
+                                  orderConfirmationDialog(context,
+                                      "Order Completed Successfully !", 1);
+                                }
                               } else if (name.text.isEmpty ||
                                   contactNo.text.isEmpty) {
                                 snakbarmethod(
