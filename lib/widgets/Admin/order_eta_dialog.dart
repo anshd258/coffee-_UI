@@ -127,13 +127,15 @@ Future<void> orderETADialog(
                               .read<TablePriorityProvider>()
                               .updateOrderStatus(selecteditem, id);
                           orderConfirmationDialog(
-                              context, "Order Confirmed !", 5);
+                                  context, "Order Confirmed !", 5)
+                              .whenComplete(() => Navigator.pop(context));
                         } else {
                           context
                               .read<TableWithStatusProvider>()
                               .updateOrderStatus(selecteditem, id);
                           orderConfirmationDialog(
-                              context, "Order Confirmed !", 3);
+                                  context, "Order Confirmed !", 3)
+                              .whenComplete(() => Navigator.pop(context));
                         }
 
                         // Navigator.pop(context);
@@ -158,13 +160,15 @@ Future<void> orderETADialog(
                               .read<TablePriorityProvider>()
                               .updateOrderStatusWithoutTime(
                                   "ORDER_CANCELLED", id, "ORDER_PLACED");
-                          orderConfirmationDialog(context, "Order Cancelled", 5);
+                          orderConfirmationDialog(
+                              context, "Order Cancelled", 5);
                         } else {
                           context
                               .read<TableWithStatusProvider>()
                               .updateOrderStatusWithoutTime(
                                   "ORDER_CANCELLED", id, "ORDER_PLACED");
-                          orderConfirmationDialog(context, "Order Cancelled", 3);
+                          orderConfirmationDialog(
+                              context, "Order Cancelled", 3);
                         }
                         Navigator.pop(context);
                       },
