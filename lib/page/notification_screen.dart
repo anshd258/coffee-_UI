@@ -22,13 +22,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
     fetchdata();
-    context.read<NotificationProvider>().markNotificationsRead();
+    
     super.initState();
   }
 
   Future<void> fetchdata() async {
     final value =
         await context.read<NotificationProvider>().fetchNotifications();
+        await context.read<NotificationProvider>().markNotificationsRead();
     if (value != 200) {
       snackbar();
     }

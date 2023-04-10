@@ -100,11 +100,11 @@ class LoginAuthProvider with ChangeNotifier {
         final session = loginStorage();
 
         if (loadedData['role'] == 'MERCHANT') {
-          isAdmin = true;
+          isAdmin = false;
           session.role = "merchant";
           notifyListeners();
         } else if (loadedData['role'] == 'ADMIN') {
-          isAdmin = true;
+          isAdmin = false;
           session.role = "admin";
           notifyListeners();
         } else if (loadedData['role'] == 'USER') {
@@ -156,7 +156,7 @@ class LoginAuthProvider with ChangeNotifier {
     if (data != null) {
       role = data.role;
       if (role == 'merchant' || role == 'admin') {
-        isAdmin = true;
+        isAdmin = false;
       }
       print(role);
       accessToken = data.token;
