@@ -151,7 +151,7 @@ class _CartScreenState extends State<CartScreen> {
                                 context, "Order Completed Successfully !", 1);
                           } else {
                             snakbarmethod(
-                                context, 'please add products to cart');
+                                context, 'Please add products to cart');
                           }
                         },
                         style: ElevatedButton.styleFrom(
