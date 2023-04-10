@@ -19,11 +19,7 @@ Future<void> orderConfirmationDialog(
       Navigator.pop(context);
       context.read<routing>().settingRoute(route);
       if (role == "merchant") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    const BottomNavBarMerchant()));
+        Navigator.pop(context);
       } else {
         Navigator.pushReplacement(
             context,
