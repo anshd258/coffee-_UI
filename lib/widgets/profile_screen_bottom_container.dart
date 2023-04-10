@@ -76,60 +76,61 @@ class _ProfileScreenBottomContainerState
           SizedBox(
             height: 1.5.h,
           ),
-          SizedBox(
-            width: 85.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    GlassContainer.frostedGlass(
-                      height: 4.h,
-                      width: 4.h,
-                      borderColor: Colors.white12,
-                      shape: BoxShape.circle,
-                      elevation: 3,
-                      shadowColor: Colors.white70,
-                      child: Image.asset("assets/ICONS/about2.png",
-                          color: Colors.white, scale: 0.22.h),
-                    ),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    Text(
-                      "About",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
+          GestureDetector(
+            onTap: () async {
+              final urli = Uri(
+                path: "/",
+                scheme: "https",
+                host: "privacy.swift-cafe-dev.swifttrackmile.codes",
+              );
+              if (await canLaunchUrl(urli)) {
+                await launchUrl(
+                  urli,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 85.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      GlassContainer.frostedGlass(
+                        height: 4.h,
+                        width: 4.h,
+                        borderColor: Colors.white12,
+                        shape: BoxShape.circle,
+                        elevation: 3,
+                        shadowColor: Colors.white70,
+                        child: Image.asset("assets/ICONS/about2.png",
+                            color: Colors.white, scale: 0.22.h),
                       ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    final urli = Uri(
-                      path: "/",
-                      scheme: "https",
-                      host: "privacy.swift-cafe-dev.swifttrackmile.codes",
-                    );
-                    if (await canLaunchUrl(urli)) {
-                      await launchUrl(
-                        urli,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                  child: Transform.rotate(
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Text(
+                        "About",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Transform.rotate(
                       angle: pi / 180 * 180,
                       child: Image.asset(
                         "assets/ICONS/arrow3.png",
                         scale: 3,
                       )),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Divider(
@@ -138,17 +139,18 @@ class _ProfileScreenBottomContainerState
             indent: 5.w,
             height: 2.5.h,
           ),
-          SizedBox(
-            width: 85.w,
-            child: GestureDetector(
-              onTap: () {
-                final Uri emailLaunchUri = Uri(
-                  scheme: 'mailto',
-                  path: 'support@trackmile.com.au',
-                );
+          GestureDetector(
+            onTap: () {
+              final Uri emailLaunchUri = Uri(
+                scheme: 'mailto',
+                path: 'support@trackmile.com.au',
+              );
 
-                launchUrl(emailLaunchUri);
-              },
+              launchUrl(emailLaunchUri);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 85.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

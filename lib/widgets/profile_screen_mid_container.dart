@@ -128,17 +128,18 @@ class ProfileScreenMidContainer extends StatelessWidget {
               height: 2.5.h,
             ),
           ],
-          SizedBox(
-            width: 85.w,
-            child: GestureDetector(
-              onTap: () {
-                final Uri emailLaunchUri = Uri(
-                  scheme: 'mailto',
-                  path: 'support@trackmile.com.au',
-                );
+          GestureDetector(
+            onTap: () {
+              final Uri emailLaunchUri = Uri(
+                scheme: 'mailto',
+                path: 'support@trackmile.com.au',
+              );
 
-                launchUrl(emailLaunchUri);
-              },
+              launchUrl(emailLaunchUri);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 85.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
