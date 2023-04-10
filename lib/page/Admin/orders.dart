@@ -4,8 +4,6 @@ import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
-import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
-import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/Admin/reports_table.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +32,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<TableWithStatusProvider>().getOrderWithStatus(status);
+    context.read<TableWithStatusProvider>().getOrders(status);
 
     super.initState();
   }
@@ -217,12 +215,12 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrderWithStatus("ORDER_PLACED");
+                                                  .getOrders("ORDER_PLACED");
                                             } else if (index == 1) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrderWithStatus("ORDER_CONFIRMED");
+                                                  .getOrders("ORDER_CONFIRMED");
                                             }
                                             // else if (index == 2) {
                                             //   context
@@ -235,18 +233,18 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrderWithStatus(
+                                                  .getOrders(
                                                       "ORDER_READY_FOR_PICKUP");
                                             } else if (index == 3) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrderWithStatus("ORDER_COMPLETED");
+                                                  .getOrders("ORDER_COMPLETED");
                                             } else if (index == 4) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrderWithStatus("ORDER_CANCELLED");
+                                                  .getOrders("ORDER_CANCELLED");
                                             }
                                             tappedIndex = index;
                                             // json = jsonDecode(json4);

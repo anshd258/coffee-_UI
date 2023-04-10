@@ -35,18 +35,18 @@ class TableWithStatusProvider with ChangeNotifier {
     }
   }
 
-  void getOrderWithStatus(String route) {
-    if (timer != null) {
-      timer!.cancel();
-    }
+  // void getOrderWithStatus(String route) {
+  //   if (timer != null) {
+  //     timer!.cancel();
+  //   }
 
-    timer = Timer.periodic(
-      const Duration(seconds: 2),
-      (timer) {
-        getOrders(route);
-      },
-    );
-  }
+  //   timer = Timer.periodic(
+  //     const Duration(seconds: 2),
+  //     (timer) {
+  //       getOrders(route);
+  //     },
+  //   );
+  // }
 
   Future<void> updateOrderStatus(String timeGiven, String id) async {
     DateTime time = DateTime.now().add(Duration(minutes: int.parse(timeGiven)));
