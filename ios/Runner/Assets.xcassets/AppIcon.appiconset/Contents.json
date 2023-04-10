@@ -71,18 +71,21 @@
       "size" : "60x60"
     },
     {
+      "filename" : "2x.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "64x64"
     },
     {
+      "filename" : "3x.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "64x64"
     },
     {
+      "filename" : "2x 136X136.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
