@@ -118,8 +118,6 @@ class _CartScreenState extends State<CartScreen> {
                                   borderRadius: BorderRadius.circular(3)),
                               value: checknox,
                               onChanged: (onChanged) {
-                                print(onChanged);
-
                                 setState(() {
                                   checknox = onChanged!;
                                 });

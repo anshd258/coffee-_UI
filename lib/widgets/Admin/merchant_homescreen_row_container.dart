@@ -37,7 +37,6 @@ class _MerchantHomeScreenRowContainerState
     final isloading = context.watch<OrderHistory>().dataLoading;
     return GestureDetector(
       onTap: () {
-        print(widget.orderId);
         if (isloading == false) {
           context
               .read<OrderHistory>()

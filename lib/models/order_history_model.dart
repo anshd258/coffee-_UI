@@ -25,7 +25,6 @@ class OrderHistoryModel {
       json['items'].forEach((v) {
         items!.add(Items.fromJson(v));
         orderagain!.add(CartModal.fromJson(v));
-        print(orderagain);
       });
     }
     recipientName = json['recipientName'];

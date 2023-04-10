@@ -16,13 +16,11 @@ void createnotification(RemoteMessage message) async {
         title: message.notification!.title,
         body: message.notification!.body,
       ));
-      print('Message also contained a notification: ${message.notification}');
     }
   } else if (role == "merchant") {
     if (message.notification != null) {
       final merchantData =
           json.decode(message.data['merchantId']) as List<dynamic>;
-      print(merchantData.contains(userId));
       if (merchantData.contains(userId)) {
         AwesomeNotifications().createNotification(
             content: NotificationContent(

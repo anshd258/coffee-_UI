@@ -79,7 +79,6 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
         ModalRoute.of(context)!.settings.arguments as List<String>;
     orderid = args.first.toString();
     orderNo = args[1].toString();
-    print(orderid);
 
     if (context.watch<MyData>().orderState != null) {
       stateOfOrder = context.watch<MyData>().orderState!;

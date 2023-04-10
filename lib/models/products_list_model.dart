@@ -16,7 +16,6 @@ class ProductList {
     List<dynamic>? loadedChoice = json['choices'];
     if (loadedChoice != null) {
       List<Syrups> loadedchoicesdata = [];
-      // print(choicedata);
       for (var element in loadedChoice) {
         final data = element as Map<String, dynamic>;
 

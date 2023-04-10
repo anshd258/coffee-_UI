@@ -23,7 +23,6 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
     tempChoice.choice = [];
     tempChoice.choice!.add(data);
     context.read<CartProductsProvider>().choiceSetter(tempChoice);
-    print(tempChoice.choice.toString());
   }
 
   @override
@@ -35,7 +34,6 @@ class _ChoiceSwitchState extends State<ChoiceSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    print("working");
     return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 5.w / 0.7.h,

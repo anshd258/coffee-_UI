@@ -324,7 +324,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                       .second);
                                                           final localTime =
                                                               utcTime.toLocal();
-                                                          return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                                          return "${localTime.day}-${localTime.month}-${localTime.year.toString().substring(2)} ${localTime.hour.toString().padLeft(2, '0')}:${localTime.minute.toString().padLeft(2, '0')}";
                                                         },
                                                       ),
                                                       JsonTableColumn('orderNo',
@@ -423,7 +423,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                       .second);
                                                           final localTime =
                                                               utcTime.toLocal();
-                                                          return "${localTime.month}/${localTime.year.toString().substring(2)}";
+                                                          return "${localTime.day}-${localTime.month}-${localTime.year.toString().substring(2)} ${localTime.hour.toString().padLeft(2, '0')}:${localTime.minute.toString().padLeft(2, '0')}";
                                                         },
                                                       ),
                                                       JsonTableColumn('orderNo',

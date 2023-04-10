@@ -140,7 +140,6 @@ class LoginGlassContainer extends StatelessWidget {
                   host: "privacy.swift-cafe.trackmile.com.au",
                 );
                 if (await canLaunchUrl(urli)) {
-                  print(urli);
                   await launchUrl(
                     urli,
                     mode: LaunchMode.externalApplication,

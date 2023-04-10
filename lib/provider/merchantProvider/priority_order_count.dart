@@ -16,7 +16,7 @@ class PriorityOrderCount with ChangeNotifier {
     final response = await MerchantApiHandler().getApiCall(url, accessTokken);
     if (response.statusCode == 200) {
       final loadedResponse = json.decode(response.body);
-      print(loadedResponse);
+
       if (loadedResponse['message'] == 'SUCCESS') {
         count = loadedResponse['data'];
         notifyListeners();

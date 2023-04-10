@@ -116,7 +116,6 @@ class _ProfileScreenBottomContainerState
                       host: "privacy.swift-cafe-dev.swifttrackmile.codes",
                     );
                     if (await canLaunchUrl(urli)) {
-                      print(urli);
                       await launchUrl(
                         urli,
                         mode: LaunchMode.externalApplication,

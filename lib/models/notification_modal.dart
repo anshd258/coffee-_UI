@@ -1,13 +1,13 @@
 class NotificatonModal {
-  String? orderId;
+  String? orderNo;
   String? title;
   String? body;
   bool? readReceipt;
 
-  NotificatonModal({this.orderId, this.title, this.body, this.readReceipt});
+  NotificatonModal({this.orderNo, this.title, this.body, this.readReceipt});
 
   NotificatonModal.fromJson(Map<String, dynamic> json) {
-    orderId = json['orderId'] ?? "";
+    orderNo = json['orderNo'] ?? "";
     title = json['title'];
     body = json['body'];
     readReceipt = json['readReceipt'];
@@ -15,7 +15,7 @@ class NotificatonModal {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['orderId'] = orderId;
+    data['orderNo'] = orderNo;
     data['title'] = title;
     data['body'] = body;
     data['readReceipt'] = readReceipt;

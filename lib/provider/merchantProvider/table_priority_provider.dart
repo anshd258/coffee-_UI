@@ -43,7 +43,7 @@ class TablePriorityProvider with ChangeNotifier {
     });
     final response =
         await MerchantApiHandler().putApiCall(url, accessTokken, body);
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       getOrders("ORDER_PLACED");
     }
@@ -60,7 +60,7 @@ class TablePriorityProvider with ChangeNotifier {
     });
     final response =
         await MerchantApiHandler().putApiCall(url, accessTokken, body);
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       getOrders(previusState);
     }

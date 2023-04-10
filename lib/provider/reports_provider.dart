@@ -11,8 +11,6 @@ class ReportsProvider with ChangeNotifier {
   List<dynamic> reportsData = [];
 
   Future<void> fetchReports(String startDate, String endDate) async {
-    print(startDate);
-    print(endDate);
     final data = loginhandler().getData();
     final accessTokken = data!.token;
 
@@ -21,8 +19,6 @@ class ReportsProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       await converter(response);
-    } else {
-      print(response.reasonPhrase);
     }
 
     //   final url = Uri.https("swift-cafe-dev.swifttrackmile.codes", "/report",
@@ -56,7 +52,7 @@ class ReportsProvider with ChangeNotifier {
   Future<void> converter(http.StreamedResponse response) async {
     final data = await response.stream.bytesToString();
     final decodedData = json.decode(data);
-    print(decodedData['data']);
+
     reportsData = decodedData['data'] as List<dynamic>;
     notifyListeners();
   }

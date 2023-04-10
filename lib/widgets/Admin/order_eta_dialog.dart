@@ -11,7 +11,6 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 
 Future<void> orderETADialog(
     BuildContext context, String id, String type) async {
-  print(id);
   var items = ["5", "10", "15", "20", "30"];
   String selecteditem = "5";
   return await showDialog(

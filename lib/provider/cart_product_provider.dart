@@ -63,17 +63,13 @@ class CartProductsProvider with ChangeNotifier {
 
     const url = "$baseurl/merchant/placeOrder";
 
-    print(postingData.toJson());
     final data = json.encode(postingData.toJson());
     final response =
         await MerchantApiHandler().postApiCall(url, accessTokken, data);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       cartData.clear();
       notifyListeners();
     }
-
-    print("sending data${postingData.toJson()}");
   }
 
   void submit() {

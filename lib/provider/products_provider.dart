@@ -19,7 +19,6 @@ class ProductsProvider with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
 
-    print(" new access tokken $accessTokken");
     const url = "$baseurl/getProductList";
 
     final response = await UserApiHandler().getApiCall(url, accessTokken);
@@ -50,7 +49,6 @@ class ProductsProvider with ChangeNotifier {
   }
 
   void searchData(String info) {
-    print(info);
     var data = products.where(
         (element) => element.name!.toUpperCase().contains(info.toUpperCase()));
     serchable = data.toList();

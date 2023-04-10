@@ -66,7 +66,6 @@ class OrderHistoryScreenTiles extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
-        print(id);
         if (isclicked == false) {
           isclicked = true;
           context

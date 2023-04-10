@@ -7,7 +7,7 @@ String placedOrders = '';
 Future<String> getOrdersPlaced() async {
   final data = loginhandler().getData();
   final accessTokken = data!.token;
-  print(" new access tokken $accessTokken");
+
   const url = "$baseurl/getOrders/ORDER_PLACED";
   final response = await http.get(Uri.parse(url), headers: {
     'Content-Type': 'application/json',

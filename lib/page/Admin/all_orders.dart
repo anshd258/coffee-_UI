@@ -35,7 +35,6 @@ class AllOrders extends StatelessWidget {
     ];
     final data = ModalRoute.of(context)!.settings.arguments as List;
     final title = data.first;
-    print(data);
     final listofData = data[1] as List<OrderDetails>;
     return Container(
       height: 100.h,

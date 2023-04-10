@@ -46,14 +46,13 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> getOtp(String pnumber, BuildContext context) async {
     isloading = true;
     notifyListeners();
-    // print(pnumber);
+
     try {
       final body = json.encode({"phoneNo": pnumber});
       AuthApiHandler().otpApiCall(body).then((value) {
         isloading = false;
         notifyListeners();
-        // print(value.body);
-        // print(value.statusCode);
+
         if (value.statusCode == 200) {
           Navigator.pushNamedAndRemoveUntil(
               context, otpInputScreen, (route) => false,
@@ -80,7 +79,7 @@ class LoginAuthProvider with ChangeNotifier {
   Future<void> login(String pnumber, String OTP, BuildContext context) async {
     try {
       final fcmToken = await FirebaseMessaging.instance.getToken();
-      // print("fcm tokken ->${fcmToken!}");
+
       isloading = true;
       notifyListeners();
       final response = await AuthApiHandler()
@@ -122,11 +121,8 @@ class LoginAuthProvider with ChangeNotifier {
         accessToken = session.token;
         role = session.role;
         loginhandler().storeData(session); // stroing data to local storage
-        //print(userId);
         notifyListeners();
         if (role == "merchant") {
-          // print(role);
-          // print(accessToken);
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -134,8 +130,6 @@ class LoginAuthProvider with ChangeNotifier {
             (route) => false,
           );
         } else {
-          // print(role);
-          // print(accessToken);
           notifyListeners();
           Navigator.pushNamedAndRemoveUntil(
             context,

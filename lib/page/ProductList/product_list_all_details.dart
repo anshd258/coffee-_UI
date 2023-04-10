@@ -159,9 +159,8 @@ class _AllProductPropertiesRenderState
                   txt = txt.replaceRange(
                       cap, cap + 2, " ${txt[cap + 1].toUpperCase()}");
                 }
-                print("this is text -> $txt");
+
                 headingSelector(txt);
-                print("this is heading -> $heading");
 
                 List<String> list = e.choice!.cast<String>();
                 ansList = list;

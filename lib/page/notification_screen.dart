@@ -32,7 +32,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
     if (value != 200) {
       snackbar();
     }
-    print(value);
   }
 
   void snackbar() => snakbarmethod(context, "unable to connect to backend");

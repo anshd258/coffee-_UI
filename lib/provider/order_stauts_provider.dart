@@ -25,7 +25,7 @@ class MyData with ChangeNotifier {
 
   void convverter(Map<String, dynamic> decodedData) {
     orderState = decodedData['data']['orderState'];
-    print("this is state -> $orderState");
+
     estTime = decodedData['data']['estTime'];
   }
 

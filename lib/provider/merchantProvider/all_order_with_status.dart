@@ -18,7 +18,7 @@ class AllOrderProvider with ChangeNotifier {
 
     const url = "$baseurl/getNotCompletedOrdersList";
     final response = await MerchantApiHandler().getApiCall(url, accessTokken);
-    print(response.body);
+
     if (response.statusCode != 200) {
       return "token expired";
     }

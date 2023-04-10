@@ -36,20 +36,14 @@ class OrderHistory with ChangeNotifier {
   }
 
   void converter(Map<String, dynamic> responseData) {
-    print("OrderHistoryProvider -> sucess");
     final loadedData = responseData['data'] as List<dynamic>;
-    // print(loadedData.toString());
-    print("LoadedData length -> ${loadedData.length}");
     _orderList = [];
     for (var element in loadedData) {
       if (element['items'] != null) {
         _orderList!.add(OrderHistoryModel.fromJson(element));
       }
     }
-    for (var element in _orderList!) {
-      print(element.toJson());
-    }
-    print("OrderList length -> ${_orderList!.length}");
+    for (var element in _orderList!) {}
   }
 
   Future<OrderHistoryModel> getOrderhistory(String id) async {
@@ -61,13 +55,12 @@ class OrderHistory with ChangeNotifier {
     final responsep = await UserApiHandler().getApiCall(url, accessTokken);
     dataLoading = false;
     notifyListeners();
-    //print(responsep.body);
+
     if (responsep.statusCode == 200) {
       final responseData =
           await json.decode(responsep.body) as Map<String, dynamic>;
       final loadedData = responseData['data'];
 
-      // print(loadedData);
       return OrderHistoryModel.fromJson(responseData['data']);
     } else {
       throw ("error connecting the network");
