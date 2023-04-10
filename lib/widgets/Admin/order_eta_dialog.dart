@@ -10,7 +10,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 Future<void> orderETADialog(
-    BuildContext context, String id, String type) async {
+    BuildContext context, String id, String type, String orderNo) async {
   var items = ["5", "10", "15", "20", "30"];
   String selecteditem = "5";
   return await showDialog(
@@ -35,11 +35,12 @@ Future<void> orderETADialog(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "ORDER0001",
+                        orderNo,
                         style: GoogleFonts.inter(
                             color: Colors.white70,
                             fontSize: 14.sp,
@@ -47,23 +48,9 @@ Future<void> orderETADialog(
                       ),
                     ),
                     Align(
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 1.h),
-                        child: Text(
-                          "Latte Sugar X 1",
-                          style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 14.sp,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 1.5.h),
+                          margin: EdgeInsets.symmetric(vertical: 3.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:inter_coffee/client/merchant_api_handler.dart';
@@ -30,6 +31,15 @@ class TableWithStatusProvider with ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  void getOrderWithStatus(String route) {
+    final timer = Timer.periodic(
+      const Duration(seconds: 5),
+      (timer) {
+        getOrders(route);
+      },
+    );
   }
 
   Future<void> updateOrderStatus(String timeGiven, String id) async {

@@ -27,10 +27,12 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
     await getOrdersPlaced();
   }
 
+  String status = "ORDER_PLACED";
+
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<TableWithStatusProvider>().getOrders("ORDER_PLACED");
+    context.read<TableWithStatusProvider>().getOrderWithStatus(status);
 
     super.initState();
   }
@@ -213,12 +215,12 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrders("ORDER_PLACED");
+                                                  .getOrderWithStatus("ORDER_PLACED");
                                             } else if (index == 1) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrders("ORDER_CONFIRMED");
+                                                  .getOrderWithStatus("ORDER_CONFIRMED");
                                             }
                                             // else if (index == 2) {
                                             //   context
@@ -231,18 +233,18 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrders(
+                                                  .getOrderWithStatus(
                                                       "ORDER_READY_FOR_PICKUP");
                                             } else if (index == 3) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrders("ORDER_COMPLETED");
+                                                  .getOrderWithStatus("ORDER_COMPLETED");
                                             } else if (index == 4) {
                                               context
                                                   .read<
                                                       TableWithStatusProvider>()
-                                                  .getOrders("ORDER_CANCELLED");
+                                                  .getOrderWithStatus("ORDER_CANCELLED");
                                             }
                                             tappedIndex = index;
                                             // json = jsonDecode(json4);
@@ -486,7 +488,10 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
                                                     orderETADialog(
-                                                        context, id, "normal");
+                                                        context,
+                                                        id,
+                                                        "normal",
+                                                        map['orderNo']);
                                                     isSelected = false;
                                                     id = '';
                                                   }
