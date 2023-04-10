@@ -72,14 +72,7 @@ List<Color> glassShadeOrderList = isAdmin
         Color.fromARGB(50, 255, 255, 255),
       ];
 
-List<Color> backgroundFirst3Screen = isAdmin
-    ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
-    : const [
-        Color.fromRGBO(80, 114, 235, 0),
-        Color.fromRGBO(80, 114, 235, 0),
-        Color.fromRGBO(80, 114, 235, 0),
-        Color.fromRGBO(207, 123, 75, 0.51)
-      ];
+List<Color> backgroundFirst3Screen = const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)];
 
 List<Color> allScreenBGGradient = isAdmin
     ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
@@ -95,9 +88,7 @@ List<Color> notificationScreenBGGradient = isAdmin
         Color.fromARGB(0, 255, 255, 255),
       ];
 
-List<Color> page2BGgradient = isAdmin
-    ? const [Color.fromRGBO(125, 80, 57, 0.6), Color.fromRGBO(125, 80, 57, 0.6)]
-    : const [Colors.transparent, Color.fromARGB(50, 207, 123, 75)];
+List<Color> page2BGgradient = const [Colors.transparent, Color.fromARGB(50, 207, 123, 75)];
 
 List<Color> searchBarBG = const [
   Color.fromRGBO(255, 255, 255, 0.38),
@@ -119,9 +110,7 @@ Color nameAndDateInNameBar = isAdmin
     ? const Color.fromRGBO(58, 23, 23, 1)
     : const Color.fromARGB(255, 182, 182, 182);
 
-Color titleUserList = isAdmin
-    ? const Color.fromRGBO(58, 23, 23, 1)
-    : const Color.fromARGB(255, 205, 205, 205);
+Color titleUserList = const Color.fromARGB(255, 205, 205, 205);
 
 Color userTileDesc = isAdmin
     ? const Color.fromRGBO(58, 23, 23, 1)

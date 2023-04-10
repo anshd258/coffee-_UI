@@ -241,56 +241,56 @@ class _CartProductListState extends State<CartProductList> {
                         height: 0.5.h,
                       ),
 
-                      Divider(
-                        height: .5.h,
-                        thickness: 1,
-                        color: Colors.black45,
-                      ),
+                      // Divider(
+                      //   height: .5.h,
+                      //   thickness: 1,
+                      //   color: Colors.black45,
+                      // ),
                       SizedBox(
                         height: 3.4.h,
                         width: 60.w,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: SizedBox(
-                                width: 32.w,
-                                height: 3.4.h,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Instructions for Cafe",
-                                    style: GoogleFonts.inter(
-                                        fontSize: 13.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color.fromARGB(
-                                            255, 197, 197, 197)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: SizedBox(
-                                width: 28.w,
-                                height: 3.4.h,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Add More Items",
-                                    style: GoogleFonts.inter(
-                                        fontSize: 13.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color.fromARGB(
-                                            255, 197, 197, 197)),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                        // child: Row(
+                        //   mainAxisAlignment: MainAxisAlignment.start,
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: [
+                        //     GestureDetector(
+                        //       onTap: () {},
+                        //       child: SizedBox(
+                        //         width: 32.w,
+                        //         height: 3.4.h,
+                        //         child: Align(
+                        //           alignment: Alignment.center,
+                        //           child: Text(
+                        //             "Instructions for Cafe",
+                        //             style: GoogleFonts.inter(
+                        //                 fontSize: 13.sp,
+                        //                 fontWeight: FontWeight.w600,
+                        //                 color: const Color.fromARGB(
+                        //                     255, 197, 197, 197)),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     GestureDetector(
+                        //       onTap: () {},
+                        //       child: SizedBox(
+                        //         width: 28.w,
+                        //         height: 3.4.h,
+                        //         child: Align(
+                        //           alignment: Alignment.center,
+                        //           child: Text(
+                        //             "Add More Items",
+                        //             style: GoogleFonts.inter(
+                        //                 fontSize: 13.sp,
+                        //                 fontWeight: FontWeight.w600,
+                        //                 color: const Color.fromARGB(
+                        //                     255, 197, 197, 197)),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     )
+                        //   ],
+                        // ),
                       )
                     ],
                   ),

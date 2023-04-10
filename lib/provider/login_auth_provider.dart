@@ -138,7 +138,7 @@ class LoginAuthProvider with ChangeNotifier {
           );
         }
       } else if (response.statusCode != 200) {
-        snakbarmethod(context, "value inputed  is not correct");
+        snakbarmethod(context, "Input value is not correct");
       }
     } on TimeoutException {
       snakbarmethod(context, "timeout connecting the backend");
