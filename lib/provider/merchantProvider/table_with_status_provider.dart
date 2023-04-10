@@ -12,6 +12,7 @@ import '../../constants/auth_const.dart';
 
 class TableWithStatusProvider with ChangeNotifier {
   List<dynamic>? orderJsonTableData;
+  Timer? timer;
 
   Future<void> getOrders(String route) async {
     final data = loginhandler().getData();
@@ -35,8 +36,12 @@ class TableWithStatusProvider with ChangeNotifier {
   }
 
   void getOrderWithStatus(String route) {
-    final timer = Timer.periodic(
-      const Duration(seconds: 5),
+    if (timer != null) {
+      timer!.cancel();
+    }
+
+    timer = Timer.periodic(
+      const Duration(seconds: 2),
       (timer) {
         getOrders(route);
       },
