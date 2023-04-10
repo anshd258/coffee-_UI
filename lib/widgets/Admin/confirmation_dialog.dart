@@ -52,16 +52,17 @@ Future<void> confirmationDialog(BuildContext context, String title,
                                     .read<TablePriorityProvider>()
                                     .updateOrderStatusWithoutTime(
                                         nextState, id, previousState);
-                                orderConfirmationDialog(context, nextState.replaceAll("_", " "),5 );
-                              } else {
-                                context
+                                orderConfirmationDialog(context,
+                                        nextState.replaceAll("_", " "), 5)
+                                    .whenComplete(() => Navigator.pop(context));
+                              }
+                              context
                                   .read<TableWithStatusProvider>()
                                   .updateOrderStatusWithoutTime(
                                       nextState, id, previousState);
-                                orderConfirmationDialog(context, nextState.replaceAll("_", " "), 3);
-                              }
-                              
-                              // Navigator.pop(context);
+                              orderConfirmationDialog(context,
+                                      nextState.replaceAll("_", " "), 3)
+                                  .whenComplete(() => Navigator.pop(context));
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey.shade300,

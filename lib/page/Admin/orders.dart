@@ -4,8 +4,6 @@ import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
-import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
-import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/Admin/reports_table.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +27,12 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
     await getOrdersPlaced();
   }
 
+  String status = "ORDER_PLACED";
+
   @override
   void initState() {
     getPlacedOrdersList();
-    context.read<TableWithStatusProvider>().getOrders("ORDER_PLACED");
+    context.read<TableWithStatusProvider>().getOrders(status);
 
     super.initState();
   }
@@ -283,7 +283,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                         width: 100.w,
                                         alignment: Alignment.center,
                                         child: Text(
-                                          "No Data Avilabe",
+                                          "No Data Available",
                                           style: GoogleFonts.quicksand(
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.w400,
@@ -488,7 +488,10 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
                                                     orderETADialog(
-                                                        context, id, "normal");
+                                                        context,
+                                                        id,
+                                                        "normal",
+                                                        map['orderNo']);
                                                     isSelected = false;
                                                     id = '';
                                                   }

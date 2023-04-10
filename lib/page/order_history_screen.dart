@@ -99,7 +99,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                                 width: 100.w,
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  "No Data Avilable 📪",
+                                                  "No Data Available 📪",
                                                   style: GoogleFonts.quicksand(
                                                       fontSize: 17.sp,
                                                       fontWeight:

@@ -13,7 +13,7 @@ class NoDataContainer extends StatelessWidget {
         width: 100.w,
         alignment: Alignment.center,
         child: Text(
-          "No Data Avilabe",
+          "No Data Available",
           style: GoogleFonts.quicksand(
               fontSize: 17.sp,
               fontWeight: FontWeight.w400,

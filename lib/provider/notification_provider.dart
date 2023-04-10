@@ -52,6 +52,7 @@ class NotificationProvider with ChangeNotifier {
 
   void converter(loadedData) {
     final loadNotification = loadedData['data'] as List<dynamic>;
+    print(loadNotification);
     for (var element in loadNotification) {
       final data = element as Map<String, dynamic>;
       notificatins!.add(NotificatonModal.fromJson(data));
@@ -65,6 +66,7 @@ class NotificationProvider with ChangeNotifier {
     const url = "$baseurl/markNotificationAsRead";
 
     final response = await UserApiHandler().putApiCall(url, accessTokken);
+    print(response.body);
   }
 
   void clearNotifications() {

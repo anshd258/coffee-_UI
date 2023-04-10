@@ -16,7 +16,7 @@ void orderStateMethod(
     Function setIdNull) {
   if (tappedIndex == 0) {
     setLoader();
-    orderETADialog(context, map['orderId'], 'priority').then((value) {
+    orderETADialog(context, map['orderId'], 'priority',map['orderNo']).then((value) {
       context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
       setloaderfalse();
     });
@@ -33,7 +33,7 @@ void orderStateMethod(
   else if (tappedIndex == 1) {
     setLoader();
     confirmationDialog(context, "Is The Order Brewed", "ORDER_READY_FOR_PICKUP",
-            map['orderId'], "ORDER_CONFIRMED", "normal")
+            map['orderId'], "ORDER_CONFIRMED", "priority")
         .then((value) {
       context.read<TablePriorityProvider>().getOrders("ORDER_CONFIRMED");
       setloaderfalse();
@@ -41,7 +41,7 @@ void orderStateMethod(
   } else if (tappedIndex == 2) {
     setLoader();
     confirmationDialog(context, "Is The Order Delivered? ", "ORDER_COMPLETED",
-            map['orderId'], "ORDER_READY_FOR_PICKUP", "normal")
+            map['orderId'], "ORDER_READY_FOR_PICKUP", "priority")
         .then((value) {
       context.read<TablePriorityProvider>().getOrders("ORDER_READY_FOR_PICKUP");
       setloaderfalse();

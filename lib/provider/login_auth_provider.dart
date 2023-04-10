@@ -100,11 +100,11 @@ class LoginAuthProvider with ChangeNotifier {
         final session = loginStorage();
 
         if (loadedData['role'] == 'MERCHANT') {
-          isAdmin = true;
+          isAdmin = false;
           session.role = "merchant";
           notifyListeners();
         } else if (loadedData['role'] == 'ADMIN') {
-          isAdmin = true;
+          isAdmin = false;
           session.role = "admin";
           notifyListeners();
         } else if (loadedData['role'] == 'USER') {
@@ -115,8 +115,7 @@ class LoginAuthProvider with ChangeNotifier {
         session.phonenumber = pnumber;
         session.token = loadedData['token'];
         session.userId = loadedData['userId'];
-        // await setToken(
-        //     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NjIwNjc4MTE0IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyNDM4NzI0LCJ1c2VySWQiOiI1NGI4YTg0OS02N2UyLTRmNjYtOTFkNi0zYTYxZjE0MTcxMGIiLCJpYXQiOjE2NzYzOTA3MjR9.i9D0FNaBQUUPA5pgbY2pjiIH0WM2Q9vlClETLdPUgVlJ1-jUOfL5uNuujHCeFcPLLcYd4z4ceo626Y-dbU_TDw");
+
         userId = session.userId;
         accessToken = session.token;
         role = session.role;
@@ -156,7 +155,7 @@ class LoginAuthProvider with ChangeNotifier {
     if (data != null) {
       role = data.role;
       if (role == 'merchant' || role == 'admin') {
-        isAdmin = true;
+        isAdmin = false;
       }
       print(role);
       accessToken = data.token;

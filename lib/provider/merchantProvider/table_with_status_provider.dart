@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:inter_coffee/client/merchant_api_handler.dart';
@@ -11,6 +12,7 @@ import '../../constants/auth_const.dart';
 
 class TableWithStatusProvider with ChangeNotifier {
   List<dynamic>? orderJsonTableData;
+  Timer? timer;
 
   Future<void> getOrders(String route) async {
     final data = loginhandler().getData();
@@ -32,6 +34,19 @@ class TableWithStatusProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  // void getOrderWithStatus(String route) {
+  //   if (timer != null) {
+  //     timer!.cancel();
+  //   }
+
+  //   timer = Timer.periodic(
+  //     const Duration(seconds: 2),
+  //     (timer) {
+  //       getOrders(route);
+  //     },
+  //   );
+  // }
 
   Future<void> updateOrderStatus(String timeGiven, String id) async {
     DateTime time = DateTime.now().add(Duration(minutes: int.parse(timeGiven)));
