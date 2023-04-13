@@ -10,7 +10,7 @@ import '../constants/auth_const.dart';
 
 class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? _orderList;
-  bool isloading = false;
+  bool isloading = true;
   bool dataLoading = false;
   List<OrderHistoryModel>? get History {
     return _orderList;
@@ -22,16 +22,19 @@ class OrderHistory with ChangeNotifier {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = '$baseurl/orderHistory';
-    isloading = true;
-    notifyListeners();
+    try {
+      final response = await UserApiHandler().getApiCall(url, accessTokken);
+      isloading = false;
 
-    final response = await UserApiHandler().getApiCall(url, accessTokken);
-    isloading = false;
-
-    final responseData = json.decode(response.body) as Map<String, dynamic>;
-    if (responseData['message'] == 'SUCCESS') {
-      converter(responseData);
+      final responseData = json.decode(response.body) as Map<String, dynamic>;
+      if (responseData['message'] == 'SUCCESS') {
+        converter(responseData);
+      }
+    } catch (e) {
+      isloading = false;
+    } finally {
       notifyListeners();
+      isloading = true;
     }
   }
 
