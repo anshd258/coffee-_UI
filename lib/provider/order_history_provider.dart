@@ -5,6 +5,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 
 import '../constants/auth_const.dart';
 
@@ -16,6 +17,10 @@ class OrderHistory with ChangeNotifier {
     return _orderList;
   }
 
+  void init() {
+    isloading = true;
+  }
+
   Future<void> fetchOrders() async {
     _orderList = [];
     _orderList!.clear();
@@ -24,17 +29,13 @@ class OrderHistory with ChangeNotifier {
     const url = '$baseurl/orderHistory';
     try {
       final response = await UserApiHandler().getApiCall(url, accessTokken);
-      isloading = false;
-
       final responseData = json.decode(response.body) as Map<String, dynamic>;
       if (responseData['message'] == 'SUCCESS') {
         converter(responseData);
       }
-    } catch (e) {
-      isloading = false;
     } finally {
+      isloading = false;
       notifyListeners();
-      isloading = true;
     }
   }
 

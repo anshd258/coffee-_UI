@@ -3,6 +3,7 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
+import 'package:inter_coffee/provider/router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/order_history_screen_tiles.dart';
 import 'package:provider/provider.dart';
@@ -20,15 +21,19 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
   List<OrderHistoryModel>? data;
   @override
   void initState() {
-    context.read<OrderHistory>().fetchOrders();
+    OrderHistory orderHistory = context.read<OrderHistory>();
+    orderHistory.init();
+    orderHistory.fetchOrders();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    data = context.watch<OrderHistory>().History;
-    final isloading = context.watch<OrderHistory>().isloading;
-    final dataLoading = context.watch<OrderHistory>().dataLoading;
+    int route = context.watch<routing>().gettingroute;
+    OrderHistory orderHistory = context.watch<OrderHistory>();
+    data = orderHistory.History;
+    final isloading = orderHistory.isloading;
+    final dataLoading = orderHistory.dataLoading;
 
     return Container(
       height: 100.h,
@@ -64,11 +69,14 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Image.asset(
-                "assets/ICONS/arrow3.png",
-                scale: 3,
-                color: Theme.of(context).navigationBarTheme.backgroundColor,
-              ),
+              child: route == 2
+                  ? Image.asset(
+                      "assets/ICONS/arrow3.png",
+                      scale: 3,
+                      color:
+                          Theme.of(context).navigationBarTheme.backgroundColor,
+                    )
+                  : const SizedBox(),
             ),
             backgroundColor:
                 Theme.of(context).navigationBarTheme.surfaceTintColor,
