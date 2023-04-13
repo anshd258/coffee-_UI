@@ -58,19 +58,23 @@ class LoginAuthProvider with ChangeNotifier {
               context, otpInputScreen, (route) => false,
               arguments: pnumber);
         } else if (value.statusCode != 200) {
-          snakbarmethod(context, "value inputed  is not correct");
+          if (value.statusCode == 400 && value.body.contains("phone number not registered.")) {
+            snakbarmethod(context, "User not registered.");
+          } else {
+            snakbarmethod(context, "Contact the Admin.");
+          }
         }
       }).onError((error, stackTrace) {
-        snakbarmethod(context, "error connecting the backend");
+        snakbarmethod(context, "Contact the Admin");
         isloading = false;
         notifyListeners();
       }).timeout(const Duration(seconds: 10));
     } on TimeoutException {
-      snakbarmethod(context, "timeout connecting the backend");
+      snakbarmethod(context, "Check your internet connection");
       isloading = false;
       notifyListeners();
     } on SocketException {
-      snakbarmethod(context, "error connecting the backend");
+      snakbarmethod(context, "Check your internet connection");
       isloading = false;
       notifyListeners();
     }
@@ -141,7 +145,7 @@ class LoginAuthProvider with ChangeNotifier {
             response.body.contains("phone number not registered.")) {
           snakbarmethod(context, "User not registered.");
         } else {
-          snakbarmethod(context, "User not registered.");
+          snakbarmethod(context, "Contact the Admin");
         }
       }
     } on TimeoutException {
