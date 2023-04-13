@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:inter_coffee/page/Admin/priority_table.dart';
 import 'package:inter_coffee/page/cart_screen.dart';
+import 'package:inter_coffee/page/order_history_screen.dart';
 import 'package:inter_coffee/page/product_screen.dart';
 import 'package:inter_coffee/page/profile_screen.dart';
+import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/product_list_bottom_navbar.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
+    final role = context.watch<LoginAuthProvider>().userRole;
     final id = context.watch<routing>().gettingroute;
     return SizedBox(
       height: 100.h,
@@ -34,8 +36,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           const NotificationScreen()
         ] else if (id == 4) ...[
           const CartScreen()
-        ] else if (id == 5) ...[
+        ] else if (id == 5 && ( role != null && role == "merchant" ) ) ...[
           const MerchantHomeScreen(),
+        ] else if ( id == 5 ) ...[
+          const OrderHistoryScreen(),
         ] else if (id == 6) ...[
           const PriorityTable()
         ],

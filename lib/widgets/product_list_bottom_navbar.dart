@@ -3,7 +3,6 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/router.dart';
-
 import '../provider/login_auth_provider.dart';
 
 class ProductListScreenBottomNavBar extends StatefulWidget {
@@ -148,10 +147,10 @@ class _ProductListScreenBottomNavBarState
           ),
           GestureDetector(
             onTap: () {
-              if (role == "merchant" && role != null) {
-                context.read<routing>().settingRoute(5);
-              } else if (role == 'admin' && role != null) {
+              if (role == 'admin' && role != null) {
                 context.read<routing>().settingRoute(6);
+              } else {
+                context.read<routing>().settingRoute(5);
               }
 
               setState(() {});
