@@ -352,7 +352,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                       child: Transform.scale(
                                         scale: 1.6,
                                         child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 4,
+                                          value: checkState(stateOfOrder) >= 3,
                                           onChanged: (value) {
                                             // setState(() {
                                             //   _value4 = value;
