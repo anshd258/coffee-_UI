@@ -42,12 +42,13 @@ List<JsonTableColumn> get JsonTableColumnBuilder {
           DateTime.now().hour,
           DateTime.now().minute,
           DateTime.now().second);
-      final leftTime = deliveryTime.difference(currentTime).inMinutes;
-      if (leftTime < 0 || leftTime > 30) {
-        return "Over Due";
-      } else {
-        return (leftTime).toString();
-      }
+      // final leftTime = deliveryTime.difference(currentTime).inMinutes;
+      // if (leftTime < 0 || leftTime > 30) {
+      //   return "Over Due";
+      // } else {
+      //   return (leftTime).toString();
+      // }
+      return deliveryTime.difference(currentTime).inSeconds > 0 ? "${deliveryTime.hour}:${deliveryTime.minute}" : "Over Due";
     }, label: "Estimated Time"),
   ];
 }

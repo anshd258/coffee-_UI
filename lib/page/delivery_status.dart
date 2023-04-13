@@ -51,12 +51,9 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
     int ans = 0;
     switch (state) {
       case "ORDER_COMPLETED":
-        ans = 5;
-        break;
-      case "ORDER_READY_FOR_PICKUP":
         ans = 4;
         break;
-      case "ORDER_IN_PROGRESS":
+      case "ORDER_READY_FOR_PICKUP":
         ans = 3;
         break;
       case "ORDER_CONFIRMED":
@@ -336,66 +333,6 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                     )
                                   ],
                                 ),
-                                // check box 3
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) >= 3
-                                              ? green
-                                              : white,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0)),
-                                      width: 32,
-                                      height: 32,
-                                      child: Transform.scale(
-                                        scale: 1.6,
-                                        child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 3,
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   _value3 = value;
-                                            // });
-                                          },
-                                          side: BorderSide(
-                                            color: white,
-                                          ),
-                                          activeColor: green,
-                                          checkColor: checkColor,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    Text("Order in Progress",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500)),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 44,
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 0),
-                                      height: 40,
-                                      width: 4,
-                                      color: checkState(stateOfOrder) >= 3
-                                          ? green
-                                          : white,
-                                    )
-                                  ],
-                                ),
                                 // check box 4
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -405,7 +342,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) >= 4
+                                          color: checkState(stateOfOrder) >= 3
                                               ? green
                                               : white,
                                           borderRadius:
@@ -450,7 +387,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                       margin: const EdgeInsets.only(top: 0),
                                       height: 40,
                                       width: 4,
-                                      color: checkState(stateOfOrder) >= 4
+                                      color: checkState(stateOfOrder) >= 3
                                           ? green
                                           : white,
                                     )
@@ -465,7 +402,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) >= 5
+                                          color: checkState(stateOfOrder) >= 4
                                               ? green
                                               : white,
                                           borderRadius:
@@ -475,7 +412,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                       child: Transform.scale(
                                         scale: 1.6,
                                         child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 5,
+                                          value: checkState(stateOfOrder) >= 4,
                                           onChanged: (value) {
                                             // setState(() {
                                             //   _value5 = value;
@@ -507,9 +444,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                   child: Text(
                                     (EStime == null ||
                                             (stateOfOrder !=
-                                                    "ORDER_CONFIRMED" &&
-                                                stateOfOrder !=
-                                                    "ORDER_IN_PROGRESS"))
+                                                    "ORDER_CONFIRMED"))
                                         ? ""
                                         : "Expected Time Delivery: ${EStime ?? "_"}",
                                     style: GoogleFonts.inter(

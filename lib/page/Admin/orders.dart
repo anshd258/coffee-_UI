@@ -389,13 +389,11 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                 .difference(
                                                                     currentTime)
                                                                 .inMinutes;
-                                                        if (leftTime < 0 ||
-                                                            leftTime > 30) {
-                                                          return "Over Due";
-                                                        } else {
-                                                          return (leftTime)
-                                                              .toString();
-                                                        }
+                                                        // if (leftTime < 0 ||
+                                                        //     leftTime > 30) {
+                                                        //   return "Over Due";
+                                                        // } else {}
+                                                          return deliveryTime.difference(currentTime).inSeconds > 0 ? "${deliveryTime.hour}:${deliveryTime.minute}" : "Over Due";
                                                       },
                                                           label:
                                                               "Estimated Time"),
