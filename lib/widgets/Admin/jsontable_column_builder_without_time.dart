@@ -48,7 +48,9 @@ List<JsonTableColumn> get JsonTableColumnBuilder {
       // } else {
       //   return (leftTime).toString();
       // }
-      return deliveryTime.difference(currentTime).inSeconds > 0 ? "${deliveryTime.hour}:${deliveryTime.minute}" : "Over Due";
+      return deliveryTime.difference(currentTime).inSeconds > 0
+          ? "${deliveryTime.hour}:${deliveryTime.minute}"
+          : "Over Due";
     }, label: "Estimated Time"),
   ];
 }

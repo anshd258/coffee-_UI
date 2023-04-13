@@ -137,14 +137,19 @@ class LoginAuthProvider with ChangeNotifier {
           );
         }
       } else if (response.statusCode != 200) {
-        snakbarmethod(context, "Input value is not correct");
+        if (response.statusCode == 400 &&
+            response.body.contains("phone number not registered.")) {
+          snakbarmethod(context, "User not registered.");
+        } else {
+          snakbarmethod(context, "User not registered.");
+        }
       }
     } on TimeoutException {
-      snakbarmethod(context, "timeout connecting the backend");
+      snakbarmethod(context, "Check your internet connection");
       isloading = false;
       notifyListeners();
     } on SocketException {
-      snakbarmethod(context, "error connecting the backend");
+      snakbarmethod(context, "Check your internet connection");
       isloading = false;
       notifyListeners();
     }

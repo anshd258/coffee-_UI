@@ -443,8 +443,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                                 Center(
                                   child: Text(
                                     (EStime == null ||
-                                            (stateOfOrder !=
-                                                    "ORDER_CONFIRMED"))
+                                            (stateOfOrder != "ORDER_CONFIRMED"))
                                         ? ""
                                         : "Expected Time Delivery: ${EStime ?? "_"}",
                                     style: GoogleFonts.inter(

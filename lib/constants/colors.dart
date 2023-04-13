@@ -72,7 +72,10 @@ List<Color> glassShadeOrderList = isAdmin
         Color.fromARGB(50, 255, 255, 255),
       ];
 
-List<Color> backgroundFirst3Screen = const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)];
+List<Color> backgroundFirst3Screen = const [
+  Color.fromRGBO(0, 0, 0, 0),
+  Color.fromRGBO(60, 30, 14, 0.79)
+];
 
 List<Color> allScreenBGGradient = isAdmin
     ? const [Color.fromRGBO(0, 0, 0, 0), Color.fromRGBO(60, 30, 14, 0.79)]
@@ -88,7 +91,10 @@ List<Color> notificationScreenBGGradient = isAdmin
         Color.fromARGB(0, 255, 255, 255),
       ];
 
-List<Color> page2BGgradient = const [Colors.transparent, Color.fromARGB(50, 207, 123, 75)];
+List<Color> page2BGgradient = const [
+  Colors.transparent,
+  Color.fromARGB(50, 207, 123, 75)
+];
 
 List<Color> searchBarBG = const [
   Color.fromRGBO(255, 255, 255, 0.38),

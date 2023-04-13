@@ -393,7 +393,13 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                         //     leftTime > 30) {
                                                         //   return "Over Due";
                                                         // } else {}
-                                                          return deliveryTime.difference(currentTime).inSeconds > 0 ? "${deliveryTime.day}-${deliveryTime.month}-${deliveryTime.year.toString().substring(2)} ${deliveryTime.hour.toString().padLeft(2, '0')}:${deliveryTime.minute.toString().padLeft(2, '0')}" : "Over Due";
+                                                        return deliveryTime
+                                                                    .difference(
+                                                                        currentTime)
+                                                                    .inSeconds >
+                                                                0
+                                                            ? "${deliveryTime.day}-${deliveryTime.month}-${deliveryTime.year.toString().substring(2)} ${deliveryTime.hour.toString().padLeft(2, '0')}:${deliveryTime.minute.toString().padLeft(2, '0')}"
+                                                            : "Over Due";
                                                       },
                                                           label:
                                                               "Estimated Time"),

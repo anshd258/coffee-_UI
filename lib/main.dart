@@ -36,8 +36,7 @@ void main() async {
   });
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    createnotification(message);  
-
+    createnotification(message);
   }).onError((eror) => throw ("error on forground $eror"));
   runApp(const MainApp());
 }

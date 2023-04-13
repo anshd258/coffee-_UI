@@ -36,9 +36,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
           const NotificationScreen()
         ] else if (id == 4) ...[
           const CartScreen()
-        ] else if (id == 5 && ( role != null && role == "merchant" ) ) ...[
+        ] else if (id == 5 && (role != null && role == "merchant")) ...[
           const MerchantHomeScreen(),
-        ] else if ( id == 5 ) ...[
+        ] else if (id == 5) ...[
           const OrderHistoryScreen(),
         ] else if (id == 6) ...[
           const PriorityTable()
