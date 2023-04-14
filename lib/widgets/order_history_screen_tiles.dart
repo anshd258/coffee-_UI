@@ -63,6 +63,7 @@ class OrderHistoryScreenTiles extends StatelessWidget {
     final localTime = utcTime.toLocal();
     List<String> optionSelected = order.isEmpty ? [] : returnChoices();
     bool isclicked = false;
+    final route = context.read<routing>().gettingroute;
 
     return GestureDetector(
       onTap: () async {
@@ -211,7 +212,10 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                                 .read<CartProductsProvider>()
                                 .orderAgain(orderAgain);
                             context.read<routing>().settingRoute(4);
-                            Navigator.pop(context);
+                            if( route == 2 ) {
+                              Navigator.pop(context);
+                            }
+                            
                           },
                           style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.green.shade400),
