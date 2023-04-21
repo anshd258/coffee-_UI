@@ -118,6 +118,17 @@ class _OtpGlassContainerState extends State<OtpGlassContainer> {
             androidSmsAutofillMethod:
                 AndroidSmsAutofillMethod.smsUserConsentApi,
             onSubmitted: ((value) {}),
+            closeKeyboardWhenCompleted: true,
+            onCompleted: ((value) {
+              context.read<CartProductsProvider>().clearCart();
+              if (istapped == true) {
+                istapped = false;
+                context
+                    .read<LoginAuthProvider>()
+                    .login(widget.phonenumber, value, context)
+                    .whenComplete(() => istapped = true);
+              }
+            }),
             pinAnimationType: PinAnimationType.fade,
             animationDuration: const Duration(milliseconds: 15),
             animationCurve: Curves.bounceInOut,
@@ -170,13 +181,7 @@ class _OtpGlassContainerState extends State<OtpGlassContainer> {
           GestureDetector(
             onTap: () {
               context.read<CartProductsProvider>().clearCart();
-              if (widget.phonenumber == "1234567890" && istapped == true) {
-                istapped = false;
-                context
-                    .read<LoginAuthProvider>()
-                    .login(widget.phonenumber, otpcontroller.text, context)
-                    .whenComplete(() => istapped = true);
-              } else if (istapped == true) {
+              if (istapped == true) {
                 istapped = false;
                 context
                     .read<LoginAuthProvider>()
