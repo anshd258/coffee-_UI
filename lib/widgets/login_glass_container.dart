@@ -16,7 +16,7 @@ class LoginGlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _focusNode = FocusNode();
+    final focusNode = FocusNode();
     return GlassContainer.frostedGlass(
       //inner glass container
       height: 88.h,
@@ -68,10 +68,10 @@ class LoginGlassContainer extends StatelessWidget {
             // obscureText: true,
             // obscuringCharacter: "*",
             controller: ctr,
-            focusNode: _focusNode,
+            focusNode: focusNode,
             onChanged: (changedPhoneNo) {
               if (changedPhoneNo.length == 10) {
-                _focusNode.unfocus();
+                focusNode.unfocus();
                 if (context
                     .read<LoginAuthProvider>()
                     .verifyPhoneNumber(ctr.text, context)) {

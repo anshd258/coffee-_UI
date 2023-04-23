@@ -212,10 +212,9 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                                 .read<CartProductsProvider>()
                                 .orderAgain(orderAgain);
                             context.read<routing>().settingRoute(4);
-                            if( route == 2 ) {
+                            if (route == 2) {
                               Navigator.pop(context);
                             }
-                            
                           },
                           style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.green.shade400),

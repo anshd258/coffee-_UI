@@ -34,19 +34,6 @@ class TableWithStatusProvider with ChangeNotifier {
     }
   }
 
-  // void getOrderWithStatus(String route) {
-  //   if (timer != null) {
-  //     timer!.cancel();
-  //   }
-
-  //   timer = Timer.periodic(
-  //     const Duration(seconds: 2),
-  //     (timer) {
-  //       getOrders(route);
-  //     },
-  //   );
-  // }
-
   Future<void> updateOrderStatus(String timeGiven, String id) async {
     DateTime time = DateTime.now().add(Duration(minutes: int.parse(timeGiven)));
 
@@ -56,7 +43,7 @@ class TableWithStatusProvider with ChangeNotifier {
     final body = json.encode({
       "orderId": id,
       "orderState": "ORDER_CONFIRMED",
-      "estTime": time.toIso8601String()
+      "estTime": time.toUtc().toIso8601String()
     });
     final response =
         await MerchantApiHandler().putApiCall(url, accessTokken, body);

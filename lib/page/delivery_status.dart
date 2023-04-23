@@ -82,7 +82,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
       if (context.read<MyData>().estTime != null) {
         final time = context.watch<MyData>().estTime!;
         var finalTime = DateTime.parse(time);
-        var diff = finalTime.toLocal().difference(DateTime.now());
+        var diff = finalTime.toUtc().toLocal().difference(DateTime.now());
         int days = diff.inDays.abs();
         int hours = diff.inHours.abs().remainder(24);
         int minutes = diff.inMinutes.abs().remainder(60);

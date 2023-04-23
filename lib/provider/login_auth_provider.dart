@@ -58,7 +58,8 @@ class LoginAuthProvider with ChangeNotifier {
               context, otpInputScreen, (route) => false,
               arguments: pnumber);
         } else if (value.statusCode != 200) {
-          if (value.statusCode == 400 && value.body.contains("phone number not registered.")) {
+          if (value.statusCode == 400 &&
+              value.body.contains("phone number not registered.")) {
             snakbarmethod(context, "User not registered.");
           } else {
             snakbarmethod(context, "Contact the Admin.");
