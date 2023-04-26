@@ -49,7 +49,7 @@ class LoginAuthProvider with ChangeNotifier {
 
     try {
       final body = json.encode({"phoneNo": pnumber});
-      AuthApiHandler().otpApiCall(body).then((value) {
+      await AuthApiHandler().otpApiCall(body).then((value) {
         isloading = false;
         notifyListeners();
 
@@ -65,11 +65,7 @@ class LoginAuthProvider with ChangeNotifier {
             snakbarmethod(context, "Contact the Admin.");
           }
         }
-      }).onError((error, stackTrace) {
-        snakbarmethod(context, "Contact the Admin");
-        isloading = false;
-        notifyListeners();
-      }).timeout(const Duration(seconds: 10));
+      }).timeout(const Duration(seconds: 5));
     } on TimeoutException {
       snakbarmethod(context, "Check your internet connection");
       isloading = false;

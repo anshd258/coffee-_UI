@@ -364,35 +364,16 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                 value);
                                                         final deliveryTime =
                                                             DateTime.utc(
-                                                                time.year,
-                                                                time.month,
-                                                                time.day,
-                                                                time.hour,
-                                                                time.minute,
-                                                                time.second);
+                                                                    time.year,
+                                                                    time.month,
+                                                                    time.day,
+                                                                    time.hour,
+                                                                    time.minute,
+                                                                    time.second)
+                                                                .toLocal();
                                                         final currentTime =
-                                                            DateTime.utc(
-                                                                DateTime.now()
-                                                                    .year,
-                                                                DateTime.now()
-                                                                    .month,
-                                                                DateTime.now()
-                                                                    .day,
-                                                                DateTime.now()
-                                                                    .hour,
-                                                                DateTime.now()
-                                                                    .minute,
-                                                                DateTime.now()
-                                                                    .second);
-                                                        final leftTime =
-                                                            deliveryTime
-                                                                .difference(
-                                                                    currentTime)
-                                                                .inMinutes;
-                                                        // if (leftTime < 0 ||
-                                                        //     leftTime > 30) {
-                                                        //   return "Over Due";
-                                                        // } else {}
+                                                            DateTime.now();
+
                                                         return deliveryTime
                                                                     .difference(
                                                                         currentTime)

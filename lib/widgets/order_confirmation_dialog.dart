@@ -11,7 +11,7 @@ Future<void> orderConfirmationDialog(
     BuildContext context, String message, int route) async {
   final role = Provider.of<LoginAuthProvider>(context, listen: false).role;
   Future.delayed(
-    const Duration(seconds: 3),
+    const Duration(milliseconds: 1000),
     () {
       // context.read<routing>().settingRoute(1);
       // Navigator.pop(context);

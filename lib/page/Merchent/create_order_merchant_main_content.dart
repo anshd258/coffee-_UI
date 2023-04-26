@@ -98,6 +98,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                 Center(
                   child: TextField(
                     controller: contactNo,
+                    keyboardType: TextInputType.phone,
                     style: const TextStyle(color: Colors.white),
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
@@ -170,8 +171,8 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (productsInfo.isNotEmpty &&
-                                  name.text.isNotEmpty &&
-                                  contactNo.text.isNotEmpty) {
+                                  name.text.trim().isNotEmpty &&
+                                  contactNo.text.trim().isNotEmpty) {
                                 if (contactNo.text.length > 10) {
                                   snakbarmethod(context,
                                       "Enter a Phone Number not greater than 10 digits");
@@ -181,8 +182,8 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                 } else {
                                   context
                                       .read<CartProductsProvider>()
-                                      .merchantPostData(
-                                          name.text, contactNo.text);
+                                      .merchantPostData(name.text.trim(),
+                                          contactNo.text.trim());
                                   orderConfirmationDialog(context,
                                       "Order Completed Successfully !", 1);
                                 }
