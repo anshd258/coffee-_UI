@@ -4,6 +4,7 @@ import 'package:inter_coffee/page/Admin/all_orders.dart';
 import 'package:inter_coffee/page/Admin/merchant_home_screen.dart';
 import 'package:inter_coffee/page/Admin/order_confirmed.dart';
 import 'package:inter_coffee/page/Admin/orders.dart';
+import 'package:inter_coffee/page/Merchent/cafe_set_time_screen.dart';
 import 'package:inter_coffee/page/Merchent/choice_filling_merchant.dart';
 import 'package:inter_coffee/page/Merchent/create_order_merchant.dart';
 import 'package:inter_coffee/page/switcher.dart';
@@ -35,5 +36,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   allOrders: (context) => const AllOrders(),
   createOrderMerchant: (context) => const CreateOrderMerchant(),
   choiceFillingMerchant: (context) => const ChoiceFillingMerchant(),
-  merchantOrderConfirmed: (context) => const MerchantOrderConfirmed()
+  merchantOrderConfirmed: (context) => const MerchantOrderConfirmed(),
+  merchantSetTime: (context) => const CafeTimingSetScreen(),
 };

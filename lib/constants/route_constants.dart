@@ -16,3 +16,4 @@ const String createOrderMerchant = '/createOrderMerchant';
 const String choiceFillingMerchant = '/choiceFillingMerchant';
 const String merchantOrderConfirmed = '/merchantOrderConfirmed';
 const String merchantAccount = '/merchantAccount';
+const String merchantSetTime = '/merchantSetTime';

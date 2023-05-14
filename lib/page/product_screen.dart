@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
+import 'package:inter_coffee/widgets/dialog_box.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../widgets/product_list_main_container.dart';
 
@@ -15,12 +16,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     //page 2 scaffold
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body:
-          //stack for bottom nav bar  base image gradeint
-
+          //stack for bottom nav bar  base image gradient
           //base image of the page
           SafeArea(
         child: Container(

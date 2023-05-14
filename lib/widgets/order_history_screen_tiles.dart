@@ -7,8 +7,11 @@ import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
+import 'package:inter_coffee/provider/order_stauts_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
+import 'package:inter_coffee/widgets/order_completed_dialog.dart';
+import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
@@ -72,8 +75,15 @@ class OrderHistoryScreenTiles extends StatelessWidget {
           context
               .read<OrderHistory>()
               .getOrderhistory(id)
-              .then((value) => orderDetailsDialog(context, value))
-              .whenComplete(() => isclicked = false);
+              .then((value) {
+                var allData = context.read<MyData>().fetchData(id);
+                if( context.read<MyData>().orderState! == "ORDER_COMPLETED" ) {
+                  orderCompletionDialog(context, route);
+                } else {
+                  orderDetailsDialog(context, value);
+                }
+                
+              }).whenComplete(() => isclicked = false);
         }
       },
       child: GlassContainer.frostedGlass(

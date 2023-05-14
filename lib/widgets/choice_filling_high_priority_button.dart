@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/widgets/dialog_box.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import '../models/products_list_model.dart';
@@ -45,6 +46,26 @@ class _ChoiceFillingHighPriorityButtonState
               // orderConfirmationDialog(context, "Order Added to Cart !", 1);
               snakbarmethod(context, "Order Added to Cart !");
               Navigator.pop(context);
+              showDialog(
+                context: context, 
+                builder: ( BuildContext context ) {
+                  return Positioned(
+                    top: 10.h,
+                    left: 5.w,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: DialogBox(
+                        start: "",
+                        end: "",
+                        message: "Please Confirm your Order in the Cart",
+                      ),
+                    ),
+                  );
+                }
+              );
+              
             } else {
               snakbarmethod(context, "Please Select All The Choices");
             }

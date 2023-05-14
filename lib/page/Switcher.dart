@@ -45,7 +45,7 @@ class _SwitcherState extends State<Switcher> {
         ? false
         : context.watch<LoginAuthProvider>().getColor!;
     print("this is switcherpage role -> $role");
-    print("this is switcherpage color -> $isAdmin");
+    // print("this is switcherpage color -> $isAdmin");
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
