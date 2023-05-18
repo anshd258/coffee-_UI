@@ -27,23 +27,16 @@ class DialogBox extends StatelessWidget {
       frostedOpacity: 0.04,
       borderRadius: BorderRadius.circular(25),
       color: Colors.black54,
+      padding: EdgeInsets.symmetric( vertical: 5.h),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon( Icons.close , color: Colors.white, ),
-                ),
-                SizedBox( width: 3.w,)
-              ],
-            ),
             start != "" 
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Cafe Timings
                     Row(

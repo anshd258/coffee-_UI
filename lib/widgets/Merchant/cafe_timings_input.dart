@@ -1,8 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/widgets/Merchant/time_selection_row.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+Map<String, dynamic> setTimings = {
+      "cafeTimings": [
+          {
+              "day": "MONDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "TUESDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "WEDNESDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "THURSDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "FRIDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "SATURDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          },
+          {
+              "day": "SUNDAY",
+              "openTime": "00:00",
+              "closeTime": "00:00"
+          }
+      ],
+      "message": ""
+  };
 
 class CafeTimingsInput extends StatelessWidget {
   final TextEditingController _messageTextController = TextEditingController();
@@ -10,6 +54,7 @@ class CafeTimingsInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isCompletelyFilled = false;
     
     return GlassContainer.frostedGlass(
       height: 65.h,
@@ -156,7 +201,32 @@ class CafeTimingsInput extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only( right: 5.w, top: 0 ),
                     child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Check all are selected
+                            setTimings.forEach((key, value) {
+                              if( key == 'cafeTimings' ) {
+                                if( value is List ) {
+                                  for( var e in value ) {
+                                    if( e['openTime'] == "00:00" || e['closeTime'] == "00:00" ) {
+                                      snakbarmethod(context, "Please select Timings for all days!");
+                                      isCompletelyFilled = false;
+                                    } else {
+                                      isCompletelyFilled = true;
+                                    }
+                                  }
+                                }
+                              }
+                              if( key == 'message' ) {
+                                if( _messageTextController.text.isNotEmpty ) {
+                                  setTimings['message'] = _messageTextController.text;
+                                }
+                              }
+                            });
+
+                            if( isCompletelyFilled ) {
+                              context.read<SetCafeTimings>().setCafeTimings( context, setTimings );
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                               fixedSize: Size(25.w, 5.h),
                               elevation: 5,

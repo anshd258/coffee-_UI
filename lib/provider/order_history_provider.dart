@@ -52,6 +52,7 @@ class OrderHistory with ChangeNotifier {
   Future<OrderHistoryModel> getOrderhistory(String id) async {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
+    print(accessTokken);
     String url = '$baseurl/getOrderDetails/$id';
     dataLoading = true;
     notifyListeners();

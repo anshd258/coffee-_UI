@@ -1,3 +1,4 @@
+import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
@@ -61,5 +62,8 @@ List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider<MyData>(
     create: (context) => MyData(),
+  ),
+  ChangeNotifierProvider<SetCafeTimings>(
+    create: (context) => SetCafeTimings(),
   )
 ];

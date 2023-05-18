@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/main.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/provider/user_details_provider.dart';
 import 'package:inter_coffee/widgets/dialog_box.dart';
 import 'package:provider/provider.dart';
@@ -30,13 +32,57 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
   String end = "";
   String message = "";
 
-  void checkIfShopClosed() {
+  void checkIfShopClosed() async {
     var cTime = DateTime.now();
     String curTime = cTime.hour.toString().padLeft(2,'0') + cTime.minute.toString().padLeft(2,'0');
     int currTime = int.parse(curTime);
     // API Call to get closed timings
+    await context.read<SetCafeTimings>().getCafeTimings();
+    message = context.read<SetCafeTimings>().message!;
+    int weekday = cTime.weekday;
+    String weekDay = "MONDAY";
+    switch (weekday) {
+      case 1:
+        weekDay = "MONDAY";
+        break;
+      case 2:
+        weekDay = "TUESDAY";
+        break;
+      case 3:
+        weekDay = "WEDNESDAY";
+        break;
+      case 4:
+        weekDay = "THURSDAY";
+        break;
+      case 5:
+        weekDay = "FRIDAY";
+        break;
+      case 6:
+        weekDay = "SATURDAY";
+        break;
+      case 7:
+        weekDay = "SUNDAY";
+        break;
+    }
     int s = 800;
     int e = 1600;
+    for (var element in context.read<SetCafeTimings>().cafeTimings! ) {
+      if( element.day == weekDay ) {
+
+        if( element.openTime!.substring(4) == "PM" ) {
+          s = int.parse( "${element.openTime!.substring(0,1)}${element.openTime!.substring(2,4)}" ) + 1200;
+        } else {
+          s = int.parse( "${element.openTime!.substring(0,1)}${element.openTime!.substring(2,4)}" );
+        }
+        
+        if( element.closeTime!.substring(4) == "PM" ) {
+          e = int.parse( "${element.closeTime!.substring(0,1)}${element.closeTime!.substring(2,4)}" ) + 1200;
+        } else {
+          e = int.parse( "${element.closeTime!.substring(0,1)}${element.closeTime!.substring(2,4)}" );
+        }
+      }
+    }
+
     setState(() {
       if( s <= 1200 ) {
         String st = s.toString().padLeft(4,"0");
@@ -47,10 +93,10 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
       }
       if( e <= 1200 ) {
         String nd = e.toString().padLeft(4,"0");
-        end = "${nd.substring(0,2)}:${nd.substring(2)}AM";
+        end = "${nd.substring(0,2).padLeft(2,'0')}:${nd.substring(2).padLeft(2,'0')}AM";
       } else {
         String nd = e.toString().padLeft(4,"0");
-        end = "${(int.parse(nd.substring(0,2))-12).toString()}:${nd.substring(2)}PM";
+        end = "${(int.parse(nd.substring(0,2))-12).toString().padLeft(2,'0')}:${nd.substring(2).padLeft(2,'0')}PM";
       }
     });
     print("currTime -> $currTime");
@@ -182,20 +228,24 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                               ),
                               Visibility(
                                 visible: shopIsClosed,
+                                child: GlassContainer.frostedGlass(
+                                  height: 100.h,
+                                  width: 100.w,
+                                  blur: 14,
+                                  frostedOpacity: 0.04,
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black26,
+                                ),
+                              ),
+                              Visibility(
+                                visible: shopIsClosed,
                                 child: Positioned(
                                   top: 10.h,
-                                  left: 5.w,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        shopIsClosed = !shopIsClosed;
-                                      });
-                                    },
-                                    child: DialogBox(
-                                      start: start,
-                                      end: end,
-                                      message: message,
-                                    ),
+                                  left: 10.w,
+                                  child: DialogBox(
+                                    start: start,
+                                    end: end,
+                                    message: message,
                                   ),
                                 ),
                               ),

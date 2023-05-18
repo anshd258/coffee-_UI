@@ -1,6 +1,7 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/widgets/Merchant/cafe_timings_input.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SelectDayTime extends StatefulWidget {
@@ -21,6 +22,18 @@ class _SelectDayTimeState extends State<SelectDayTime> {
 
   @override
   Widget build(BuildContext context) {
+
+    String timeToString( String time ) {
+      int hr = int.parse( time.substring(0,2) );
+      if( hr > 12 ) {
+        hr = hr - 12;
+        time = "${hr.toString()}${time.substring(2)}PM";
+      } else {
+        time = "${hr.toString()}${time.substring(2)}AM";
+      }
+      
+      return time;
+    }
     
     return Row(
       children: [
@@ -56,6 +69,19 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                   onSubmit: (index) {
                     setState(() {
                       startTime = index.toString().substring(11,16);
+                      startTime = timeToString( startTime );
+                      String day = widget.day.toUpperCase();
+                      setTimings.forEach((key, value) {
+                        if( key == 'cafeTimings' ) {
+                          if( value is List ) {
+                            for( var e in value ) {
+                              if( e['day'] == day ) {
+                                e['openTime'] = startTime;
+                              }
+                            }
+                          }
+                        }
+                      });
                     });
                     print(startTime);
                   },
@@ -103,6 +129,19 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                   onSubmit: (index) {
                     setState(() {
                       endTime = index.toString().substring(11,16);
+                      endTime = timeToString( endTime );
+                      String day = widget.day.toUpperCase();
+                      setTimings.forEach((key, value) {
+                        if( key == 'cafeTimings' ) {
+                          if( value is List ) {
+                            for( var e in value ) {
+                              if( e['day'] == day ) {
+                                e['closeTime'] = endTime;
+                              }
+                            }
+                          }
+                        }
+                      });
                     });
                     print(endTime);
                   },
