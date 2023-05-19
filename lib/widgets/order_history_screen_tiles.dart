@@ -5,6 +5,7 @@ import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/constants/route_constants.dart';
 import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
+import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
 import 'package:inter_coffee/provider/order_stauts_provider.dart';
@@ -12,6 +13,7 @@ import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
 import 'package:inter_coffee/widgets/order_completed_dialog.dart';
 import 'package:inter_coffee/widgets/order_confirmation_dialog.dart';
+import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:line_icons/line_icons.dart';
@@ -218,13 +220,18 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                         ),
                         OutlinedButton(
                           onPressed: () {
-                            context
+                            if( context.read<SetCafeTimings>().isShopClosed! ) {
+                              snakbarmethod(context, "Shop is closed, come some other time");
+                            } else {
+                              context
                                 .read<CartProductsProvider>()
                                 .orderAgain(orderAgain);
-                            context.read<routing>().settingRoute(4);
-                            if (route == 2) {
-                              Navigator.pop(context);
+                              context.read<routing>().settingRoute(4);
+                              if (route == 2) {
+                                Navigator.pop(context);
+                              }
                             }
+                            
                           },
                           style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.green.shade400),

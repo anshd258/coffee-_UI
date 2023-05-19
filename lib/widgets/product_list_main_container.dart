@@ -82,14 +82,14 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
         }
       }
     }
-
+    s = 1300;
     setState(() {
       if( s <= 1200 ) {
         String st = s.toString().padLeft(4,"0");
         start = "${st.substring(0,2)}:${st.substring(2)}AM";
       } else {
         String st = s.toString().padLeft(4,"0");
-        start = "${(int.parse(st.substring(0,2))-12).toString()}:${st.substring(2)}PM";
+        start = "${(int.parse(st.substring(0,2))-12).toString().padLeft(2,'0')}:${st.substring(2).padLeft(2,'0')}PM";
       }
       if( e <= 1200 ) {
         String nd = e.toString().padLeft(4,"0");
@@ -107,6 +107,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
     } else {
       shopIsClosed = false;
     }
+    context.read<SetCafeTimings>().changeShopStatus(shopIsClosed);
   }
 
   @override

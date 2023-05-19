@@ -27,4 +27,13 @@ class UserApiHandler {
         },
         body: data);
   }
+  
+  Future<http.Response> getApiCallBody( String url, String accessTokken, Map<String, dynamic> data) {
+    return http.get(Uri.parse(url).replace(queryParameters: data),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $accessTokken',
+        });
+  }
 }

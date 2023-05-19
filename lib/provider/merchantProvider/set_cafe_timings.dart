@@ -10,6 +10,11 @@ import 'package:inter_coffee/widgets/snackbar.dart';
 class SetCafeTimings with ChangeNotifier {
   List<CafeTimings>? cafeTimings;
   String? message;
+  bool? isShopClosed;
+
+  void changeShopStatus( bool value ) {
+    isShopClosed = value;
+  }
 
   Future<void> getCafeTimings() async {
 
