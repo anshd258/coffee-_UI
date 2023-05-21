@@ -83,6 +83,15 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
       tappedIndex = 6;
     }
     String headerVal = "";
+    bool isPriority( String orderNo ) {
+      int len = data!.length;
+      for( int i = 0; i < len; i++ ) {
+        if( data[i]!["orderNo"] == orderNo ) {
+          return data[i]!["isPriority"];
+        }
+      }
+      return false;
+    }
 
     return Container(
       height: 100.h,
@@ -334,6 +343,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                           defaultValue: null,
                                                           valueBuilder:
                                                               (value) {
+                                                            
                                                         if (value == null ||
                                                             value == "null" ||
                                                             value == "") {
@@ -473,7 +483,6 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                 if (tappedIndex == 0) {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
-                                                        print(id);
                                                     orderETADialog(
                                                         context,
                                                         id,
@@ -543,7 +552,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                             TextDecoration.underline,
                                                                       )
                                                                     : null,
-                                                                color: headerVal == "Order Details"
+                                                                color: headerVal == "Order No" && isPriority(value) ? Colors.red : headerVal == "Order Details"
                                                                     ? orderDetailsGreen
                                                                     : headerVal == "Order Status"
                                                                         ? value != "Pending" && value != "Cancelled"
@@ -597,7 +606,8 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                                           TextAlign
                                                                               .start,
                                                                       style: GoogleFonts.inter(
-                                                                          color: headerVal == "Order Status"
+                                                                          color: 
+                                                                          headerVal == "Order Status"
                                                                               ? value != "ORDER_READY_FOR_PICKUP" && value != "ORDER_CANCELLED"
                                                                                   ? orderDetailsGreen
                                                                                   : value == "ORDER_READY_FOR_PICKUP"

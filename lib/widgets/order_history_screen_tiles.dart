@@ -250,6 +250,23 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                 ],
               ),
             ),
+            // Container(
+            //   padding: EdgeInsets.only(bottom: 1.h),
+            //   width: 80.w,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text(
+            //         "Shop is Closed",
+            //         style: GoogleFonts.inter(
+            //           fontSize: 14.sp,
+            //           color: const Color.fromARGB(255, 205, 205, 205),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

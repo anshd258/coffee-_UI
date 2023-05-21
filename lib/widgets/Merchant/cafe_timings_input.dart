@@ -8,49 +8,77 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 Map<String, dynamic> setTimings = {
-      "cafeTimings": [
-          {
-              "day": "MONDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "TUESDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "WEDNESDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "THURSDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "FRIDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "SATURDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          },
-          {
-              "day": "SUNDAY",
-              "openTime": "00:00",
-              "closeTime": "00:00"
-          }
-      ],
-      "message": ""
+    "cafeTimings": [
+        {
+            "day": "MONDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "TUESDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "WEDNESDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "THURSDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "FRIDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "SATURDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        },
+        {
+            "day": "SUNDAY",
+            "openTime": "00:00",
+            "closeTime": "00:00"
+        }
+    ],
+    "message": ""
   };
 
-class CafeTimingsInput extends StatelessWidget {
-  final TextEditingController _messageTextController = TextEditingController();
+class CafeTimingsInput extends StatefulWidget {
+
   CafeTimingsInput({super.key});
+
+  @override
+  State<CafeTimingsInput> createState() => _CafeTimingsInputState();
+}
+
+class _CafeTimingsInputState extends State<CafeTimingsInput> {
+  final TextEditingController _messageTextController = TextEditingController();
+  Map< String, Map< String, String > > dayWiseTimings = {};
+
+  @override
+  void initState() {
+    findPrevTimings();
+    super.initState();
+  }
+
+  void findPrevTimings() async {
+    context.read<SetCafeTimings>().getCafeTimings().whenComplete((){
+      setState(() {
+        dayWiseTimings = context.read<SetCafeTimings>().cafeTimingsKeyWise!;
+        _messageTextController.text = context.read<SetCafeTimings>().message;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +95,11 @@ class CafeTimingsInput extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       margin: EdgeInsets.only(top: 1.h, bottom: 1.h),
       padding: EdgeInsets.only(left: 5.w, right: 5.w),
-      child: SingleChildScrollView(
+      child: dayWiseTimings.isEmpty ?
+        const Center(child: CircularProgressIndicator(
+          color: Colors.white,
+        ))  
+          : SingleChildScrollView(
         child: Column(
           children: [
             SizedBox( height: 2.h, ),
@@ -137,25 +169,25 @@ class CafeTimingsInput extends StatelessWidget {
                   ),
                   SizedBox( height: 2.h,),
                   // Monday
-                  const SelectDayTime( day: "Monday" ),
+                  SelectDayTime( day: "Monday", openTime: dayWiseTimings["MONDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["MONDAY"]!['closeTime'].toString(), ),
 
                   // Tuesday
-                  const SelectDayTime( day: "Tuesday" ),
+                  SelectDayTime( day: "Tuesday", openTime: dayWiseTimings["TUESDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["TUESDAY"]!['closeTime'].toString(), ),
 
                   // Wednesday
-                  const SelectDayTime( day: "Wednesday" ),
+                  SelectDayTime( day: "Wednesday", openTime: dayWiseTimings["WEDNESDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["WEDNESDAY"]!['closeTime'].toString(), ),
 
                   // Thursday 
-                  const SelectDayTime( day: "Thursday" ),
+                  SelectDayTime( day: "Thursday", openTime: dayWiseTimings["THURSDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["THURSDAY"]!['closeTime'].toString(), ),
 
                   // Friday 
-                  const SelectDayTime( day: "Friday" ),
+                  SelectDayTime( day: "Friday", openTime: dayWiseTimings["FRIDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["FRIDAY"]!['closeTime'].toString(), ),
 
                   // Saturday
-                  const SelectDayTime( day: "Saturday" ),         
+                  SelectDayTime( day: "Saturday", openTime: dayWiseTimings["SATURDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["SATURDAY"]!['closeTime'].toString(), ),         
 
                   // Sunday
-                  const SelectDayTime( day: "Sunday" ),     
+                  SelectDayTime( day: "Sunday", openTime: dayWiseTimings["SUNDAY"]!['openTime'].toString(), closeTime: dayWiseTimings["SUNDAY"]!['closeTime'].toString(), ),     
 
                   SizedBox( height: 1.h ,),
                   // Message

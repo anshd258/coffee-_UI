@@ -9,6 +9,7 @@ import 'package:inter_coffee/widgets/snackbar.dart';
 
 class SetCafeTimings with ChangeNotifier {
   List<CafeTimings>? cafeTimings;
+  Map< String, Map<String, String> >? cafeTimingsKeyWise;
   String message = "";
   bool? isShopClosed;
 
@@ -28,6 +29,7 @@ class SetCafeTimings with ChangeNotifier {
 
       if (loadedResponse['message'] == 'SUCCESS') {
         if (loadedResponse['data'] != null) {
+          print(loadedResponse['data']);
           if( loadedResponse['data'] == "true" ) {
             changeShopStatus(false);
           } else {
@@ -59,9 +61,15 @@ class SetCafeTimings with ChangeNotifier {
       if (loadedResponse['message'] == 'SUCCESS') {
         if (loadedResponse['data']['cafeTimings'] != null) {
           cafeTimings = <CafeTimings>[];
+          cafeTimingsKeyWise = {};
           loadedResponse['data']['cafeTimings'].forEach((v) {
             cafeTimings!.add(CafeTimings.fromJson(v));
+            cafeTimingsKeyWise![v['day']] = {
+              "openTime": v['openTime'],
+              "closeTime": v['closeTime']
+            };
           });
+          print(cafeTimingsKeyWise);
         }
         message = loadedResponse['data']['message'];
         notifyListeners();

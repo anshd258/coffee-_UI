@@ -1,14 +1,21 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inter_coffee/models/cafe_timings.dart';
+import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/widgets/Merchant/cafe_timings_input.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SelectDayTime extends StatefulWidget {
   final String day;
-  const SelectDayTime({
+  String openTime;
+  String closeTime;
+  SelectDayTime({
     super.key,
-    required this.day
+    required this.day,
+    required this.openTime,
+    required this.closeTime
   });
 
   @override
@@ -17,12 +24,9 @@ class SelectDayTime extends StatefulWidget {
 
 class _SelectDayTimeState extends State<SelectDayTime> {
 
-  String startTime = "00:00";
-  String endTime = "00:00";
-
   @override
   Widget build(BuildContext context) {
-
+    
     String timeToString( String time ) {
       int hr = int.parse( time.substring(0,2) );
       if( hr > 12 ) {
@@ -68,22 +72,22 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                   ),
                   onSubmit: (index) {
                     setState(() {
-                      startTime = index.toString().substring(11,16);
-                      startTime = timeToString( startTime );
+                      widget.openTime = index.toString().substring(11,16);
+                      widget.openTime = timeToString( widget.openTime );
                       String day = widget.day.toUpperCase();
                       setTimings.forEach((key, value) {
                         if( key == 'cafeTimings' ) {
                           if( value is List ) {
                             for( var e in value ) {
                               if( e['day'] == day ) {
-                                e['openTime'] = startTime;
+                                e['openTime'] = widget.openTime;
                               }
                             }
                           }
                         }
                       });
                     });
-                    print(startTime);
+                    print(widget.openTime);
                   },
                   onClose: () {
                     print("Picker closed");
@@ -100,7 +104,7 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                 ),
                 child: Center(
                   child: Text(
-                    startTime,
+                    widget.openTime,
                     style: GoogleFonts.inter(
                       fontSize: 17.sp,
                       letterSpacing: 1,
@@ -128,22 +132,22 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                   ),
                   onSubmit: (index) {
                     setState(() {
-                      endTime = index.toString().substring(11,16);
-                      endTime = timeToString( endTime );
+                      widget.closeTime = index.toString().substring(11,16);
+                      widget.closeTime = timeToString( widget.closeTime );
                       String day = widget.day.toUpperCase();
                       setTimings.forEach((key, value) {
                         if( key == 'cafeTimings' ) {
                           if( value is List ) {
                             for( var e in value ) {
                               if( e['day'] == day ) {
-                                e['closeTime'] = endTime;
+                                e['closeTime'] = widget.closeTime;
                               }
                             }
                           }
                         }
                       });
                     });
-                    print(endTime);
+                    print(widget.closeTime);
                   },
                   onClose: () {
                     print("Picker closed");
@@ -160,7 +164,7 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                 ),
                 child: Center(
                   child: Text(
-                    endTime,
+                    widget.closeTime,
                     style: GoogleFonts.inter(
                       fontSize: 17.sp,
                       letterSpacing: 1,
