@@ -95,6 +95,7 @@ Future<void> orderCompletionDialog(
                                 width: 75.w,
                                 child: Text(
                                   "Please wait for your order until ready to pickup.",
+                                  textAlign: TextAlign.center,
                                   style: GoogleFonts.inter(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 17.sp,

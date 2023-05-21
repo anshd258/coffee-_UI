@@ -10,9 +10,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 Future<void> orderETADialog(
-    BuildContext context, String id, String type, String orderNo) async {
+    BuildContext context, String id, String type, String orderNo, List reasonsList) async {
   var items = ["5", "10", "15", "20", "30"];
   String selecteditem = "5";
+  String selectedReason = "Closed";
   return await showDialog(
     barrierColor: Colors.black87,
     barrierDismissible: true,
@@ -26,7 +27,7 @@ Future<void> orderETADialog(
             color: Colors.white10,
             borderWidth: 0.5,
             frostedOpacity: 0.03,
-            height: 27.h,
+            height: 30.h,
             borderColor: Colors.white24,
             width: 80.w,
             padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
@@ -47,10 +48,11 @@ Future<void> orderETADialog(
                             fontWeight: FontWeight.w400),
                       ),
                     ),
+                    // Estimated Pick Up time
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 3.h),
+                          margin: EdgeInsets.only(top: 3.h, bottom: 1.h ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -115,6 +117,76 @@ Future<void> orderETADialog(
                             ],
                           )),
                     ),
+                    // Order Cancellation Reason
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          margin: EdgeInsets.only(bottom: 1.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Reason",
+                                style: GoogleFonts.inter(
+                                    color: Colors.white70,
+                                    fontSize: 14.5.sp,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              Container(
+                                width: 45.w,
+                                height: 4.h,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.grey.shade800,
+                                    border: Border.all(
+                                        color: Colors.grey.shade600)),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton2(
+                                    buttonPadding: EdgeInsets.only(left: 2.w),
+                                    alignment: Alignment.center,
+                                    items: reasonsList
+                                        .map((e) => DropdownMenuItem<String>(
+                                              alignment: Alignment.center,
+                                              value: e.toString(),
+                                              child: Text(
+                                                e,
+                                                maxLines: 2,
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.inter(
+                                                    color: const Color.fromARGB(
+                                                        255, 197, 197, 197),
+                                                    fontSize: 14.sp,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    buttonHeight: 3.h,
+                                    buttonWidth: 22.w,
+                                    iconEnabledColor: Colors.white,
+                                    dropdownDecoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      color: Colors.black54,
+                                    ),
+                                    dropdownElevation: 8,
+                                    scrollbarRadius: const Radius.circular(40),
+                                    scrollbarThickness: 6,
+                                    dropdownMaxHeight: 25.w,
+                                    scrollbarAlwaysShow: true,
+                                    buttonElevation: 2,
+                                    value: selectedReason,
+                                    offset: const Offset(0, 0),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedReason = value as String;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                    ),
                   ],
                 ),
                 Row(
@@ -158,19 +230,18 @@ Future<void> orderETADialog(
                         if (type == "priority") {
                           context
                               .read<TablePriorityProvider>()
-                              .updateOrderStatusWithoutTime(
-                                  "ORDER_CANCELLED", id, "ORDER_PLACED");
-                          orderConfirmationDialog(
-                              context, "Order Cancelled", 5);
+                              .updateOrderStatusWithoutTimeWithReason(
+                                  "ORDER_CANCELLED", id, "ORDER_PLACED", selectedReason.toString() );
+                          orderConfirmationDialog(context, "Order Cancelled", 5).whenComplete(() => Navigator.pop(context));
                         } else {
                           context
                               .read<TableWithStatusProvider>()
-                              .updateOrderStatusWithoutTime(
-                                  "ORDER_CANCELLED", id, "ORDER_PLACED");
+                              .updateOrderStatusWithoutTimeWithReason(
+                                  "ORDER_CANCELLED", id, "ORDER_PLACED", selectedReason.toString() );
                           orderConfirmationDialog(
-                              context, "Order Cancelled", 3);
+                              context, "Order Cancelled", 3).whenComplete(() => Navigator.pop(context));
                         }
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(30.w, 3.h),

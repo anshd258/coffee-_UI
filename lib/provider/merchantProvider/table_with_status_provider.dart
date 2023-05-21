@@ -69,4 +69,24 @@ class TableWithStatusProvider with ChangeNotifier {
       getOrders(previusState);
     }
   }
+  
+  Future<void> updateOrderStatusWithoutTimeWithReason(
+      String nextstate, String id, String previusState, String reason ) async {
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
+    const url = "$baseurl/updateOrderStatus";
+    final body = json.encode({
+      "orderId": id,
+      "orderState": nextstate,
+      "cancellationReason" : reason
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
+
+    if (response.statusCode == 200) {
+      getOrders(previusState);
+    } else {
+      print( "unable to send reason with cancellation ");
+    }
+  }
 }

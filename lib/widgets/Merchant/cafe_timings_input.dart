@@ -57,7 +57,7 @@ class CafeTimingsInput extends StatelessWidget {
     bool isCompletelyFilled = false;
     
     return GlassContainer.frostedGlass(
-      height: 65.h,
+      height: 70.h,
       width: 90.w,
       borderWidth: 1,
       blur: 17,
@@ -157,6 +157,7 @@ class CafeTimingsInput extends StatelessWidget {
                   // Sunday
                   const SelectDayTime( day: "Sunday" ),     
 
+                  SizedBox( height: 1.h ,),
                   // Message
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

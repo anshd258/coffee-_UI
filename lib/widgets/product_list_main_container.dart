@@ -33,81 +33,10 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
   String message = "";
 
   void checkIfShopClosed() async {
-    var cTime = DateTime.now();
-    String curTime = cTime.hour.toString().padLeft(2,'0') + cTime.minute.toString().padLeft(2,'0');
-    int currTime = int.parse(curTime);
     // API Call to get closed timings
-    await context.read<SetCafeTimings>().getCafeTimings();
-    message = context.read<SetCafeTimings>().message!;
-    int weekday = cTime.weekday;
-    String weekDay = "MONDAY";
-    switch (weekday) {
-      case 1:
-        weekDay = "MONDAY";
-        break;
-      case 2:
-        weekDay = "TUESDAY";
-        break;
-      case 3:
-        weekDay = "WEDNESDAY";
-        break;
-      case 4:
-        weekDay = "THURSDAY";
-        break;
-      case 5:
-        weekDay = "FRIDAY";
-        break;
-      case 6:
-        weekDay = "SATURDAY";
-        break;
-      case 7:
-        weekDay = "SUNDAY";
-        break;
-    }
-    int s = 800;
-    int e = 1600;
-    for (var element in context.read<SetCafeTimings>().cafeTimings! ) {
-      if( element.day == weekDay ) {
-
-        if( element.openTime!.substring(4) == "PM" ) {
-          s = int.parse( "${element.openTime!.substring(0,1)}${element.openTime!.substring(2,4)}" ) + 1200;
-        } else {
-          s = int.parse( "${element.openTime!.substring(0,1)}${element.openTime!.substring(2,4)}" );
-        }
-        
-        if( element.closeTime!.substring(4) == "PM" ) {
-          e = int.parse( "${element.closeTime!.substring(0,1)}${element.closeTime!.substring(2,4)}" ) + 1200;
-        } else {
-          e = int.parse( "${element.closeTime!.substring(0,1)}${element.closeTime!.substring(2,4)}" );
-        }
-      }
-    }
-    s = 1300;
-    setState(() {
-      if( s <= 1200 ) {
-        String st = s.toString().padLeft(4,"0");
-        start = "${st.substring(0,2)}:${st.substring(2)}AM";
-      } else {
-        String st = s.toString().padLeft(4,"0");
-        start = "${(int.parse(st.substring(0,2))-12).toString().padLeft(2,'0')}:${st.substring(2).padLeft(2,'0')}PM";
-      }
-      if( e <= 1200 ) {
-        String nd = e.toString().padLeft(4,"0");
-        end = "${nd.substring(0,2).padLeft(2,'0')}:${nd.substring(2).padLeft(2,'0')}AM";
-      } else {
-        String nd = e.toString().padLeft(4,"0");
-        end = "${(int.parse(nd.substring(0,2))-12).toString().padLeft(2,'0')}:${nd.substring(2).padLeft(2,'0')}PM";
-      }
-    });
-    print("currTime -> $currTime");
-    print("start -> $start");
-    print("end -> $end");
-    if( currTime > e || currTime < s ) {
-      shopIsClosed = true;
-    } else {
-      shopIsClosed = false;
-    }
-    context.read<SetCafeTimings>().changeShopStatus(shopIsClosed);
+    await context.read<SetCafeTimings>().getCafeStatus();
+    shopIsClosed = context.read<SetCafeTimings>().isShopClosed!;
+    message = context.read<SetCafeTimings>().message;
   }
 
   @override
@@ -244,9 +173,9 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                   top: 10.h,
                                   left: 10.w,
                                   child: DialogBox(
-                                    start: start,
-                                    end: end,
-                                    message: message,
+                                    start: "",
+                                    end: "",
+                                    message: message == "" ? "Cafe is Closed!" : message,
                                   ),
                                 ),
                               ),

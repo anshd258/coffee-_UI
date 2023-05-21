@@ -1,3 +1,4 @@
+import 'package:inter_coffee/provider/merchantProvider/cancellation_reason_list.dart';
 import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/cart_product_provider.dart';
@@ -65,5 +66,8 @@ List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider<SetCafeTimings>(
     create: (context) => SetCafeTimings(),
+  ),
+  ChangeNotifierProvider<CancellationReasonList>(
+    create: (context) => CancellationReasonList(),
   )
 ];

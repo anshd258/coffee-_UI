@@ -1,4 +1,5 @@
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/cancellation_reason_list.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
@@ -33,7 +34,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
   void initState() {
     getPlacedOrdersList();
     context.read<TableWithStatusProvider>().getOrders(status);
-
+    context.read<CancellationReasonList>().getReasons();
     super.initState();
   }
 
@@ -472,11 +473,12 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                 if (tappedIndex == 0) {
                                                   if (id.isNotEmpty &&
                                                       isSelected == true) {
+                                                        print(id);
                                                     orderETADialog(
                                                         context,
                                                         id,
                                                         "normal",
-                                                        map['orderNo']);
+                                                        map['orderNo'], context.read<CancellationReasonList>().reasonsList! );
                                                     isSelected = false;
                                                     id = '';
                                                   }

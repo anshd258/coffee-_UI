@@ -9,11 +9,41 @@ import 'package:inter_coffee/widgets/snackbar.dart';
 
 class SetCafeTimings with ChangeNotifier {
   List<CafeTimings>? cafeTimings;
-  String? message;
+  String message = "";
   bool? isShopClosed;
 
   void changeShopStatus( bool value ) {
     isShopClosed = value;
+  }
+
+  Future<void> getCafeStatus() async {
+
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
+    const url = "$baseurl/cafeTimings/isCafeOpen";
+    final response = await MerchantApiHandler().getApiCall(url, accessTokken);
+
+    if (response.statusCode == 200) {
+      final loadedResponse = json.decode(response.body);
+
+      if (loadedResponse['message'] == 'SUCCESS') {
+        if (loadedResponse['data'] != null) {
+          if( loadedResponse['data'] == "true" ) {
+            changeShopStatus(false);
+          } else {
+            changeShopStatus(true);
+            if( loadedResponse.containsKey('reason') ) {
+              message = loadedResponse['reason'].toString();
+            }
+          }
+        }
+        
+        // message = loadedResponse['data']['message'];
+        notifyListeners();
+      }
+    } else {
+      throw( "${response.statusCode}");
+    }
   }
 
   Future<void> getCafeTimings() async {

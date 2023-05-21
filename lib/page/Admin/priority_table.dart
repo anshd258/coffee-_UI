@@ -1,4 +1,5 @@
 import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/provider/merchantProvider/cancellation_reason_list.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
 
 import 'package:inter_coffee/provider/reports_provider.dart';
@@ -39,7 +40,7 @@ class _PriorityTableState extends State<PriorityTable> {
   @override
   void initState() {
     context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
-
+    context.read<CancellationReasonList>().getReasons();
     super.initState();
   }
 

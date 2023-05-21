@@ -65,4 +65,24 @@ class TablePriorityProvider with ChangeNotifier {
       getOrders(previusState);
     }
   }
+  
+  Future<void> updateOrderStatusWithoutTimeWithReason(
+      String nextState, String id, String previousState, String reason ) async {
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
+    const url = "$baseurl/updateOrderStatus";
+    final body = json.encode({
+      "orderId": id,
+      "orderState": nextState,
+      "cancellationReason" : reason
+    });
+    final response =
+        await MerchantApiHandler().putApiCall(url, accessTokken, body);
+
+    if (response.statusCode == 200) {
+      getOrders(previousState);
+    } else {
+      print( "unable to send reason with cancellation ");
+    }
+  }
 }

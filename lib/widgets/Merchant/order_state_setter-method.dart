@@ -16,7 +16,7 @@ void orderStateMethod(
     Function setIdNull) {
   if (tappedIndex == 0) {
     setLoader();
-    orderETADialog(context, map['orderId'], 'priority', map['orderNo'])
+    orderETADialog(context, map['orderId'], 'priority', map['orderNo'], [])
         .then((value) {
       context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
       setloaderfalse();
