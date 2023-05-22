@@ -30,7 +30,7 @@ class SetCafeTimings with ChangeNotifier {
       if (loadedResponse['message'] == 'SUCCESS') {
         if (loadedResponse['data'] != null) {
 
-          if( loadedResponse['data']['open'] == "true" ) {
+          if( loadedResponse['data']['open'] ) {
             changeShopStatus(false);
           } else {
             changeShopStatus(true);

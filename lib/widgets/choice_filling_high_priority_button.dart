@@ -46,25 +46,6 @@ class _ChoiceFillingHighPriorityButtonState
               // orderConfirmationDialog(context, "Order Added to Cart !", 1);
               snakbarmethod(context, "Order Added to Cart !");
               Navigator.pop(context);
-              showDialog(
-                context: context, 
-                builder: ( BuildContext context ) {
-                  return Positioned(
-                    top: 10.h,
-                    left: 5.w,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: DialogBox(
-                        start: "",
-                        end: "",
-                        message: "Please Confirm your Order in the Cart",
-                      ),
-                    ),
-                  );
-                }
-              );
               
             } else {
               snakbarmethod(context, "Please Select All The Choices");

@@ -95,7 +95,8 @@ class DialogBox extends StatelessWidget {
               child: SizedBox(
                 width: 70.w,
                 child: Center(
-                  child: Text(message,
+                  child: Text(
+                    message,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                       color: Colors.white70,

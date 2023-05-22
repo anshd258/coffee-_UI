@@ -179,6 +179,27 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                   ),
                                 ),
                               ),
+                              // if your cart is not empty
+                              Visibility(
+                                visible: context.watch<CartProductsProvider>().cartData.isNotEmpty,
+                                child: GlassContainer.frostedGlass(
+                                  height: 100.h,
+                                  width: 100.w,
+                                  blur: 14,
+                                  frostedOpacity: 0.04,
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black26,
+                                  child: Container(
+                                    alignment: Alignment.topCenter,
+                                    padding: EdgeInsets.only( top: 10.h ),
+                                    child: DialogBox(
+                                      start: "",
+                                      end: "",
+                                      message: "Please Confirm your Order in the Cart",
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
