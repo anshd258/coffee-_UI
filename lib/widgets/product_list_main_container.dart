@@ -58,23 +58,23 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
     }
   }
 
+  bool isCartNotEmpty() {
+    
+    if( onTap ) {
+      onTap = false;
+      return false;
+    }
+    if( context.watch<CartProductsProvider>().cartData.isNotEmpty ) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     final data = context.watch<ProductsProvider>().productslist;
     
-
-    bool doesCartHasProduct() {
-      final checkOutCart = context.read<CartProductsProvider>().cartData;
-      
-      if( onTap == true ) {
-        return true;
-      }
-      if( checkOutCart.isNotEmpty ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -143,6 +143,21 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.white70)),
                       )
+                    : shopIsClosed
+                    ? Container(
+                      margin: EdgeInsets.only(
+                        top: 5.h,
+                      ),
+                      child: Positioned(
+                        top: 15.h,
+                        left: 10.w,
+                        child: DialogBox(
+                          start: "",
+                          end: "",
+                          message: message == "" ? "Cafe is Closed!" : message,
+                        ),
+                      ),
+                    )
                     : Expanded(
                         child: SingleChildScrollView(
                           padding: EdgeInsets.only(bottom: 10.h),
@@ -156,46 +171,30 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                   );
                                 }).toList(),
                               ),
-                              Visibility(
-                                visible: shopIsClosed,
-                                child: GlassContainer.frostedGlass(
-                                  height: 100.h,
-                                  width: 100.w,
-                                  blur: 14,
-                                  frostedOpacity: 0.04,
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.black26,
-                                ),
-                              ),
-                              Visibility(
-                                visible: shopIsClosed,
-                                child: Positioned(
-                                  top: 10.h,
-                                  left: 10.w,
-                                  child: DialogBox(
-                                    start: "",
-                                    end: "",
-                                    message: message == "" ? "Cafe is Closed!" : message,
-                                  ),
-                                ),
-                              ),
                               // if your cart is not empty
                               Visibility(
-                                visible: context.watch<CartProductsProvider>().cartData.isNotEmpty,
-                                child: GlassContainer.frostedGlass(
-                                  height: 100.h,
-                                  width: 100.w,
-                                  blur: 14,
-                                  frostedOpacity: 0.04,
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.black26,
-                                  child: Container(
-                                    alignment: Alignment.topCenter,
-                                    padding: EdgeInsets.only( top: 10.h ),
-                                    child: DialogBox(
-                                      start: "",
-                                      end: "",
-                                      message: "Please Confirm your Order in the Cart",
+                                visible: isCartNotEmpty(),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      onTap = true;
+                                    });
+                                  },
+                                  child: GlassContainer.frostedGlass(
+                                    height: 100.h,
+                                    width: 100.w,
+                                    blur: 14,
+                                    frostedOpacity: 0.04,
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Colors.black26,
+                                    child: Container(
+                                      alignment: Alignment.topCenter,
+                                      padding: EdgeInsets.only( top: 10.h ),
+                                      child: DialogBox(
+                                        start: "",
+                                        end: "",
+                                        message: "Please Confirm your Order in the Cart",
+                                      ),
                                     ),
                                   ),
                                 ),
