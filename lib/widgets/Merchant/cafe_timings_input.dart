@@ -72,6 +72,8 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
         dayWiseTimings = context.read<SetCafeTimings>().cafeTimingsKeyWise!;
         _messageTextController.text = context.read<SetCafeTimings>().message;
       });
+      setTimings['cafeTimings'] = context.read<SetCafeTimings>().cafeTimings;
+      setTimings['message'] = context.read<SetCafeTimings>().message;
     });
   }
 
@@ -240,12 +242,7 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                               if( key == 'cafeTimings' ) {
                                 if( value is List ) {
                                   for( var e in value ) {
-                                    if( e['openTime'] == "00:00" || e['closeTime'] == "00:00" ) {
-                                      snakbarmethod(context, "Please select Timings for all days!");
-                                      isCompletelyFilled = false;
-                                    } else {
-                                      isCompletelyFilled = true;
-                                    }
+                                    isCompletelyFilled = true;
                                   }
                                 }
                               }

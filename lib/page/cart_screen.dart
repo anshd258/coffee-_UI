@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/constants/colors.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
+import 'package:inter_coffee/widgets/order_completed_dialog.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import '../provider/cart_product_provider.dart';
@@ -147,8 +148,7 @@ class _CartScreenState extends State<CartScreen> {
                             context
                                 .read<CartProductsProvider>()
                                 .postData(checknox);
-                            orderConfirmationDialog(
-                                context, "Order Completed Successfully !", 1);
+                            orderCompletionDialog(context, 1);
                           } else {
                             snakbarmethod(
                                 context, 'Please add products to cart');

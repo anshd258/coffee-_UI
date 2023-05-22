@@ -11,7 +11,7 @@ Future<void> orderCompletionDialog(
     BuildContext context,int route) async {
   final role = Provider.of<LoginAuthProvider>(context, listen: false).role;
   Future.delayed(
-    const Duration(milliseconds: 5000),
+    const Duration(milliseconds: 3000),
     () {
       // context.read<routing>().settingRoute(1);
       // Navigator.pop(context);
@@ -37,7 +37,7 @@ Future<void> orderCompletionDialog(
             width: 100.w,
             height: 90.h,
             child: Align(
-              alignment: Alignment.topCenter,
+              alignment: Alignment.center,
               child: GlassContainer.frostedGlass(
                 borderRadius: BorderRadius.circular(10),
                 borderWidth: 0.5,

@@ -29,14 +29,12 @@ class SetCafeTimings with ChangeNotifier {
 
       if (loadedResponse['message'] == 'SUCCESS') {
         if (loadedResponse['data'] != null) {
-          print(loadedResponse['data']);
-          if( loadedResponse['data'] == "true" ) {
+
+          if( loadedResponse['data']['open'] == "true" ) {
             changeShopStatus(false);
           } else {
             changeShopStatus(true);
-            if( loadedResponse.containsKey('reason') ) {
-              message = loadedResponse['reason'].toString();
-            }
+            message = loadedResponse['data']['message'].toString();
           }
         }
         

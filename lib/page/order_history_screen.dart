@@ -123,6 +123,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                               order: e.items!,
                                               orderNo: e.orderNo!,
                                               createdDate: e.createdDate!,
+                                              cancellationReason: e.cancellationReason!
                                             );
                                           }).toList(),
                                         )),

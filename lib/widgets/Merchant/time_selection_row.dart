@@ -79,8 +79,8 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                         if( key == 'cafeTimings' ) {
                           if( value is List ) {
                             for( var e in value ) {
-                              if( e['day'] == day ) {
-                                e['openTime'] = widget.openTime;
+                              if( e.day == day ) {
+                                e.openTime = widget.openTime;
                               }
                             }
                           }
@@ -139,8 +139,8 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                         if( key == 'cafeTimings' ) {
                           if( value is List ) {
                             for( var e in value ) {
-                              if( e['day'] == day ) {
-                                e['closeTime'] = widget.closeTime;
+                              if( e.day == day ) {
+                                e.closeTime = widget.closeTime;
                               }
                             }
                           }

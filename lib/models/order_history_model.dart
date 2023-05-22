@@ -7,13 +7,15 @@ class OrderHistoryModel {
   List<Items>? items;
   String? recipientName;
   String? createdDate;
+  String? cancellationReason;
 
   OrderHistoryModel(
       {this.id,
       this.orderNo,
       this.items,
       this.recipientName,
-      this.createdDate});
+      this.cancellationReason,
+      this.createdDate,});
 
   OrderHistoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,6 +31,11 @@ class OrderHistoryModel {
     }
     recipientName = json['recipientName'];
     createdDate = json['createdDate'];
+    if( json.containsKey("cancellationReason") ) {
+      cancellationReason = json['cancellationReason'];
+    } else {
+      cancellationReason = "";
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +47,11 @@ class OrderHistoryModel {
     }
     data['recipientName'] = recipientName;
     data['createdDate'] = createdDate;
+    if( data.containsKey("cancellationReason") ) {
+      data['cancellationReason'] = cancellationReason;
+    } else {
+      data['cancellationReason'] = "";
+    }
     return data;
   }
 }

@@ -26,14 +26,17 @@ class OrderHistoryScreenTiles extends StatelessWidget {
   final List<CartModal> orderAgain;
   final String createdDate;
   final String orderNo;
+  final String cancellationReason;
+
   const OrderHistoryScreenTiles(
-      {Key? key,
+    { Key? key,
       required this.id,
       required this.orderAgain,
       required this.order,
       required this.createdDate,
-      required this.orderNo})
-      : super(key: key);
+      required this.cancellationReason,
+      required this.orderNo
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,18 +82,13 @@ class OrderHistoryScreenTiles extends StatelessWidget {
               .getOrderhistory(id)
               .then((value) {
                 var allData = context.read<MyData>().fetchData(id);
-                if( context.read<MyData>().orderState! == "ORDER_COMPLETED" ) {
-                  orderCompletionDialog(context, route);
-                } else {
-                  orderDetailsDialog(context, value);
-                }
-                
+                orderDetailsDialog(context, value);
               }).whenComplete(() => isclicked = false);
         }
       },
       child: GlassContainer.frostedGlass(
         margin: EdgeInsets.only(top: 12.sp, bottom: 10.sp),
-        height: 22.h,
+        height: cancellationReason == "" ? 22.h : 25.h ,
         width: 90.w,
         borderWidth: 0,
         blur: 17,
@@ -250,23 +248,26 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                 ],
               ),
             ),
-            // Container(
-            //   padding: EdgeInsets.only(bottom: 1.h),
-            //   width: 80.w,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         "Shop is Closed",
-            //         style: GoogleFonts.inter(
-            //           fontSize: 14.sp,
-            //           color: const Color.fromARGB(255, 205, 205, 205),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
+            Visibility(
+              visible: ( cancellationReason != "" ),
+              child: Container(
+                padding: EdgeInsets.only(bottom: 1.h),
+                width: 80.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      cancellationReason,
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        color: Colors.red,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
