@@ -34,7 +34,7 @@ class _BottomNavBarMerchantState extends State<BottomNavBarMerchant> {
         ] else if (id == 4) ...[
           const NotificationScreen()
         ] else if (id == 5) ...[
-          const PriorityTable(),
+          const CreateOrderMerchant(),
         ] else if (id == 6) ...[
           const CreateOrderMerchant(),
         ],

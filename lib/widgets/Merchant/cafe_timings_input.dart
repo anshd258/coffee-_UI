@@ -3,6 +3,7 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inter_coffee/provider/merchantProvider/set_cafe_timings.dart';
 import 'package:inter_coffee/widgets/Merchant/time_selection_row.dart';
+import 'package:inter_coffee/widgets/dialog_box.dart';
 import 'package:inter_coffee/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -197,7 +198,7 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 24.w,
+                        width: 23.w,
                         height: 9.h,
                         child: Align(
                           alignment: Alignment.centerLeft,
@@ -213,13 +214,18 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                         ),
                       ),
                       Container(
-                        width: 44.w,
+                        width: 46.5.w,
                         height: 12.h,
                         margin: EdgeInsets.only(left: 2.w),
                         child: TextField(
                           controller: _messageTextController,
                           minLines: 2,
                           maxLines: 2,
+                          style: GoogleFonts.inter(
+                            fontSize: 16.sp,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             isDense: true,
@@ -234,18 +240,12 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                   //Submit button
                   Container(
                     alignment: Alignment.centerRight,
-                    margin: EdgeInsets.only( right: 5.w, top: 0 ),
+                    margin: EdgeInsets.only( right: 3.w, top: 0 ),
                     child: ElevatedButton(
                           onPressed: () {
                             // Check all are selected
                             setTimings.forEach((key, value) {
-                              if( key == 'cafeTimings' ) {
-                                if( value is List ) {
-                                  for( var e in value ) {
-                                    isCompletelyFilled = true;
-                                  }
-                                }
-                              }
+                              isCompletelyFilled = true;
                               if( key == 'message' ) {
                                 if( _messageTextController.text.isNotEmpty ) {
                                   setTimings['message'] = _messageTextController.text;
@@ -254,7 +254,21 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                             });
 
                             if( isCompletelyFilled ) {
-                              context.read<SetCafeTimings>().setCafeTimings( context, setTimings );
+                              context.read<SetCafeTimings>().setCafeTimings( setTimings );
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: DialogBox(
+                                      start: "", end: "", 
+                                      message: "New Cafe Timings Set"
+                                    ),
+                                  );
+                                },
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(

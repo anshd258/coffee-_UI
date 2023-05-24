@@ -18,6 +18,7 @@ class ReportsTable extends StatelessWidget {
 
     if (data.isNotEmpty) {
       json5 = data;
+      // json5.add({"employee":"Total Orders", "product":"", "quantity":"50"});
     }
     return Center(
       child: JsonTable(json5, columns: [

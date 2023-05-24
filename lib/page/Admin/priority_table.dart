@@ -1,3 +1,5 @@
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:bottom_picker/resources/arrays.dart';
 import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/cancellation_reason_list.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_priority_provider.dart';
@@ -64,21 +66,6 @@ class _PriorityTableState extends State<PriorityTable> {
 
   String fromdate = "DD/MM/YYYY";
   String todate = "DD/MM/YYYY";
-
-  // final String json1 =
-  //     '[{ "Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Pending"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Cancelled"}]';
-
-  // final String json2 =
-  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{"Date": "12/23","Order No":"ORDER0002","Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Confirmed"},{ "Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Confirmed"}]';
-
-  // final String json3 =
-  //     '[{"Date": "12/23","Order No":"ORDER0001","Order By": "John C","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0002", "Order By": "John M","Order Details": "Latte_Sugar","Order Status": "Completed"},{"Date": "12/23","Order No":"ORDER0003","Order By": "John K","Order Details": "Latte_Sugar","Order Status": "Completed"}]';
-
-  // final List<Map<String, dynamic>> json5 = [
-  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"},
-  //   {"Name": "Raman", "Item Name": "latte", "Number Of Deliveries": "25"}
-  // ];
   int tappedIndex = 0;
   void setid(String Id) {
     id = Id;
@@ -253,7 +240,23 @@ class _PriorityTableState extends State<PriorityTable> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        dateTimeMethod(context, fromDateSetter);
+                                        // dateTimeMethod(context, fromDateSetter);
+                                        BottomPicker.date(
+                                          title: "Select Date",
+                                          titleStyle: const TextStyle(
+                                            color: Colors.white
+                                          ),
+                                          descriptionStyle: const TextStyle(
+                                            color: Colors.white
+                                          ),
+                                          closeIconColor: Colors.white,
+                                          pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+                                          buttonSingleColor: Colors.greenAccent.shade700,
+                                          onSubmit: ( date ) {
+                                            fromDateSetter(date);
+                                          },
+                                          backgroundColor: Colors.brown.shade900,
+                                        ).show(context);
                                       },
                                       child: DateDisplayAdminReports(
                                           fromdate: fromdate),
@@ -268,8 +271,23 @@ class _PriorityTableState extends State<PriorityTable> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        dateTimeMethod(context, toDateSetter);
-                                        // dateTimeSetterTo(context, toDateSetter);
+                                        // dateTimeMethod(context, toDateSetter);
+                                        BottomPicker.date(
+                                          title: "Select Date",
+                                          titleStyle: const TextStyle(
+                                            color: Colors.white
+                                          ),
+                                          descriptionStyle: const TextStyle(
+                                            color: Colors.white
+                                          ),
+                                          closeIconColor: Colors.white,
+                                          pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+                                          buttonSingleColor: Colors.greenAccent.shade700,
+                                          onSubmit: ( date ) {
+                                            toDateSetter(date);
+                                          },
+                                          backgroundColor: Colors.brown.shade900,
+                                        ).show(context);
                                       },
                                       child: DateDisplayAdminReports(
                                           fromdate: todate),

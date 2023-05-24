@@ -42,7 +42,7 @@ class _SelectDayTimeState extends State<SelectDayTime> {
     return Row(
       children: [
         SizedBox(
-          width: 24.w,
+          width: 23.5.w,
           height: 4.5.h,
           child: Align(
             alignment: Alignment.centerLeft,
@@ -65,11 +65,18 @@ class _SelectDayTimeState extends State<SelectDayTime> {
               onTap: () {
                 BottomPicker.time(
                   title: "Select Time",
-                  titleStyle: const  TextStyle(
+                  titleStyle: const TextStyle(
                     fontWeight:  FontWeight.bold,
                     fontSize:  15,
-                    color:  Colors.black
+                    color: Colors.white
                   ),
+                  descriptionStyle: const TextStyle(
+                    color: Colors.white
+                  ),
+                  closeIconColor: Colors.white,
+                  pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+                  buttonSingleColor: Colors.greenAccent.shade700,
+                  backgroundColor: Colors.grey.shade700,
                   onSubmit: (index) {
                     setState(() {
                       widget.openTime = index.toString().substring(11,16);
@@ -96,7 +103,7 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                 ).show(context);
               },
               child: Container(
-                width: 20.w,
+                width: 23.w,
                 height: 3.5.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -125,11 +132,18 @@ class _SelectDayTimeState extends State<SelectDayTime> {
               onTap: () {
                 BottomPicker.time(
                   title: "Select Time",
-                  titleStyle: const  TextStyle(
+                  titleStyle: const TextStyle(
                     fontWeight:  FontWeight.bold,
                     fontSize:  15,
-                    color:  Colors.black
+                    color: Colors.white
                   ),
+                  descriptionStyle: const TextStyle(
+                    color: Colors.white
+                  ),
+                  closeIconColor: Colors.white,
+                  pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+                  buttonSingleColor: Colors.greenAccent.shade700,
+                  backgroundColor: Colors.grey.shade700,
                   onSubmit: (index) {
                     setState(() {
                       widget.closeTime = index.toString().substring(11,16);
@@ -156,7 +170,7 @@ class _SelectDayTimeState extends State<SelectDayTime> {
                 ).show(context);
               },
               child: Container(
-                width: 20.w,
+                width: 23.w,
                 height: 3.5.h,
                 decoration: BoxDecoration(
                   color: Colors.white,

@@ -77,7 +77,7 @@ class SetCafeTimings with ChangeNotifier {
     }
   }
 
-  Future<void> setCafeTimings( BuildContext context, Map<String, dynamic> postingData ) async {
+  Future<void> setCafeTimings(Map<String, dynamic> postingData ) async {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     const url = "$baseurl/cafeTimings/";
@@ -87,7 +87,6 @@ class SetCafeTimings with ChangeNotifier {
     final response = await UserApiHandler().postApiCall(url, accessTokken, timings);
     print(response.statusCode);
     if (response.statusCode == 200) {
-      snakbarmethod(context, "Timings Set :)");
       notifyListeners();
     }
   }

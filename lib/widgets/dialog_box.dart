@@ -29,86 +29,20 @@ class DialogBox extends StatelessWidget {
       color: Colors.black54,
       padding: EdgeInsets.symmetric( vertical: 5.h),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            start != "" 
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Cafe Timings
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Cafe Opens at ",
-                            style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.normal,
-                              letterSpacing: 1),
-                          ),
-                          Text(start,
-                            style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w700,
-                              fontStyle: FontStyle.normal,
-                              letterSpacing: 1),
-                          )
-                        ],
-                      ) ,
-                      Text("&&",
-                            style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.normal,
-                              letterSpacing: 1),
-                          ) ,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Cafe Closes at ",
-                            style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.normal,
-                              letterSpacing: 1),
-                          ),
-                          Text(end,
-                            style: GoogleFonts.inter(
-                              color: Colors.white70,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w700,
-                              fontStyle: FontStyle.normal,
-                              letterSpacing: 1),
-                          )
-                        ],
-                      )
-                  ],
-                ) : const SizedBox(height: 0, width: 0,),
-            Center(
-              child: SizedBox(
-                width: 70.w,
-                child: Center(
-                  child: Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                      color: Colors.white70,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                      letterSpacing: 1),
-                  ),
-                ),
-              ),
-            )
-          ],
+        child: Container(
+          width: 70.w,
+          height: 15.h,
+          alignment: Alignment.center,
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(
+              color: Colors.white70,
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+              letterSpacing: 1),
+          ),
         ),
       ),
     );
