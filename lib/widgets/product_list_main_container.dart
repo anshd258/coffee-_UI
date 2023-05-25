@@ -34,7 +34,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
 
   void checkIfShopClosed() async {
     // API Call to get closed timings
-    await context.read<SetCafeTimings>().getCafeStatus();
+    await context.read<SetCafeTimings>().getCafeStatus( context );
     shopIsClosed = context.read<SetCafeTimings>().isShopClosed!;
     message = context.read<SetCafeTimings>().message;
   }
@@ -43,7 +43,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
   void initState() {
     getproducts();
     checkIfShopClosed();
-    context.read<userDetailsProvider>().getUserDetails();
+    context.read<userDetailsProvider>().getUserDetails( context );
     ctr.addListener(() {
       context.read<ProductsProvider>().searchData(ctr.text);
     });
@@ -144,22 +144,51 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                 AlwaysStoppedAnimation<Color>(Colors.white70)),
                       )
                     : shopIsClosed
-                    ? Container(
-                      margin: EdgeInsets.only(
-                        top: 5.h,
-                      ),
-                      child: Positioned(
-                        top: 15.h,
-                        left: 10.w,
-                        child: DialogBox(
-                          start: "",
-                          end: "",
-                          message: message == "" ? "Cafe is Closed!" : message,
-                        ),
-                      ),
-                    )
-                    : Expanded(
+                    ? Expanded(
                         child: SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(bottom: 10.h),
+                          child: Stack(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: data.map((e) {
+                                  return ProductListScreenLowerListContainer(
+                                    e: e,
+                                  );
+                                }).toList(),
+                              ),
+                              GlassContainer.frostedGlass(
+                                height: 100.h,
+                                width: 100.w,
+                                blur: 14,
+                                frostedOpacity: 0.04,
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.black26,
+                                child: Container(
+                                  alignment: Alignment.topCenter,
+                                  margin: EdgeInsets.only(
+                                    top: 10.h,
+                                  ),
+                                  child: Positioned(
+                                    top: 15.h,
+                                    left: 10.w,
+                                    child: DialogBox(
+                                      start: "",
+                                      end: "",
+                                      message: message == "" ? "Cafe is Closed!" : message,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : isCartNotEmpty() 
+                      ? Expanded(
+                        child: SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.only(bottom: 10.h),
                           child: Stack(
                             children: [
@@ -172,34 +201,44 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                 }).toList(),
                               ),
                               // if your cart is not empty
-                              Visibility(
-                                visible: isCartNotEmpty(),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      onTap = true;
-                                    });
-                                  },
-                                  child: GlassContainer.frostedGlass(
-                                    height: 100.h,
-                                    width: 100.w,
-                                    blur: 14,
-                                    frostedOpacity: 0.04,
-                                    borderRadius: BorderRadius.circular(25),
-                                    color: Colors.black26,
-                                    child: Container(
-                                      alignment: Alignment.topCenter,
-                                      padding: EdgeInsets.only( top: 10.h ),
-                                      child: DialogBox(
-                                        start: "",
-                                        end: "",
-                                        message: "Please Confirm your Order in the Cart",
-                                      ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    onTap = true;
+                                  });
+                                },
+                                child: GlassContainer.frostedGlass(
+                                  height: 100.h,
+                                  width: 100.w,
+                                  blur: 14,
+                                  frostedOpacity: 0.04,
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black26,
+                                  child: Container(
+                                    alignment: Alignment.topCenter,
+                                    padding: EdgeInsets.only( top: 10.h ),
+                                    child: DialogBox(
+                                      start: "",
+                                      end: "",
+                                      message: "Please Confirm your Order in the Cart",
                                     ),
                                   ),
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                      )
+                      : Expanded(
+                        child: SingleChildScrollView(
+                          padding: EdgeInsets.only(bottom: 10.h),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: data.map((e) {
+                              return ProductListScreenLowerListContainer(
+                                e: e,
+                              );
+                            }).toList(),
                           ),
                         ),
                       ),

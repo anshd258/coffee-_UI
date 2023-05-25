@@ -5,6 +5,7 @@ import 'package:inter_coffee/models/order_history_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
+import 'package:inter_coffee/widgets/error_snackbar.dart';
 
 import '../constants/auth_const.dart';
 
@@ -17,6 +18,7 @@ class OrderHistory with ChangeNotifier {
   List<OrderHistoryModel>? get History {
     return _orderList;
   }
+  
 
   void init() {
     isloading = true;
@@ -51,7 +53,7 @@ class OrderHistory with ChangeNotifier {
     for (var element in _orderList!) {}
   }
 
-  Future<OrderHistoryModel> getOrderhistory(String id) async {
+  Future<OrderHistoryModel> getOrderhistory(BuildContext context, String id) async {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
     print(accessTokken);
@@ -68,8 +70,37 @@ class OrderHistory with ChangeNotifier {
       final loadedData = responseData['data'];
 
       return OrderHistoryModel.fromJson(responseData['data']);
-    } else {
-      throw ("error connecting the network");
+    } 
+    else {
+      errorSnackBar(context, "Please Contact Admin, an error occured");
+      return OrderHistoryModel();
     }
   }
+  
+  Future<List<Items>> getOrderDetailsForCell(BuildContext context, String id) async {
+    List<Items>? itemList;
+    final data = loginhandler().getData();
+    final accessTokken = data!.token;
+    print(accessTokken);
+    String url = '$baseurl/getOrderDetails/$id';
+    dataLoading = true;
+    notifyListeners();
+    final responsep = await UserApiHandler().getApiCall(url, accessTokken);
+    dataLoading = false;
+    notifyListeners();
+
+    if (responsep.statusCode == 200) {
+      final responseData = await json.decode(responsep.body) as Map<String, dynamic>;
+      itemList = <Items>[];
+      responseData['data']['items'].forEach((v) {
+        itemList!.add(Items.fromJson(v));
+      });
+      return itemList;
+    } 
+    else {
+      errorSnackBar(context, "Please Contact Admin, an error occured");
+    }
+    return [];
+  }
+
 }

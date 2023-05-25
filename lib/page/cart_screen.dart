@@ -147,7 +147,7 @@ class _CartScreenState extends State<CartScreen> {
                           if (productsInfo.isNotEmpty) {
                             context
                                 .read<CartProductsProvider>()
-                                .postData(checknox);
+                                .postData(context, checknox);
                             orderCompletionDialog(context, 1);
                           } else {
                             snakbarmethod(

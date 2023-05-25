@@ -40,7 +40,7 @@ class _MerchantHomeScreenRowContainerState
         if (isloading == false) {
           context
               .read<OrderHistory>()
-              .getOrderhistory(widget.orderId!)
+              .getOrderhistory( context, widget.orderId!)
               .then((value) => orderDetailsDialog(context, value));
         }
       },

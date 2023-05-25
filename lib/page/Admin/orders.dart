@@ -1,3 +1,4 @@
+import 'package:inter_coffee/models/order_history_model.dart';
 import 'package:inter_coffee/provider/Admin/orders_table_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/cancellation_reason_list.dart';
 import 'package:inter_coffee/provider/order_history_provider.dart';
@@ -5,6 +6,7 @@ import 'package:inter_coffee/provider/login_auth_provider.dart';
 import 'package:inter_coffee/provider/merchantProvider/table_with_status_provider.dart';
 import 'package:inter_coffee/provider/router.dart';
 import 'package:inter_coffee/widgets/Admin/order_details_dialog.dart';
+import 'package:inter_coffee/widgets/Merchant/order_details_cell.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/Admin/reports_table.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,7 @@ class AllOrdersTable extends StatefulWidget {
 
 class _AllOrdersTableState extends State<AllOrdersTable> {
   void getPlacedOrdersList() async {
-    await getOrdersPlaced();
+    await getOrdersPlaced( context );
   }
 
   String status = "ORDER_PLACED";
@@ -34,7 +36,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
   void initState() {
     getPlacedOrdersList();
     context.read<TableWithStatusProvider>().getOrders(status);
-    context.read<CancellationReasonList>().getReasons();
+    context.read<CancellationReasonList>().getReasons( context );
     super.initState();
   }
 
@@ -90,6 +92,11 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
           return data[i]!["isPriority"];
         }
       }
+      return false;
+    }
+
+    Future<bool> getOrderDetailsBool( String id ) async {
+      OrderHistoryModel orderDetailsToShow = await context.read<OrderHistory>().getOrderhistory(context,id);
       return false;
     }
 
@@ -525,7 +532,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               tableCellBuilder: (value) {
                                                 return Container(
                                                   padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
+                                                  height: 20.h,
                                                   decoration: BoxDecoration(
                                                     color: tableBlack,
                                                     border: Border.all(
@@ -672,7 +679,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                 if (isSelect == true) {
                                                   context
                                                       .read<OrderHistory>()
-                                                      .getOrderhistory(id)
+                                                      .getOrderhistory(context,id)
                                                       .then((value) =>
                                                           orderDetailsDialog(
                                                               context, value))
@@ -687,28 +694,34 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                   .yellow[500]!
                                                   .withOpacity(0.5),
                                               tableCellBuilder: (value) {
-                                                return Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  height: 5.h,
-                                                  decoration: BoxDecoration(
-                                                    color: tableBlack,
-                                                    border: Border.all(
-                                                        color: borderWhite),
-                                                  ),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Center(
-                                                      child: Text(
-                                                        "View More",
-                                                        style: GoogleFonts.inter(
-                                                            color: Colors.white,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline),
-                                                      ),
-                                                    ),
-                                                  ),
+                                                return 
+                                                OrderDetailsValueBuilder(
+                                                  id: value
                                                 );
+                                                // SingleChildScrollView(
+                                                //   child: Container(
+                                                //     padding: EdgeInsets.all(2.w),
+                                                //     height: 20.h,
+                                                //     decoration: BoxDecoration(
+                                                //       color: tableBlack,
+                                                //       border: Border.all(
+                                                //           color: borderWhite),
+                                                //     ),
+                                                //     child: FittedBox(
+                                                //       fit: BoxFit.contain,
+                                                //       child: Center(
+                                                //         child: Text(
+                                                //           value,
+                                                //           style: GoogleFonts.inter(
+                                                //               color: Colors.white,
+                                                //               decoration:
+                                                //                   TextDecoration
+                                                //                       .underline),
+                                                //         ),
+                                                //       ),
+                                                //     ),
+                                                //   ),
+                                                // );
                                               },
                                             ),
                                           ],

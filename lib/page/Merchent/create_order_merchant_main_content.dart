@@ -28,7 +28,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
   @override
   void initState() {
     getproducts();
-    context.read<userDetailsProvider>().getUserDetails();
+    context.read<userDetailsProvider>().getUserDetails( context );
     ctr.addListener(() {
       context.read<ProductsProvider>().searchData(ctr.text);
     });
@@ -182,7 +182,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                 } else {
                                   context
                                       .read<CartProductsProvider>()
-                                      .merchantPostData(name.text.trim(),
+                                      .merchantPostData(context,name.text.trim(),
                                           contactNo.text.trim());
                                   orderConfirmationDialog(context,
                                       "Order Completed Successfully !", 1);

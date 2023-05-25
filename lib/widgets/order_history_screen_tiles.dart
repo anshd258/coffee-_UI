@@ -79,9 +79,9 @@ class OrderHistoryScreenTiles extends StatelessWidget {
           isclicked = true;
           context
               .read<OrderHistory>()
-              .getOrderhistory(id)
+              .getOrderhistory(context, id)
               .then((value) {
-                var allData = context.read<MyData>().fetchData(id);
+                var allData = context.read<MyData>().fetchData(context, id);
                 orderDetailsDialog(context, value);
               }).whenComplete(() => isclicked = false);
         }
@@ -217,7 +217,8 @@ class OrderHistoryScreenTiles extends StatelessWidget {
                           ),
                         ),
                         OutlinedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            await context.read<SetCafeTimings>().getCafeStatus( context );
                             if( context.read<SetCafeTimings>().isShopClosed! ) {
                               snakbarmethod(context, "Shop is closed, come some other time");
                             } else {

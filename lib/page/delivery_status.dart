@@ -26,12 +26,12 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
   Timer? timer;
   @override
   void initState() {
-    context.read<MyData>().fetchData(orderid);
+    context.read<MyData>().fetchData( context, orderid);
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
         setState(() {
-          context.read<MyData>().fetchData(orderid);
+          context.read<MyData>().fetchData( context, orderid);
         });
       },
     );

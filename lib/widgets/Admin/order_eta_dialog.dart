@@ -230,7 +230,7 @@ Future<void> orderETADialog(
                         if (type == "priority") {
                           context
                               .read<TablePriorityProvider>()
-                              .updateOrderStatusWithoutTimeWithReason(
+                              .updateOrderStatusWithoutTimeWithReason( context,
                                   "ORDER_CANCELLED", id, "ORDER_PLACED", selectedReason.toString() );
                           orderConfirmationDialog(context, "Order Cancelled", 5).whenComplete(() => Navigator.pop(context));
                         } else {

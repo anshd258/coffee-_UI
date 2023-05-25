@@ -42,7 +42,7 @@ class _PriorityTableState extends State<PriorityTable> {
   @override
   void initState() {
     context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
-    context.read<CancellationReasonList>().getReasons();
+    context.read<CancellationReasonList>().getReasons( context );
     super.initState();
   }
 
@@ -92,7 +92,7 @@ class _PriorityTableState extends State<PriorityTable> {
       // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
       context
           .read<ReportsProvider>()
-          .fetchReports(fromdate.toString(), todate.toString());
+          .fetchReports(context, fromdate.toString(), todate.toString());
     });
   }
 

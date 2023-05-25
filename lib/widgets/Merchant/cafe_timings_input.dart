@@ -68,7 +68,7 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
   }
 
   void findPrevTimings() async {
-    context.read<SetCafeTimings>().getCafeTimings().whenComplete((){
+    context.read<SetCafeTimings>().getCafeTimings( context ).whenComplete((){
       setState(() {
         dayWiseTimings = context.read<SetCafeTimings>().cafeTimingsKeyWise!;
         _messageTextController.text = context.read<SetCafeTimings>().message;
@@ -254,7 +254,7 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                             });
 
                             if( isCompletelyFilled ) {
-                              context.read<SetCafeTimings>().setCafeTimings( setTimings );
+                              context.read<SetCafeTimings>().setCafeTimings( context,setTimings );
                               showDialog(
                                 context: context,
                                 builder: (context) {

@@ -7,12 +7,13 @@ import 'package:inter_coffee/models/order_details_model.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 
 import 'package:flutter/material.dart';
+import 'package:inter_coffee/widgets/error_snackbar.dart';
 
 List<dynamic> jsonToDecode = [];
 
 class AllOrderProvider with ChangeNotifier {
   List<OrderDetails>? orders;
-  Future<String> getOrders() async {
+  Future<String> getOrders( BuildContext context ) async {
     final data = loginhandler().getData();
     final accessTokken = data!.token;
 
@@ -20,6 +21,7 @@ class AllOrderProvider with ChangeNotifier {
     final response = await MerchantApiHandler().getApiCall(url, accessTokken);
 
     if (response.statusCode != 200) {
+      errorSnackBar(context, "An internal server error has occurred");
       return "token expired";
     }
     if (response.statusCode == 200) {

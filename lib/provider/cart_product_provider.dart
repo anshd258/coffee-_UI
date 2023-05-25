@@ -8,6 +8,7 @@ import 'package:inter_coffee/models/merchant_create_order_modal.dart';
 import 'package:inter_coffee/models/order_prouct.dart';
 import 'package:inter_coffee/constants/auth_const.dart';
 import 'package:inter_coffee/provider/loginhandler/login_functions.dart';
+import 'package:inter_coffee/widgets/error_snackbar.dart';
 
 class CartProductsProvider with ChangeNotifier {
   List<CartModal> cartData = [];
@@ -16,7 +17,7 @@ class CartProductsProvider with ChangeNotifier {
   bool priority = true;
   int checkerLength = 0;
 
-  Future<void> postData(bool isPriority) async {
+  Future<void> postData(BuildContext context, bool isPriority) async {
     final dataa = loginhandler().getData();
     final accessTokken = dataa!.token;
     List<Map<String, dynamic>> currentData = [];
@@ -27,16 +28,39 @@ class CartProductsProvider with ChangeNotifier {
       priority = isPriority;
     }
     const url = "$baseurl/placeOrder";
-    Map<String, Object> postingData =
-        priorityConverter(isPriority, currentData);
-    print(postingData);
+    Map<String, Object> postingData = priorityConverter(isPriority, currentData);
     final data = json.encode(postingData);
-    final response =
-        await UserApiHandler().postApiCall(url, accessTokken, data);
-    print(response.statusCode);
+    final response = await UserApiHandler().postApiCall(url, accessTokken, data);
     if (response.statusCode == 200) {
       cartData.clear();
       notifyListeners();
+    } 
+    else if( response.statusCode == 204 ) {
+      errorSnackBar(context, "No content received from server");
+    }
+    else if( response.statusCode == 400 ) {
+      errorSnackBar(context, "Wrong Syntax");
+    }
+    else if( response.statusCode == 401 ) {
+      errorSnackBar(context, "Unauthorized Access");
+    }
+    else if( response.statusCode == 403 ) {
+      errorSnackBar(context, "Permission to resource forbidden");
+    }
+    else if( response.statusCode == 404 ) {
+      errorSnackBar(context, "Resource not found on server");
+    }
+    else if( response.statusCode == 500 ) {
+      errorSnackBar(context, "Internal server error");
+    }
+    else if( response.statusCode == 502 ) {
+      errorSnackBar(context, "Bad Gateway: Invalid response received");
+    }
+    else if( response.statusCode == 503 ) {
+      errorSnackBar(context, "Server unreachable due to maintenance or overload");
+    } 
+    else {
+      errorSnackBar(context, "Please Contact Admin");
     }
 
     // print("sending data$currentData");
@@ -55,7 +79,7 @@ class CartProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> merchantPostData(String name, String phoneNumber) async {
+  Future<void> merchantPostData(BuildContext context, String name, String phoneNumber) async {
     final dataa = loginhandler().getData();
     final accessTokken = dataa!.token;
     final MerchantCreateOrder postingData = MerchantCreateOrder(
@@ -69,6 +93,33 @@ class CartProductsProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       cartData.clear();
       notifyListeners();
+    }
+    else if( response.statusCode == 204 ) {
+      errorSnackBar(context, "No content received from server");
+    }
+    else if( response.statusCode == 400 ) {
+      errorSnackBar(context, "Wrong Syntax");
+    }
+    else if( response.statusCode == 401 ) {
+      errorSnackBar(context, "Unauthorized Access");
+    }
+    else if( response.statusCode == 403 ) {
+      errorSnackBar(context, "Permission to resource forbidden");
+    }
+    else if( response.statusCode == 404 ) {
+      errorSnackBar(context, "Resource not found on server");
+    }
+    else if( response.statusCode == 500 ) {
+      errorSnackBar(context, "Internal server error");
+    }
+    else if( response.statusCode == 502 ) {
+      errorSnackBar(context, "Bad Gateway: Invalid response received");
+    }
+    else if( response.statusCode == 503 ) {
+      errorSnackBar(context, "Server unreachable due to maintenance or overload");
+    } 
+    else {
+      errorSnackBar(context, "Please Contact Admin");
     }
   }
 

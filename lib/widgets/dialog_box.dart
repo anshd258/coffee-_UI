@@ -27,7 +27,7 @@ class DialogBox extends StatelessWidget {
       frostedOpacity: 0.04,
       borderRadius: BorderRadius.circular(25),
       color: Colors.black54,
-      padding: EdgeInsets.symmetric( vertical: 5.h),
+      padding: EdgeInsets.symmetric( vertical: 5.h, horizontal: 4.w ),
       child: SingleChildScrollView(
         child: Container(
           width: 70.w,

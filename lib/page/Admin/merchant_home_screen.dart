@@ -48,16 +48,16 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   @override
   void initState() {
     getproducts();
-    context.read<userDetailsProvider>().getUserDetails();
-    context.read<PriorityOrderCount>().getCount();
-    context.read<TotalOrderCount>().getCount();
+    context.read<userDetailsProvider>().getUserDetails( context );
+    context.read<PriorityOrderCount>().getCount( context );
+    context.read<TotalOrderCount>().getCount( context );
 
-    context.read<PriorityOrderProvider>().getPriorityOrders();
+    context.read<PriorityOrderProvider>().getPriorityOrders( context );
     super.initState();
   }
 
   void getproducts() async {
-    await context.read<AllOrderProvider>().getOrders();
+    await context.read<AllOrderProvider>().getOrders( context );
   }
 
   List<OrderDetails>? listOfOrders;

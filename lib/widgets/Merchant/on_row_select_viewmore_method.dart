@@ -9,7 +9,7 @@ void onRowSelectViewMore(map, BuildContext context, Function setLoader,
 
   context
       .read<OrderHistory>()
-      .getOrderhistory(map['orderId'])
+      .getOrderhistory(context, map['orderId'])
       .then((value) => orderDetailsDialog(context, value))
       .whenComplete(() {
     setloaderfalse();
