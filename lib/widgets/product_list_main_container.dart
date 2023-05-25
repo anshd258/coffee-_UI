@@ -16,7 +16,7 @@ import 'namebar2.dart';
 import 'product_list_lower_list_container.dart';
 
 class ProductListMainContainer extends StatefulWidget {
-  const ProductListMainContainer({super.key});
+  const ProductListMainContainer({Key? key}) : super(key: key);
 
   @override
   State<ProductListMainContainer> createState() =>
@@ -88,10 +88,7 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
         // mid container fir the horizontal list of products
         //bottom get it instantly text
         isAdmin
-            ? const SizedBox(
-                height: 0,
-                width: 0,
-              )
+            ? const SizedBox(height: 0,width: 0,)
             : Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -144,92 +141,17 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                                 AlwaysStoppedAnimation<Color>(Colors.white70)),
                       )
                     : shopIsClosed
-                    ? Expanded(
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: Stack(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: data.map((e) {
-                                  return ProductListScreenLowerListContainer(
-                                    e: e,
-                                  );
-                                }).toList(),
-                              ),
-                              GlassContainer.frostedGlass(
-                                height: 100.h,
-                                width: 100.w,
-                                blur: 14,
-                                frostedOpacity: 0.04,
-                                borderRadius: BorderRadius.circular(25),
-                                color: Colors.black26,
-                                child: Container(
-                                  alignment: Alignment.topCenter,
-                                  margin: EdgeInsets.only(
-                                    top: 10.h,
-                                  ),
-                                  child: Positioned(
-                                    top: 15.h,
-                                    left: 10.w,
-                                    child: DialogBox(
-                                      start: "",
-                                      end: "",
-                                      message: message == "" ? "Cafe is Closed!" : message,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                    ? Container(
+                        alignment: Alignment.topCenter,
+                        margin: EdgeInsets.only(top: 10.h),
+                        child: DialogBox(
+                          start: "",
+                          end: "",
+                          message: message.isEmpty ? "Cafe is Closed!" : message,
                         ),
                       )
-                    : isCartNotEmpty() 
-                      ? Expanded(
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: Stack(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: data.map((e) {
-                                  return ProductListScreenLowerListContainer(
-                                    e: e,
-                                  );
-                                }).toList(),
-                              ),
-                              // if your cart is not empty
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    onTap = true;
-                                  });
-                                },
-                                child: GlassContainer.frostedGlass(
-                                  height: 100.h,
-                                  width: 100.w,
-                                  blur: 14,
-                                  frostedOpacity: 0.04,
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.black26,
-                                  child: Container(
-                                    alignment: Alignment.topCenter,
-                                    padding: EdgeInsets.only( top: 10.h ),
-                                    child: DialogBox(
-                                      start: "",
-                                      end: "",
-                                      message: "Please Confirm your Order in the Cart",
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                      : Expanded(
+                    : 
+                    Expanded(
                         child: SingleChildScrollView(
                           padding: EdgeInsets.only(bottom: 10.h),
                           child: Column(
@@ -242,6 +164,31 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                           ),
                         ),
                       ),
+                // if (isCartNotEmpty())
+                //   GestureDetector(
+                //     onTap: () {
+                //       setState(() {
+                //         onTap = true;
+                //       });
+                //     },
+                //     child: GlassContainer.frostedGlass(
+                //       height: 100.h,
+                //       width: 100.w,
+                //       blur: 14,
+                //       frostedOpacity: 0.04,
+                //       borderRadius: BorderRadius.circular(25),
+                //       color: Colors.black26,
+                //       child: Container(
+                //         alignment: Alignment.topCenter,
+                //         padding: EdgeInsets.only(top: 10.h),
+                        // child: DialogBox(
+                        //   start: "",
+                        //   end: "",
+                        //   message: "Please Confirm your Order in the Cart",
+                        // ),
+                //       ),
+                //     ),
+                //   ),
               ],
             ),
           ),
