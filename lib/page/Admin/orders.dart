@@ -532,7 +532,7 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                               tableCellBuilder: (value) {
                                                 return Container(
                                                   padding: EdgeInsets.all(2.w),
-                                                  height: 20.h,
+                                                  height: 5.h,
                                                   decoration: BoxDecoration(
                                                     color: tableBlack,
                                                     border: Border.all(
@@ -695,33 +695,33 @@ class _AllOrdersTableState extends State<AllOrdersTable> {
                                                   .withOpacity(0.5),
                                               tableCellBuilder: (value) {
                                                 return 
-                                                OrderDetailsValueBuilder(
-                                                  id: value
-                                                );
-                                                // SingleChildScrollView(
-                                                //   child: Container(
-                                                //     padding: EdgeInsets.all(2.w),
-                                                //     height: 20.h,
-                                                //     decoration: BoxDecoration(
-                                                //       color: tableBlack,
-                                                //       border: Border.all(
-                                                //           color: borderWhite),
-                                                //     ),
-                                                //     child: FittedBox(
-                                                //       fit: BoxFit.contain,
-                                                //       child: Center(
-                                                //         child: Text(
-                                                //           value,
-                                                //           style: GoogleFonts.inter(
-                                                //               color: Colors.white,
-                                                //               decoration:
-                                                //                   TextDecoration
-                                                //                       .underline),
-                                                //         ),
-                                                //       ),
-                                                //     ),
-                                                //   ),
+                                                // OrderDetailsValueBuilder(
+                                                //   id: value
                                                 // );
+                                                SingleChildScrollView(
+                                                  child: Container(
+                                                    padding: EdgeInsets.all(2.w),
+                                                    height: 5.h,
+                                                    decoration: BoxDecoration(
+                                                      color: tableBlack,
+                                                      border: Border.all(
+                                                          color: borderWhite),
+                                                    ),
+                                                    child: FittedBox(
+                                                      fit: BoxFit.contain,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "View More",
+                                                          style: GoogleFonts.inter(
+                                                              color: Colors.white,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
                                               },
                                             ),
                                           ],
