@@ -24,7 +24,7 @@ class ProductListMainContainer extends StatefulWidget {
 }
 
 class _ProductListMainContainerState extends State<ProductListMainContainer> {
-  //data of the products offerd
+  //data of the products offered
   final TextEditingController ctr = TextEditingController();
   bool shopIsClosed = false;
   bool onTap = false;
@@ -37,6 +37,14 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
     await context.read<SetCafeTimings>().getCafeStatus( context );
     shopIsClosed = context.read<SetCafeTimings>().isShopClosed!;
     message = context.read<SetCafeTimings>().message;
+  }
+  
+  Future<bool> checkIfShopClosedFuture() async {
+    // API Call to get closed timings
+    await context.read<SetCafeTimings>().getCafeStatus( context );
+    shopIsClosed = context.read<SetCafeTimings>().isShopClosed!;
+    message = context.read<SetCafeTimings>().message;
+    return shopIsClosed;
   }
 
   @override
@@ -134,61 +142,45 @@ class _ProductListMainContainerState extends State<ProductListMainContainer> {
                         height: 0,
                         width: 0,
                       ),
-                data.isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator.adaptive(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.white70)),
-                      )
-                    : shopIsClosed
-                    ? Container(
-                        alignment: Alignment.topCenter,
-                        margin: EdgeInsets.only(top: 10.h),
-                        child: DialogBox(
-                          start: "",
-                          end: "",
-                          message: message.isEmpty ? "Cafe is Closed!" : message,
+                FutureBuilder(
+                  future: checkIfShopClosedFuture(),
+                  builder: ( context, snapshot ) {
+                    return snapshot.hasData
+                      ? data.isEmpty
+                      ? const Expanded(
+                        child: Center(
+                            child: CircularProgressIndicator( color: Colors.white ),
                         ),
                       )
-                    : 
-                    Expanded(
-                        child: SingleChildScrollView(
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: data.map((e) {
-                              return ProductListScreenLowerListContainer(
-                                e: e,
-                              );
-                            }).toList(),
+                      : shopIsClosed
+                      ? Container(
+                          alignment: Alignment.topCenter,
+                          margin: EdgeInsets.only(top: 10.h),
+                          child: DialogBox(
+                            start: "",
+                            end: "",
+                            message: message.isEmpty ? "Cafe is Closed!" : message,
                           ),
-                        ),
-                      ),
-                // if (isCartNotEmpty())
-                //   GestureDetector(
-                //     onTap: () {
-                //       setState(() {
-                //         onTap = true;
-                //       });
-                //     },
-                //     child: GlassContainer.frostedGlass(
-                //       height: 100.h,
-                //       width: 100.w,
-                //       blur: 14,
-                //       frostedOpacity: 0.04,
-                //       borderRadius: BorderRadius.circular(25),
-                //       color: Colors.black26,
-                //       child: Container(
-                //         alignment: Alignment.topCenter,
-                //         padding: EdgeInsets.only(top: 10.h),
-                        // child: DialogBox(
-                        //   start: "",
-                        //   end: "",
-                        //   message: "Please Confirm your Order in the Cart",
-                        // ),
-                //       ),
-                //     ),
-                //   ),
+                        )
+                      :  Expanded(
+                          child: SingleChildScrollView(
+                            padding: EdgeInsets.only(bottom: 10.h),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: data.map((e) {
+                                return ProductListScreenLowerListContainer(
+                                  e: e,
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        )
+                        : const Expanded(
+                          child: Center(
+                          child: CircularProgressIndicator( color: Colors.white ),),
+                        );
+                  }
+                ),
               ],
             ),
           ),
