@@ -27,11 +27,11 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
   final TextEditingController ctr = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController contactNo = TextEditingController();
-  
+
   @override
   void initState() {
     getproducts();
-    context.read<userDetailsProvider>().getUserDetails( context );
+    context.read<userDetailsProvider>().getUserDetails(context);
     ctr.addListener(() {
       context.read<ProductsProvider>().searchData(ctr.text);
     });
@@ -46,13 +46,13 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
   bool checknox = false;
   @override
   Widget build(BuildContext context) {
-
     name.text = nameEntered != null ? nameEntered! : "";
     contactNo.text = contactNoEntered != null ? contactNoEntered! : "";
 
     final data = context.watch<ProductsProvider>().productslist;
-    final List<CartModal> productsInfo = context.watch<CartProductsProvider>().cartData;
-    
+    final List<CartModal> productsInfo =
+        context.watch<CartProductsProvider>().cartData;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -68,22 +68,16 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                   alignment: Alignment.bottomLeft,
                   padding: EdgeInsets.only(left: 10.w),
                   child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
+                    text: TextSpan(children: [
+                      TextSpan(
                           text: "Name",
                           style: GoogleFonts.inter(
-                            color: Colors.white, fontSize: 16 
-                          )
-                        ),
-                        TextSpan(
+                              color: Colors.white, fontSize: 16)),
+                      TextSpan(
                           text: "*",
                           style: GoogleFonts.inter(
-                            color: Colors.red, fontSize: 16 
-                          )
-                        ),
-                      ]
-                    ),
+                              color: Colors.red, fontSize: 16)),
+                    ]),
                   ),
                 ),
                 Center(
@@ -107,8 +101,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                       constraints:
                           BoxConstraints(maxHeight: 5.h, maxWidth: 80.w),
                     ),
+                    onChanged: (value) {
+                      nameEntered = value;
+                    },
                     onSubmitted: (value) {
-                      name.text = value;
                       nameEntered = value;
                     },
                   ),
@@ -120,22 +116,16 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                   alignment: Alignment.bottomLeft,
                   padding: EdgeInsets.only(left: 10.w),
                   child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
+                    text: TextSpan(children: [
+                      TextSpan(
                           text: "Contact",
                           style: GoogleFonts.inter(
-                            color: Colors.white, fontSize: 16 
-                          )
-                        ),
-                        TextSpan(
+                              color: Colors.white, fontSize: 16)),
+                      TextSpan(
                           text: "*",
                           style: GoogleFonts.inter(
-                            color: Colors.red, fontSize: 16 
-                          )
-                        ),
-                      ]
-                    ),
+                              color: Colors.red, fontSize: 16)),
+                    ]),
                   ),
                 ),
                 Center(
@@ -160,8 +150,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                       constraints:
                           BoxConstraints(maxHeight: 5.h, maxWidth: 80.w),
                     ),
+                    onChanged: (value) {
+                      contactNoEntered = value;
+                    },
                     onSubmitted: (value) {
-                      contactNo.text = value;
                       contactNoEntered = value;
                     },
                   ),
@@ -227,7 +219,9 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                                 } else {
                                   context
                                       .read<CartProductsProvider>()
-                                      .merchantPostData(context,name.text.trim(),
+                                      .merchantPostData(
+                                          context,
+                                          name.text.trim(),
                                           contactNo.text.trim());
                                   orderConfirmationDialog(context,
                                       "Order Completed Successfully !", 1);
@@ -260,7 +254,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     ],
                   ),
                 ),
-                SizedBox( height: 1.h ),
+                SizedBox(height: 1.h),
 
                 //bottom get it instently text
                 isAdmin
