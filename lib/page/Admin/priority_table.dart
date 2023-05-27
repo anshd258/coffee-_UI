@@ -42,7 +42,7 @@ class _PriorityTableState extends State<PriorityTable> {
   @override
   void initState() {
     context.read<TablePriorityProvider>().getOrders("ORDER_PLACED");
-    context.read<CancellationReasonList>().getReasons( context );
+    context.read<CancellationReasonList>().getReasons(context);
     super.initState();
   }
 
@@ -100,6 +100,11 @@ class _PriorityTableState extends State<PriorityTable> {
     setState(() {
       fromdate = DateFormat("yyyy-MM-dd").format(time);
       // "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}";
+      if (todate != "DD/MM/YYYY") {
+        context
+            .read<ReportsProvider>()
+            .fetchReports(context, fromdate.toString(), todate.toString());
+      }
     });
   }
 
@@ -244,18 +249,20 @@ class _PriorityTableState extends State<PriorityTable> {
                                         BottomPicker.date(
                                           title: "Select Date",
                                           titleStyle: const TextStyle(
-                                            color: Colors.white
-                                          ),
+                                              color: Colors.white),
                                           descriptionStyle: const TextStyle(
-                                            color: Colors.white
-                                          ),
+                                              color: Colors.white),
                                           closeIconColor: Colors.white,
-                                          pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
-                                          buttonSingleColor: Colors.greenAccent.shade700,
-                                          onSubmit: ( date ) {
+                                          pickerTextStyle: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                          buttonSingleColor:
+                                              Colors.greenAccent.shade700,
+                                          onSubmit: (date) {
                                             fromDateSetter(date);
                                           },
-                                          backgroundColor: Colors.brown.shade900,
+                                          backgroundColor:
+                                              Colors.brown.shade900,
                                         ).show(context);
                                       },
                                       child: DateDisplayAdminReports(
@@ -275,18 +282,20 @@ class _PriorityTableState extends State<PriorityTable> {
                                         BottomPicker.date(
                                           title: "Select Date",
                                           titleStyle: const TextStyle(
-                                            color: Colors.white
-                                          ),
+                                              color: Colors.white),
                                           descriptionStyle: const TextStyle(
-                                            color: Colors.white
-                                          ),
+                                              color: Colors.white),
                                           closeIconColor: Colors.white,
-                                          pickerTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
-                                          buttonSingleColor: Colors.greenAccent.shade700,
-                                          onSubmit: ( date ) {
+                                          pickerTextStyle: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                          buttonSingleColor:
+                                              Colors.greenAccent.shade700,
+                                          onSubmit: (date) {
                                             toDateSetter(date);
                                           },
-                                          backgroundColor: Colors.brown.shade900,
+                                          backgroundColor:
+                                              Colors.brown.shade900,
                                         ).show(context);
                                       },
                                       child: DateDisplayAdminReports(

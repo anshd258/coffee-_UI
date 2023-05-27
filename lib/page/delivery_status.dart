@@ -24,26 +24,23 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
   String orderid = "no value";
   String orderNo = "No Value";
   Timer? timer;
+
   @override
   void initState() {
-    context.read<MyData>().fetchData( context, orderid);
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        setState(() {
-          context.read<MyData>().fetchData( context, orderid);
-        });
-      },
-    );
-
     super.initState();
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     stateOfOrder = "";
     timer!.cancel();
-    context.read<MyData>().clearPrevoiusStatus();
+    context.read<MyData>().clearPrevoiusStatusWithoutFuture();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    
     super.dispose();
   }
 
@@ -72,10 +69,26 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
   @override
   Widget build(BuildContext context) {
     print(ModalRoute.of(context)!.settings.arguments);
-    List<String> args =
-        ModalRoute.of(context)!.settings.arguments as List<String>;
+    List<String> args = ModalRoute.of(context)!.settings.arguments as List<String>;
     orderid = args.first.toString();
     orderNo = args[1].toString();
+
+    timer = Timer.periodic(
+      const Duration(seconds: 5),
+      (timer) {
+        setState(() {
+          context.read<MyData>().fetchData(context, orderid);
+        });
+      },
+    );
+
+    Future<String> getState() async {
+      List<String> args = ModalRoute.of(context)!.settings.arguments as List<String>;
+      orderid = args.first.toString();
+      orderNo = args[1].toString();
+      stateOfOrder = await context.read<MyData>().returnData(context, orderid);
+      return stateOfOrder;
+    }
 
     if (context.watch<MyData>().orderState != null) {
       stateOfOrder = context.watch<MyData>().orderState!;
@@ -128,7 +141,7 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
               onTap: () {
                 timer!.cancel();
                 stateOfOrder = "";
-                context.read<MyData>().clearPrevoiusStatus();
+                context.read<MyData>().clearPrevoiusStatusWithoutFuture();
                 Navigator.pop(context);
               },
               child: Image.asset("assets/ICONS/arrow3.png", scale: 3),
@@ -152,340 +165,351 @@ class _DeliveryStatusState extends State<DeliveryStatus> {
                       margin: EdgeInsets.only(top: 2.8.h),
                       height: 80.h,
                       width: 85.w,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Container(
-                                margin: const EdgeInsets.only(
-                                  left: 35,
-                                  top: 30,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        margin: EdgeInsets.only(right: 3.w),
-                                        child: Image.asset("assets/cp1.png",
-                                            scale: 4)),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          child: Center(
-                                            child: Text(orderNo,
-                                                textAlign: TextAlign.start,
-                                                style: GoogleFonts.inter(
-                                                    color: white,
-                                                    fontSize: 16.sp,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
-                                          ),
-                                        ),
-                                        // const SizedBox(
-                                        //   height: 3,
-                                        // ),
-                                      ],
-                                    )
-                                  ],
-                                )),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  left: 30, top: 15, right: 30),
-                              height: 3,
-                              color: white,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      child: FutureBuilder(
+                        future: getState(),
+                        builder: (context, snapshot) {
+                          return snapshot.hasData
+                          ? SingleChildScrollView(
+                            child: Column(
                               children: [
-                                const SizedBox(
-                                  height: 30,
+                                Container(
+                                    margin: const EdgeInsets.only(
+                                      left: 35,
+                                      top: 30,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            margin: EdgeInsets.only(right: 3.w),
+                                            child: Image.asset("assets/cp1.png",
+                                                scale: 4)),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              child: Center(
+                                                child: Text(orderNo,
+                                                    textAlign: TextAlign.start,
+                                                    style: GoogleFonts.inter(
+                                                        color: white,
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                              ),
+                                            ),
+                                            // const SizedBox(
+                                            //   height: 3,
+                                            // ),
+                                          ],
+                                        )
+                                      ],
+                                    )),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                      left: 30, top: 15, right: 30),
+                                  height: 3,
+                                  color: white,
                                 ),
-                                // check box 1
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const SizedBox(
-                                      width: 30,
+                                      height: 30,
                                     ),
-                                    Container(
-                                      width: 32,
-                                      height: 32,
-                                      decoration: BoxDecoration(
+                                    // check box 1
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        Container(
+                                          width: 32,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                              color: checkState(stateOfOrder) >= 1
+                                                  ? green
+                                                  : white,
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                          child: Transform.scale(
+                                            scale: 1.6,
+                                            child: Checkbox(
+                                              value: checkState(stateOfOrder) >=
+                                                          1 ||
+                                                      checkState(stateOfOrder) == -2
+                                                  ? true
+                                                  : false,
+                                              onChanged: (value) {
+                                                // setState(() {
+                                                //   _value1 = value;
+                                                // });
+                                              },
+                                              side: BorderSide(
+                                                color: white,
+                                              ),
+                                              activeColor: green,
+                                              checkColor: checkColor,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text("Order Placed",
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.inter(
+                                                color: white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 44,
+                                          height: 20,
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 0),
+                                          height: 40,
+                                          width: 4,
                                           color: checkState(stateOfOrder) >= 1
                                               ? green
                                               : white,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0)),
-                                      child: Transform.scale(
-                                        scale: 1.6,
-                                        child: Checkbox(
-                                          value: checkState(stateOfOrder) >=
-                                                      1 ||
-                                                  checkState(stateOfOrder) == -2
-                                              ? true
-                                              : false,
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   _value1 = value;
-                                            // });
-                                          },
-                                          side: BorderSide(
-                                            color: white,
-                                          ),
-                                          activeColor: green,
-                                          checkColor: checkColor,
+                                        )
+                                      ],
+                                    ),
+                                    // check box 2
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          width: 30,
                                         ),
-                                      ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: checkState(stateOfOrder) == -2
+                                                  ? red
+                                                  : checkState(stateOfOrder) >= 2
+                                                      ? green
+                                                      : white,
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                          width: 32,
+                                          height: 32,
+                                          child: Transform.scale(
+                                            scale: 1.6,
+                                            child: Checkbox(
+                                              value: checkState(stateOfOrder) >= 2,
+                                              onChanged: (value) {
+                                                // setState(() {
+                                                //   _value2 = value;
+                                                // });
+                                              },
+                                              side: BorderSide(
+                                                color: white,
+                                              ),
+                                              activeColor:
+                                                  checkState(stateOfOrder) == -2
+                                                      ? red
+                                                      : green,
+                                              checkColor: checkColor,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text(
+                                            checkState(stateOfOrder) == -2
+                                                ? "Order Cancelled"
+                                                : "Order Confirmed",
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.inter(
+                                                color: white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w500)),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      width: 15,
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 44,
+                                          height: 20,
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 0),
+                                          height: 40,
+                                          width: 4,
+                                          color: checkState(stateOfOrder) >= 2
+                                              ? green
+                                              : white,
+                                        )
+                                      ],
                                     ),
-                                    Text("Order Placed",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500)),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 44,
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 0),
-                                      height: 40,
-                                      width: 4,
-                                      color: checkState(stateOfOrder) >= 1
-                                          ? green
-                                          : white,
-                                    )
-                                  ],
-                                ),
-                                // check box 2
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) == -2
-                                              ? red
-                                              : checkState(stateOfOrder) >= 2
+                                    // check box 4
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: checkState(stateOfOrder) >= 3
                                                   ? green
                                                   : white,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0)),
-                                      width: 32,
-                                      height: 32,
-                                      child: Transform.scale(
-                                        scale: 1.6,
-                                        child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 2,
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   _value2 = value;
-                                            // });
-                                          },
-                                          side: BorderSide(
-                                            color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                          width: 32,
+                                          height: 32,
+                                          child: Transform.scale(
+                                            scale: 1.6,
+                                            child: Checkbox(
+                                              value: checkState(stateOfOrder) >= 3,
+                                              onChanged: (value) {
+                                                // setState(() {
+                                                //   _value4 = value;
+                                                // });
+                                              },
+                                              side: BorderSide(
+                                                color: white,
+                                              ),
+                                              activeColor: green,
+                                              checkColor: checkColor,
+                                            ),
                                           ),
-                                          activeColor:
-                                              checkState(stateOfOrder) == -2
-                                                  ? red
-                                                  : green,
-                                          checkColor: checkColor,
                                         ),
-                                      ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text("Order Ready to Pick Up",
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.inter(
+                                                color: white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w500)),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    Text(
-                                        checkState(stateOfOrder) == -2
-                                            ? "Order Cancelled"
-                                            : "Order Confirmed",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500)),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 44,
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 0),
-                                      height: 40,
-                                      width: 4,
-                                      color: checkState(stateOfOrder) >= 2
-                                          ? green
-                                          : white,
-                                    )
-                                  ],
-                                ),
-                                // check box 4
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 44,
+                                          height: 20,
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 0),
+                                          height: 40,
+                                          width: 4,
                                           color: checkState(stateOfOrder) >= 3
                                               ? green
                                               : white,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0)),
-                                      width: 32,
-                                      height: 32,
-                                      child: Transform.scale(
-                                        scale: 1.6,
-                                        child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 3,
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   _value4 = value;
-                                            // });
-                                          },
-                                          side: BorderSide(
-                                            color: white,
-                                          ),
-                                          activeColor: green,
-                                          checkColor: checkColor,
+                                        )
+                                      ],
+                                    ),
+                                    // check box 5
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          width: 30,
                                         ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: checkState(stateOfOrder) >= 4
+                                                  ? green
+                                                  : white,
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                          width: 32,
+                                          height: 32,
+                                          child: Transform.scale(
+                                            scale: 1.6,
+                                            child: Checkbox(
+                                              value: checkState(stateOfOrder) >= 4,
+                                              onChanged: (value) {
+                                                // setState(() {
+                                                //   _value5 = value;
+                                                // });
+                                              },
+                                              side: BorderSide(
+                                                color: white,
+                                              ),
+                                              activeColor: green,
+                                              checkColor: checkColor,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text("Order Completed",
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.inter(
+                                                color: white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        (EStime == null ||
+                                                (stateOfOrder != "ORDER_CONFIRMED"))
+                                            ? ""
+                                            : "Expected Time Delivery: ${EStime ?? "_"}",
+                                        style: GoogleFonts.inter(
+                                            color: Colors.white,
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: 1),
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 15,
+                                      height: 30,
                                     ),
-                                    Text("Order Ready to Pick Up",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500)),
+                                    // Center(
+                                    //   child: Container(
+                                    //     width: 85.w,
+                                    //     padding:
+                                    //         EdgeInsets.only(left: 9.w, right: 9.w),
+                                    //     child: ElevatedButton(
+                                    //       onPressed: () {},
+                                    //       style: ElevatedButton.styleFrom(
+                                    //           elevation: 5,
+                                    //           fixedSize: Size(50.w, 4.5.h),
+                                    //           backgroundColor:
+                                    //               Colors.greenAccent.shade700,
+                                    //           shape: RoundedRectangleBorder(
+                                    //               borderRadius:
+                                    //                   BorderRadius.circular(7))),
+                                    //       child: Text(
+                                    //         "Order Details",
+                                    //         style: GoogleFonts.inter(
+                                    //             color: Colors.white,
+                                    //             fontSize: 16.sp.sp,
+                                    //             fontWeight: FontWeight.w600,
+                                    //             letterSpacing: 1),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 44,
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 0),
-                                      height: 40,
-                                      width: 4,
-                                      color: checkState(stateOfOrder) >= 3
-                                          ? green
-                                          : white,
-                                    )
-                                  ],
-                                ),
-                                // check box 5
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: checkState(stateOfOrder) >= 4
-                                              ? green
-                                              : white,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0)),
-                                      width: 32,
-                                      height: 32,
-                                      child: Transform.scale(
-                                        scale: 1.6,
-                                        child: Checkbox(
-                                          value: checkState(stateOfOrder) >= 4,
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   _value5 = value;
-                                            // });
-                                          },
-                                          side: BorderSide(
-                                            color: white,
-                                          ),
-                                          activeColor: green,
-                                          checkColor: checkColor,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    Text("Order Completed",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.inter(
-                                            color: white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500)),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Center(
-                                  child: Text(
-                                    (EStime == null ||
-                                            (stateOfOrder != "ORDER_CONFIRMED"))
-                                        ? ""
-                                        : "Expected Time Delivery: ${EStime ?? "_"}",
-                                    style: GoogleFonts.inter(
-                                        color: Colors.white,
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: 1),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                // Center(
-                                //   child: Container(
-                                //     width: 85.w,
-                                //     padding:
-                                //         EdgeInsets.only(left: 9.w, right: 9.w),
-                                //     child: ElevatedButton(
-                                //       onPressed: () {},
-                                //       style: ElevatedButton.styleFrom(
-                                //           elevation: 5,
-                                //           fixedSize: Size(50.w, 4.5.h),
-                                //           backgroundColor:
-                                //               Colors.greenAccent.shade700,
-                                //           shape: RoundedRectangleBorder(
-                                //               borderRadius:
-                                //                   BorderRadius.circular(7))),
-                                //       child: Text(
-                                //         "Order Details",
-                                //         style: GoogleFonts.inter(
-                                //             color: Colors.white,
-                                //             fontSize: 16.sp.sp,
-                                //             fontWeight: FontWeight.w600,
-                                //             letterSpacing: 1),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
-                          ],
-                        ),
+                          )
+                          : const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          );
+                        }
                       ),
                     ),
                   ),

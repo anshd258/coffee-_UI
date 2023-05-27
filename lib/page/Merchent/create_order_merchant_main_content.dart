@@ -21,10 +21,13 @@ class CreateOrderMainContent extends StatefulWidget {
 }
 
 class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
-  //data of the products offerd
+  //data of the products offered
+  String? nameEntered;
+  String? contactNoEntered;
   final TextEditingController ctr = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController contactNo = TextEditingController();
+  
   @override
   void initState() {
     getproducts();
@@ -43,13 +46,17 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
   bool checknox = false;
   @override
   Widget build(BuildContext context) {
+
+    name.text = nameEntered != null ? nameEntered! : "";
+    contactNo.text = contactNoEntered != null ? contactNoEntered! : "";
+
     final data = context.watch<ProductsProvider>().productslist;
-    final List<CartModal> productsInfo =
-        context.watch<CartProductsProvider>().cartData;
+    final List<CartModal> productsInfo = context.watch<CartProductsProvider>().cartData;
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        // // mid container fir the horizontal list of products
+        // mid container fir the horizontal list of products
         Expanded(
           child: SingleChildScrollView(
             child: Column(
@@ -60,17 +67,33 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                 Container(
                   alignment: Alignment.bottomLeft,
                   padding: EdgeInsets.only(left: 10.w),
-                  child: const Text("Name :",
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Name",
+                          style: GoogleFonts.inter(
+                            color: Colors.white, fontSize: 16 
+                          )
+                        ),
+                        TextSpan(
+                          text: "*",
+                          style: GoogleFonts.inter(
+                            color: Colors.red, fontSize: 16 
+                          )
+                        ),
+                      ]
+                    ),
+                  ),
                 ),
                 Center(
                   child: TextField(
                     controller: name,
-                    style: const TextStyle(color: Colors.white),
+                    style: GoogleFonts.inter(color: Colors.white),
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: "Enter your name",
-                      hintStyle: const TextStyle(color: Colors.white),
+                      hintStyle: GoogleFonts.inter(color: Colors.white),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -84,6 +107,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                       constraints:
                           BoxConstraints(maxHeight: 5.h, maxWidth: 80.w),
                     ),
+                    onSubmitted: (value) {
+                      name.text = value;
+                      nameEntered = value;
+                    },
                   ),
                 ),
                 SizedBox(
@@ -92,18 +119,34 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                 Container(
                   alignment: Alignment.bottomLeft,
                   padding: EdgeInsets.only(left: 10.w),
-                  child: const Text("Contact :",
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Contact",
+                          style: GoogleFonts.inter(
+                            color: Colors.white, fontSize: 16 
+                          )
+                        ),
+                        TextSpan(
+                          text: "*",
+                          style: GoogleFonts.inter(
+                            color: Colors.red, fontSize: 16 
+                          )
+                        ),
+                      ]
+                    ),
+                  ),
                 ),
                 Center(
                   child: TextField(
                     controller: contactNo,
                     keyboardType: TextInputType.phone,
-                    style: const TextStyle(color: Colors.white),
+                    style: GoogleFonts.inter(color: Colors.white),
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: "Enter 10 digit Contact Number",
-                      hintStyle: const TextStyle(color: Colors.white),
+                      hintStyle: GoogleFonts.inter(color: Colors.white),
                       enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                         color: Colors.white,
@@ -117,6 +160,10 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                       constraints:
                           BoxConstraints(maxHeight: 5.h, maxWidth: 80.w),
                     ),
+                    onSubmitted: (value) {
+                      contactNo.text = value;
+                      contactNoEntered = value;
+                    },
                   ),
                 ),
                 SizedBox(
@@ -126,8 +173,6 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                   height: 35.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    // change the color here to change it to white
-                    // color: Color.fromARGB(60, 0, 0, 0),
                     color: Theme.of(context).primaryColorLight,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                   ),
@@ -215,6 +260,7 @@ class _CreateOrderMainContentState extends State<CreateOrderMainContent> {
                     ],
                   ),
                 ),
+                SizedBox( height: 1.h ),
 
                 //bottom get it instently text
                 isAdmin

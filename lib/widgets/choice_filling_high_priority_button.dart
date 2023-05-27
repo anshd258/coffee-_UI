@@ -47,42 +47,43 @@ class _ChoiceFillingHighPriorityButtonState
               // orderConfirmationDialog(context, "Order Added to Cart !", 1);
               // snakbarmethod(context, "Order Added to Cart !");
               Navigator.pop(context);
-              showDialog(
-                barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
-                barrierDismissible: true,
-                context: context,
-                builder: (context) => StatefulBuilder(
-                  builder: (BuildContext context, setState) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Dialog(
-                        backgroundColor: Colors.transparent,
-                        insetPadding: const EdgeInsets.all(0),
-                        child: SizedBox(
-                          width: 100.w,
-                          height: 90.h,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: DialogBox(
-                                start: "",
-                                end: "",
-                                message: "Please Confirm your Order in the Cart",
+              if( context.read<LoginAuthProvider>().role == "user" ) {
+                showDialog(
+                  barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
+                  barrierDismissible: true,
+                  context: context,
+                  builder: (context) => StatefulBuilder(
+                    builder: (BuildContext context, setState) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.all(0),
+                          child: SizedBox(
+                            width: 100.w,
+                            height: 90.h,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: DialogBox(
+                                  start: "",
+                                  end: "",
+                                  message: "Please Confirm your Order in the Cart",
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              );
-              // Navigator.pop(context);
+                      );
+                    },
+                  ),
+                );
+              }
               
             } else {
               snakbarmethod(context, "Please Select All The Choices");

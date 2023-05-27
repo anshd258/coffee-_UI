@@ -49,13 +49,7 @@ class _HorizontalProductContainerState
     return thirdChoice;
   }
 
-  int counter = 1;
-
-  @override
-  void initState() {
-    counter = widget.e.quantity!;
-    super.initState();
-  }
+  int? counter;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +57,7 @@ class _HorizontalProductContainerState
         .watch<ProductsProvider>()
         .products
         .where((element) => element.id == widget.e.productId);
+    counter = widget.e.quantity!;
     return Row(
       children: [
         SizedBox(
@@ -166,11 +161,11 @@ class _HorizontalProductContainerState
                       // veg symbol
                     ],
                   ),
-                  //padding between inner row and discription
+                  //padding between inner row and description
                   SizedBox(
                     height: 0.5.h,
                   ),
-                  //discription text
+                  //description text
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -197,17 +192,19 @@ class _HorizontalProductContainerState
                         size: 3.h,
                         numberSize: 0.8.w,
                         elevation: 0,
-                        style: const CartStepperStyle(
-                            activeBackgroundColor: Colors.transparent),
+                        style: const CartStepperStyle( activeBackgroundColor: Colors.transparent ),
                         didChangeCount: (value) {
                           if (value == 0) {
-                            context
-                                .read<CartProductsProvider>()
-                                .removeProduct(widget.e);
-                          }
-                          if (value <= 5) {
+                            context.read<CartProductsProvider>().removeProduct(widget.e);
+                          } else if (value <= 5) {
                             setState(() {
                               counter = value;
+                              context
+                                .read<CartProductsProvider>()
+                                .increaseProductQuantity(
+                                  widget.e.productId!,
+                                  counter!
+                                );
                             });
                           }
                         },

@@ -155,4 +155,17 @@ class CartProductsProvider with ChangeNotifier {
     cartData.clear();
     notifyListeners();
   }
+
+  void increaseProductQuantity( String id, int qty ) {
+    int len = cartData.length;
+    for( int i = 0; i < len; i++ ) {
+      if( cartData[i].productId == id ) {
+        print( cartData[i].quantity );
+        cartData[i].quantity = qty;
+        print( cartData[i].quantity );
+      }
+    }
+    notifyListeners();
+  }
+
 }

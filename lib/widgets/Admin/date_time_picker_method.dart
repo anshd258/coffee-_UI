@@ -3,8 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-Future<DateTime?> dateTimeMethod(
-    BuildContext context, Function fromDateSetter) {
+Future<DateTime?> dateTimeMethod( BuildContext context, Function fromDateSetter) {
   return DatePicker.showDatePicker(
     context,
     onConfirm: ((time) {

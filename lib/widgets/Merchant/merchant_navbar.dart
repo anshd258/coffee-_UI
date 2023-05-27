@@ -162,9 +162,9 @@ class _MerchantNavBarState extends State<MerchantNavBar> {
                     color: val == 5 ? Colors.white : Colors.transparent,
                   )),
               child: Image.asset(
-                "assets/Priority.png",
+                "assets/coffee_cup.png",
                 fit: BoxFit.scaleDown,
-                scale: 2.5,
+                scale: 0.95,
                 color: Colors.white,
               ),
             ),

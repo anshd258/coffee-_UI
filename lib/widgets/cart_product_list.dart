@@ -18,13 +18,7 @@ class CartProductList extends StatefulWidget {
 }
 
 class _CartProductListState extends State<CartProductList> {
-  int counter = 1;
-
-  @override
-  void initState() {
-    counter = widget.e.quantity!;
-    super.initState();
-  }
+  int? counter;
 
   String firstChoice = "";
   String secondChoice = "";
@@ -58,10 +52,13 @@ class _CartProductListState extends State<CartProductList> {
 
   @override
   Widget build(BuildContext context) {
+
     final product = context
         .watch<ProductsProvider>()
         .products
         .where((element) => element.id == widget.e.productId);
+    counter = widget.e.quantity!;
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -143,13 +140,15 @@ class _CartProductListState extends State<CartProductList> {
                                     .read<CartProductsProvider>()
                                     .removeProduct(widget.e);
                               }
-                              if (value <= 5) {
+                              else if (value <= 5) {
                                 setState(() {
                                   counter = value;
                                   context
                                       .read<CartProductsProvider>()
-                                      .currentproduct
-                                      .quantity = counter;
+                                      .increaseProductQuantity(
+                                        widget.e.productId!,
+                                        counter!
+                                      );
                                 });
                               }
                             },
@@ -157,7 +156,7 @@ class _CartProductListState extends State<CartProductList> {
                         ],
                       ),
 
-                      //pading
+                      //padding
                       SizedBox(
                         height: 0.8.h,
                       ),
