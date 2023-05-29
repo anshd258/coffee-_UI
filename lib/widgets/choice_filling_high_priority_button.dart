@@ -47,7 +47,7 @@ class _ChoiceFillingHighPriorityButtonState
               // orderConfirmationDialog(context, "Order Added to Cart !", 1);
               // snakbarmethod(context, "Order Added to Cart !");
               Navigator.pop(context);
-              if( context.read<LoginAuthProvider>().role == "user" ) {
+              if( context.read<LoginAuthProvider>().role != "merchant" ) {
                 showDialog(
                   barrierColor: const Color.fromRGBO(0, 0, 0, 0.75),
                   barrierDismissible: true,
