@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -28,23 +29,21 @@ class CartProductsProvider with ChangeNotifier {
       priority = isPriority;
     }
     const url = "$baseurl/placeOrder";
-    Map<String, Object> postingData = priorityConverter(isPriority, currentData);
+    Map<String, Object> postingData =
+        priorityConverter(isPriority, currentData);
     final data = json.encode(postingData);
-    final response = await UserApiHandler().postApiCall(url, accessTokken, data);
+    final response =
+        await UserApiHandler().postApiCall(url, accessTokken, data);
     if (response.statusCode == 200) {
       cartData.clear();
       notifyListeners();
-    } 
-    else if( response.statusCode == 204 ) {
+    } else if (response.statusCode == 204) {
       errorSnackBar(context, "No content received from server");
-    }
-    else if( response.statusCode >= 400 ) {
+    } else if (response.statusCode >= 400) {
       errorSnackBar(context, "Unauthorized Access");
-    }
-    else if( response.statusCode >= 500 ) {
+    } else if (response.statusCode >= 500) {
       errorSnackBar(context, "Internal server error");
-    }
-    else {
+    } else {
       errorSnackBar(context, "Please Contact Admin");
     }
 
@@ -64,7 +63,8 @@ class CartProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> merchantPostData(BuildContext context, String name, String phoneNumber) async {
+  Future<void> merchantPostData(
+      BuildContext context, String name, String phoneNumber) async {
     final dataa = loginhandler().getData();
     final accessTokken = dataa!.token;
     final MerchantCreateOrder postingData = MerchantCreateOrder(
@@ -78,32 +78,24 @@ class CartProductsProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       cartData.clear();
       notifyListeners();
-    }
-    else if( response.statusCode == 204 ) {
+    } else if (response.statusCode == 204) {
       errorSnackBar(context, "No content received from server");
-    }
-    else if( response.statusCode == 400 ) {
+    } else if (response.statusCode == 400) {
       errorSnackBar(context, "Wrong Syntax");
-    }
-    else if( response.statusCode == 401 ) {
+    } else if (response.statusCode == 401) {
       errorSnackBar(context, "Unauthorized Access");
-    }
-    else if( response.statusCode == 403 ) {
+    } else if (response.statusCode == 403) {
       errorSnackBar(context, "Permission to resource forbidden");
-    }
-    else if( response.statusCode == 404 ) {
+    } else if (response.statusCode == 404) {
       errorSnackBar(context, "Resource not found on server");
-    }
-    else if( response.statusCode == 500 ) {
+    } else if (response.statusCode == 500) {
       errorSnackBar(context, "Internal server error");
-    }
-    else if( response.statusCode == 502 ) {
+    } else if (response.statusCode == 502) {
       errorSnackBar(context, "Bad Gateway: Invalid response received");
-    }
-    else if( response.statusCode == 503 ) {
-      errorSnackBar(context, "Server unreachable due to maintenance or overload");
-    } 
-    else {
+    } else if (response.statusCode == 503) {
+      errorSnackBar(
+          context, "Server unreachable due to maintenance or overload");
+    } else {
       errorSnackBar(context, "Please Contact Admin");
     }
   }
@@ -127,6 +119,7 @@ class CartProductsProvider with ChangeNotifier {
     currentChoie = [];
     checkerLength = 0;
     currentproduct = CartModal();
+
     notifyListeners();
   }
 
@@ -141,16 +134,15 @@ class CartProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void increaseProductQuantity( String id, int qty ) {
+  void increaseProductQuantity(String id, int qty) {
     int len = cartData.length;
-    for( int i = 0; i < len; i++ ) {
-      if( cartData[i].productId == id ) {
-        print( cartData[i].quantity );
+    for (int i = 0; i < len; i++) {
+      if (cartData[i].productId == id) {
+        print(cartData[i].quantity);
         cartData[i].quantity = qty;
-        print( cartData[i].quantity );
+        print(cartData[i].quantity);
       }
     }
     notifyListeners();
   }
-
 }

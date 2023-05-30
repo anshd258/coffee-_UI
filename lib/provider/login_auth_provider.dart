@@ -170,7 +170,9 @@ class LoginAuthProvider with ChangeNotifier {
       // print(phoneNumber);
       userId = data.userId;
       //  print(userId);
-      notifyListeners();
+      Timer(Duration(seconds: 1), () {
+        notifyListeners();
+      });
     } else {
       role = null;
       accessToken = null;
