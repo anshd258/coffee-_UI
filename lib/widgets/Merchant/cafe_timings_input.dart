@@ -221,6 +221,9 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                           controller: _messageTextController,
                           minLines: 2,
                           maxLines: 2,
+                          onChanged: (value) {
+                            setTimings['message'] = value;
+                          },
                           style: GoogleFonts.inter(
                             fontSize: 16.sp,
                             letterSpacing: 1,
@@ -243,18 +246,10 @@ class _CafeTimingsInputState extends State<CafeTimingsInput> {
                     margin: EdgeInsets.only( right: 3.w, top: 0 ),
                     child: ElevatedButton(
                           onPressed: () {
-                            // Check all are selected
-                            setTimings.forEach((key, value) {
-                              isCompletelyFilled = true;
-                              if( key == 'message' ) {
-                                if( _messageTextController.text.isNotEmpty ) {
-                                  setTimings['message'] = _messageTextController.text;
-                                }
-                              }
-                            });
-
+                            isCompletelyFilled = true;
                             if( isCompletelyFilled ) {
                               context.read<SetCafeTimings>().setCafeTimings( context,setTimings );
+                              print( "message -> ${setTimings['message']}" );
                               showDialog(
                                 context: context,
                                 builder: (context) {

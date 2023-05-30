@@ -38,27 +38,12 @@ class CartProductsProvider with ChangeNotifier {
     else if( response.statusCode == 204 ) {
       errorSnackBar(context, "No content received from server");
     }
-    else if( response.statusCode == 400 ) {
-      errorSnackBar(context, "Wrong Syntax");
-    }
-    else if( response.statusCode == 401 ) {
+    else if( response.statusCode >= 400 ) {
       errorSnackBar(context, "Unauthorized Access");
     }
-    else if( response.statusCode == 403 ) {
-      errorSnackBar(context, "Permission to resource forbidden");
-    }
-    else if( response.statusCode == 404 ) {
-      errorSnackBar(context, "Resource not found on server");
-    }
-    else if( response.statusCode == 500 ) {
+    else if( response.statusCode >= 500 ) {
       errorSnackBar(context, "Internal server error");
     }
-    else if( response.statusCode == 502 ) {
-      errorSnackBar(context, "Bad Gateway: Invalid response received");
-    }
-    else if( response.statusCode == 503 ) {
-      errorSnackBar(context, "Server unreachable due to maintenance or overload");
-    } 
     else {
       errorSnackBar(context, "Please Contact Admin");
     }
