@@ -1,13 +1,15 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'package:inter_coffee/main_app.dart';
 import 'package:inter_coffee/notificationn_handler.dart';
 import 'package:inter_coffee/provider/loginhandler/login_model.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:inter_coffee/provider/notificaton_handler.dart';
+
 import 'firebase_options.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'provider/notificaton_handler.dart';
+
 import 'package:flutter/services.dart';
 
 // ...
@@ -29,14 +31,9 @@ void main() async {
 
   initializeNotification(messaging);
 
-  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-    if (!isAllowed) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
-    }
-  });
-
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     createnotification(message);
+    print("forground trigger");
   }).onError((eror) => throw ("error on forground $eror"));
   runApp(const MainApp());
 }

@@ -22,7 +22,7 @@ class _NotificationContainerState extends State<NotificationContainer> {
     }
     return GlassContainer.frostedGlass(
       borderWidth: 0.5,
-      height: 13.h,
+      height: 14.h,
       width: 90.w,
       frostedOpacity: 0.05,
       margin: EdgeInsets.symmetric(vertical: 0.7.h),
@@ -55,9 +55,9 @@ class _NotificationContainerState extends State<NotificationContainer> {
               Text(
                 widget.notification.title!,
                 style: GoogleFonts.inter(
-                  fontSize: 16.sp,
+                  fontSize: 15.sp,
                   letterSpacing: 1,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                   color: const Color.fromARGB(255, 205, 205, 205),
                 ),
               ),
@@ -84,7 +84,7 @@ class _NotificationContainerState extends State<NotificationContainer> {
               Text(
                 widget.notification.body!,
                 style: GoogleFonts.inter(
-                  fontSize: 14.sp,
+                  fontSize: 13.5.sp,
                   fontWeight: FontWeight.w400,
                   color: const Color.fromARGB(205, 205, 205, 205),
                 ),

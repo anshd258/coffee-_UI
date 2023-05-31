@@ -103,14 +103,17 @@ class LoginAuthProvider with ChangeNotifier {
         if (loadedData['role'] == 'MERCHANT') {
           isAdmin = false;
           session.role = "merchant";
+          await FirebaseMessaging.instance.subscribeToTopic("merchant");
           notifyListeners();
         } else if (loadedData['role'] == 'ADMIN') {
           isAdmin = false;
           session.role = "admin";
+          await FirebaseMessaging.instance.subscribeToTopic("admin");
           notifyListeners();
         } else if (loadedData['role'] == 'USER') {
           isAdmin = false;
           session.role = "user";
+          await FirebaseMessaging.instance.subscribeToTopic("user");
           notifyListeners();
         }
         session.phonenumber = pnumber;
@@ -188,6 +191,7 @@ class LoginAuthProvider with ChangeNotifier {
     phoneNumber = null;
     accessToken = null;
     role = null;
+    FirebaseMessaging.instance.deleteToken();
     notifyListeners();
   }
 }
